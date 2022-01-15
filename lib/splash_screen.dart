@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Column(
                     children: [
                       Text("Let's GO",
-                          style: TextStyle( color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40.0)),
+                          style: TextStyle( color: Colors.white, fontWeight: FontWeight.bold, fontSize: 41.0)),
                     ],
                   ),
                 ],
