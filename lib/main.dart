@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/splash_screen.dart';
+import 'package:letsgo/route/route.dart' as route;
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
-      home: SplashScreen(),
+      onGenerateRoute: route.controller,
+      initialRoute: route.splashScreen,
     );
   }
 }

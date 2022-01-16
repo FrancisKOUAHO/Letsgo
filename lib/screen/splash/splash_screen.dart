@@ -1,4 +1,9 @@
+import 'dart:async';
+import 'dart:ui';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/home/home.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -8,6 +13,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Home())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -29,10 +42,10 @@ class _SplashScreenState extends State<SplashScreen> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xff2D2D2D).withOpacity(0.5),
-                    Color(0xff4814A8).withOpacity(0.5),
-                    Color(0xff4814A8).withOpacity(1),
-                    Color(0xff4814A8).withOpacity(1),
+                    LetsGoTheme.fifth.withOpacity(0.5),
+                    LetsGoTheme.main.withOpacity(0.5),
+                    LetsGoTheme.main.withOpacity(1),
+                    LetsGoTheme.main.withOpacity(1),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -40,13 +53,16 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Column(
                     children: [
                       Text("Let's GO",
-                          style: TextStyle( color: Colors.white, fontWeight: FontWeight.bold, fontSize: 41.0)),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 41.0)),
                     ],
                   ),
                 ],
