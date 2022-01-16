@@ -8,4 +8,17 @@ class LetsGoTheme{
   static const Color third = Color(0xff4614a5);
   static const Color fourth = Color(0xfff72685);
   static const Color fifth = Color(0xff2D2D2D);
+  static const Color white = Colors.white;
+
+
+  static const TextTheme textTheme = TextTheme(
+    headline4: logoTitle,
+  );
+
+  static const TextStyle logoTitle = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 50.0,
+    letterSpacing: 1.0,
+    color: white,
+  );
 }

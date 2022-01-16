@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/home/home.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -59,10 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Column(
                     children: [
                       Text("Let's GO",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 41.0)),
+                          style: GoogleFonts.lato(textStyle: LetsGoTheme.logoTitle)),
                     ],
                   ),
                 ],
