@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letsgo/route/route.dart' as route;
 
-
 void main() {
   runApp(const MyApp());
 }

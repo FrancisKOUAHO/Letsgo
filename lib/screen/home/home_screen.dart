@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
-  HomeScreenState createState() => HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Center(
-            child: Text("HomeScreen")),
-      ),
-      bottomNavigationBar: CustomAnimatedButtomBar(),
+    return Center(
+      child: Center(child: Text("HomeScreen")),
     );
   }
 }
