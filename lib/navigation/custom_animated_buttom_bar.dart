@@ -98,6 +98,6 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   List<IconData> listOfIcons = [
     Icons.home_rounded,
     Icons.location_on_rounded,
-    Icons.person_rounded,
+    Icons.groups,
   ];
 }

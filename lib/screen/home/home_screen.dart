@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Expanded(
+          flex: 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -85,10 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-
-                style: GoogleFonts.lato(textStyle: LetsGoTheme.search) ,
+                style: GoogleFonts.lato(textStyle: LetsGoTheme.search),
                 decoration: InputDecoration(
-                  fillColor: LetsGoTheme.lightPurple, filled: true,
+                  fillColor: LetsGoTheme.lightPurple,
+                  filled: true,
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   suffixIcon: Icon(Icons.search, color: LetsGoTheme.third),
                   hintText: "Rechercher des activité ...",
@@ -102,10 +104,135 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         Expanded(
-          flex: 1,
+          flex: 3,
           child: Container(
-            color: Colors.pink,
-            child: Text('Bottom', textAlign: TextAlign.center),
+            child: Container(
+              child: Center(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        height: 254,
+                        width: 209,
+                        decoration: new BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          image: new DecorationImage(
+                            image: new AssetImage(
+                                "assets/ressources/male-motivation-muscular.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(80, 0, 0, 190),
+                          child: Container(
+                              child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: LetsGoTheme.transparent,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(
+                                          Icons.location_on_rounded,
+                                          size: 25,
+                                          color: LetsGoTheme.white,
+                                        ),
+                                        title: Text('Sport',
+                                            style: TextStyle(
+                                                color: LetsGoTheme.white,
+                                                fontSize: 12)),
+                                      ),
+                                    ],
+                                  ))),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        height: 254,
+                        width: 209,
+                        decoration: new BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          image: new DecorationImage(
+                            image: new AssetImage(
+                                "assets/ressources/male-motivation-muscular.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(80, 0, 0, 190),
+                          child: Container(
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              color: LetsGoTheme.transparent,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const ListTile(
+                                    leading: Icon(
+                                      Icons.location_on_rounded,
+                                      size: 25,
+                                      color: LetsGoTheme.white,
+                                    ),
+                                    title: Text('Sport',
+                                        style: TextStyle(
+                                            color: LetsGoTheme.white,
+                                            fontSize: 12)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        height: 254,
+                        width: 209,
+                        decoration: new BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          image: new DecorationImage(
+                            image: new AssetImage(
+                                "assets/ressources/male-motivation-muscular.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(80, 0, 0, 190),
+                          child: Container(
+                              child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: LetsGoTheme.transparent,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      const ListTile(
+                                        leading: Icon(
+                                          Icons.location_on_rounded,
+                                          size: 25,
+                                          color: LetsGoTheme.white,
+                                        ),
+                                        title: Text('Sport',
+                                            style: TextStyle(
+                                                color: LetsGoTheme.white,
+                                                fontSize: 12)),
+                                      ),
+                                    ],
+                                  ))),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
         Expanded(

@@ -12,6 +12,8 @@ class LetsGoTheme{
   static const Color black = Color(0xff111417);
   static const Color lightGrey = Color(0xff979797);
   static const Color white = Colors.white;
+  static const Color transparent = Color(0x00000000);
+
 
 
   static const TextTheme textTheme = TextTheme(
@@ -35,5 +37,11 @@ class LetsGoTheme{
   static const TextStyle search = TextStyle(
     fontSize: 14.0,
     color: LetsGoTheme.black,
+  );
+
+  static const TextStyle sliderTitle = TextStyle(
+    fontSize: 20,
+    color: LetsGoTheme.black,
+    fontWeight: FontWeight.w800,
   );
 }
