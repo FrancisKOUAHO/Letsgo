@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
+
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -11,8 +13,12 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text("CommunityScreen")),
+    return Scaffold(
+      body: Center(
+        child: Center(
+            child: Text("SearchScreen")),
+      ),
+      bottomNavigationBar: CustomAnimatedButtomBar(),
     );
   }
 }

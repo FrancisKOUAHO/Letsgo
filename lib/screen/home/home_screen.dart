@@ -13,6 +13,10 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Center(
+        child: Center(
+            child: Text("HomeScreen")),
+      ),
       bottomNavigationBar: CustomAnimatedButtomBar(),
     );
   }
