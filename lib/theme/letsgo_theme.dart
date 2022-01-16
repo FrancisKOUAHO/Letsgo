@@ -8,6 +8,8 @@ class LetsGoTheme{
   static const Color third = Color(0xff4614a5);
   static const Color fourth = Color(0xfff72685);
   static const Color fifth = Color(0xff2D2D2D);
+  static const Color lightPurple = Color(0xffF8F4FF);
+  static const Color black = Color(0xff111417);
   static const Color white = Colors.white;
 
 
