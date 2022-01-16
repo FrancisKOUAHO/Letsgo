@@ -50,6 +50,18 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
                 setState(() {
                   currentIndex = index;
                 });
+                print(index.toString());
+                switch(index){
+                  case 0:
+                    print('Go to home');
+                    break;
+                  case 1:
+                    print("Go to search ");
+                    break;
+                  case 2:
+                    print("Go to community");
+                    break;
+                }
               },
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,

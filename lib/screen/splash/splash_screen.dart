@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    LetsGoTheme.grey.withOpacity(0.5),
+                    LetsGoTheme.fifth.withOpacity(0.5),
                     LetsGoTheme.main.withOpacity(0.5),
                     LetsGoTheme.main.withOpacity(1),
                     LetsGoTheme.main.withOpacity(1),
@@ -54,24 +54,16 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Column(
                     children: [
-                      Image.asset(
-                        "assets/logo/logo.png",
-                        height: 300.0,
-                        width: 300.0,
-                      ),
                       Text("Let's GO",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 41.0)),
                     ],
-                  ),
-                  CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 ],
               ),
