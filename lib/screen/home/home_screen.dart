@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   fillColor: LetsGoTheme.lightPurple,
                   filled: true,
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                  suffixIcon: Icon(Icons.search, color: LetsGoTheme.third),
+                  suffixIcon: Icon(Icons.search, color: LetsGoTheme.main),
                   hintText: "Rechercher des activité ...",
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -130,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Card(
+                                margin: EdgeInsets.fromLTRB(80, 5, 5, 0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
@@ -214,6 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Card(
+                                margin: EdgeInsets.fromLTRB(80, 5, 5, 0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
@@ -298,6 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Card(
+                                margin: EdgeInsets.fromLTRB(80, 5, 5, 0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
@@ -320,6 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Card(
+                                margin: EdgeInsets.all(5),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
@@ -385,7 +389,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     title: Text('Aventurier'),
                     subtitle: Text('Fait resortir l’aventurier en toi'),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: LetsGoTheme.main,
+                      size: 40,
+                    ),
                     isThreeLine: true,
                   ),
                 ),
@@ -398,7 +406,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     title: Text('Aventurier'),
                     subtitle: Text('Fait resortir l’aventurier en toi'),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: LetsGoTheme.main,
+                      size: 40,
+                    ),
                     isThreeLine: true,
                   ),
                 ),
@@ -411,7 +423,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     title: Text('Aventurier'),
                     subtitle: Text('Fait resortir l’aventurier en toi'),
-                    trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: LetsGoTheme.main,
+                      size: 40,
+                    ),
                     isThreeLine: true,
                   ),
                 ),
