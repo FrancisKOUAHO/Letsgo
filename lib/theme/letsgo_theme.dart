@@ -13,6 +13,7 @@ class LetsGoTheme{
   static const Color lightGrey = Color(0xff979797);
   static const Color white = Colors.white;
   static const Color transparent = Color(0x00000000);
+  static const Color whiteTransparent = Color(0xC5FDFBFB);
 
 
 
