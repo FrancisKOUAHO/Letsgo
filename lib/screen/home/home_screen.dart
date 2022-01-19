@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               const ListTile(
-                                leading:
-                                    Icon(Icons.location_on_rounded, size: 25),
+                                leading: Icon(Icons.location_on_rounded,
+                                    size: 25, color: LetsGoTheme.main),
                                 title: Text('Saint-Ouen, France',
                                     style: TextStyle(
                                         color: LetsGoTheme.black,
