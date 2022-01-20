@@ -31,14 +31,39 @@ class _CommunityGalleryTwoSectionState
             fit: BoxFit.fill,
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // use whichever suits your need
           children: [
-            Text("Soirée du nouvel an",
-                style: GoogleFonts.lato(textStyle: LetsGoTheme.communityTitle)),
-            Text("Soirée, Drancy",
-                style:
-                    GoogleFonts.lato(textStyle: LetsGoTheme.communitySubTitle)),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Soirée du nouvel an",
+                      style: GoogleFonts.lato(
+                          textStyle: LetsGoTheme.communityTitle)),
+                  Text("Soirée, Drancy",
+                      style: GoogleFonts.lato(
+                          textStyle: LetsGoTheme.communitySubTitle)),
+                ],
+              ),
+            ),
+            Container(
+              color: LetsGoTheme.whiteTransparent,
+              width: 60,
+              height: 60,
+              margin: EdgeInsets.fromLTRB(40, 5, 5, 95),
+              child: Column(
+                children: [
+                  Text("DEC",
+                      style: GoogleFonts.lato(
+                          textStyle: LetsGoTheme.calendarMonth)),
+                  Text("31",
+                      style: GoogleFonts.lato(
+                          textStyle: LetsGoTheme.calendarDate)),
+                ],
+              ),
+            )
           ],
         ),
       ),
