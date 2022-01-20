@@ -61,4 +61,16 @@ class LetsGoTheme {
     fontSize: 14,
     color: LetsGoTheme.white,
   );
+
+  static const TextStyle calendarMonth = TextStyle(
+    fontSize: 24,
+    color: Colors.amber,
+    fontWeight: FontWeight.w900,
+  );
+
+  static const TextStyle calendarDate = TextStyle(
+    fontSize: 24,
+    color: Colors.black,
+    fontWeight: FontWeight.w700,
+  );
 }
