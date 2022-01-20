@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
+import 'package:letsgo/components/search/search_user_section.dart';
+import 'package:letsgo/components/search/search_search_section.dart';
+import 'package:letsgo/components/search/search_maps_section.dart';
+import 'package:letsgo/components/search/search_list_aventure.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -12,8 +16,20 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Center(child: Text("SearchScreen")),
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SearchUserSection(),
+            SearchSearchSection(),
+            SearchMapsSection(),
+            SearchListAventure(),
+          ],
+        ),
+      ),
     );
   }
 }
