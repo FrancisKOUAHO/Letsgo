@@ -9,8 +9,10 @@ class SearchSearchSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(1.0),
           child: TextField(
             style: GoogleFonts.lato(textStyle: LetsGoTheme.search),
             decoration: InputDecoration(

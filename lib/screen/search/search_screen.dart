@@ -5,6 +5,7 @@ import 'package:letsgo/components/search/search_user_section.dart';
 import 'package:letsgo/components/search/search_search_section.dart';
 import 'package:letsgo/components/search/search_maps_section.dart';
 import 'package:letsgo/components/search/search_list_aventure.dart';
+import 'package:letsgo/components/search/search_title_section.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
             SearchUserSection(),
             SearchSearchSection(),
             SearchMapsSection(),
+            SearchTitleSection(),
             SearchListAventure(),
           ],
         ),

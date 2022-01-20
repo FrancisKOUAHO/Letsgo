@@ -15,6 +15,8 @@ class _SearchListAventureState extends State<SearchListAventure> {
     return Expanded(
       flex: 2,
       child: Container(
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
             Card(
@@ -29,7 +31,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
                 trailing: Icon(
                   Icons.keyboard_arrow_right,
                   color: LetsGoTheme.main,
-                  size: 40,
+                  size: 50,
                 ),
                 isThreeLine: true,
               ),
@@ -46,7 +48,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
                 trailing: Icon(
                   Icons.keyboard_arrow_right,
                   color: LetsGoTheme.main,
-                  size: 40,
+                  size: 50,
                 ),
                 isThreeLine: true,
               ),
@@ -63,7 +65,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
                 trailing: Icon(
                   Icons.keyboard_arrow_right,
                   color: LetsGoTheme.main,
-                  size: 40,
+                  size: 50,
                 ),
                 isThreeLine: true,
               ),

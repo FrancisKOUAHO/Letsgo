@@ -13,6 +13,10 @@ class _SearchUserSectionState extends State<SearchUserSection> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: 2,
+        child: Container(
+          margin: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -33,8 +37,7 @@ class _SearchUserSectionState extends State<SearchUserSection> {
                                 size: 25, color: LetsGoTheme.main),
                             title: Text('Saint-Ouen, France',
                                 style: TextStyle(
-                                    color: LetsGoTheme.black,
-                                    fontSize: 11)),
+                                    color: LetsGoTheme.black, fontSize: 11)),
                           ),
                         ],
                       ))),
@@ -59,6 +62,6 @@ class _SearchUserSectionState extends State<SearchUserSection> {
           ),
         ],
       ),
-    );
+    ));
   }
 }

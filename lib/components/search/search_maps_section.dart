@@ -13,15 +13,20 @@ class SearchMapsSection extends StatefulWidget {
 }
 
 class _SearchMapsSectionState extends State<SearchMapsSection> {
-  CameraPosition _initialCameraPosition =
-      CameraPosition(target: LatLng(20.5937, 78.9629));
+  static final CameraPosition _initialCameraPosition = CameraPosition(
+      target: LatLng(48.856614, 2.3522219),
+      tilt: 59.440717697143555,
+      zoom: 14.151926040649414);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: 3,
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
+        width: 327,
+        height: 400,
         child: GoogleMap(
           initialCameraPosition: _initialCameraPosition,
           myLocationEnabled: true,
