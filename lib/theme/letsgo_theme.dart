@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LetsGoTheme{
+class LetsGoTheme {
   LetsGoTheme._();
-
 
   static const Color main = Color(0xff7208b7);
   static const Color second = Color(0xff4895ef);
@@ -16,8 +15,6 @@ class LetsGoTheme{
   static const Color transparent = Color(0x00000000);
   static const Color whiteTransparent = Color(0xC5FDFBFB);
 
-
-
   static const TextTheme textTheme = TextTheme(
     headline4: logoTitle,
   );
@@ -27,6 +24,13 @@ class LetsGoTheme{
     fontSize: 50.0,
     letterSpacing: 1.0,
     color: LetsGoTheme.white,
+  );
+
+  static const TextStyle Title = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 28,
+    letterSpacing: 0.7,
+    color: LetsGoTheme.black,
   );
 
   static const TextStyle bigTitle = TextStyle(
@@ -45,5 +49,28 @@ class LetsGoTheme{
     fontSize: 20,
     color: LetsGoTheme.black,
     fontWeight: FontWeight.w800,
+  );
+
+  static const TextStyle communityTitle = TextStyle(
+    fontSize: 24,
+    color: LetsGoTheme.white,
+    fontWeight: FontWeight.w900,
+  );
+
+  static const TextStyle communitySubTitle = TextStyle(
+    fontSize: 14,
+    color: LetsGoTheme.white,
+  );
+
+  static const TextStyle calendarMonth = TextStyle(
+    fontSize: 24,
+    color: Colors.amber,
+    fontWeight: FontWeight.w900,
+  );
+
+  static const TextStyle calendarDate = TextStyle(
+    fontSize: 24,
+    color: Colors.black,
+    fontWeight: FontWeight.w700,
   );
 }

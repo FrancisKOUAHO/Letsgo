@@ -73,6 +73,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/ressources/
+    - assets/community/
     - assets/logo/
     - assets/profil/
 
