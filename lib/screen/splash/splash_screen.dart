@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/home/home.dart';
+import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 3),
         () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Home())));
+            context, MaterialPageRoute(builder: (context) => SignIn())));
   }
 
   @override

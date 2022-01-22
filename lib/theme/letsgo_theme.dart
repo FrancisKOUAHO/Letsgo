@@ -73,4 +73,10 @@ class LetsGoTheme {
     color: Colors.black,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle connexion = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: LetsGoTheme.main,
+  );
 }
