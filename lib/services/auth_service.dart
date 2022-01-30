@@ -29,9 +29,16 @@ class AuthService {
 
   signUp(name, email, password) async {
     try {
-      return await dio.post(BaseUrl.URL + "/users",
-          data: {"name": name, "email": email, "password": password},
-          options: Options(contentType: Headers.formUrlEncodedContentType));
+      dynamic data =  {"name": name, "email": email, "password": password};
+
+      var response = await dio.post(BaseUrl.URL + "/users",
+          data: data,
+          options: Options(headers: {
+            'content-type': 'application/json; charset=UTF-8',
+          }));
+
+      return response.data;
+
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response?.data['message'],
