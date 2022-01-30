@@ -99,8 +99,8 @@ class _SignInState extends State<SignIn> {
           onPressed: () {
             print('Posting data...');
             AuthService().signIn(Email, Password).then((value) {
-              if (value.data['success']) {
-                token = value.data['token'];
+              if (value['success']) {
+                token = value['access_token'];
                 Fluttertoast.showToast(
                     msg: "Authentifié",
                     toastLength: Toast.LENGTH_SHORT,
