@@ -1,30 +1,31 @@
-import 'dart:async';
 import 'dart:ui';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/home/home.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:letsgo/screen/login/sign_in.dart';
+import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/screen/login/sign_up.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   bool? isChecked = false;
+  var name, email, password, token;
 
   Widget _buildTextField({
     required bool obscureText,
     Widget? prefixedIcon,
     String? hintText,
+    onChange,
   }) {
     return Material(
       color: Colors.transparent,
       child: TextField(
+        onChanged: onChange,
         cursorColor: Colors.white,
         cursorWidth: 2,
         obscureText: obscureText,
@@ -65,7 +66,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  Widget _buildLoginButton() {
+  Widget _buildsignUpButton() {
     return SizedBox(
       height: 64,
       width: double.infinity,
@@ -84,7 +85,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           child: const Text(
-            'Connexion',
+            "S'inscrire",
             style: TextStyle(
               fontFamily: 'Late',
               fontSize: 16,
@@ -93,25 +94,19 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-            );
+            AuthService().signUp(name, email, password).then((value) {
+              Fluttertoast.showToast(
+                  msg: "L'inscription validé",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.TOP_RIGHT,
+                  backgroundColor: Colors.green,
+                  fontSize: 16.0);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignIn()),
+              );
+            });
           }),
-    );
-  }
-
-  Widget _buildLogoButton({
-    required String image,
-    required VoidCallback onPressed,
-  }) {
-    return FloatingActionButton(
-      backgroundColor: Colors.white,
-      onPressed: onPressed,
-      child: SizedBox(
-        height: 30,
-        child: Image.asset(image),
-      ),
     );
   }
 
@@ -121,7 +116,7 @@ class _SignInState extends State<SignIn> {
       children: [
         InkWell(
           child: const Text(
-            'Créer un nouveau compte',
+            'Vous avez déja un compte ?',
             style: TextStyle(
               fontFamily: 'PT-Sans',
               fontSize: 16,
@@ -131,7 +126,7 @@ class _SignInState extends State<SignIn> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SignUp()),
+              MaterialPageRoute(builder: (context) => const SignIn()),
             );
           },
         ),
@@ -187,11 +182,25 @@ class _SignInState extends State<SignIn> {
                               height: 10,
                             ),
                             _buildTextField(
-                              hintText: 'Email',
-                              obscureText: false,
-                              prefixedIcon: const Icon(Icons.email_outlined,
-                                  color: Colors.white),
+                                hintText: 'Prénom',
+                                obscureText: false,
+                                prefixedIcon: const Icon(
+                                    Icons.supervised_user_circle_outlined,
+                                    color: Colors.white),
+                                onChange: (value) {
+                                  name = value;
+                                }),
+                            const SizedBox(
+                              height: 30,
                             ),
+                            _buildTextField(
+                                hintText: 'Email',
+                                obscureText: false,
+                                prefixedIcon: const Icon(Icons.email_outlined,
+                                    color: Colors.white),
+                                onChange: (value) {
+                                  email = value;
+                                }),
                             const SizedBox(
                               height: 30,
                             ),
@@ -199,19 +208,20 @@ class _SignInState extends State<SignIn> {
                               height: 10,
                             ),
                             _buildTextField(
-                              hintText: 'Mot de passe',
-                              obscureText: true,
-                              prefixedIcon: const Icon(Icons.lock_outlined,
-                                  color: Colors.white),
-                            ),
+                                hintText: 'Mot de passe',
+                                obscureText: true,
+                                prefixedIcon: const Icon(Icons.lock_outlined,
+                                    color: Colors.white),
+                                onChange: (value) {
+                                  password = value;
+                                }),
                             const SizedBox(
                               height: 15,
                             ),
-                            _buildForgotPasswordButton(),
                             const SizedBox(
-                              height: 15,
+                              height: 20,
                             ),
-                            _buildLoginButton(),
+                            _buildsignUpButton(),
                             const SizedBox(
                               height: 20,
                             ),
