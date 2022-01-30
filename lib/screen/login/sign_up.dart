@@ -14,18 +14,20 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool? isChecked = false;
-  var name, email, password, token;
+  String Name = "";
+  String Email = "";
+  String Password = "";
 
   Widget _buildTextField({
     required bool obscureText,
     Widget? prefixedIcon,
     String? hintText,
-    onChange,
+    onChanged,
   }) {
     return Material(
       color: Colors.transparent,
       child: TextField(
-        onChanged: onChange,
+        onChanged: onChanged,
         cursorColor: Colors.white,
         cursorWidth: 2,
         obscureText: obscureText,
@@ -94,17 +96,20 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
           onPressed: () {
-            AuthService().signUp(name, email, password).then((value) {
-              Fluttertoast.showToast(
-                  msg: "L'inscription validé",
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.TOP_RIGHT,
-                  backgroundColor: Colors.green,
-                  fontSize: 16.0);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignIn()),
-              );
+            AuthService().signUp(Name, Email, Password).then((value) {
+              print(value);
+              if (value['success']) {
+                Fluttertoast.showToast(
+                    msg: "Inscription validé",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.TOP_RIGHT,
+                    backgroundColor: Colors.green,
+                    fontSize: 16.0);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignIn()),
+                );
+              }
             });
           }),
     );
@@ -187,8 +192,8 @@ class _SignUpState extends State<SignUp> {
                                 prefixedIcon: const Icon(
                                     Icons.supervised_user_circle_outlined,
                                     color: Colors.white),
-                                onChange: (value) {
-                                  name = value;
+                                onChanged: (value) {
+                                  Name = value;
                                 }),
                             const SizedBox(
                               height: 30,
@@ -198,8 +203,8 @@ class _SignUpState extends State<SignUp> {
                                 obscureText: false,
                                 prefixedIcon: const Icon(Icons.email_outlined,
                                     color: Colors.white),
-                                onChange: (value) {
-                                  email = value;
+                                onChanged: (value) {
+                                  Email = value;
                                 }),
                             const SizedBox(
                               height: 30,
@@ -212,8 +217,8 @@ class _SignUpState extends State<SignUp> {
                                 obscureText: true,
                                 prefixedIcon: const Icon(Icons.lock_outlined,
                                     color: Colors.white),
-                                onChange: (value) {
-                                  password = value;
+                                onChanged: (value) {
+                                  Password = value;
                                 }),
                             const SizedBox(
                               height: 15,
