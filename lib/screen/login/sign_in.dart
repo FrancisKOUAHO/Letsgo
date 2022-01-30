@@ -1,11 +1,10 @@
-import 'dart:async';
 import 'dart:ui';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/home/home.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:letsgo/screen/login/sign_up.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:letsgo/services/auth_service.dart';
+import 'package:letsgo/screen/home/home_screen.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -16,20 +15,26 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   bool? isChecked = false;
+  String Email = "";
+  String Password = "";
+  String token = "";
 
   Widget _buildTextField({
     required bool obscureText,
     Widget? prefixedIcon,
     String? hintText,
+    onChanged,
   }) {
     return Material(
       color: Colors.transparent,
       child: TextField(
+        onChanged: onChanged,
         cursorColor: Colors.white,
         cursorWidth: 2,
         obscureText: obscureText,
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
+          hintText: hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -37,7 +42,6 @@ class _SignInState extends State<SignIn> {
           filled: true,
           fillColor: Colors.white.withOpacity(0.5),
           prefixIcon: prefixedIcon,
-          hintText: hintText,
           hintStyle: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -93,25 +97,23 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-            );
+            print('Posting data...');
+            AuthService().signIn(Email, Password).then((value) {
+              if (value.data['success']) {
+                token = value.data['token'];
+                Fluttertoast.showToast(
+                    msg: "Authentifié",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.TOP_RIGHT,
+                    backgroundColor: Colors.green,
+                    fontSize: 16.0);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
+              }
+            });
           }),
-    );
-  }
-
-  Widget _buildLogoButton({
-    required String image,
-    required VoidCallback onPressed,
-  }) {
-    return FloatingActionButton(
-      backgroundColor: Colors.white,
-      onPressed: onPressed,
-      child: SizedBox(
-        height: 30,
-        child: Image.asset(image),
-      ),
     );
   }
 
@@ -176,76 +178,82 @@ class _SignInState extends State<SignIn> {
                 children: <Widget>[
                   Container(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            _buildTextField(
-                              hintText: 'Email',
-                              obscureText: false,
-                              prefixedIcon: const Icon(Icons.email_outlined,
-                                  color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            _buildTextField(
-                              hintText: 'Mot de passe',
-                              obscureText: true,
-                              prefixedIcon: const Icon(Icons.lock_outlined,
-                                  color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            _buildForgotPasswordButton(),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            _buildLoginButton(),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            _buildSignUpQuestion(),
-                            Container(
-                              margin:
-                                  const EdgeInsets.only(left: 90, right: 90),
-                              child: const Divider(
-                                color: Colors.white,
+                    child: Form(
+                      child: Column(
+                        children: [
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: 30,
                               ),
-                            ),
-                            InkWell(
-                              child: const Text(
-                                'Passer',
-                                style: TextStyle(
-                                  fontFamily: 'PT-Sans',
-                                  fontSize: 16,
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              _buildTextField(
+                                  hintText: 'Email',
+                                  obscureText: false,
+                                  prefixedIcon: const Icon(Icons.email_outlined,
+                                      color: Colors.white),
+                                  onChanged: (value) {
+                                    Email = value;
+                                  }),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              _buildTextField(
+                                  hintText: 'Mot de passe',
+                                  obscureText: true,
+                                  prefixedIcon: const Icon(Icons.lock_outlined,
+                                      color: Colors.white),
+                                  onChanged: (value) {
+                                    Password = value;
+                                  }),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              _buildForgotPasswordButton(),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              _buildLoginButton(),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              _buildSignUpQuestion(),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 90, right: 90),
+                                child: const Divider(
                                   color: Colors.white,
                                 ),
                               ),
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      ],
+                              InkWell(
+                                child: const Text(
+                                  'Passer',
+                                  style: TextStyle(
+                                    fontFamily: 'PT-Sans',
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
