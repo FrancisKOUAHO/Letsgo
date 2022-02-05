@@ -5,6 +5,7 @@ import 'package:letsgo/screen/login/sign_up.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/route/route.dart' as route;
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -97,8 +98,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           onPressed: () {
-            print('Posting data...');
-            AuthService().signIn(Email, Password).then((value) {
+            /* AuthService().signIn(Email, Password).then((value) {
               if (value['success']) {
                 token = value['access_token'];
                 Fluttertoast.showToast(
@@ -107,12 +107,10 @@ class _SignInState extends State<SignIn> {
                     gravity: ToastGravity.TOP_RIGHT,
                     backgroundColor: Colors.green,
                     fontSize: 16.0);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
+                Navigator.pushNamed(context, route.homeScreen);
               }
-            });
+            });*/
+            Navigator.pushNamed(context, route.homeScreen);
           }),
     );
   }
@@ -143,9 +141,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: Stack(
+    return Scaffold(
+      body: Stack(
         children: [
           Positioned.fill(
             child: Container(
@@ -178,82 +175,80 @@ class _SignInState extends State<SignIn> {
                 children: <Widget>[
                   Container(
                     padding: const EdgeInsets.all(40.0),
-                    child: Form(
-                      child: Column(
-                        children: [
-                          Column(
-                            children: [
-                              const SizedBox(
-                                height: 30,
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            _buildTextField(
+                                hintText: 'Email',
+                                obscureText: false,
+                                prefixedIcon: const Icon(Icons.email_outlined,
+                                    color: Colors.white),
+                                onChanged: (value) {
+                                  Email = value;
+                                }),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            _buildTextField(
+                                hintText: 'Mot de passe',
+                                obscureText: true,
+                                prefixedIcon: const Icon(Icons.lock_outlined,
+                                    color: Colors.white),
+                                onChanged: (value) {
+                                  Password = value;
+                                }),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            _buildForgotPasswordButton(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            _buildLoginButton(),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            _buildSignUpQuestion(),
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(left: 90, right: 90),
+                              child: const Divider(
+                                color: Colors.white,
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              _buildTextField(
-                                  hintText: 'Email',
-                                  obscureText: false,
-                                  prefixedIcon: const Icon(Icons.email_outlined,
-                                      color: Colors.white),
-                                  onChanged: (value) {
-                                    Email = value;
-                                  }),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              _buildTextField(
-                                  hintText: 'Mot de passe',
-                                  obscureText: true,
-                                  prefixedIcon: const Icon(Icons.lock_outlined,
-                                      color: Colors.white),
-                                  onChanged: (value) {
-                                    Password = value;
-                                  }),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              _buildForgotPasswordButton(),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              _buildLoginButton(),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              _buildSignUpQuestion(),
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(left: 90, right: 90),
-                                child: const Divider(
+                            ),
+                            InkWell(
+                              child: const Text(
+                                'Passer',
+                                style: TextStyle(
+                                  fontFamily: 'PT-Sans',
+                                  fontSize: 16,
                                   color: Colors.white,
                                 ),
                               ),
-                              InkWell(
-                                child: const Text(
-                                  'Passer',
-                                  style: TextStyle(
-                                    fontFamily: 'PT-Sans',
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                              onTap: () {},
+                            ),
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],

@@ -17,10 +17,10 @@ class CustomAnimatedButtomBar extends StatefulWidget {
 
 class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   int _currentIndex = 0;
-  List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    SearchScreen(),
-    CommunityScreen()
+  final List<Widget> _widgetOptions = <Widget>[
+    const HomeScreen(),
+    const SearchScreen(),
+    const CommunityScreen()
   ];
 
   @override
@@ -29,7 +29,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
 
     return Scaffold(
       bottomNavigationBar: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         height: screenWidth * .155,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -37,7 +37,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
             BoxShadow(
               color: Colors.black.withOpacity(.15),
               blurRadius: 30,
-              offset: Offset(0, 10),
+              offset: const Offset(0, 10),
             ),
           ],
           borderRadius: BorderRadius.circular(50),
@@ -60,7 +60,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
                   width: screenWidth * .2125,
                   child: Center(
                     child: AnimatedContainer(
-                      duration: Duration(seconds: 1),
+                      duration: const Duration(seconds: 1),
                       curve: Curves.fastLinearToSlowEaseIn,
                       height: index == _currentIndex ? screenWidth * .13 : 0,
                       width: index == _currentIndex ? screenWidth * .2125 : 0,

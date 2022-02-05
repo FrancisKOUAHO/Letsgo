@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:letsgo/components/home/user_box_section.dart';
 import 'package:letsgo/components/home/user_box_title_section.dart';
 import 'package:letsgo/components/home/home_search_section.dart';
