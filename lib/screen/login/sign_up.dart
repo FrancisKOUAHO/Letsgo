@@ -1,26 +1,26 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/home/home.dart';
-import 'package:letsgo/screen/login/sign_up.dart';
+import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:provider/provider.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     final authService = Provider.of<AuthService>(context);
+
     return Material(
       type: MaterialType.transparency,
       child: Stack(
@@ -121,22 +121,8 @@ class _SignInState extends State<SignIn> {
                             const SizedBox(
                               height: 15,
                             ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                child: const Text(
-                                  'Mot de passe oublié ?',
-                                  style: TextStyle(
-                                    fontFamily: 'Late',
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onPressed: () {},
-                              ),
-                            ),
                             const SizedBox(
-                              height: 15,
+                              height: 30,
                             ),
                             SizedBox(
                               height: 64,
@@ -156,7 +142,7 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   child: const Text(
-                                    'Connexion',
+                                    "S'inscrire",
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 16,
@@ -165,13 +151,14 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    await authService.signInEmailAndPassword(
-                                        emailController.text,
-                                        passwordController.text);
+                                    await authService
+                                        .createUserWithEmailAndPassword(
+                                            emailController.text,
+                                            passwordController.text);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const Home()),
+                                          builder: (context) => const SignIn()),
                                     );
                                   }),
                             ),
@@ -192,7 +179,7 @@ class _SignInState extends State<SignIn> {
                               children: [
                                 InkWell(
                                   child: const Text(
-                                    'Créer un nouveau compte',
+                                    'Vous avez déjà un compte, identifiez-vous',
                                     style: TextStyle(
                                       fontFamily: 'PT-Sans',
                                       fontSize: 16,
@@ -203,8 +190,7 @@ class _SignInState extends State<SignIn> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SignUpScreen()),
+                                          builder: (context) => const SignIn()),
                                     );
                                   },
                                 ),

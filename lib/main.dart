@@ -1,6 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/route/route.dart' as route;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           onGenerateRoute: route.controller,
           initialRoute: route.splashScreen,
-        )
-    );
+        ));
   }
 }
