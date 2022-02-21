@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/profil/profil_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
 class UserBoxSection extends StatefulWidget {
@@ -32,8 +33,7 @@ class _UserBoxSectionState extends State<UserBoxSection> {
                             size: 25, color: LetsGoTheme.main),
                         title: Text('Saint-Ouen, France',
                             style: TextStyle(
-                                color: LetsGoTheme.black,
-                                fontSize: 11)),
+                                color: LetsGoTheme.black, fontSize: 11)),
                       ),
                     ],
                   )),
@@ -45,11 +45,20 @@ class _UserBoxSectionState extends State<UserBoxSection> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Image.asset(
-                    "assets/profil/mask.png",
-                    width: 48,
-                    height: 54,
-                  )
+                  InkWell(
+                    child: Image.asset(
+                      "assets/profil/mask.png",
+                      width: 48,
+                      height: 54,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilScreen()),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
