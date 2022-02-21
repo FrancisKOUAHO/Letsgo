@@ -1,9 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SearchMapsSection extends StatefulWidget {
   const SearchMapsSection({Key? key}) : super(key: key);
@@ -13,7 +9,7 @@ class SearchMapsSection extends StatefulWidget {
 }
 
 class _SearchMapsSectionState extends State<SearchMapsSection> {
-  static final CameraPosition _initialCameraPosition = CameraPosition(
+  static const CameraPosition _initialCameraPosition = CameraPosition(
       target: LatLng(48.856614, 2.3522219),
       tilt: 59.440717697143555,
       zoom: 14.151926040649414);

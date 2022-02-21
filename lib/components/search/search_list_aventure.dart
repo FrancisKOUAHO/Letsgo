@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SearchListAventure extends StatefulWidget {
   const SearchListAventure({Key? key}) : super(key: key);
@@ -21,14 +20,14 @@ class _SearchListAventureState extends State<SearchListAventure> {
           children: <Widget>[
             Card(
               child: ListTile(
-                leading: new Image.asset(
+                leading: Image.asset(
                   "assets/ressources/jumelles-loup.png",
                   width: 80,
                   height: 80,
                 ),
-                title: Text('Aventurier'),
-                subtitle: Text('Fait resortir l’aventurier en toi'),
-                trailing: Icon(
+                title: const Text('Aventurier'),
+                subtitle: const Text('Fait resortir l’aventurier en toi'),
+                trailing: const Icon(
                   Icons.keyboard_arrow_right,
                   color: LetsGoTheme.main,
                   size: 50,
@@ -38,14 +37,14 @@ class _SearchListAventureState extends State<SearchListAventure> {
             ),
             Card(
               child: ListTile(
-                leading: new Image.asset(
+                leading: Image.asset(
                   "assets/ressources/massage.png",
                   width: 80,
                   height: 80,
                 ),
-                title: Text('Aventurier'),
-                subtitle: Text('Fait resortir l’aventurier en toi'),
-                trailing: Icon(
+                title: const Text('Aventurier'),
+                subtitle: const Text('Fait resortir l’aventurier en toi'),
+                trailing: const Icon(
                   Icons.keyboard_arrow_right,
                   color: LetsGoTheme.main,
                   size: 50,
@@ -55,14 +54,14 @@ class _SearchListAventureState extends State<SearchListAventure> {
             ),
             Card(
               child: ListTile(
-                leading: new Image.asset(
+                leading: Image.asset(
                   "assets/ressources/sport.png",
                   width: 80,
                   height: 80,
                 ),
-                title: Text('Aventurier'),
-                subtitle: Text('Fait resortir l’aventurier en toi'),
-                trailing: Icon(
+                title: const Text('Aventurier'),
+                subtitle: const Text('Fait resortir l’aventurier en toi'),
+                trailing: const Icon(
                   Icons.keyboard_arrow_right,
                   color: LetsGoTheme.main,
                   size: 50,

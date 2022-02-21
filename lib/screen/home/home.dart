@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 
 class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   HomeState createState() => HomeState();
 }
@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       bottomNavigationBar: CustomAnimatedButtomBar(),
     );
   }

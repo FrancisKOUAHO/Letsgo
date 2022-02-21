@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:ui';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/home/home.dart';
 import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -16,12 +12,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
+        const Duration(seconds: 3),
         () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => SignIn())));
+            context, MaterialPageRoute(builder: (context) => const SignIn())));
   }
 
   @override
@@ -32,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/Splash.png"),
                   fit: BoxFit.cover,
@@ -52,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0.2, 0.5, 1, 1],
+                  stops: const [0.2, 0.5, 1, 1],
                 ),
               ),
               child: Column(
@@ -60,9 +57,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Column(
-                    children: [
-                      Text("Let's GO",
-                          style: GoogleFonts.lato(textStyle: LetsGoTheme.logoTitle)),
+                    children: const [
+                      Text("Let's GO")
                     ],
                   ),
                 ],

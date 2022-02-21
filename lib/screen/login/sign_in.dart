@@ -1,10 +1,7 @@
-import 'dart:async';
 import 'dart:ui';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/home/home.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -141,7 +138,7 @@ class _SignInState extends State<SignIn> {
         children: [
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/SignIn.png"),
                   fit: BoxFit.cover,
@@ -161,7 +158,7 @@ class _SignInState extends State<SignIn> {
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  stops: [0.2, 0.5, 1, 1],
+                  stops: const [0.2, 0.5, 1, 1],
                 ),
               ),
               child: Column(
@@ -169,7 +166,7 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Container(
-                    padding: new EdgeInsets.all(40.0),
+                    padding: const EdgeInsets.all(40.0),
                     child: Column(
                       children: [
                         Column(
@@ -222,7 +219,7 @@ class _SignInState extends State<SignIn> {
                             Container(
                               margin:
                                   const EdgeInsets.only(left: 90, right: 90),
-                              child: Divider(
+                              child: const Divider(
                                 color: Colors.white,
                               ),
                             ),

@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:letsgo/components/community/community_user_section.dart';
-import 'package:letsgo/components/community/community_title_section.dart';
+import 'package:letsgo/components/community/community_gallery_two_section.dart';
 import 'package:letsgo/components/community/community_gallery_section.dart';
-import 'package:letsgo/components/community/community_galerry_two_Section.dart';
 import 'package:letsgo/components/community/community_gallery_three_section.dart';
+import 'package:letsgo/components/community/community_title_section.dart';
+import 'package:letsgo/components/community/community_user_section.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
@@ -21,12 +16,12 @@ class _CommunityScreenState extends State<CommunityScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
+        children: const <Widget>[
           CommunityUserSection(),
           CommunityTitleSection(),
           CommunityGallerySection(),
@@ -37,5 +32,3 @@ class _CommunityScreenState extends State<CommunityScreen> {
     ));
   }
 }
-
-//TODO FAIRE LA PETIT CARD DANS LA CARD AU MILIEU

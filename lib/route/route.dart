@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:letsgo/screen/home/home.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/splash/splash_screen.dart';
@@ -17,15 +16,15 @@ const String communityScreen = 'community';
 Route<dynamic> controller(RouteSettings setting) {
   switch (setting.name) {
     case splashScreen:
-      return MaterialPageRoute(builder: (context) => SplashScreen());
+      return MaterialPageRoute(builder: (context) => const SplashScreen());
     case home:
       return MaterialPageRoute(builder: (context) => Home());
     case homeScreen:
-      return MaterialPageRoute(builder: (context) => HomeScreen());
+      return MaterialPageRoute(builder: (context) => const HomeScreen());
     case searchScreen:
-      return MaterialPageRoute(builder: (context) => SearchScreen());
+      return MaterialPageRoute(builder: (context) => const SearchScreen());
     case communityScreen:
-      return MaterialPageRoute(builder: (context) => CommunityScreen());
+      return MaterialPageRoute(builder: (context) => const CommunityScreen());
     default:
       throw ('This route name does not exist');
   }

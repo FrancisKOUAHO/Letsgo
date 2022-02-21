@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeSubTitleSection extends StatefulWidget {
   const HomeSubTitleSection({Key? key}) : super(key: key);
@@ -14,10 +12,9 @@ class _HomeSubTitleSectionState extends State<HomeSubTitleSection> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.only(left: 10),
-        child: Text("Theme",
-            style: GoogleFonts.lato(textStyle: LetsGoTheme.sliderTitle)),
+        padding: const EdgeInsets.only(left: 10),
+        child: const Text("Theme"),
       ),
-    );;
+    );
   }
 }
