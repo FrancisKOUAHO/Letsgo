@@ -6,21 +6,19 @@ import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _ResetPasswordState createState() => _ResetPasswordState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
 
     final authService = Provider.of<AuthService>(context);
-
     return Material(
       type: MaterialType.transparency,
       child: Stack(
@@ -61,11 +59,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Column(
                           children: [
                             const SizedBox(
-                              height: 40,
+                              height: 100,
                               child: Center(
                                 child: Text(
-                                  "Inscription",
-                                  style: LetsGoTheme.loginTitle,
+                                  "Recevez un courriel pour réinitialiser votre mot de passe",
+                                  style: LetsGoTheme.resetPasswordTitle,
                                 ),
                               ),
                             ),
@@ -96,39 +94,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             const SizedBox(
-                              height: 30,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextField(
-                              controller: passwordController,
-                              cursorColor: Colors.white,
-                              cursorWidth: 2,
-                              obscureText: false,
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                labelText: 'Mot de passe',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                disabledBorder: null,
-                                filled: true,
-                                fillColor: Colors.white.withOpacity(0.5),
-                                prefixIcon: const Icon(Icons.lock_outlined,
-                                    color: Colors.white),
-                                hintStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Late',
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
                               height: 15,
                             ),
                             const SizedBox(
-                              height: 30,
+                              height: 15,
                             ),
                             SizedBox(
                               height: 64,
@@ -148,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                   child: const Text(
-                                    "S'inscrire",
+                                    'Valider',
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 16,
@@ -158,14 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   onPressed: () async {
                                     await authService
-                                        .createUserWithEmailAndPassword(
-                                            emailController.text,
-                                            passwordController.text);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const SignIn()),
-                                    );
+                                        .resetPassword(emailController.text);
                                   }),
                             ),
                             const SizedBox(
@@ -178,29 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 30,
                             ),
                             const SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  child: const Text(
-                                    'Vous avez déjà un compte, identifiez-vous',
-                                    style: TextStyle(
-                                      fontFamily: 'PT-Sans',
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const SignIn()),
-                                    );
-                                  },
-                                ),
-                              ],
+                              height: 20,
                             ),
                             Container(
                               margin:
@@ -209,12 +149,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
+                            InkWell(
+                              child: const Text(
+                                'Retour',
+                                style: TextStyle(
+                                  fontFamily: 'PT-Sans',
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SignIn()),
+                                );
+                              },
                             ),
                             const SizedBox(
-                              height: 15,
-                            )
+                              height: 30,
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
                           ],
                         ),
                       ],

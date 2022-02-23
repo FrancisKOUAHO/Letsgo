@@ -16,19 +16,39 @@ class AuthService {
   }
 
   Future<User?> signInEmailAndPassword(String email, String password) async {
-    final credential = await _fireBaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    return _userFromFirebase(credential.user);
+    try {
+      final credential = await _fireBaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return _userFromFirebase(credential.user);
+    } catch (e) {
+      print('error $e');
+    }
   }
 
   Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
-    final credential = await _fireBaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    return _userFromFirebase(credential.user);
+    try {
+      final credential = await _fireBaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return _userFromFirebase(credential.user);
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
+  Future resetPassword(String email) async {
+    try {
+      return await _fireBaseAuth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      print('error $e');
+    }
   }
 
   Future<void> signOut() async {
-    return await _fireBaseAuth.signOut();
+    try {
+      return await _fireBaseAuth.signOut();
+    } catch (e) {
+      print('error $e');
+    }
   }
 }
