@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/screen/home/home.dart';
 import 'package:letsgo/screen/login/reset_password.dart';
 import 'package:letsgo/screen/login/sign_up.dart';
@@ -18,6 +19,23 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
+  signInGoogle() async {
+    FirebaseService service = FirebaseService();
+    try {
+      await service.signInwithGoogle();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const Home()),
+      );
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        showMessage(e.message!);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -176,7 +194,7 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   child: const Text(
-                                    'Connexion',
+                                    'connexion',
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 16,
@@ -212,10 +230,10 @@ class _SignInState extends State<SignIn> {
                               children: [
                                 InkWell(
                                   child: const Text(
-                                    'Créer un nouveau compte',
+                                    "Vous n'avez pas de compte ? Enregistrez-vous",
                                     style: TextStyle(
                                       fontFamily: 'PT-Sans',
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -246,87 +264,39 @@ class _SignInState extends State<SignIn> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        Colors.white,
-                                      ),
-                                      elevation: MaterialStateProperty.all(6),
-                                      shape: MaterialStateProperty.all(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: const [
-                                        Icon(
-                                          Icons.golf_course,
-                                          color: LetsGoTheme.main,
-                                        ),
-                                        Text(
-                                          'Google',
-                                          style: TextStyle(
-                                            fontFamily: 'Late',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: LetsGoTheme.main,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    onPressed: () async {
-                                      FirebaseService service =
-                                          FirebaseService();
-                                      try {
-                                        await service.signInwithGoogle();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Home()),
-                                        );
-                                      } catch (e) {
-                                        if (e is FirebaseAuthException) {
-                                          showMessage(e.message!);
-                                        }
-                                      }
-                                    }),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                      Colors.white,
-                                    ),
-                                    elevation: MaterialStateProperty.all(6),
-                                    shape: MaterialStateProperty.all(
-                                      const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
+                                ElevatedButton.icon(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white,
+                                  ),
+                                  icon: const FaIcon(FontAwesomeIcons.google,
+                                      color: Colors.red),
+                                  label: const Text(
+                                    "Google",
+                                    style: TextStyle(
+                                      fontFamily: 'Late',
+                                      fontSize: 14,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                  child: Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.golf_course,
-                                        color: LetsGoTheme.main,
-                                      ),
-                                      Text(
-                                        'Anonyme',
-                                        style: TextStyle(
-                                          fontFamily: 'Late',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: LetsGoTheme.main,
-                                        ),
-                                      ),
-                                    ],
+                                  onPressed: () async {
+                                    await signInGoogle();
+                                  },
+                                ),
+                                ElevatedButton.icon(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.white,
                                   ),
-                                  onPressed: () async {},
+                                  icon: const FaIcon(FontAwesomeIcons.facebook,
+                                      color: Colors.blue),
+                                  label: const Text(
+                                    "Facebook",
+                                    style: TextStyle(
+                                      fontFamily: 'Late',
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ),
                               ],
                             )

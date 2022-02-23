@@ -64,8 +64,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 40,
                               child: Center(
                                 child: Text(
-                                  "Inscription",
+                                  "S'enregistrer",
                                   style: LetsGoTheme.loginTitle,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            TextField(
+                              cursorColor: Colors.white,
+                              cursorWidth: 2,
+                              obscureText: false,
+                              style: const TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                labelText: 'Nom complet',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                disabledBorder: null,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.5),
+                                prefixIcon: const Icon(Icons.email_outlined,
+                                    color: Colors.white),
+                                hintStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Late',
                                 ),
                               ),
                             ),
@@ -97,9 +122,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             const SizedBox(
                               height: 30,
-                            ),
-                            const SizedBox(
-                              height: 10,
                             ),
                             TextField(
                               controller: passwordController,
@@ -148,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                   child: const Text(
-                                    "S'inscrire",
+                                    "S'enregistrer",
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 16,
@@ -169,16 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }),
                             ),
                             const SizedBox(
-                              height: 20,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            const SizedBox(
-                              height: 30,
+                              height: 100,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -188,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     'Vous avez déjà un compte, identifiez-vous',
                                     style: TextStyle(
                                       fontFamily: 'PT-Sans',
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -210,11 +223,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 100,
                             ),
-                            const SizedBox(
-                              height: 15,
-                            )
                           ],
                         ),
                       ],
