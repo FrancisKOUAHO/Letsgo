@@ -1,9 +1,12 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/home/home.dart';
+import 'package:letsgo/screen/login/reset_password.dart';
 import 'package:letsgo/screen/login/sign_up.dart';
 import 'package:letsgo/services/auth_service.dart';
+import 'package:letsgo/services/firebase_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -61,6 +64,15 @@ class _SignInState extends State<SignIn> {
                         Column(
                           children: [
                             const SizedBox(
+                              height: 40,
+                              child: Center(
+                                child: Text(
+                                  "S'identifier",
+                                  style: LetsGoTheme.loginTitle,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
                               height: 30,
                             ),
                             const SizedBox(
@@ -99,7 +111,8 @@ class _SignInState extends State<SignIn> {
                               controller: passwordController,
                               cursorColor: Colors.white,
                               cursorWidth: 2,
-                              obscureText: false,
+                              obscuringCharacter: "*",
+                              obscureText: true,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 labelText: 'Mot de passe',
@@ -132,7 +145,14 @@ class _SignInState extends State<SignIn> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ResetPassword()),
+                                  );
+                                },
                               ),
                             ),
                             const SizedBox(
@@ -217,17 +237,99 @@ class _SignInState extends State<SignIn> {
                                 color: Colors.white,
                               ),
                             ),
-                            InkWell(
-                              child: const Text(
-                                'Passer',
-                                style: TextStyle(
-                                  fontFamily: 'PT-Sans',
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              onTap: () {},
+                            const SizedBox(
+                              height: 20,
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        Colors.white,
+                                      ),
+                                      elevation: MaterialStateProperty.all(6),
+                                      shape: MaterialStateProperty.all(
+                                        const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.golf_course,
+                                          color: LetsGoTheme.main,
+                                        ),
+                                        Text(
+                                          'Google',
+                                          style: TextStyle(
+                                            fontFamily: 'Late',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: LetsGoTheme.main,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    onPressed: () async {
+                                      FirebaseService service =
+                                          FirebaseService();
+                                      try {
+                                        await service.signInwithGoogle();
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Home()),
+                                        );
+                                      } catch (e) {
+                                        if (e is FirebaseAuthException) {
+                                          showMessage(e.message!);
+                                        }
+                                      }
+                                    }),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                      Colors.white,
+                                    ),
+                                    elevation: MaterialStateProperty.all(6),
+                                    shape: MaterialStateProperty.all(
+                                      const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: const [
+                                      Icon(
+                                        Icons.golf_course,
+                                        color: LetsGoTheme.main,
+                                      ),
+                                      Text(
+                                        'Anonyme',
+                                        style: TextStyle(
+                                          fontFamily: 'Late',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: LetsGoTheme.main,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onPressed: () async {},
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ],
@@ -240,5 +342,24 @@ class _SignInState extends State<SignIn> {
         ],
       ),
     );
+  }
+
+  void showMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content: Text(message),
+            actions: [
+              TextButton(
+                child: const Text("Ok"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 }

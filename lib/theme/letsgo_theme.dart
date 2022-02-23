@@ -21,7 +21,7 @@ class LetsGoTheme {
 
   static const TextStyle logoTitle = TextStyle(
     fontWeight: FontWeight.w900,
-    fontSize: 50.0,
+    fontSize: 55.0,
     letterSpacing: 1.0,
     color: LetsGoTheme.white,
   );
@@ -31,6 +31,20 @@ class LetsGoTheme {
     fontSize: 28,
     letterSpacing: 0.7,
     color: LetsGoTheme.black,
+  );
+
+  static const TextStyle loginTitle = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 35,
+    letterSpacing: 0.7,
+    color: LetsGoTheme.white,
+  );
+
+  static const TextStyle resetPasswordTitle = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 22.5,
+    letterSpacing: 0.7,
+    color: LetsGoTheme.white,
   );
 
   static const TextStyle bigTitle = TextStyle(

@@ -58,7 +58,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: <Widget>[
                   Column(
                     children: const [
-                      Text("Let's GO")
+                      Text(
+                          "Let's GO",
+                        style: LetsGoTheme.logoTitle,
+                      ),
                     ],
                   ),
                 ],

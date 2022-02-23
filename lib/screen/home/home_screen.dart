@@ -1,21 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/components/home/user_box_section.dart';
-import 'package:letsgo/components/home/user_box_title_section.dart';
 import 'package:letsgo/components/home/home_search_section.dart';
 import 'package:letsgo/components/home/home_slider_section.dart';
-import 'package:letsgo/components/home/home_theme_section.dart';
 import 'package:letsgo/components/home/home_subtitle_section.dart';
+import 'package:letsgo/components/home/home_theme_section.dart';
+import 'package:letsgo/components/home/user_box_section.dart';
+import 'package:letsgo/components/home/user_box_title_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
+    print(user);
     return SingleChildScrollView(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
