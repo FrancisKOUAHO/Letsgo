@@ -12,7 +12,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
+      flex: 1,
       child: Container(
         margin: const EdgeInsets.all(10.0),
         padding: const EdgeInsets.all(10),

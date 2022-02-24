@@ -1,8 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,9 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: Stack(
+    return Scaffold(
+      body: Stack(
         children: [
           Positioned.fill(
             child: Container(
@@ -59,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Column(
                     children: const [
                       Text(
-                          "Let's GO",
+                        "Let's GO",
                         style: LetsGoTheme.logoTitle,
                       ),
                     ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/community/community_screen.dart';
-import 'package:letsgo/screen/home/home.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/search/search_screen.dart';
 import 'package:letsgo/screen/splash/splash_screen.dart';
@@ -18,8 +17,6 @@ Route<dynamic> controller(RouteSettings setting) {
   switch (setting.name) {
     case splashScreen:
       return MaterialPageRoute(builder: (context) => const SplashScreen());
-    case home:
-      return MaterialPageRoute(builder: (context) => const Home());
     case homeScreen:
       return MaterialPageRoute(builder: (context) => const HomeScreen());
     case searchScreen:

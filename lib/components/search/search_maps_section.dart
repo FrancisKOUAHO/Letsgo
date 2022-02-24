@@ -16,22 +16,19 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
-      child: Container(
-        margin: const EdgeInsets.all(10.0),
-        padding: const EdgeInsets.all(10),
-        width: 327,
-        height: 400,
-        child: GoogleMap(
-          initialCameraPosition: _initialCameraPosition,
-          myLocationEnabled: true,
-          myLocationButtonEnabled: true,
-          mapType: MapType.normal,
-          zoomGesturesEnabled: true,
-          zoomControlsEnabled: true,
-          onMapCreated: (GoogleMapController c) {},
-        ),
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10),
+      width: 327,
+      height: 400,
+      child: GoogleMap(
+        initialCameraPosition: _initialCameraPosition,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        mapType: MapType.normal,
+        zoomGesturesEnabled: true,
+        zoomControlsEnabled: true,
+        onMapCreated: (GoogleMapController c) {},
       ),
     );
   }

@@ -10,11 +10,9 @@ class HomeSubTitleSection extends StatefulWidget {
 class _HomeSubTitleSectionState extends State<HomeSubTitleSection> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.only(left: 10),
-        child: const Text("Theme"),
-      ),
+    return Container(
+      padding: const EdgeInsets.only(left: 10),
+      child: const Text("Theme"),
     );
   }
 }

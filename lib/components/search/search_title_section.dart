@@ -5,18 +5,16 @@ class SearchTitleSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-          child: Column(
-        children: [
-          Container(
-              margin: const EdgeInsets.only(left: 105, right: 105),
-              child: const Divider(
-                color: Colors.black,
-              )),
-          const Text("AFFFICHER LA LISTE")
-        ],
-      )),
-    );
+    return Center(
+        child: Column(
+      children: [
+        Container(
+            margin: const EdgeInsets.only(left: 105, right: 105),
+            child: const Divider(
+              color: Colors.black,
+            )),
+        const Text("AFFFICHER LA LISTE")
+      ],
+    ));
   }
 }

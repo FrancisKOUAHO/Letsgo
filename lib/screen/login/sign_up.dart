@@ -16,6 +16,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController namelController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -73,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               height: 30,
                             ),
                             TextField(
+                              controller: namelController,
                               cursorColor: Colors.white,
                               cursorWidth: 2,
                               obscureText: false,
@@ -179,15 +181,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    await authService
+                                    dynamic result = await authService
                                         .createUserWithEmailAndPassword(
                                             emailController.text,
                                             passwordController.text);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const SignIn()),
-                                    );
+                                    if(result == null){
+                                      print('email is not valid');
+                                    }else{
+                                      namelController.clear();
+                                      emailController.clear();
+                                      passwordController.clear();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const SignIn()),
+                                      );
+                                    }
                                   }),
                             ),
                             const SizedBox(

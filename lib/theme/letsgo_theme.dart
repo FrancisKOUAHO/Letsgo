@@ -27,9 +27,14 @@ class LetsGoTheme {
   );
 
   static const TextStyle Title = TextStyle(
-    fontWeight: FontWeight.w900,
-    fontSize: 28,
-    letterSpacing: 0.7,
+    fontWeight: FontWeight.w700,
+    fontSize: 20,
+    color: LetsGoTheme.black,
+  );
+
+  static const TextStyle subTitle = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
     color: LetsGoTheme.black,
   );
 

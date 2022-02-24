@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:letsgo/screen/profil/setting_user_screen.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -11,87 +13,73 @@ class ProfilScreen extends StatefulWidget {
 
 class _ProfilScreenState extends State<ProfilScreen> {
   final double profilHeight = 144;
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+        actions: <Widget>[
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilScreen()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.cog, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingUserScrenn()),
+              );
+            },
+          ),
+        ],
+      ),
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(
-            top: 50,
-            width: 350,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Expanded(
-                  flex: 1,
-                  child: Card(
-                    margin: EdgeInsets.fromLTRB(0, 0, 100, 0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    color: LetsGoTheme.lightPurple,
-                    child: ListTile(
-                      leading: Icon(Icons.arrow_back_outlined),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Card(
-                    margin: EdgeInsets.fromLTRB(100, 0, 0, 0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    color: LetsGoTheme.lightPurple,
-                    child: ListTile(
-                      leading: Icon(Icons.settings_outlined),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              CircleAvatar(
+                radius: profilHeight / 2,
+                backgroundColor: Colors.grey.shade800,
+                backgroundImage: NetworkImage(user!.photoURL ??
+                    "https://resize.prod.docfr.doc-media.fr/rcrop/1200,902,center-middle/img/var/doctissimo/storage/images/fr/www/forme/fitness/conseils-de-remise-en-forme/gym-exos-base/62935-3-fre-FR/gym-exos-base.jpg"),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              nomProfile(),
+              villeProfile(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  buildButton(context, '12', 'Participation'),
+                  buildDivider(),
+                  buildButton(context, '7', 'Coups de coeur'),
+                ],
+              ),
+            ],
           ),
-          Positioned(
-            top: 120,
-            child: CircleAvatar(
-              radius: profilHeight / 2,
-              backgroundColor: Colors.grey.shade800,
-              backgroundImage: const AssetImage('assets/profil/mask.png'),
-            ),
-          ),
-          Positioned(
-            top: 270,
-            child: nomProfile(),
-          ),
-          Positioned(
-            top: 300,
-            child: villeProfile(),
-          ),
-          Positioned(
-            top: 350,
-            width: 350,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                buildButton(context, '12', 'Participation'),
-                buildDivider(),
-                buildButton(context, '7', 'Coups de coeur'),
-              ],
-            ),
-          ),
-          Positioned(
-            top: 450,
+          SizedBox(
             width: 350,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 40,
+                  ),
                   buildCard(),
                 ],
               ),
@@ -199,11 +187,13 @@ Widget card2() {
 }
 
 Widget nomProfile() {
+  final user = FirebaseAuth.instance.currentUser;
+
   return Container(
     alignment: Alignment.center,
-    child: const Text(
-      'Marina Dubois',
-      style: TextStyle(
+    child: Text(
+      user!.displayName ?? '',
+      style: const TextStyle(
         fontFamily: 'Arial',
         fontSize: 25,
         fontWeight: FontWeight.bold,

@@ -11,10 +11,12 @@ class UserBoxSection extends StatefulWidget {
 }
 
 class _UserBoxSectionState extends State<UserBoxSection> {
+  final user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
+      flex: 1,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -47,10 +49,9 @@ class _UserBoxSectionState extends State<UserBoxSection> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   InkWell(
-                    child: Image.asset(
-                      "assets/profil/mask.png",
-                      width: 48,
-                      height: 54,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage("${user!.photoURL}"),
+                      radius: 30,
                     ),
                     onTap: () {
                       Navigator.push(

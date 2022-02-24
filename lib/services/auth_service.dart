@@ -49,6 +49,7 @@ class AuthService {
       return await _fireBaseAuth.signOut();
     } catch (e) {
       print('error $e');
+      return;
     }
   }
 }

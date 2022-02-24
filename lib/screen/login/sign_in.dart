@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/screen/home/home.dart';
+import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/login/reset_password.dart';
 import 'package:letsgo/screen/login/sign_up.dart';
 import 'package:letsgo/services/auth_service.dart';
@@ -19,15 +19,13 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-
   signInGoogle() async {
     FirebaseService service = FirebaseService();
     try {
       await service.signInwithGoogle();
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => const Home()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } catch (e) {
       if (e is FirebaseAuthException) {
@@ -203,14 +201,23 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    await authService.signInEmailAndPassword(
-                                        emailController.text,
-                                        passwordController.text);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const Home()),
-                                    );
+                                    dynamic authResult = await authService
+                                        .signInEmailAndPassword(
+                                            emailController.text,
+                                            passwordController.text);
+                                    if (authResult == null) {
+                                      print(
+                                          'Sign in error. Could not be able to login');
+                                    } else {
+                                      emailController.clear();
+                                      passwordController.clear();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeScreen()),
+                                      );
+                                    }
                                   }),
                             ),
                             const SizedBox(
