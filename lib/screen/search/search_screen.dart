@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/components/search/search_user_section.dart';
-import 'package:letsgo/components/search/search_search_section.dart';
-import 'package:letsgo/components/search/search_maps_section.dart';
 import 'package:letsgo/components/search/search_list_aventure.dart';
+import 'package:letsgo/components/search/search_maps_section.dart';
+import 'package:letsgo/components/search/search_search_section.dart';
 import 'package:letsgo/components/search/search_title_section.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
@@ -19,6 +18,8 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final user = FirebaseAuth.instance.currentUser;
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
             IconButton(
               onPressed: () => Navigator.pop(context),
               icon:
-              const FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
+                  const FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
             ),
             const Text("Saint-Ouen, France"),
             // Your widgets here
