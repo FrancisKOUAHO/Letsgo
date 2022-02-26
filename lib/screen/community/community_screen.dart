@@ -5,7 +5,6 @@ import 'package:letsgo/components/community/community_gallery_section.dart';
 import 'package:letsgo/components/community/community_gallery_three_section.dart';
 import 'package:letsgo/components/community/community_gallery_two_section.dart';
 import 'package:letsgo/components/community/community_title_section.dart';
-import 'package:letsgo/components/community/community_user_section.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
 

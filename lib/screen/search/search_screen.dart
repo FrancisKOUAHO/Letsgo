@@ -62,8 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
+      body:SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,7 +78,6 @@ class _SearchScreenState extends State<SearchScreen> {
             ],
           ),
         ),
-      ),
       bottomNavigationBar: const CustomAnimatedButtomBar(),
     );
   }

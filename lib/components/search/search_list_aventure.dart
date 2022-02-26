@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/letsgo_theme.dart';
+
 class SearchListAventure extends StatefulWidget {
   const SearchListAventure({Key? key}) : super(key: key);
 
@@ -10,7 +12,7 @@ class SearchListAventure extends StatefulWidget {
 
 class _SearchListAventureState extends State<SearchListAventure> {
   final Stream<QuerySnapshot> _categoriesStream =
-      FirebaseFirestore.instance.collection("Categories").snapshots();
+      FirebaseFirestore.instance.collection('Cotegories').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +20,48 @@ class _SearchListAventureState extends State<SearchListAventure> {
         stream: _categoriesStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return const Text('Something went wrong');
+            return const Center(
+              child: Text('Quelque chose a mal tourné',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black)),
+            );
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
+            return const Center(
+              child: Text('Chargement...',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black)),
+            );
           }
 
           return Expanded(
             child: Container(
-              margin: const EdgeInsets.all(10.0),
               padding: const EdgeInsets.all(10),
+              height: 100,
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> category =
                       document.data()! as Map<String, dynamic>;
-                  return ListTile(
-                    title: Text(category['name']),
+                  return Card(
+                    child: ListTile(
+                      leading: Image.network(category['image'],
+                        width: 80,
+                        height: 80,
+                      ),
+                      title: Text(category['name'],
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black)),
+                      subtitle:  Text(category['desciption'] ?? '',
+                          style: const TextStyle(color: Colors.black)),
+                      trailing: const Icon(
+                        Icons.keyboard_arrow_right,
+                        color: LetsGoTheme.main,
+                        size: 50,
+                      ),
+                      isThreeLine: true,
+                    ),
                   );
                 }).toList(),
               ),
