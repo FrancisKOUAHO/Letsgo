@@ -28,13 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
+          children: const <Widget>[
             IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: null,
               icon:
-                  const FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
+                  FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
             ),
-            const Text("Saint-Ouen, France"),
+            Text("Saint-Ouen, France"),
             // Your widgets here
           ],
         ),
