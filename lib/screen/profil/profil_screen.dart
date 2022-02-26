@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/screen/profil/setting_user_screen.dart';
+import 'package:letsgo/screen/profil/settings_scren.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -17,13 +16,16 @@ class _ProfilScreenState extends State<ProfilScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-            tooltip: 'Show Snackbar',
             onPressed: () {
               Navigator.push(
                 context,
@@ -36,51 +38,237 @@ class _ProfilScreenState extends State<ProfilScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SettingUserScrenn()),
+                MaterialPageRoute(builder: (context) => const SettingsScren()),
               );
             },
           ),
         ],
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              CircleAvatar(
-                radius: profilHeight / 2,
-                backgroundColor: Colors.grey.shade800,
-                backgroundImage: NetworkImage(user!.photoURL ??
-                    "https://resize.prod.docfr.doc-media.fr/rcrop/1200,902,center-middle/img/var/doctissimo/storage/images/fr/www/forme/fitness/conseils-de-remise-en-forme/gym-exos-base/62935-3-fre-FR/gym-exos-base.jpg"),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              nomProfile(),
-              villeProfile(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  buildButton(context, '12', 'Participation'),
-                  buildDivider(),
-                  buildButton(context, '7', 'Coups de coeur'),
-                ],
-              ),
-            ],
+        children: <Widget>[
+          Center(
+            child: Image.network(
+              user!.photoURL ?? 'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
+              fit: BoxFit.cover,
+              width: size.width,
+              height: size.height,
+            ),
           ),
-          SizedBox(
-            width: 350,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 480,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  )),
               child: Column(
-                children: [
-                  const SizedBox(
-                    height: 40,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 32,
+                      bottom: 16,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                             CircleAvatar(
+                              radius: 28,
+                              backgroundImage:
+                                  NetworkImage(user!.photoURL ?? 'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png'),
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:  <Widget>[
+                                Text(
+                                  user!.displayName ?? '',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  buildCard(),
+                  Divider(
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(
+                    height: 64,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 110,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                "FRIENDS",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                "19",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 110,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                "PARTICIPATION",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                "17",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 110,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text(
+                                "COUPS DE COEUR",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                "7",
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.grey[400],
+                  ),
+                  const Text(
+                    "Amis",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 70,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 9,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                              height: 56,
+                              width: 56,
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage("assets/images/friends_" +
+                                        index.toString() +
+                                        ".jpg"),
+                                  )));
+                        }),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Text(
+                    "Photos",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 160,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 12,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                              height: 160,
+                              width: 110,
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage("assets/images/photo_" +
+                                        index.toString() +
+                                        ".jpg"),
+                                  )));
+                        }),
+                  ),
                 ],
               ),
             ),
@@ -89,130 +277,4 @@ class _ProfilScreenState extends State<ProfilScreen> {
       ),
     );
   }
-
-  Widget buildDivider() => const SizedBox(
-        height: 24,
-        child: VerticalDivider(
-          color: Colors.black,
-          width: 50,
-        ),
-      );
-}
-
-Widget buildButton(BuildContext context, String value, String text) =>
-    MaterialButton(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      onPressed: () {},
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            value,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            text,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    );
-
-Card buildCard() {
-  var cardImage =
-      const NetworkImage('https://source.unsplash.com/random/800x600?house');
-  var supportingText =
-      'Beautiful home to rent, recently refurbished with modern appliances...';
-  return Card(
-      elevation: 4.0,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 200.0,
-            child: Ink.image(
-              image: cardImage,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              Text("Yoga"),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text("13 rue de paris, 93000 montreuil"),
-              Text("Cours de yoga avec Francis, prof de yoga reputer"),
-            ],
-          ),
-        ],
-      ));
-}
-
-Widget card1() {
-  return Card(
-    semanticContainer: true,
-    clipBehavior: Clip.antiAliasWithSaveLayer,
-    child: Image.network(
-      'https://resize.prod.docfr.doc-media.fr/rcrop/1200,902,center-middle/img/var/doctissimo/storage/images/fr/www/forme/fitness/conseils-de-remise-en-forme/gym-exos-base/62935-3-fre-FR/gym-exos-base.jpg',
-      fit: BoxFit.fill,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-    elevation: 5,
-    margin: const EdgeInsets.all(10),
-  );
-}
-
-Widget card2() {
-  return Card(
-    semanticContainer: true,
-    clipBehavior: Clip.antiAliasWithSaveLayer,
-    child: Image.network(
-      'https://assets.afcdn.com/story/20171016/1128498_w1200h630c1cx1060cy707.jpg',
-      fit: BoxFit.fill,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-    elevation: 5,
-    margin: const EdgeInsets.all(10),
-  );
-}
-
-Widget nomProfile() {
-  final user = FirebaseAuth.instance.currentUser;
-
-  return Container(
-    alignment: Alignment.center,
-    child: Text(
-      user!.displayName ?? '',
-      style: const TextStyle(
-        fontFamily: 'Arial',
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      ),
-    ),
-  );
-}
-
-Widget villeProfile() {
-  return Container(
-    alignment: Alignment.center,
-    child: const Text(
-      'Paris, France',
-      style: TextStyle(
-        fontFamily: 'Arial',
-        fontSize: 15,
-        color: Colors.black,
-      ),
-    ),
-  );
 }
