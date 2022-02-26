@@ -207,7 +207,7 @@ class _SignInState extends State<SignIn> {
                                             passwordController.text);
                                     if (authResult == null) {
                                       print(
-                                          'Sign in error. Could not be able to login');
+                                          'Erreur de connexion. Impossible de se connecter');
                                     } else {
                                       emailController.clear();
                                       passwordController.clear();
