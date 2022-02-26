@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:letsgo/screen/search/research_via_maps.dart';
 
 class SearchMapsSection extends StatefulWidget {
   const SearchMapsSection({Key? key}) : super(key: key);
@@ -16,19 +17,25 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(10),
-      width: 327,
-      height: 400,
-      child: GoogleMap(
-        initialCameraPosition: _initialCameraPosition,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-        mapType: MapType.normal,
-        zoomGesturesEnabled: true,
-        zoomControlsEnabled: true,
-        onMapCreated: (GoogleMapController c) {},
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResearchViaMaps()));
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
+        width: 327,
+        height: 400,
+        child: GoogleMap(
+          initialCameraPosition: _initialCameraPosition,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: true,
+          mapType: MapType.normal,
+          zoomGesturesEnabled: true,
+          zoomControlsEnabled: true,
+          onMapCreated: (GoogleMapController c) {},
+        ),
       ),
     );
   }

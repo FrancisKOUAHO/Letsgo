@@ -28,73 +28,71 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                   fit: BoxFit.fill,
                 ),
               ),
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Card(
-                      margin: const EdgeInsets.fromLTRB(80, 5, 5, 0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      color: LetsGoTheme.transparent,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const <Widget>[
-                          ListTile(
-                            leading: Icon(
-                              Icons.fitness_center_rounded,
-                              size: 25,
-                              color: LetsGoTheme.white,
-                            ),
-                            title: Text('Sport',
-                                style: TextStyle(
-                                    color: LetsGoTheme.white, fontSize: 12)),
-                          ),
-                        ],
-                      ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Card(
+                    margin: const EdgeInsets.fromLTRB(80, 5, 5, 0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      color: LetsGoTheme.whiteTransparent,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const ListTile(
-                            title: Text('3 séances de sport',
-                                style: TextStyle(
-                                    color: LetsGoTheme.black, fontSize: 16)),
+                    color: LetsGoTheme.transparent,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        ListTile(
+                          leading: Icon(
+                            Icons.fitness_center_rounded,
+                            size: 25,
+                            color: LetsGoTheme.white,
                           ),
-                          const ListTile(
-                            leading: Icon(
-                              Icons.location_on_rounded,
-                              size: 25,
-                              color: LetsGoTheme.lightGrey,
-                            ),
-                            title: Text('45 avenu paris 92010',
-                                style: TextStyle(
-                                    color: LetsGoTheme.lightGrey,
-                                    fontSize: 14)),
-                          ),
-                          ButtonBar(children: [
-                            FlatButton(
-                              color: LetsGoTheme.whiteTransparent,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(9.0)),
-                              child: const Text("Voir plus",
-                                  style: TextStyle(
-                                      color: Colors.lightBlue, fontSize: 14)),
-                              onPressed: () {},
-                            ),
-                          ]),
-                        ],
-                      ),
+                          title: Text('Sport',
+                              style: TextStyle(
+                                  color: LetsGoTheme.white, fontSize: 12)),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    color: LetsGoTheme.whiteTransparent,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const ListTile(
+                          title: Text('3 séances de sport',
+                              style: TextStyle(
+                                  color: LetsGoTheme.black, fontSize: 16)),
+                        ),
+                        const ListTile(
+                          leading: Icon(
+                            Icons.location_on_rounded,
+                            size: 25,
+                            color: LetsGoTheme.lightGrey,
+                          ),
+                          title: Text('45 avenu paris 92010',
+                              style: TextStyle(
+                                  color: LetsGoTheme.lightGrey,
+                                  fontSize: 14)),
+                        ),
+                        ButtonBar(children: [
+                          FlatButton(
+                            color: LetsGoTheme.whiteTransparent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9.0)),
+                            child: const Text("Voir plus",
+                                style: TextStyle(
+                                    color: Colors.lightBlue, fontSize: 14)),
+                            onPressed: () {},
+                          ),
+                        ]),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(

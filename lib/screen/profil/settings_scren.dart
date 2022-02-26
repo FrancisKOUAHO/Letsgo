@@ -139,7 +139,7 @@ class _SettingsScrenState extends State<SettingsScren> {
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => EditProfilePage()));
+            MaterialPageRoute(builder: (context) => const EditProfilePage()));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
