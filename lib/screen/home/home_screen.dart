@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/components/home/home_search_section.dart';
@@ -51,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: Image.network(user!.photoURL ?? "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+            icon: Image.network(user!.photoURL ??
+                "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
             onPressed: () {
               Navigator.push(
                 context,
