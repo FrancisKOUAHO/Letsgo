@@ -8,7 +8,6 @@ class UserBoxTitleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-    print("user ${user!}");
 
     return Container(
       padding: const EdgeInsets.only(left: 10),
@@ -16,7 +15,7 @@ class UserBoxTitleSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text("Let's GO", style: LetsGoTheme.Title,),
-          Text("${user.displayName}!", style: LetsGoTheme.Title,),
+          Text("${user?.displayName}!", style: LetsGoTheme.Title,),
         ],
       ),
     );

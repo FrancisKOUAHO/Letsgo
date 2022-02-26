@@ -43,7 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-            tooltip: 'Show Snackbar',
             onPressed: () {
               Navigator.push(
                 context,
@@ -52,8 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: Image.network("${user!.photoURL}"),
-            tooltip: 'Show Snackbar',
+            icon: Image.network(user!.photoURL ?? "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
             onPressed: () {
               Navigator.push(
                 context,

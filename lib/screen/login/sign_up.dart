@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/models/user_model.dart';
 import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
@@ -185,6 +187,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         .createUserWithEmailAndPassword(
                                             emailController.text,
                                             passwordController.text);
+                                    final updateUser = FirebaseAuth.instance.currentUser;
+                                    updateUser?.updateProfile(displayName: namelController.text);
+                                    authService.userSetup(namelController.text);
+
                                     if(result == null){
                                       print('email is not valid');
                                     }else{

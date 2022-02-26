@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:letsgo/models/user_model.dart';
 
@@ -23,6 +24,7 @@ class AuthService {
     } catch (e) {
       print('error $e');
     }
+    return null;
   }
 
   Future<User?> createUserWithEmailAndPassword(
@@ -34,6 +36,14 @@ class AuthService {
     } catch (e) {
       print('error $e');
     }
+    return null;
+  }
+
+  Future <void> userSetup(String displayName) async{
+    CollectionReference users = FirebaseFirestore.instance.collection('Users');
+    String? uid = _fireBaseAuth.currentUser?.uid.toString();
+    users.add({'displayName': displayName, 'uid': uid});
+    return;
   }
 
   Future resetPassword(String email) async {
@@ -49,7 +59,6 @@ class AuthService {
       return await _fireBaseAuth.signOut();
     } catch (e) {
       print('error $e');
-      return;
     }
   }
 }
