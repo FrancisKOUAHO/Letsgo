@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/chat/chat.dart';
 import 'package:letsgo/screen/community/community_screen.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/search/search_screen.dart';
@@ -17,7 +18,8 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-    const CommunityScreen()
+    const CommunityScreen(),
+    const Chat()
   ];
 
   @override
@@ -39,7 +41,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
         borderRadius: BorderRadius.circular(50),
       ),
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: 4,
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: screenWidth * .120),
         itemBuilder: (context, index) => InkWell(
@@ -93,6 +95,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   List<IconData> listOfIcons = [
     Icons.home_rounded,
     Icons.location_on_rounded,
+    Icons.message,
     Icons.groups,
   ];
 }
