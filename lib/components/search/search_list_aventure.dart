@@ -45,7 +45,8 @@ class _SearchListAventureState extends State<SearchListAventure> {
                       document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
-                      leading: Image.network(category['image'],
+                      leading: Image.network(
+                        category['image'],
                         width: 80,
                         height: 80,
                       ),
@@ -53,7 +54,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
-                      subtitle:  Text(category['desciption'] ?? '',
+                      subtitle: Text(category['desciption'] ?? '',
                           style: const TextStyle(color: Colors.black)),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,

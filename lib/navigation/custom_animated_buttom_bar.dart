@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/chats/chats_screen.dart';
 import 'package:letsgo/screen/community/community_screen.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/search/search_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
-import '../screen/chat/chatScreen.dart';
 
 class CustomAnimatedButtomBar extends StatefulWidget {
   const CustomAnimatedButtomBar({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-    const ChatScreen(),
+    ChatsScreen(),
     const CommunityScreen(),
   ];
 
