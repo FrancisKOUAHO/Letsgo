@@ -1,6 +1,5 @@
 import 'package:letsgo/theme/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 
 import '../../navigation/custom_animated_buttom_bar.dart';
 import 'components/body.dart';
