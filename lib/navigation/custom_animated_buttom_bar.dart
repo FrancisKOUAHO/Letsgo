@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/chat/chat.dart';
 import 'package:letsgo/screen/community/community_screen.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/search/search_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../screen/chat/chatScreen.dart';
 
 class CustomAnimatedButtomBar extends StatefulWidget {
   const CustomAnimatedButtomBar({Key? key}) : super(key: key);
@@ -18,8 +19,8 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
+    const ChatScreen(),
     const CommunityScreen(),
-    const Chat()
   ];
 
   @override
@@ -43,7 +44,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
       child: ListView.builder(
         itemCount: 4,
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * .120),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * .100),
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             setState(() {
@@ -59,7 +60,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
           child: Stack(
             children: [
               SizedBox(
-                width: screenWidth * .2125,
+                width: screenWidth * .1125,
                 child: Center(
                   child: AnimatedContainer(
                     duration: const Duration(seconds: 1),
@@ -76,7 +77,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
                 ),
               ),
               Container(
-                width: screenWidth * .2125,
+                width: screenWidth * .1700,
                 alignment: Alignment.center,
                 child: Icon(
                   listOfIcons[index],
