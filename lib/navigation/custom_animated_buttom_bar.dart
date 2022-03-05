@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/chats/chats_screen.dart';
+import 'package:letsgo/screen/chat/chat_home.dart';
 import 'package:letsgo/screen/community/community_screen.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/search/search_screen.dart';
@@ -19,7 +19,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-    ChatsScreen(),
+     ChatHome(),
     const CommunityScreen(),
   ];
 

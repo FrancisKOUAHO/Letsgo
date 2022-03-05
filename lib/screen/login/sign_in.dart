@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +7,6 @@ import 'package:letsgo/screen/login/sign_up.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/services/firebase_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -38,8 +35,9 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    bool _validate = false;
 
-    final authService = Provider.of<AuthService>(context);
+    final AuthService _auth = AuthService();
     return Material(
       type: MaterialType.transparency,
       child: Stack(
@@ -201,10 +199,16 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    dynamic authResult = await authService
-                                        .signInEmailAndPassword(
-                                            emailController.text,
-                                            passwordController.text);
+                                    setState(() {
+                                      emailController.text.isEmpty
+                                          ? _validate = true
+                                          : _validate = false;
+                                      passwordController.text.isEmpty
+                                          ? _validate = true
+                                          : _validate = false;
+                                    });
+                                    dynamic authResult = await _auth.signInEmailAndPassword(emailController.text,
+                                        passwordController.text);
                                     if (authResult == null) {
                                       print(
                                           'Erreur de connexion. Impossible de se connecter');

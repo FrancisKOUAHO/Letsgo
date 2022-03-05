@@ -1,3 +1,5 @@
+import 'package:letsgo/models/chat_params.dart';
+
 class Chat {
   final String name, lastMessage, image, time;
   final bool isActive;

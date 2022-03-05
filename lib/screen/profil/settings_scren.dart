@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/profil/edit_profile.dart';
 import 'package:letsgo/services/auth_service.dart';
-import 'package:provider/provider.dart';
 
 import '../login/sign_in.dart';
 
@@ -14,9 +13,10 @@ class SettingsScren extends StatefulWidget {
 }
 
 class _SettingsScrenState extends State<SettingsScren> {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
@@ -96,7 +96,7 @@ class _SettingsScrenState extends State<SettingsScren> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () async {
-                  await authService.signOut().then((result) => {
+                  await _auth.signOut().then((result) => {
                         Navigator.push(
                             context,
                             MaterialPageRoute(

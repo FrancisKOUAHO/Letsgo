@@ -8,7 +8,7 @@ class HomeThemeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _categoriesStream =
-    FirebaseFirestore.instance.collection('Cotegories').snapshots();
+    FirebaseFirestore.instance.collection('categories').snapshots();
 
     return StreamBuilder<QuerySnapshot>(
         stream: _categoriesStream,

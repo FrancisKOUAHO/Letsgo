@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/common/resume_word.dart';
 
 import '../../theme/letsgo_theme.dart';
 
@@ -12,7 +13,7 @@ class SearchListAventure extends StatefulWidget {
 
 class _SearchListAventureState extends State<SearchListAventure> {
   final Stream<QuerySnapshot> _categoriesStream =
-      FirebaseFirestore.instance.collection('Cotegories').snapshots();
+      FirebaseFirestore.instance.collection('categories').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
-                      subtitle: Text(category['desciption'] ?? '',
+                      subtitle: Text(ResumeWord(category['description']) ?? '',
                           style: const TextStyle(color: Colors.black)),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,
