@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:letsgo/models/chat_params.dart';
 import 'package:letsgo/models/message.dart';
 import 'package:letsgo/services/message_database.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../models/message.dart';
+import '../../theme/constants.dart';
 import 'message_item.dart';
 
 class Chat extends StatefulWidget {
@@ -41,7 +42,8 @@ class _ChatState extends State<Chat> {
   }
 
   _scrollListener() {
-    if (listScrollController.offset >= listScrollController.position.maxScrollExtent &&
+    if (listScrollController.offset >=
+            listScrollController.position.maxScrollExtent &&
         !listScrollController.position.outOfRange) {
       setState(() {
         _nbElement += PAGINATION_INCREMENT;
@@ -63,17 +65,17 @@ class _ChatState extends State<Chat> {
   Widget buildListMessage() {
     return Flexible(
       child: StreamBuilder<List<Message>>(
-        stream: messageService.getMessage(chatParams.getChatGroupId(), _nbElement),
+        stream:
+            messageService.getMessage(chatParams.getChatGroupId(), _nbElement),
         builder: (BuildContext context, AsyncSnapshot<List<Message>> snapshot) {
           if (snapshot.hasData) {
-            List<Message> listMessage = snapshot.data?? List.from([]);
+            List<Message> listMessage = snapshot.data ?? List.from([]);
             return ListView.builder(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               itemBuilder: (context, index) => MessageItem(
                   message: listMessage[index],
                   userId: chatParams.userUid,
-                  isLastMessage: isLastMessage(index, listMessage)
-              ),
+                  isLastMessage: isLastMessage(index, listMessage)),
               itemCount: listMessage.length,
               reverse: true,
               controller: listScrollController,
@@ -94,56 +96,86 @@ class _ChatState extends State<Chat> {
 
   Widget buildInput() {
     return Container(
-      width: double.infinity,
-      height: 50.0,
+      padding: const EdgeInsets.symmetric(
+        horizontal: kDefaultPadding,
+        vertical: kDefaultPadding / 2,
+      ),
       decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: Colors.black, width: 0.5)), color: Colors.white),
-      child: Row(
-        children: [
-          Material(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 1.0),
-              child: IconButton(
-                icon: Icon(Icons.image),
-                onPressed: getImage,
-                color: Colors.blueGrey,
-              ),
-            ),
-            color: Colors.white,
-          ),
-          Flexible(
-            child: TextField(
-              onSubmitted: (value) {
-                onSendMessage(textEditingController.text, 0);
-              },
-              style: TextStyle(color: Colors.blueGrey, fontSize: 15.0),
-              controller: textEditingController,
-              decoration: InputDecoration.collapsed(
-                hintText: 'Your message...',
-                hintStyle: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ),
-          // Button send message
-          Material(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
-              child: IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () => onSendMessage(textEditingController.text, 0),
-                color: Colors.blueGrey,
-              ),
-            ),
-            color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 4),
+            blurRadius: 32,
+            color: const Color(0xFF087949).withOpacity(0.08),
           ),
         ],
+      ),
+      child: SafeArea(
+        child: Row(
+          children: [
+            const Icon(Icons.mic, color: kPrimaryColor),
+            const SizedBox(width: kDefaultPadding),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding * 0.75,
+                ),
+                decoration: BoxDecoration(
+                  color: kPrimaryColor.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: getImage,
+                      child: Icon(
+                        Icons.attach_file,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(0.64),
+                      ),
+                    ),
+                    const SizedBox(width: kDefaultPadding / 4),
+                    const SizedBox(width: kDefaultPadding / 4),
+                     Expanded(
+                      child: TextField(
+                        onSubmitted: (value) {
+                          onSendMessage(textEditingController.text, 0);
+                        },
+                        controller: textEditingController,
+                        decoration: const InputDecoration(
+                          hintText: "Type message",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => onSendMessage(textEditingController.text, 0),
+                      child: Icon(
+                        Icons.send,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(0.64),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Future getImage() async {
     ImagePicker imagePicker = ImagePicker();
-    PickedFile? pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+    PickedFile? pickedFile =
+        await imagePicker.getImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         isLoading = true;
@@ -153,11 +185,13 @@ class _ChatState extends State<Chat> {
   }
 
   Future uploadFile(PickedFile file) async {
-    String fileName = DateTime.now().millisecondsSinceEpoch.toString() + ".jpeg";
+    String fileName =
+        DateTime.now().millisecondsSinceEpoch.toString() + ".jpeg";
     try {
       Reference reference = FirebaseStorage.instance.ref().child(fileName);
       final metadata = SettableMetadata(
-          contentType: 'image/jpeg', customMetadata: {'picked-file-path': file.path});
+          contentType: 'image/jpeg',
+          customMetadata: {'picked-file-path': file.path});
       TaskSnapshot snapshot;
       if (kIsWeb) {
         snapshot = await reference.putData(await file.readAsBytes(), metadata);
@@ -193,7 +227,9 @@ class _ChatState extends State<Chat> {
       textEditingController.clear();
     } else {
       Fluttertoast.showToast(
-          msg: 'Nothing to send', backgroundColor: Colors.red, textColor: Colors.white);
+          msg: 'Nothing to send',
+          backgroundColor: Colors.red,
+          textColor: Colors.white);
     }
   }
 }

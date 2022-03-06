@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/models/chat_params.dart';
 
+import '../../common/resume_word.dart';
 import '../../theme/constants.dart';
 import 'chat.dart';
 
@@ -23,17 +24,16 @@ class ChatScreen extends StatelessWidget {
         title: Row(
           children: [
             const BackButton(),
-            const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/user_2.png"),
+             CircleAvatar(
+              backgroundImage: NetworkImage(user!.photoURL ?? 'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png'),
             ),
             const SizedBox(width: kDefaultPadding * 0.75),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(user!.displayName ?? '', style: const TextStyle(fontSize: 16)),
-                const Text(
-                  "Active 3m ago",
-                  style: TextStyle(fontSize: 12),
+                Text(user.displayName ?? '', style: const TextStyle(fontSize: 13)),
+                const Text("Active 3m ago",
+                  style: TextStyle(fontSize: 9),
                 )
               ],
             )

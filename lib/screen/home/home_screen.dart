@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/components/home/home_search_section.dart';
-import 'package:letsgo/components/home/home_slider_section.dart';
-import 'package:letsgo/components/home/home_subtitle_section.dart';
-import 'package:letsgo/components/home/home_theme_section.dart';
-import 'package:letsgo/components/home/user_box_title_section.dart';
+import 'package:letsgo/widgets/home/home_search_section.dart';
+import 'package:letsgo/widgets/home/home_slider_section.dart';
+import 'package:letsgo/widgets/home/home_subtitle_section.dart';
+import 'package:letsgo/widgets/home/home_theme_section.dart';
+import 'package:letsgo/widgets/home/user_box_title_section.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';

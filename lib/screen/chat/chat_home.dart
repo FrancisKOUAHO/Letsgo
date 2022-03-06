@@ -1,17 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/services/auth_service.dart';
+import 'package:letsgo/common/resume_word.dart';
 import 'package:letsgo/theme/constants.dart';
+import 'package:letsgo/widgets/Follow.dart';
 import 'package:letsgo/widgets/user_list_message.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/resume_word.dart';
 import '../../models/user_model.dart';
 import '../../navigation/custom_animated_buttom_bar.dart';
 import '../../services/database.dart';
 import '../../services/notification_service.dart';
-import '../profil/profil_screen.dart';
+import '../../widgets/filled_outline_button.dart';
 
 class ChatHome extends StatefulWidget {
   @override
@@ -33,33 +32,55 @@ class _ChatHomeState extends State<ChatHome> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:  <Widget>[
-              Row(
+          backgroundColor: Colors.deepPurple,
+          title: const Text("Messages"),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: CircleAvatar(
+              radius: 10,
+              backgroundImage: NetworkImage(currentUser!.photoURL ??
+                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+            ),
+          ),
+          actions: <Widget>[
+            Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Icon(
+                    Icons.search,
+                    size: 26.0,
+                  ),
+                )),
+          ],
+        ),
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(
+                  kDefaultPadding, 20, kDefaultPadding, kDefaultPadding),
+              color: kPrimaryColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CircleAvatar(
-                    radius: 23,
-                    backgroundImage: NetworkImage(currentUser!.photoURL ?? "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    children: [
-                      Text(sliceNameAndLastname(currentUser!.displayName ?? ''), style:  const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                       const Text("En ligne",  style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 10))
-                    ],
+                  FillOutlineButton(press: () {}, text: "Recent Message"),
+                  const SizedBox(width: kDefaultPadding),
+                  FillOutlineButton(
+                    press: () {},
+                    text: "Active",
+                    isFilled: false,
                   ),
                 ],
               ),
-              // Your widgets here
-            ],
-          ),
-          backgroundColor: Colors.deepPurple,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Expanded(
+              child: UserList(),
+            ),
+          ],
         ),
-        body: const UserList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
@@ -88,7 +109,9 @@ class _ChatHomeState extends State<ChatHome> {
                           children: [
                             GestureDetector(
                               onTap: () {},
-                              child: const Text("Annuler"),
+                              child: const Text("Annuler",
+                                  style: TextStyle(
+                                      color: Colors.deepPurpleAccent)),
                             ),
                             GestureDetector(
                               onTap: () {},
@@ -112,6 +135,63 @@ class _ChatHomeState extends State<ChatHome> {
                         const SizedBox(
                           height: 40,
                         ),
+                        Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Stack(
+                                    clipBehavior: Clip.none,
+                                    fit: StackFit.expand,
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundImage: NetworkImage(currentUser!
+                                                .photoURL ??
+                                            "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+                                      ),
+                                      Positioned(
+                                        right: 5,
+                                        bottom: 35,
+                                        child: SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child: FlatButton(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              side: const BorderSide(
+                                                  color: Colors.white),
+                                            ),
+                                            color: Colors.deepPurpleAccent[100]
+                                                ?.withOpacity(0.9),
+                                            onPressed: () {},
+                                            child: const Positioned(
+                                                child: Icon(
+                                              Icons.close,
+                                              size: 10,
+                                            )),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Text(
+                                    sliceNameAndLastname(
+                                            currentUser?.displayName) ??
+                                        '',
+                                    style: const TextStyle()),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        const Expanded(child: Follow()),
                       ],
                     ),
                   ),
