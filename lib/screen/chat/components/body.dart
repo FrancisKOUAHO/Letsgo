@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:letsgo/components/filled_outline_button.dart';
-import 'package:letsgo/models/Chat.dart';
-import 'package:letsgo/screen/messages/message_screen.dart';
+import 'package:letsgo/screen/chat/chat_home.dart';
 import 'package:letsgo/theme/constants.dart';
+import 'package:letsgo/models/Chat.dart';
+import 'package:flutter/material.dart';
 
 import 'chat_card.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,7 +36,7 @@ class Body extends StatelessWidget {
               press: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MessagesScreen(),
+                  builder: (context) =>  ChatHome(),
                 ),
               ),
             ),

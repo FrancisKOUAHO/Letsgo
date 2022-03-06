@@ -14,6 +14,10 @@ class DatabaseService {
     return await userCollection.doc(uid).set({'displayName': displayName});
   }
 
+  Future<void> saveToken(String? token) async {
+    return await userCollection.doc(uid).update({'token': token});
+  }
+
   UserData _userFromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
     var data = snapshot.data();
     if (data == null) throw Exception("user not found");

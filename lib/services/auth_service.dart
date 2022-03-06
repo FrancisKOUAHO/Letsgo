@@ -3,12 +3,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:letsgo/models/user_model.dart';
 
 import 'database.dart';
+import 'notification_service.dart';
 
 class AuthService {
   final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
 
   AppUser? _userFromFirebase(User? user) {
+    initUser(user);
     return user != null ? AppUser(user.uid) : null;
+  }
+
+  void initUser(User? user) async {
+    if (user == null) return;
+    NotificationService.getToken().then((value) {
+      DatabaseService(user.uid).saveToken(value);
+    });
   }
 
   Stream<AppUser?>? get user {
