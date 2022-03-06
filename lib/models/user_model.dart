@@ -1,6 +1,13 @@
-class User{
+class AppUser{
   final String uid;
-  final String? email;
 
-  User(this.uid, this.email);
+  AppUser(this.uid);
+}
+
+class UserData {
+  final String uid;
+  final String? displayName;
+
+
+  UserData({required this.uid, required this.displayName});
 }

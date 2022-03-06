@@ -1,21 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
-import '../../theme/letsgo_theme.dart';
-
-class SearchListAventure extends StatefulWidget {
-  const SearchListAventure({Key? key}) : super(key: key);
-
-  @override
-  _SearchListAventureState createState() => _SearchListAventureState();
-}
-
-class _SearchListAventureState extends State<SearchListAventure> {
-  final Stream<QuerySnapshot> _categoriesStream =
-      FirebaseFirestore.instance.collection('Cotegories').snapshots();
+class HomeThemeSection extends StatelessWidget {
+  const HomeThemeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> _categoriesStream =
+    FirebaseFirestore.instance.collection('categories').snapshots();
+
     return StreamBuilder<QuerySnapshot>(
         stream: _categoriesStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -42,7 +36,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> category =
-                      document.data()! as Map<String, dynamic>;
+                  document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
                       leading: Image.network(category['image'],

@@ -1,12 +1,9 @@
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/models/user_model.dart';
 import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -22,7 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
-    final authService = Provider.of<AuthService>(context);
+    final AuthService _auth = AuthService();
 
     return Material(
       type: MaterialType.transparency,
@@ -131,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: passwordController,
                               cursorColor: Colors.white,
                               cursorWidth: 2,
+                              obscuringCharacter: "*",
                               obscureText: false,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
@@ -183,24 +181,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    dynamic result = await authService
+                                    dynamic result = await _auth
                                         .createUserWithEmailAndPassword(
+                                            namelController.text,
                                             emailController.text,
                                             passwordController.text);
-                                    final updateUser = FirebaseAuth.instance.currentUser;
-                                    updateUser?.updateProfile(displayName: namelController.text);
-                                    authService.userSetup(namelController.text);
-
-                                    if(result == null){
-                                      print('email is not valid');
-                                    }else{
+                                    if (result == null) {
+                                      print('Warning');
+                                    } else {
                                       namelController.clear();
                                       emailController.clear();
                                       passwordController.clear();
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => const SignIn()),
+                                            builder: (context) =>
+                                                const SignIn()),
                                       );
                                     }
                                   }),

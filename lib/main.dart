@@ -1,12 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/route/route.dart' as route;
+import 'package:letsgo/route/route.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:provider/provider.dart';
+
+import 'models/user_model.dart';
+
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('Background message ${message.messageId}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
 }
 
@@ -16,16 +25,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          Provider<AuthService>(
-            create: (_) => AuthService(),
-          )
-        ],
-        child: const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: route.controller,
-          initialRoute: route.splashScreen,
-        ));
+    return StreamProvider<AppUser?>.value(
+      value: AuthService().user,
+      initialData: null,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+      ),
+    );
   }
 }

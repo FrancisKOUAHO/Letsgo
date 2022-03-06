@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/components/search/search_list_aventure.dart';
-import 'package:letsgo/components/search/search_maps_section.dart';
-import 'package:letsgo/components/search/search_search_section.dart';
-import 'package:letsgo/components/search/search_title_section.dart';
+import 'package:letsgo/widgets/search/search_list_aventure.dart';
+import 'package:letsgo/widgets/search/search_maps_section.dart';
+import 'package:letsgo/widgets/search/search_search_section.dart';
+import 'package:letsgo/widgets/search/search_title_section.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
 
@@ -50,10 +50,12 @@ class _SearchScreenState extends State<SearchScreen> {
               );
             },
           ),
-          IconButton(
-            icon: Image.network("${user!.photoURL}"),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
+          GestureDetector(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(user!.photoURL ??
+                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+            ),
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProfilScreen()),

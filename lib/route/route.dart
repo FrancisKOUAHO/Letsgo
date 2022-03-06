@@ -1,29 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/community/community_screen.dart';
-import 'package:letsgo/screen/home/home_screen.dart';
-import 'package:letsgo/screen/search/search_screen.dart';
+import 'package:letsgo/screen/chat/chat_home.dart';
 import 'package:letsgo/screen/splash/splash_screen.dart';
 
-// ROUTE NAMES
-const String splashScreen = 'splash';
-const String home = 'home';
-const String homeScreen = 'homeScreen';
-const String searchScreen = 'search';
-const String communityScreen = 'community';
-const String signUpScreen = 'signUp';
+import '../models/chat_params.dart';
+import '../screen/chat/chat_screen.dart';
 
-// CONTROL OUR PAGE ROUTE FLOW
-Route<dynamic> controller(RouteSettings setting) {
-  switch (setting.name) {
-    case splashScreen:
-      return MaterialPageRoute(builder: (context) => const SplashScreen());
-    case homeScreen:
-      return MaterialPageRoute(builder: (context) => const HomeScreen());
-    case searchScreen:
-      return MaterialPageRoute(builder: (context) => const SearchScreen());
-    case communityScreen:
-      return MaterialPageRoute(builder: (context) => const CommunityScreen());
-    default:
-      throw ('This route name does not exist');
+class RouteGenerator {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (context) => const SplashScreen());
+      case '/chat_home':
+        return MaterialPageRoute(builder: (context) =>  ChatHome());
+      case '/chat':
+        var arguments = settings.arguments;
+        if (arguments != null) {
+          return PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  ChatScreen(chatParams: arguments as ChatParams),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                animation =
+                    CurvedAnimation(curve: Curves.ease, parent: animation);
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              });
+        } else {
+          return MaterialPageRoute(
+              builder: (context) => Scaffold(
+                  appBar: AppBar(title: const Text("Error"), centerTitle: true),
+                  body: const Center(
+                    child: Text("Page not found"),
+                  )));
+        }
+      default:
+        return MaterialPageRoute(
+            builder: (context) => Scaffold(
+                appBar: AppBar(title: const Text("Error"), centerTitle: true),
+                body: const Center(
+                  child: Text("Page not found"),
+                )));
+    }
   }
 }

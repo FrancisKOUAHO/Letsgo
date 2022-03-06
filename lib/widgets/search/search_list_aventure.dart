@@ -1,15 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/common/resume_word.dart';
 
-class HomeThemeSection extends StatelessWidget {
-  const HomeThemeSection({Key? key}) : super(key: key);
+import '../../theme/letsgo_theme.dart';
+
+class SearchListAventure extends StatefulWidget {
+  const SearchListAventure({Key? key}) : super(key: key);
+
+  @override
+  _SearchListAventureState createState() => _SearchListAventureState();
+}
+
+class _SearchListAventureState extends State<SearchListAventure> {
+  final Stream<QuerySnapshot> _categoriesStream =
+      FirebaseFirestore.instance.collection('categories').snapshots();
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _categoriesStream =
-    FirebaseFirestore.instance.collection('Cotegories').snapshots();
-
     return StreamBuilder<QuerySnapshot>(
         stream: _categoriesStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -36,10 +43,11 @@ class HomeThemeSection extends StatelessWidget {
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> category =
-                  document.data()! as Map<String, dynamic>;
+                      document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
-                      leading: Image.network(category['image'],
+                      leading: Image.network(
+                        category['image'],
                         width: 80,
                         height: 80,
                       ),
@@ -47,7 +55,7 @@ class HomeThemeSection extends StatelessWidget {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
-                      subtitle:  Text(category['desciption'] ?? '',
+                      subtitle: Text(ResumeWord(category['description']) ?? '',
                           style: const TextStyle(color: Colors.black)),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,

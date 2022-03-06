@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/components/community/community_gallery_section.dart';
-import 'package:letsgo/components/community/community_gallery_three_section.dart';
-import 'package:letsgo/components/community/community_gallery_two_section.dart';
-import 'package:letsgo/components/community/community_title_section.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
+import 'package:letsgo/widgets//community/community_gallery_section.dart';
+import 'package:letsgo/widgets/community/community_gallery_three_section.dart';
+import 'package:letsgo/widgets/community/community_gallery_two_section.dart';
+import 'package:letsgo/widgets/community/community_title_section.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
@@ -48,10 +48,12 @@ class _CommunityScreenState extends State<CommunityScreen> {
               );
             },
           ),
-          IconButton(
-            icon: Image.network("${user!.photoURL}"),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
+          GestureDetector(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(user!.photoURL ??
+                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+            ),
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProfilScreen()),
@@ -81,7 +83,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
         ),
       ),
       bottomNavigationBar: const CustomAnimatedButtomBar(),
-
     );
   }
 }
