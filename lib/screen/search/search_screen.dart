@@ -50,10 +50,12 @@ class _SearchScreenState extends State<SearchScreen> {
               );
             },
           ),
-          IconButton(
-            icon: Image.network("${user!.photoURL}"),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
+          GestureDetector(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(user!.photoURL ??
+                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+            ),
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProfilScreen()),

@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
+import 'package:letsgo/screen/profil/profil_screen.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/home/home_search_section.dart';
 import 'package:letsgo/widgets/home/home_slider_section.dart';
 import 'package:letsgo/widgets/home/home_subtitle_section.dart';
 import 'package:letsgo/widgets/home/home_theme_section.dart';
 import 'package:letsgo/widgets/home/user_box_title_section.dart';
-import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
-import 'package:letsgo/screen/profil/profil_screen.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -31,8 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: const <Widget>[
             IconButton(
               onPressed: null,
-              icon:
-                  FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
+              icon: FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
             ),
             Text("Saint-Ouen, France"),
             // Your widgets here
@@ -49,10 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          IconButton(
-            icon: Image.network(user!.photoURL ??
-                "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-            onPressed: () {
+          GestureDetector(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(user!.photoURL ??
+                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
+            ),
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ProfilScreen()),
