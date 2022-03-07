@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/chat/chat_home.dart';
 import 'package:letsgo/screen/community/community_screen.dart';
+import 'package:letsgo/screen/group_chats/chat_hoome.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/search/search_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-
 
 class CustomAnimatedButtomBar extends StatefulWidget {
   const CustomAnimatedButtomBar({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-     ChatHome(),
+    ChatHoome(),
     const CommunityScreen(),
   ];
 
@@ -52,7 +51,9 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
             });
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) =>  _widgetOptions.elementAt(_currentIndex)),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      _widgetOptions.elementAt(_currentIndex)),
             );
           },
           splashColor: Colors.transparent,
