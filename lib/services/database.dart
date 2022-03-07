@@ -7,8 +7,14 @@ class DatabaseService {
 
   DatabaseService(this.uid);
 
+
+  // Collection reference
   final CollectionReference<Map<String, dynamic>> userCollection =
       FirebaseFirestore.instance.collection("users");
+
+  final CollectionReference<Map<String, dynamic>> groupCollection =
+  FirebaseFirestore.instance.collection("groups");
+
 
   Future<void> saveUser(String displayName) async {
     return await userCollection.doc(uid).set({'displayName': displayName});
