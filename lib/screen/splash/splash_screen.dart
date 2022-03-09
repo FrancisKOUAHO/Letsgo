@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/home/home_screen.dart';
 import 'package:letsgo/screen/login/sign_in.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
@@ -12,13 +14,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
     super.initState();
     Timer(
         const Duration(seconds: 3),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const SignIn())));
+        () => {
+              if (user != null)
+                {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()))
+                }
+              else
+                {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const SignIn()))
+                }
+            });
   }
 
   @override

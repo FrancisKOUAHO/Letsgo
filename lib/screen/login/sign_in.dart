@@ -199,14 +199,6 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    setState(() {
-                                      emailController.text.isEmpty
-                                          ? _validate = true
-                                          : _validate = false;
-                                      passwordController.text.isEmpty
-                                          ? _validate = true
-                                          : _validate = false;
-                                    });
                                     dynamic authResult = await _auth.signInEmailAndPassword(emailController.text,
                                         passwordController.text);
                                     if (authResult == null) {
@@ -222,6 +214,14 @@ class _SignInState extends State<SignIn> {
                                                 const HomeScreen()),
                                       );
                                     }
+                                    setState(() {
+                                      emailController.text.isEmpty
+                                          ? _validate = true
+                                          : _validate = false;
+                                      passwordController.text.isEmpty
+                                          ? _validate = true
+                                          : _validate = false;
+                                    });
                                   }),
                             ),
                             const SizedBox(
