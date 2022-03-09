@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/screen/group_chats/group_info.dart';
 
+import '../../theme/constants.dart';
+
 class GroupChatRoom extends StatelessWidget {
   final String groupChatId, groupName;
 
@@ -36,9 +38,6 @@ class GroupChatRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    if (kDebugMode) {
-      print('groupName $groupName');
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -87,33 +86,63 @@ class GroupChatRoom extends StatelessWidget {
               ),
             ),
             Container(
-              height: size.height / 10,
-              width: size.width,
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: size.height / 12,
-                width: size.width / 1.1,
+              padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultPadding,
+                vertical: kDefaultPadding / 2,
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 4),
+                    blurRadius: 32,
+                    color: const Color(0xFF087949).withOpacity(0.08),
+                  ),
+                ],
+              ),
+              child: SafeArea(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: size.height / 17,
-                      width: size.width / 1.3,
-                      child: TextField(
-                        controller: _message,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.photo),
+                    const Icon(Icons.mic, color: kPrimaryColor),
+                    const SizedBox(width: kDefaultPadding),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding * 0.75,
+                        ),
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: Row(
+                          children: [
+                            const SizedBox(width: kDefaultPadding / 4),
+                            Expanded(
+                              child: TextField(
+                                controller: _message,
+                                decoration: const InputDecoration(
+                                  hintText: "Type de message",
+                                  border: InputBorder.none,
+                                  prefixIcon: IconButton(
+                                    onPressed: null,
+                                    icon: Icon(Icons.photo),
+                                  ),
+                                ),
+                              ),
                             ),
-                            hintText: "Envoyer un message",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            )),
+                            const SizedBox(width: kDefaultPadding / 4),
+                            IconButton(
+                                icon: const Icon(Icons.send),
+                                onPressed: onSendMessage,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .color!
+                                    .withOpacity(0.64)),
+                          ],
+                        ),
                       ),
                     ),
-                    IconButton(
-                        icon: const Icon(Icons.send), onPressed: onSendMessage),
                   ],
                 ),
               ),

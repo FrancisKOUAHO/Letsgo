@@ -8,6 +8,7 @@ class UserBoxTitleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+    print(user);
 
     return Container(
       padding: const EdgeInsets.only(left: 10),

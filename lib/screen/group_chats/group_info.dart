@@ -239,7 +239,7 @@ class _GroupInfoState extends State<GroupInfo> {
                             onTap: () => showDialogBox(index),
                             leading: const Icon(Icons.account_circle),
                             title: Text(
-                              membersList[index]['name'],
+                              membersList[index]['displayName'],
                               style: TextStyle(
                                 fontSize: size.width / 22,
                                 fontWeight: FontWeight.w500,
