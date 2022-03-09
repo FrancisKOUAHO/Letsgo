@@ -8,11 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../theme/constants.dart';
+
 class ChatRoom extends StatelessWidget {
   final Map<String, dynamic> userMap;
   final String chatRoomId;
 
-  ChatRoom({required this.chatRoomId, required this.userMap});
+  ChatRoom({Key? key, required this.chatRoomId, required this.userMap})
+      : super(key: key);
 
   final TextEditingController _message = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -32,7 +35,7 @@ class ChatRoom extends StatelessWidget {
   }
 
   Future uploadImage() async {
-    String fileName = Uuid().v1();
+    String fileName = const Uuid().v1();
     int status = 1;
 
     await _firestore
@@ -94,7 +97,7 @@ class ChatRoom extends StatelessWidget {
           .add(messages);
     } else {
       if (kDebugMode) {
-        print("Enter Some Text");
+        print("Entrez du texte");
       }
     }
   }
@@ -105,6 +108,7 @@ class ChatRoom extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         title: StreamBuilder<DocumentSnapshot>(
           stream:
               _firestore.collection("users").doc(userMap['uid']).snapshots(),
@@ -115,7 +119,7 @@ class ChatRoom extends StatelessWidget {
                   Text(userMap['displayName']),
                   Text(
                     snapshot.data!['status'],
-                    style: const TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 12),
                   ),
                 ],
               );
@@ -156,33 +160,63 @@ class ChatRoom extends StatelessWidget {
               ),
             ),
             Container(
-              height: size.height / 10,
-              width: size.width,
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: size.height / 12,
-                width: size.width / 1.1,
+              padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultPadding,
+                vertical: kDefaultPadding / 2,
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 4),
+                    blurRadius: 32,
+                    color: const Color(0xFF087949).withOpacity(0.08),
+                  ),
+                ],
+              ),
+              child: SafeArea(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: size.height / 17,
-                      width: size.width / 1.3,
-                      child: TextField(
-                        controller: _message,
-                        decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              onPressed: () => getImage(),
-                              icon: const Icon(Icons.photo),
+                    const Icon(Icons.mic, color: kPrimaryColor),
+                    const SizedBox(width: kDefaultPadding),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding * 0.75,
+                        ),
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: Row(
+                          children: [
+                            const SizedBox(width: kDefaultPadding / 4),
+                            Expanded(
+                              child: TextField(
+                                controller: _message,
+                                decoration: InputDecoration(
+                                  hintText: "Type de message",
+                                  border: InputBorder.none,
+                                  prefixIcon: IconButton(
+                                    onPressed: () => getImage(),
+                                    icon: const Icon(Icons.photo),
+                                  ),
+                                ),
+                              ),
                             ),
-                            hintText: "Send Message",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            )),
+                            const SizedBox(width: kDefaultPadding / 4),
+                            IconButton(
+                                icon: const Icon(Icons.send),
+                                onPressed: onSendMessage,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .color!
+                                    .withOpacity(0.64)),
+                          ],
+                        ),
                       ),
                     ),
-                    IconButton(
-                        icon: const Icon(Icons.send), onPressed: onSendMessage),
                   ],
                 ),
               ),
@@ -205,7 +239,7 @@ class ChatRoom extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.blue,
+                color: Colors.deepPurple,
               ),
               child: Text(
                 map['message'],
@@ -268,5 +302,3 @@ class ShowImage extends StatelessWidget {
     );
   }
 }
-
-//

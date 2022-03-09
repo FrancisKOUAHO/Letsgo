@@ -3,13 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AddMembersINGroup extends StatefulWidget {
-  final String groupChatId, name;
+  final String groupChatId, displayName;
   final List membersList;
   const AddMembersINGroup(
-      {required this.name,
-      required this.membersList,
-      required this.groupChatId,
-      Key? key})
+      {required this.displayName,
+        required this.membersList,
+        required this.groupChatId,
+        Key? key})
       : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
 
     await _firestore
         .collection('users')
-        .where("displayName", isEqualTo: _search.text)
+        .where("email", isEqualTo: _search.text)
         .get()
         .then((value) {
       setState(() {
@@ -62,7 +62,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
         .doc(userMap!['uid'])
         .collection('groups')
         .doc(widget.groupChatId)
-        .set({"name": widget.name, "id": widget.groupChatId});
+        .set({"displayName": widget.displayName, "id": widget.groupChatId});
   }
 
   @override
@@ -71,7 +71,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Members"),
+        title: const Text("Ajouter des membres"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -90,7 +90,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
                 child: TextField(
                   controller: _search,
                   decoration: InputDecoration(
-                    hintText: "Search",
+                    hintText: "Recherche",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -103,23 +103,23 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
             ),
             isLoading
                 ? Container(
-                    height: size.height / 12,
-                    width: size.height / 12,
-                    alignment: Alignment.center,
-                    child: const CircularProgressIndicator(),
-                  )
+              height: size.height / 12,
+              width: size.height / 12,
+              alignment: Alignment.center,
+              child: const CircularProgressIndicator(),
+            )
                 : ElevatedButton(
-                    onPressed: onSearch,
-                    child: const Text("Search"),
-                  ),
+              onPressed: onSearch,
+              child: const Text("Recherche"),
+            ),
             userMap != null
                 ? ListTile(
-                    onTap: onAddMembers,
-                    leading: const Icon(Icons.account_box),
-                    title: Text(userMap!['displayName']),
-                    subtitle: Text(userMap!['email']),
-                    trailing: const Icon(Icons.add),
-                  )
+              onTap: onAddMembers,
+              leading: const Icon(Icons.account_box),
+              title: Text(userMap!['displayName']),
+              subtitle: Text(userMap!['email']),
+              trailing: const Icon(Icons.add),
+            )
                 : const SizedBox(),
           ],
         ),

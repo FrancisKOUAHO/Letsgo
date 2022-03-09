@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:letsgo/models/user_model.dart';
 
 import 'database.dart';
@@ -7,6 +8,7 @@ import 'notification_service.dart';
 
 class AuthService {
   final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   AppUser? _userFromFirebase(User? user) {
     initUser(user);
@@ -31,12 +33,15 @@ class AuthService {
       User? user = credential.user;
       return _userFromFirebase(credential.user);
     } catch (e) {
-      print('error $e');
+      if (kDebugMode) {
+        print('error $e');
+      }
     }
     return null;
   }
 
-  Future createUserWithEmailAndPassword(String displayName, String email, String password) async {
+  Future createUserWithEmailAndPassword(
+      String displayName, String email, String password) async {
     try {
       final credential = await _fireBaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -45,16 +50,27 @@ class AuthService {
         throw Exception("No user found");
       } else {
         await DatabaseService(user.uid).saveUser(displayName);
+        await _firestore
+            .collection('users')
+            .doc(_fireBaseAuth.currentUser!.uid)
+            .set({
+          "displayName": displayName,
+          "email": email,
+          "status": "Unavalible",
+          "uid": _fireBaseAuth.currentUser!.uid,
+        });
 
         return _userFromFirebase(credential.user);
       }
     } catch (exception) {
-      print(exception.toString());
+      if (kDebugMode) {
+        print(exception.toString());
+      }
       return null;
     }
   }
 
-  Future <void> userSetup(String displayName) async{
+  Future<void> userSetup(String displayName) async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     String? uid = _fireBaseAuth.currentUser?.uid.toString();
     users.add({'displayName': displayName, 'uid': uid});
@@ -65,7 +81,9 @@ class AuthService {
     try {
       return await _fireBaseAuth.sendPasswordResetEmail(email: email);
     } catch (e) {
-      print('error $e');
+      if (kDebugMode) {
+        print('error $e');
+      }
     }
   }
 
@@ -73,7 +91,9 @@ class AuthService {
     try {
       return await _fireBaseAuth.signOut();
     } catch (e) {
-      print('error $e');
+      if (kDebugMode) {
+        print('error $e');
+      }
     }
   }
 }

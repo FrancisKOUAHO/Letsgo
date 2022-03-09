@@ -1,7 +1,8 @@
-import 'package:letsgo/screen/group_chats/group_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/group_chats/group_info.dart';
 
 class GroupChatRoom extends StatelessWidget {
   final String groupChatId, groupName;
@@ -35,6 +36,9 @@ class GroupChatRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    if (kDebugMode) {
+      print('groupName $groupName');
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -73,7 +77,6 @@ class GroupChatRoom extends StatelessWidget {
                         Map<String, dynamic> chatMap =
                             snapshot.data!.docs[index].data()
                                 as Map<String, dynamic>;
-
                         return messageTile(size, chatMap);
                       },
                     );
@@ -103,7 +106,7 @@ class GroupChatRoom extends StatelessWidget {
                               onPressed: () {},
                               icon: const Icon(Icons.photo),
                             ),
-                            hintText: "Send Message",
+                            hintText: "Envoyer un message",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             )),
@@ -123,10 +126,10 @@ class GroupChatRoom extends StatelessWidget {
 
   Widget messageTile(Size size, Map<String, dynamic> chatMap) {
     return Builder(builder: (_) {
-      if (chatMap['type'] == "text") {
+      if (chatMap["type"] == "text") {
         return Container(
           width: size.width,
-          alignment: chatMap['sendBy'] == _auth.currentUser!.displayName
+          alignment: chatMap["sendBy"] == _auth.currentUser!.displayName
               ? Alignment.centerRight
               : Alignment.centerLeft,
           child: Container(
@@ -134,12 +137,12 @@ class GroupChatRoom extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.blue,
+                color: Colors.deepPurple,
               ),
               child: Column(
                 children: [
                   Text(
-                    chatMap['sendBy'],
+                    chatMap["sendBy"],
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -150,7 +153,7 @@ class GroupChatRoom extends StatelessWidget {
                     height: size.height / 200,
                   ),
                   Text(
-                    chatMap['message'],
+                    chatMap["message"],
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,

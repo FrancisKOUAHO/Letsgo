@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:letsgo/screen/group_chats/chat_room.dart';
 import 'package:letsgo/screen/group_chats/group_chat_screen.dart';
 
+import '../../navigation/custom_animated_buttom_bar.dart';
+
 class ChatHoome extends StatefulWidget {
+  const ChatHoome({Key? key}) : super(key: key);
+
   @override
   _ChatHoomeState createState() => _ChatHoomeState();
 }
@@ -59,7 +63,7 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
 
     await _firestore
         .collection('users')
-        .where("displayName", isEqualTo: _search.text)
+        .where("email", isEqualTo: _search.text)
         .get()
         .then((value) {
       setState(() {
@@ -90,17 +94,6 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
                 "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
           ),
         ),
-        actions: <Widget>[
-          Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.search,
-                  size: 26.0,
-                ),
-              )),
-        ],
       ),
       body: isLoading
           ? Center(
@@ -125,7 +118,7 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
                     child: TextField(
                       controller: _search,
                       decoration: InputDecoration(
-                        hintText: "Search",
+                        hintText: "Recherche",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -138,7 +131,7 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
                 ),
                 ElevatedButton(
                   onPressed: onSearch,
-                  child: const Text("Search"),
+                  child: const Text("Recherche"),
                 ),
                 SizedBox(
                   height: size.height / 30,
@@ -149,7 +142,6 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
                           String roomId = chatRoomId(
                               _auth.currentUser!.displayName!,
                               userMap!['displayName']);
-
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (_) => ChatRoom(
@@ -169,7 +161,7 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        subtitle: Text(userMap!['displayName']),
+                        subtitle: Text(userMap!['email']),
                         trailing: const Icon(Icons.chat, color: Colors.black),
                       )
                     : Container(),
@@ -183,6 +175,7 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
           ),
         ),
       ),
+      bottomNavigationBar: const CustomAnimatedButtomBar(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:letsgo/screen/group_chats/create_group/add_members.dart';
 import 'package:letsgo/screen/group_chats/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,6 +18,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
   bool isLoading = true;
 
   List groupList = [];
+
 
   @override
   void initState() {
@@ -46,32 +48,32 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Groups"),
+        title: const Text("Groupes"),
       ),
       body: isLoading
           ? Container(
-              height: size.height,
-              width: size.width,
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(),
-            )
+        height: size.height,
+        width: size.width,
+        alignment: Alignment.center,
+        child: const CircularProgressIndicator(),
+      )
           : ListView.builder(
-              itemCount: groupList.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => GroupChatRoom(
-                        groupName: groupList[index]['name'],
-                        groupChatId: groupList[index]['id'],
-                      ),
-                    ),
-                  ),
-                  leading: const Icon(Icons.group),
-                  title: Text(groupList[index]['name']),
-                );
-              },
+        itemCount: groupList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => GroupChatRoom(
+                  groupName: groupList[index]['name'],
+                  groupChatId: groupList[index]['id'],
+                ),
+              ),
             ),
+            leading: const Icon(Icons.group),
+            title: Text(groupList[index]['name']),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.create),
         onPressed: () => Navigator.of(context).push(
@@ -79,7 +81,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
             builder: (_) => const AddMembersInGroup(),
           ),
         ),
-        tooltip: "Create Group",
+        tooltip: "Créer un groupe",
       ),
     );
   }

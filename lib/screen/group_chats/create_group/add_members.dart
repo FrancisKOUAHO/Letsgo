@@ -49,7 +49,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
 
     await _firestore
         .collection('users')
-        .where("displayName", isEqualTo: _search.text)
+        .where("email", isEqualTo: _search.text)
         .get()
         .then((value) {
       setState(() {
@@ -99,7 +99,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Members"),
+        title: const Text("Ajouter des membres"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -134,7 +134,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
                 child: TextField(
                   controller: _search,
                   decoration: InputDecoration(
-                    hintText: "Search",
+                    hintText: "Recherche",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -154,7 +154,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
                   )
                 : ElevatedButton(
                     onPressed: onSearch,
-                    child: const Text("Search"),
+                    child: const Text("Recherche"),
                   ),
             userMap != null
                 ? ListTile(

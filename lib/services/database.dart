@@ -7,7 +7,6 @@ class DatabaseService {
 
   DatabaseService(this.uid);
 
-
   // Collection reference
   final CollectionReference<Map<String, dynamic>> userCollection =
       FirebaseFirestore.instance.collection("users");

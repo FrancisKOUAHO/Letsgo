@@ -277,7 +277,7 @@ class _SignInState extends State<SignIn> {
                               children: [
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
+                                    primary: Colors.white.withOpacity(0.1),
                                   ),
                                   icon: const FaIcon(FontAwesomeIcons.google,
                                       color: Colors.red),
@@ -286,7 +286,7 @@ class _SignInState extends State<SignIn> {
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 14,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   onPressed: () async {
@@ -296,7 +296,7 @@ class _SignInState extends State<SignIn> {
                                 ElevatedButton.icon(
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
+                                    primary: Colors.white.withOpacity(0.1),
                                   ),
                                   icon: const FaIcon(FontAwesomeIcons.facebook,
                                       color: Colors.blue),
@@ -305,7 +305,7 @@ class _SignInState extends State<SignIn> {
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 14,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),

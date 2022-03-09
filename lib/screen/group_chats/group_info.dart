@@ -1,12 +1,13 @@
-import 'package:flutter/foundation.dart';
-import 'package:letsgo/screen/group_chats/chat_hoome.dart';
-import 'package:letsgo/screen/group_chats/add_members.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/group_chats/add_members.dart';
+import 'package:letsgo/screen/group_chats/chat_hoome.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId, groupName;
+
   const GroupInfo({required this.groupId, required this.groupName, Key? key})
       : super(key: key);
 
@@ -87,7 +88,7 @@ class _GroupInfoState extends State<GroupInfo> {
               return AlertDialog(
                 content: ListTile(
                   onTap: () => removeMembers(index),
-                  title: const Text("Remove This Member"),
+                  title: const Text("Retirer ce membre"),
                 ),
               );
             });
@@ -119,7 +120,7 @@ class _GroupInfoState extends State<GroupInfo> {
           .delete();
 
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => ChatHoome()),
+        MaterialPageRoute(builder: (_) => const ChatHoome()),
         (route) => false,
       );
     }
@@ -190,7 +191,7 @@ class _GroupInfoState extends State<GroupInfo> {
                     SizedBox(
                       width: size.width / 1.1,
                       child: Text(
-                        "${membersList.length} Members",
+                        "${membersList.length} Membres",
                         style: TextStyle(
                           fontSize: size.width / 20,
                           fontWeight: FontWeight.w500,
@@ -210,7 +211,7 @@ class _GroupInfoState extends State<GroupInfo> {
                               MaterialPageRoute(
                                 builder: (_) => AddMembersINGroup(
                                   groupChatId: widget.groupId,
-                                  name: widget.groupName,
+                                  displayName: widget.groupName,
                                   membersList: membersList,
                                 ),
                               ),
@@ -219,7 +220,7 @@ class _GroupInfoState extends State<GroupInfo> {
                               Icons.add,
                             ),
                             title: Text(
-                              "Add Members",
+                              "Ajouter des membres",
                               style: TextStyle(
                                 fontSize: size.width / 22,
                                 fontWeight: FontWeight.w500,
@@ -259,7 +260,7 @@ class _GroupInfoState extends State<GroupInfo> {
                         color: Colors.redAccent,
                       ),
                       title: Text(
-                        "Leave Group",
+                        "Quitter le groupe",
                         style: TextStyle(
                           fontSize: size.width / 22,
                           fontWeight: FontWeight.w500,

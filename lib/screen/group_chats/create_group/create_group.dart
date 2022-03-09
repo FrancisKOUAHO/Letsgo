@@ -1,7 +1,7 @@
-import 'package:letsgo/screen/group_chats/chat_hoome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/screen/group_chats/chat_hoome.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateGroup extends StatefulWidget {
@@ -46,12 +46,12 @@ class _CreateGroupState extends State<CreateGroup> {
     }
 
     await _firestore.collection('groups').doc(groupId).collection('chats').add({
-      "message": "${_auth.currentUser!.displayName} Created This Group.",
+      "message": "${_auth.currentUser!.displayName} A créé ce groupe.",
       "type": "notify",
     });
 
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => ChatHoome()), (route) => false);
+        MaterialPageRoute(builder: (_) => const ChatHoome()), (route) => false);
   }
 
   @override
@@ -60,7 +60,7 @@ class _CreateGroupState extends State<CreateGroup> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Group Name"),
+        title: const Text("Nom du groupe"),
       ),
       body: isLoading
           ? Container(
@@ -84,7 +84,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     child: TextField(
                       controller: _groupName,
                       decoration: InputDecoration(
-                        hintText: "Enter Group Name",
+                        hintText: "Entrer le nom du groupe",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -97,13 +97,10 @@ class _CreateGroupState extends State<CreateGroup> {
                 ),
                 ElevatedButton(
                   onPressed: createGroup,
-                  child: const Text("Create Group"),
+                  child: const Text("Créer un groupe"),
                 ),
               ],
             ),
     );
   }
 }
-
-
-//
