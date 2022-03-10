@@ -50,6 +50,9 @@ dependencies:
   firebase_storage: ^10.2.9
   firebase_messaging: ^11.2.8
   uuid: ^3.0.6
+  location: ^4.3.0
+  geocoding: ^2.0.4
+  geolocator: ^8.2.0
 
 dev_dependencies:
   flutter_test:
