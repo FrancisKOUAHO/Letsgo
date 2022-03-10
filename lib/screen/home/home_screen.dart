@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
@@ -9,6 +14,8 @@ import 'package:letsgo/widgets/home/home_slider_section.dart';
 import 'package:letsgo/widgets/home/home_subtitle_section.dart';
 import 'package:letsgo/widgets/home/home_theme_section.dart';
 import 'package:letsgo/widgets/home/user_box_title_section.dart';
+
+import '../../common/resume_word.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,6 +26,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String currentAddress = '';
+  late Position currentposition;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +39,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const <Widget>[
+          children: <Widget>[
             IconButton(
-              onPressed: null,
-              icon: FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
+              onPressed: _determinePosition,
+              icon:
+                  const FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
             ),
-            Text("Saint-Ouen, France"),
+            Text(currentAddressOk(currentAddress),
+                style: const TextStyle(fontSize: 18)),
             // Your widgets here
           ],
         ),
@@ -102,5 +115,56 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: const CustomAnimatedButtomBar(),
     );
+  }
+
+  Future _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      Fluttertoast.showToast(
+          msg: 'Veuillez activer votre service de localisation');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        Fluttertoast.showToast(
+            msg: 'Les autorisations de localisation sont refusées');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      Fluttertoast.showToast(
+          msg:
+              "Les autorisations de localisation sont refusées de manière permanente, nous ne pouvons pas demander d'autorisations.");
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    try {
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+
+      Placemark place = placemarks[0];
+
+      setState(()  {
+        currentposition = position;
+        currentAddress =
+            "${place.locality}, ${place.postalCode}, ${place.country}";
+
+         FirebaseFirestore.instance.collection('users').add({
+          "location": currentAddress,
+          "uid": _auth.currentUser!.uid,
+        });
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 }
