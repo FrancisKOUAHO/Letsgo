@@ -87,6 +87,7 @@ class AuthService {
     }
   }
 
+
   Future<void> signOut() async {
     try {
       return await _fireBaseAuth.signOut();

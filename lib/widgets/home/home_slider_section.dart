@@ -11,8 +11,7 @@ class HomeSliderSection extends StatefulWidget {
 class _HomeSliderSectionState extends State<HomeSliderSection> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
@@ -253,7 +252,6 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
             ),
           ],
         ),
-      ),
     );
   }
 }

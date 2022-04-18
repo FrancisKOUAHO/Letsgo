@@ -39,11 +39,11 @@ class HomeThemeSection extends StatelessWidget {
                   document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
-                      leading: Image.network(category['image'],
+                      leading: Image.network(category['image'] ?? "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),
-                      title: Text(category['name'],
+                      title: Text(category['name'] ?? '',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),

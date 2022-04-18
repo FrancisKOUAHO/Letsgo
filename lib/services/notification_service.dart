@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 class NotificationService {
 
   static void initialize() {
@@ -6,11 +7,15 @@ class NotificationService {
     FirebaseMessaging.instance.requestPermission();
 
     FirebaseMessaging.onMessage.listen((event) {
-      print('A new onMessage event was published!');
+      if (kDebugMode) {
+        print('Un nouvel événement onMessage a été publié !');
+      }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
+      if (kDebugMode) {
+        print('Un nouvel événement onMessageOpenedApp a été publié !');
+      }
     });
   }
 

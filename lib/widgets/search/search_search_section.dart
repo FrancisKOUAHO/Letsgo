@@ -4,8 +4,10 @@ import 'package:letsgo/theme/letsgo_theme.dart';
 class SearchSearchSection extends StatelessWidget {
   const SearchSearchSection({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.all(10.0),
       padding: const EdgeInsets.all(10),
