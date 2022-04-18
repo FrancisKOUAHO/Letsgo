@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/common/resume_word.dart';
 
 import '../../theme/letsgo_theme.dart';
 
@@ -36,10 +35,11 @@ class _SearchListAventureState extends State<SearchListAventure> {
             );
           }
 
-          return Expanded(
+          return SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Container(
               padding: const EdgeInsets.all(10),
-              height: 100,
+              height: MediaQuery.of(context).size.height,
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> category =
@@ -47,16 +47,17 @@ class _SearchListAventureState extends State<SearchListAventure> {
                   return Card(
                     child: ListTile(
                       leading: Image.network(
-                        category['image'],
+                        category['image'] ??
+                            "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),
-                      title: Text(category['name'],
+                      title: Text(category['name'] ?? 'Produit inconnu',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
-                      subtitle: Text(ResumeWord(category['description']) ?? '',
-                          style: const TextStyle(color: Colors.black)),
+                      subtitle:
+                          const Text('', style: TextStyle(color: Colors.black)),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,
                         color: LetsGoTheme.main,
@@ -72,3 +73,6 @@ class _SearchListAventureState extends State<SearchListAventure> {
         });
   }
 }
+
+/*
+ResumeWord(category['description']) ?? ''*/

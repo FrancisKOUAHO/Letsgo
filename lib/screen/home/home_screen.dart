@@ -9,13 +9,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/widgets/home/home_search_section.dart';
 import 'package:letsgo/widgets/home/home_slider_section.dart';
 import 'package:letsgo/widgets/home/home_subtitle_section.dart';
 import 'package:letsgo/widgets/home/home_theme_section.dart';
 import 'package:letsgo/widgets/home/user_box_title_section.dart';
 
-import '../../common/resume_word.dart';
+import '../../widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,52 +27,25 @@ class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String currentAddress = '';
+  String currentAddress = 'Position inconnue';
   late Position currentposition;
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        currentAddress = value.data()!["localization"];
+      });
+    });
+
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              onPressed: _determinePosition,
-              icon:
-                  const FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
-            ),
-            Text(currentAddressOk(currentAddress),
-                style: const TextStyle(fontSize: 18)),
-            // Your widgets here
-          ],
-        ),
-        backgroundColor: Colors.deepPurple,
-        actions: <Widget>[
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
-              );
-            },
-          ),
-          GestureDetector(
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(user!.photoURL ??
-                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
-              );
-            },
-          ),
-        ],
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomAppBar(),
       ),
       body: SingleChildScrollView(
         child: SizedBox(
@@ -89,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const HomeSearchSection(),
               const SizedBox(
                 height: 20,
               ),
@@ -151,15 +122,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
       Placemark place = placemarks[0];
 
-      setState(()  {
+      setState(() {
         currentposition = position;
         currentAddress =
             "${place.locality}, ${place.postalCode}, ${place.country}";
 
-         FirebaseFirestore.instance.collection('users').add({
-          "location": currentAddress,
-          "uid": _auth.currentUser!.uid,
-        });
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(_auth.currentUser!.uid)
+            .update({'localization': currentAddress});
       });
     } catch (e) {
       if (kDebugMode) {
