@@ -8,6 +8,8 @@ import 'package:letsgo/widgets/community/community_gallery_three_section.dart';
 import 'package:letsgo/widgets/community/community_gallery_two_section.dart';
 import 'package:letsgo/widgets/community/community_title_section.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
 
@@ -21,46 +23,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon:
-                  const FaIcon(FontAwesomeIcons.mapMarked, color: Colors.white),
-            ),
-            const Text("Saint-Ouen, France"),
-            // Your widgets here
-          ],
-        ),
-        backgroundColor: Colors.deepPurple,
-        actions: <Widget>[
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
-              );
-            },
-          ),
-          GestureDetector(
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(user!.photoURL ??
-                  "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
-              );
-            },
-          ),
-        ],
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomAppBar(),
       ),
       body: SingleChildScrollView(
         child: SizedBox(

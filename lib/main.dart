@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/route/route.dart';
 import 'package:letsgo/services/auth_service.dart';
@@ -9,7 +10,9 @@ import 'models/user_model.dart';
 
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Background message ${message.messageId}');
+  if (kDebugMode) {
+    print('Background message ${message.messageId}');
+  }
 }
 
 void main() async {

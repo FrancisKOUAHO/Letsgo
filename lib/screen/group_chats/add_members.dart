@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 class AddMembersINGroup extends StatefulWidget {
   final String groupChatId, displayName;
   final List membersList;
+
   const AddMembersINGroup(
       {required this.displayName,
-        required this.membersList,
-        required this.groupChatId,
-        Key? key})
+      required this.membersList,
+      required this.groupChatId,
+      Key? key})
       : super(key: key);
 
   @override
@@ -103,23 +104,23 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
             ),
             isLoading
                 ? Container(
-              height: size.height / 12,
-              width: size.height / 12,
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(),
-            )
+                    height: size.height / 12,
+                    width: size.height / 12,
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator(),
+                  )
                 : ElevatedButton(
-              onPressed: onSearch,
-              child: const Text("Recherche"),
-            ),
+                    onPressed: onSearch,
+                    child: const Text("Recherche"),
+                  ),
             userMap != null
                 ? ListTile(
-              onTap: onAddMembers,
-              leading: const Icon(Icons.account_box),
-              title: Text(userMap!['displayName']),
-              subtitle: Text(userMap!['email']),
-              trailing: const Icon(Icons.add),
-            )
+                    onTap: onAddMembers,
+                    leading: const Icon(Icons.account_box),
+                    title: Text(userMap!['displayName']),
+                    subtitle: Text(userMap!['email']),
+                    trailing: const Icon(Icons.add),
+                  )
                 : const SizedBox(),
           ],
         ),

@@ -12,8 +12,7 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("users");
 
   final CollectionReference<Map<String, dynamic>> groupCollection =
-  FirebaseFirestore.instance.collection("groups");
-
+      FirebaseFirestore.instance.collection("groups");
 
   Future<void> saveUser(String displayName) async {
     return await userCollection.doc(uid).set({'displayName': displayName});
@@ -46,4 +45,5 @@ class DatabaseService {
   Stream<List<UserData>> get users {
     return userCollection.snapshots().map(_userListFromSnapshot);
   }
+
 }
