@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
+import 'package:letsgo/screen/event/event_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/home/home_search_section.dart';
 import 'package:letsgo/widgets/home/home_slider_section.dart';
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
+                MaterialPageRoute(builder: (context) => const EventScreen()),
               );
             },
           ),

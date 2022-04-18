@@ -75,8 +75,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                           ),
                           title: Text('45 avenu paris 92010',
                               style: TextStyle(
-                                  color: LetsGoTheme.lightGrey,
-                                  fontSize: 14)),
+                                  color: LetsGoTheme.lightGrey, fontSize: 14)),
                         ),
                         ButtonBar(children: [
                           FlatButton(
