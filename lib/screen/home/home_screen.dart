@@ -8,6 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/screen/profil/profil_screen.dart';
+import 'package:letsgo/screen/event/event_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/home/home_slider_section.dart';
 import 'package:letsgo/widgets/home/home_subtitle_section.dart';
