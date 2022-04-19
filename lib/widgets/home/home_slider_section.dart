@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
+import '../../screen/event/event_screen.dart';
+
 class HomeSliderSection extends StatefulWidget {
   const HomeSliderSection({Key? key}) : super(key: key);
 
@@ -84,7 +86,12 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                             child: const Text("Voir plus",
                                 style: TextStyle(
                                     color: Colors.lightBlue, fontSize: 14)),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const EventScreen()),
+                              );
+                            },
                           ),
                         ]),
                       ],
@@ -161,7 +168,12 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                             child: const Text("Voir plus",
                                 style: TextStyle(
                                     color: Colors.lightBlue, fontSize: 14)),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const EventScreen()),
+                              );
+                            },
                           ),
                         ]),
                       ],
@@ -240,7 +252,12 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                             child: const Text("Voir plus",
                                 style: TextStyle(
                                     color: Colors.lightBlue, fontSize: 14)),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const EventScreen()),
+                              );
+                            },
                           ),
                         ]),
                       ],

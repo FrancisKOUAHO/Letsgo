@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../screen/event/event_screen.dart';
 import '../screen/profil/profil_screen.dart';
 
 class CustomAppBar extends StatefulWidget {
@@ -52,14 +53,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       backgroundColor: Colors.deepPurple,
       actions: <Widget>[
-        IconButton(
-          icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfilScreen()),
-            );
-          },
+        const IconButton(
+          icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
+          onPressed: null,
         ),
         GestureDetector(
           child: CircleAvatar(
