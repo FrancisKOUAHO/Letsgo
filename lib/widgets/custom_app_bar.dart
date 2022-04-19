@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../screen/booking/booking_activity.dart';
 import '../screen/event/event_screen.dart';
 import '../screen/profil/profil_screen.dart';
 
@@ -53,7 +54,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       backgroundColor: Colors.deepPurple,
       actions: <Widget>[
-        const IconButton(
+         const IconButton(
           icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
           onPressed: null,
         ),

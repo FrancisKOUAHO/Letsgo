@@ -55,6 +55,7 @@ dependencies:
   geocoding: ^2.0.4
   geolocator: ^8.2.0
   material_floating_search_bar: ^0.3.7
+  booking_calendar: ^1.0.0+3
 
 dev_dependencies:
   flutter_test:
