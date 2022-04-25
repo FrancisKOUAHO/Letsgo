@@ -71,21 +71,6 @@ class _ResearchViaMapsState extends State<ResearchViaMaps> {
         target: sourceLocation);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        actions: <Widget>[
-          IconButton(
-            icon: Image.network(user!.photoURL ??
-                "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
-              );
-            },
-          ),
-        ],
-      ),
       body: Stack(
         children: [
           Positioned.fill(

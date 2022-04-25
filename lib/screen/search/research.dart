@@ -112,9 +112,9 @@ class _ResearchState extends State<Research> {
       stream: (name != "")
           ? FirebaseFirestore.instance
               .collection('categories')
-              .where("name", arrayContains: name)
+              .where("title", arrayContains: name)
               .snapshots()
-          : FirebaseFirestore.instance.collection("categories").snapshots(),
+          : FirebaseFirestore.instance.collection("activities").snapshots(),
       builder: (context, snapshot) {
         return (snapshot.connectionState == ConnectionState.waiting)
             ? const Center(child: CircularProgressIndicator())
@@ -131,7 +131,7 @@ class _ResearchState extends State<Research> {
                         width: 80,
                         height: 80,
                       ),
-                      title: Text(data['name'],
+                      title: Text(data['title'],
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),

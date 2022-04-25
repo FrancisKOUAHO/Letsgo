@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
 class HomeSubTitleSection extends StatefulWidget {
   const HomeSubTitleSection({Key? key}) : super(key: key);
@@ -12,7 +13,10 @@ class _HomeSubTitleSectionState extends State<HomeSubTitleSection> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10),
-      child: const Text("Theme"),
+      child: const Text(
+        "Les activités",
+        style: LetsGoTheme.Title,
+      ),
     );
   }
 }

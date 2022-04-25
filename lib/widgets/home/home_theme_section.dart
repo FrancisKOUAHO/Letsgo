@@ -7,11 +7,11 @@ class HomeThemeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _categoriesStream =
-    FirebaseFirestore.instance.collection('categories').snapshots();
+    final Stream<QuerySnapshot> _activitiesStream =
+    FirebaseFirestore.instance.collection('activities').snapshots();
 
     return StreamBuilder<QuerySnapshot>(
-        stream: _categoriesStream,
+        stream: _activitiesStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Center(
@@ -35,19 +35,19 @@ class HomeThemeSection extends StatelessWidget {
               height: 100,
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                  Map<String, dynamic> category =
+                  Map<String, dynamic> activity =
                   document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
-                      leading: Image.network(category['image'] ?? "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
+                      leading: Image.network(activity["image"] ?? "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),
-                      title: Text(category['name'] ?? '',
+                      title: Text(activity['titleCategory'] ?? '',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
-                      subtitle:  Text(category['desciption'] ?? '',
+                      subtitle:  Text(activity['title'] ?? '',
                           style: const TextStyle(color: Colors.black)),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,

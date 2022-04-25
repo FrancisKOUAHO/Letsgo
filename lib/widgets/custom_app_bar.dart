@@ -54,7 +54,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       backgroundColor: Colors.deepPurple,
       actions: <Widget>[
-         const IconButton(
+        const IconButton(
           icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
           onPressed: null,
         ),
@@ -96,7 +96,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     if (permission == LocationPermission.deniedForever) {
       Fluttertoast.showToast(
           msg:
-          "Les autorisations de localisation sont refusées de manière permanente, nous ne pouvons pas demander d'autorisations.");
+              "Les autorisations de localisation sont refusées de manière permanente, nous ne pouvons pas demander d'autorisations.");
     }
 
     Position position = await Geolocator.getCurrentPosition(
@@ -104,14 +104,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
     try {
       List<Placemark> placemarks =
-      await placemarkFromCoordinates(position.latitude, position.longitude);
+          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       Placemark place = placemarks[0];
 
       setState(() {
         currentposition = position;
         currentAddress =
-        "${place.locality}, ${place.postalCode}, ${place.country}";
+            "${place.locality}, ${place.postalCode}, ${place.country}";
 
         FirebaseFirestore.instance
             .collection('users')

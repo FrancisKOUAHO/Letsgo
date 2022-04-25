@@ -6,7 +6,6 @@ ResumeWord(wordText) {
   return fusionWord;
 }
 
-
 sliceNameAndLastname(wordText) {
   var words = wordText;
   var splitted = words.split(' ');
@@ -14,7 +13,7 @@ sliceNameAndLastname(wordText) {
   return splitted[0];
 }
 
-currentAddressOk(wordText){
+currentAddressOk(wordText) {
   var words = wordText;
   var splitted = words.split(',');
   return splitted[0];

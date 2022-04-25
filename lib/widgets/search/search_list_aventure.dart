@@ -12,7 +12,7 @@ class SearchListAventure extends StatefulWidget {
 
 class _SearchListAventureState extends State<SearchListAventure> {
   final Stream<QuerySnapshot> _categoriesStream =
-      FirebaseFirestore.instance.collection('categories').snapshots();
+      FirebaseFirestore.instance.collection('activities').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +42,17 @@ class _SearchListAventureState extends State<SearchListAventure> {
               height: MediaQuery.of(context).size.height,
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                  Map<String, dynamic> category =
+                  Map<String, dynamic> activity =
                       document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
                       leading: Image.network(
-                        category['image'] ??
+                        activity['image'] ??
                             "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),
-                      title: Text(category['name'] ?? 'Produit inconnu',
+                      title: Text(activity['title'] ?? 'Produit inconnu',
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
