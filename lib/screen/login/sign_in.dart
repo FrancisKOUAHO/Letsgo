@@ -8,6 +8,8 @@ import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/services/firebase_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
+import '../select/select_activity_favorites.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -22,7 +24,8 @@ class _SignInState extends State<SignIn> {
       await service.signInwithGoogle();
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(
+            builder: (context) => const SelectActivityFavorites()),
       );
     } catch (e) {
       if (e is FirebaseAuthException) {
@@ -199,8 +202,10 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    dynamic authResult = await _auth.signInEmailAndPassword(emailController.text,
-                                        passwordController.text);
+                                    dynamic authResult =
+                                        await _auth.signInEmailAndPassword(
+                                            emailController.text,
+                                            passwordController.text);
                                     if (authResult == null) {
                                       print(
                                           'Erreur de connexion. Impossible de se connecter');
