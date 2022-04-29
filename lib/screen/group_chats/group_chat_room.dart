@@ -16,10 +16,12 @@ class GroupChatRoom extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  dynamic data;
+
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
       Map<String, dynamic> chatData = {
-        "sendBy": _auth.currentUser!.displayName,
+        "sendBy": data.data()!['displayName'],
         "message": _message.text,
         "type": "text",
         "time": FieldValue.serverTimestamp(),
@@ -38,6 +40,14 @@ class GroupChatRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      data = value;
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -158,7 +168,7 @@ class GroupChatRoom extends StatelessWidget {
       if (chatMap["type"] == "text") {
         return Container(
           width: size.width,
-          alignment: chatMap["sendBy"] == _auth.currentUser!.displayName
+          alignment: chatMap["sendBy"] == data.data()!['displayName']
               ? Alignment.centerRight
               : Alignment.centerLeft,
           child: Container(
@@ -195,7 +205,7 @@ class GroupChatRoom extends StatelessWidget {
       } else if (chatMap['type'] == "img") {
         return Container(
           width: size.width,
-          alignment: chatMap['sendBy'] == _auth.currentUser!.displayName
+          alignment: chatMap['sendBy'] == data.data()!['displayName']
               ? Alignment.centerRight
               : Alignment.centerLeft,
           child: Container(

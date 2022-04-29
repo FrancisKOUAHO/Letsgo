@@ -13,7 +13,6 @@ class AddMembersInGroup extends StatefulWidget {
 
 class _AddMembersInGroupState extends State<AddMembersInGroup> {
   final TextEditingController _search = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   List<Map<String, dynamic>> membersList = [];
   bool isLoading = false;
@@ -26,7 +25,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
   }
 
   void getCurrentUserDetails() async {
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('users')
         .doc(_auth.currentUser!.uid)
         .get()
@@ -47,7 +46,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
       isLoading = true;
     });
 
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('users')
         .where("email", isEqualTo: _search.text)
         .get()

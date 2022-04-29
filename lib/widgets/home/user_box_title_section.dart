@@ -1,18 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
-class UserBoxTitleSection extends StatelessWidget {
+class UserBoxTitleSection extends StatefulWidget {
   const UserBoxTitleSection({Key? key}) : super(key: key);
 
   @override
+  State<UserBoxTitleSection> createState() => _UserBoxTitleSectionState();
+}
+
+class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
+  dynamic data;
+
+  @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-    if (kDebugMode) {
-      print(user);
-    }return Container(
-      padding: const EdgeInsets.only(left: 10),
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        data = value;
+      });
+    });
+    return Container(
+      padding: const EdgeInsets.only(left: 10, top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -20,8 +35,12 @@ class UserBoxTitleSection extends StatelessWidget {
             "Let's GO",
             style: LetsGoTheme.Title,
           ),
-          Text("${user?.displayName}!",
-            style: LetsGoTheme.Title,
+          Container(
+            padding: const EdgeInsets.only(top: 5),
+            child: Text(
+              data.data()!['displayName'] ?? '',
+              style: LetsGoTheme.Title,
+            ),
           ),
         ],
       ),

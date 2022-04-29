@@ -48,8 +48,8 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                         width: 209,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
-                          image: DecorationImage(
-                            image: NetworkImage(activity["image"] ??
+                          image: const DecorationImage(
+                            image: NetworkImage(/*activity["image"] ??*/
                                 "https://www.elektroaktif.com.tr/assets/images/noimage.jpg"),
                             fit: BoxFit.fill,
                           ),
@@ -63,7 +63,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              color: LetsGoTheme.transparent,
+                              color: LetsGoTheme.main.withOpacity(0.8),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: const <Widget>[
@@ -86,36 +86,36 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              color: LetsGoTheme.whiteTransparent,
+                              color: LetsGoTheme.black.withOpacity(0.8),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   const ListTile(
                                     title: Text('3 séances de sport',
                                         style: TextStyle(
-                                            color: LetsGoTheme.black,
+                                            color: LetsGoTheme.white,
                                             fontSize: 16)),
                                   ),
                                   const ListTile(
                                     leading: Icon(
                                       Icons.location_on_rounded,
                                       size: 25,
-                                      color: LetsGoTheme.lightGrey,
+                                      color: LetsGoTheme.white,
                                     ),
                                     title: Text('45 avenu paris 92010',
                                         style: TextStyle(
-                                            color: LetsGoTheme.lightGrey,
+                                            color: LetsGoTheme.white,
                                             fontSize: 14)),
                                   ),
                                   ButtonBar(children: [
                                     FlatButton(
-                                      color: LetsGoTheme.whiteTransparent,
+                                      color: LetsGoTheme.main.withOpacity(0.8),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(9.0)),
                                       child: const Text("Voir plus",
                                           style: TextStyle(
-                                              color: Colors.lightBlue,
+                                              color: LetsGoTheme.white,
                                               fontSize: 14)),
                                       onPressed: () {
                                         Navigator.push(

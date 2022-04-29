@@ -15,7 +15,7 @@ class DatabaseService {
       FirebaseFirestore.instance.collection("groups");
 
   Future<void> saveUser(String displayName) async {
-    return await userCollection.doc(uid).set({'displayName': displayName});
+    return await userCollection.doc(uid).update({'displayName': displayName});
   }
 
   Future<void> saveToken(String? token) async {

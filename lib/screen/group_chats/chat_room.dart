@@ -21,6 +21,8 @@ class ChatRoom extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  dynamic data;
+
   File? imageFile;
 
   Future getImage() async {
@@ -44,7 +46,7 @@ class ChatRoom extends StatelessWidget {
         .collection('chats')
         .doc(fileName)
         .set({
-      "sendby": _auth.currentUser!.displayName,
+      "sendby": data.data()!['displayName'],
       "message": "",
       "type": "img",
       "time": FieldValue.serverTimestamp(),
@@ -83,7 +85,7 @@ class ChatRoom extends StatelessWidget {
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
       Map<String, dynamic> messages = {
-        "sendby": _auth.currentUser!.displayName,
+        "sendby": data.data()!['displayName'],
         "message": _message.text,
         "type": "text",
         "time": FieldValue.serverTimestamp(),
@@ -105,6 +107,14 @@ class ChatRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      data = value;
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -231,7 +241,7 @@ class ChatRoom extends StatelessWidget {
     return map['type'] == "text"
         ? Container(
             width: size.width,
-            alignment: map['sendby'] == _auth.currentUser!.displayName
+            alignment: map['sendby'] == data.data()!['displayName']
                 ? Alignment.centerRight
                 : Alignment.centerLeft,
             child: Container(
@@ -255,7 +265,7 @@ class ChatRoom extends StatelessWidget {
             height: size.height / 2.5,
             width: size.width,
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            alignment: map['sendby'] == _auth.currentUser!.displayName
+            alignment: map['sendby'] == data.data()!['displayName']
                 ? Alignment.centerRight
                 : Alignment.centerLeft,
             child: InkWell(

@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
 class SettingsUI extends StatelessWidget {
   const SettingsUI({Key? key}) : super(key: key);
@@ -21,11 +23,22 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final user = FirebaseAuth.instance.currentUser;
+  dynamic user;
   bool showPassword = false;
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        user = value;
+      });
+    });
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.deepPurple),
       body: Container(
@@ -57,7 +70,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                user!.photoURL ??
+                                user.data()!['photoURL'] ??
                                     'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
                               ))),
                     ),
@@ -86,44 +99,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField("Nom complet", user!.displayName ?? '', false),
-              buildTextField("E-mail", user!.email ?? '', false),
+              buildTextField(
+                  "Nom complet", user.data()!['displayName'] ?? '', false),
+              buildTextField("E-mail", user.data()!['email'] ?? '', false),
               buildTextField("Mot de passe", "********", true),
-              buildTextField("Location", '', false),
+              buildTextField(
+                  "Location", user.data()!['localization'] ?? '', false),
               const SizedBox(
                 height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OutlineButton(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
-                    child: const Text("ANNULER",
-                        style: TextStyle(
-                            fontSize: 14,
-                            letterSpacing: 2.2,
-                            color: Colors.black)),
+              Center(
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: LetsGoTheme.main,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text(
+                    "VALIDER",
+                    style: TextStyle(
+                        fontSize: 14, letterSpacing: 2.2, color: Colors.white),
                   ),
-                  RaisedButton(
-                    onPressed: () {},
-                    color: Colors.deepPurple,
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Text(
-                      "VALIDER",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  )
-                ],
-              )
+                ),
+              ),
             ],
           ),
         ),

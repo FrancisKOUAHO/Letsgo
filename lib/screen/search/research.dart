@@ -127,7 +127,7 @@ class _ResearchState extends State<Research> {
                     child: ListTile(
                       leading: Image.network(
                         /*data['image'] ??*/
-                            "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
+                        "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),

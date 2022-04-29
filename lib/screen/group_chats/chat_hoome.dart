@@ -21,6 +21,8 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  dynamic data;
+
   @override
   void initState() {
     super.initState();
@@ -54,19 +56,19 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
   }
 
   void onSearch() async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
     setState(() {
       isLoading = true;
     });
 
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('users')
         .where("email", isEqualTo: _search.text)
         .get()
         .then((value) {
       setState(() {
         userMap = value.docs[0].data();
+        print("userMap $userMap");
         isLoading = false;
       });
       if (kDebugMode) {
@@ -79,6 +81,14 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final currentUser = FirebaseAuth.instance.currentUser;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      data = value;
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -139,7 +149,7 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
                     ? ListTile(
                         onTap: () {
                           String roomId = chatRoomId(
-                              _auth.currentUser!.displayName!,
+                              data.data()!['displayName'],
                               userMap!['displayName']);
                           Navigator.of(context).push(
                             MaterialPageRoute(

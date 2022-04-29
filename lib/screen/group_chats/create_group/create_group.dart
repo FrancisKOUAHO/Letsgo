@@ -15,7 +15,6 @@ class CreateGroup extends StatefulWidget {
 
 class _CreateGroupState extends State<CreateGroup> {
   final TextEditingController _groupName = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = false;
 
@@ -26,7 +25,7 @@ class _CreateGroupState extends State<CreateGroup> {
 
     String groupId = const Uuid().v1();
 
-    await _firestore.collection('groups').doc(groupId).set({
+    await FirebaseFirestore.instance.collection('groups').doc(groupId).set({
       "members": widget.membersList,
       "id": groupId,
     });
@@ -34,7 +33,7 @@ class _CreateGroupState extends State<CreateGroup> {
     for (int i = 0; i < widget.membersList.length; i++) {
       String uid = widget.membersList[i]['uid'];
 
-      await _firestore
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(uid)
           .collection('groups')
@@ -45,7 +44,7 @@ class _CreateGroupState extends State<CreateGroup> {
       });
     }
 
-    await _firestore.collection('groups').doc(groupId).collection('chats').add({
+    await FirebaseFirestore.instance.collection('groups').doc(groupId).collection('chats').add({
       "message": "${_auth.currentUser!.displayName} a créé ce groupe.",
       "type": "notify",
     });

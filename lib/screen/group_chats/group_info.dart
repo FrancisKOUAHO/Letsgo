@@ -19,7 +19,6 @@ class _GroupInfoState extends State<GroupInfo> {
   List membersList = [];
   bool isLoading = true;
 
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
@@ -30,7 +29,7 @@ class _GroupInfoState extends State<GroupInfo> {
   }
 
   Future getGroupDetails() async {
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('groups')
         .doc(widget.groupId)
         .get()
@@ -63,10 +62,10 @@ class _GroupInfoState extends State<GroupInfo> {
       membersList.removeAt(index);
     });
 
-    await _firestore.collection('groups').doc(widget.groupId).update({
+    await FirebaseFirestore.instance.collection('groups').doc(widget.groupId).update({
       "members": membersList,
     }).then((value) async {
-      await _firestore
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(uid)
           .collection('groups')
@@ -108,11 +107,11 @@ class _GroupInfoState extends State<GroupInfo> {
         }
       }
 
-      await _firestore.collection('groups').doc(widget.groupId).update({
+      await FirebaseFirestore.instance.collection('groups').doc(widget.groupId).update({
         "members": membersList,
       });
 
-      await _firestore
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection('groups')

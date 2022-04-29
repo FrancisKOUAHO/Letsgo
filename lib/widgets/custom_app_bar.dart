@@ -11,6 +11,7 @@ import 'package:geolocator/geolocator.dart';
 import '../screen/booking/booking_activity.dart';
 import '../screen/event/event_screen.dart';
 import '../screen/profil/profil_screen.dart';
+import '../theme/letsgo_theme.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -46,16 +47,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
           IconButton(
             onPressed: _determinePosition,
             icon: const FaIcon(FontAwesomeIcons.mapMarkerAlt,
-                color: Colors.white),
+                color: LetsGoTheme.white),
           ),
           Text(currentAddress, style: const TextStyle(fontSize: 18)),
           // Your widgets here
         ],
       ),
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: LetsGoTheme.main,
       actions: <Widget>[
         const IconButton(
-          icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
+          icon: FaIcon(FontAwesomeIcons.solidBell, color: LetsGoTheme.white),
           onPressed: null,
         ),
         GestureDetector(

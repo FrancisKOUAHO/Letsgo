@@ -33,6 +33,12 @@ class LetsGoTheme {
     color: LetsGoTheme.white,
   );
 
+  static const TextStyle selectSubTitle = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontSize: 12.0,
+    color: LetsGoTheme.white,
+  );
+
   static const TextStyle Title = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 20,

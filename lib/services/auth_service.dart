@@ -10,6 +10,7 @@ class AuthService {
   final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+
   AppUser? _userFromFirebase(User? user) {
     initUser(user);
     return user != null ? AppUser(user.uid) : null;
@@ -86,7 +87,6 @@ class AuthService {
       }
     }
   }
-
 
   Future<void> signOut() async {
     try {

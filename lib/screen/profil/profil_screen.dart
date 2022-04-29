@@ -1,10 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/screen/profil/settings_scren.dart';
-import 'package:provider/provider.dart';
-
-import '../../models/user_model.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -14,12 +12,24 @@ class ProfilScreen extends StatefulWidget {
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
+  dynamic user;
   final double profilHeight = 144;
-  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        user = value;
+      });
+    });
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -59,7 +69,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
         children: <Widget>[
           Center(
             child: Image.network(
-              user!.photoURL ?? 'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
+              user.data()!['photoURL'] ??
+                  'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
               fit: BoxFit.cover,
               width: size.width,
               height: size.height,
@@ -92,19 +103,20 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       children: <Widget>[
                         Row(
                           children: <Widget>[
-                             CircleAvatar(
+                            CircleAvatar(
                               radius: 28,
-                              backgroundImage:
-                                  NetworkImage(user!.photoURL ?? 'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png'),
+                              backgroundImage: NetworkImage(user
+                                      .data()!['photoURL'] ??
+                                  'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png'),
                             ),
                             const SizedBox(
                               width: 12,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children:  <Widget>[
+                              children: <Widget>[
                                 Text(
-                                  user!.displayName ?? '',
+                                  user.data()!['displayName'] ?? '',
                                   style: const TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,

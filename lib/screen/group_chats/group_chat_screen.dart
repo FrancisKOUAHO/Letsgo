@@ -13,7 +13,6 @@ class GroupChatHomeScreen extends StatefulWidget {
 }
 
 class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = true;
 
@@ -29,7 +28,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
   void getAvailableGroups() async {
     String uid = _auth.currentUser!.uid;
 
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
         .collection('groups')

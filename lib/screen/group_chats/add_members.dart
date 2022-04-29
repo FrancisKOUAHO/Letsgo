@@ -19,7 +19,6 @@ class AddMembersINGroup extends StatefulWidget {
 
 class _AddMembersINGroupState extends State<AddMembersINGroup> {
   final TextEditingController _search = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Map<String, dynamic>? userMap;
   bool isLoading = false;
   List membersList = [];
@@ -36,7 +35,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
       isLoading = true;
     });
 
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('users')
         .where("email", isEqualTo: _search.text)
         .get()
@@ -54,11 +53,11 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
   void onAddMembers() async {
     membersList.add(userMap);
 
-    await _firestore.collection('groups').doc(widget.groupChatId).update({
+    await FirebaseFirestore.instance.collection('groups').doc(widget.groupChatId).update({
       "members": membersList,
     });
 
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('users')
         .doc(userMap!['uid'])
         .collection('groups')

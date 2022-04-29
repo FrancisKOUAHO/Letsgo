@@ -39,7 +39,7 @@ class HomeThemeSection extends StatelessWidget {
                   document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
-                      leading: Image.network(activity["image"] ?? "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
+                      leading: Image.network(/*activity["image"] ??*/ "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),

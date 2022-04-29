@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../theme/letsgo_theme.dart';
+import '../home/home_screen.dart';
 
 class SelectActivityFavorites extends StatefulWidget {
   const SelectActivityFavorites({Key? key}) : super(key: key);
@@ -11,8 +14,12 @@ class SelectActivityFavorites extends StatefulWidget {
 }
 
 class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
+  final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  int selectedIndex = 0;
+  bool favoriteCategoryOfActivity = false;
 
   @override
   void initState() {
@@ -24,7 +31,7 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: const Color(0xFF4814A8),
+      backgroundColor: LetsGoTheme.main,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -78,129 +85,7 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10, 30, 10, 0),
-                  child: GridView(
-                    padding: EdgeInsets.zero,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 1,
-                    ),
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/910/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/155/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/658/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/672/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/355/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/84/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/187/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/104/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/70/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/347/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: const Color(0xFFF5F5F5),
-                        child: Image.network(
-                          'https://picsum.photos/seed/972/600',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: buildResult(context),
                 ),
               ),
               Container(
@@ -211,8 +96,20 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                     style: TextStyle(fontSize: 20.0),
                   ),
                   color: LetsGoTheme.white,
-                  textColor: Colors.deepPurple,
-                  onPressed: () {},
+                  textColor: LetsGoTheme.main,
+                  onPressed: () async {
+                    await _firestore
+                        .collection('users')
+                        .doc(_fireBaseAuth.currentUser!.uid)
+                        .update({
+                      "preferredCategoryOfActivity": selectedIndex,
+                      "favoriteCategoryOfActivity": favoriteCategoryOfActivity,
+                    });
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+                  },
                   shape: RoundedRectangleBorder(
                       side: const BorderSide(
                           color: Colors.blue,
@@ -226,5 +123,82 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
         ),
       ),
     );
+  }
+
+  Widget buildResult(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: (textController.text != "")
+          ? FirebaseFirestore.instance
+              .collection('categories')
+              .where("title", arrayContains: textController.text)
+              .snapshots()
+          : FirebaseFirestore.instance.collection("categories").snapshots(),
+      builder: (context, snapshot) {
+        return (snapshot.connectionState == ConnectionState.waiting)
+            ? const Center(child: CircularProgressIndicator())
+            : GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 4 / 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                shrinkWrap: true,
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (BuildContext context, index) {
+                  DocumentSnapshot data = snapshot.data!.docs[index];
+                  return Card(
+                    shape: (selectedIndex == data['index'])
+                        ? RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.green, width: 2.0),
+                            borderRadius: BorderRadius.circular(4.0))
+                        : RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.white, width: 2.0),
+                            borderRadius: BorderRadius.circular(4.0)),
+                    elevation: 5,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = data['index'];
+                          favoriteCategoryOfActivity = true;
+                        });
+                      },
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            image: DecorationImage(
+                                colorFilter: ColorFilter.mode(
+                                    Colors.black.withOpacity(0.7),
+                                    BlendMode.saturation),
+                                fit: BoxFit.cover,
+                                image: NetworkImage(data['image'] ?? ''))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                data['title'] ?? '',
+                                textAlign: TextAlign.center,
+                                style: LetsGoTheme.selectSubTitle,
+                              )),
+                        ),
+                      ),
+                    ),
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 5.0),
+                  );
+                },
+              );
+      },
+    );
+  }
+
+  void initiateSearch(String val) {
+    setState(() {
+      textController = val as TextEditingController;
+    });
   }
 }
