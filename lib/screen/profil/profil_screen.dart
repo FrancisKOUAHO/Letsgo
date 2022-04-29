@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/screen/profil/settings_scren.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -69,12 +71,12 @@ class _ProfilScreenState extends State<ProfilScreen> {
         children: <Widget>[
           Center(
             child: Image.network(
-              user.data()!['photoURL'] ??
-                  'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
-              fit: BoxFit.cover,
-              width: size.width,
-              height: size.height,
-            ),
+                user.data()['photoUrl'] ??
+                    'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
+                fit: BoxFit.cover,
+                width: size.width,
+                height: size.height,
+                ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -106,7 +108,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             CircleAvatar(
                               radius: 28,
                               backgroundImage: NetworkImage(user
-                                      .data()!['photoURL'] ??
+                                      .data()['photoUrl'] ??
                                   'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png'),
                             ),
                             const SizedBox(

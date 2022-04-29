@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String currentAddress = 'Position inconnue';
+  dynamic currentAddress;
   late Position currentposition;
 
   @override

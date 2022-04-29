@@ -126,7 +126,7 @@ class _ResearchState extends State<Research> {
                   return Card(
                     child: ListTile(
                       leading: Image.network(
-                        /*data['image'] ??*/
+                        data['image'] ??
                         "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
@@ -157,14 +157,13 @@ class _ResearchState extends State<Research> {
   }
 
   void _onPressed() {
-    print('aaaaa');
     _firestore
         .collection("categories")
         .where("subcategoryId")
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
-        print(result.data()['subcategoryId']);
+        result.data()['subcategoryId'];
       });
     });
   }

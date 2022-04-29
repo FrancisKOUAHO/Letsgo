@@ -48,8 +48,8 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                         width: 209,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
-                          image: const DecorationImage(
-                            image: NetworkImage(/*activity["image"] ??*/
+                          image:  DecorationImage(
+                            image: NetworkImage(activity["image"] ??
                                 "https://www.elektroaktif.com.tr/assets/images/noimage.jpg"),
                             fit: BoxFit.fill,
                           ),
@@ -63,7 +63,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              color: LetsGoTheme.main.withOpacity(0.8),
+                              color: LetsGoTheme.main.withOpacity(0.2),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: const <Widget>[
@@ -86,7 +86,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              color: LetsGoTheme.black.withOpacity(0.8),
+                              color: LetsGoTheme.black.withOpacity(0.2),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[

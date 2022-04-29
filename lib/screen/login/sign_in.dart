@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/screen/home/home_screen.dart';
@@ -18,15 +20,44 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  dynamic data;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   signInGoogle() async {
     FirebaseService service = FirebaseService();
     try {
       await service.signInwithGoogle();
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const SelectActivityFavorites()),
-      );
+
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(_auth.currentUser!.uid)
+          .get()
+          .then((value) {
+        setState(() {
+          data = value;
+          print(data);
+        });
+      });
+
+      if (data.data()['favoriteCategoryOfActivity'] == null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const SelectActivityFavorites()),
+        );
+      }
+      if (data.data()['favoriteCategoryOfActivity'] == true) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const SelectActivityFavorites()),
+        );
+      }
     } catch (e) {
       if (e is FirebaseAuthException) {
         showMessage(e.message!);

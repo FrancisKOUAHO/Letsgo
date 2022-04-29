@@ -70,8 +70,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                user.data()!['photoURL'] ??
-                                    'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
+                                user.data()['photoUrl'],
                               ))),
                     ),
                     Positioned(
@@ -99,12 +98,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField(
-                  "Nom complet", user.data()!['displayName'] ?? '', false),
-              buildTextField("E-mail", user.data()!['email'] ?? '', false),
+              buildTextField("Nom complet", user.data()['displayName'], false),
+              buildTextField("E-mail", user.data()['email'], false),
               buildTextField("Mot de passe", "********", true),
-              buildTextField(
-                  "Location", user.data()!['localization'] ?? '', false),
+              buildTextField("Location", user.data()['localization'], false),
               const SizedBox(
                 height: 35,
               ),

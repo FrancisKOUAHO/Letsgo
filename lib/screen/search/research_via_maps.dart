@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '../../widgets/mapbottompill.dart';
-import '../profil/profil_screen.dart';
 
 const LatLng sourceLocation = LatLng(42.7477863, -71.1699932);
 const LatLng destLocation = LatLng(42.744421, -71.1698939);

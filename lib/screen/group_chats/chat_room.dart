@@ -40,7 +40,7 @@ class ChatRoom extends StatelessWidget {
     String fileName = const Uuid().v1();
     int status = 1;
 
-    await _firestore
+    await FirebaseFirestore.instance
         .collection('chatroom')
         .doc(chatRoomId)
         .collection('chats')
@@ -69,7 +69,7 @@ class ChatRoom extends StatelessWidget {
     if (status == 1) {
       String imageUrl = await uploadTask.ref.getDownloadURL();
 
-      await _firestore
+      await FirebaseFirestore.instance
           .collection('chatroom')
           .doc(chatRoomId)
           .collection('chats')
@@ -146,7 +146,7 @@ class ChatRoom extends StatelessWidget {
               height: size.height / 1.25,
               width: size.width,
               child: StreamBuilder<QuerySnapshot>(
-                stream: _firestore
+                stream: FirebaseFirestore.instance
                     .collection('chatroom')
                     .doc(chatRoomId)
                     .collection('chats')

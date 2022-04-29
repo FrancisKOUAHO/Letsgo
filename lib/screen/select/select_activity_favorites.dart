@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../theme/letsgo_theme.dart';
 import '../home/home_screen.dart';
 
@@ -98,7 +97,7 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                   color: LetsGoTheme.white,
                   textColor: LetsGoTheme.main,
                   onPressed: () async {
-                    await _firestore
+                    await FirebaseFirestore.instance
                         .collection('users')
                         .doc(_fireBaseAuth.currentUser!.uid)
                         .update({

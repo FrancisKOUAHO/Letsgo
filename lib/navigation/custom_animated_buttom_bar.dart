@@ -15,10 +15,11 @@ class CustomAnimatedButtomBar extends StatefulWidget {
 
 class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
   int _currentIndex = 0;
+
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const SearchScreen(),
-    ChatHoome(),
+    const ChatHoome(),
     const CommunityScreen(),
   ];
 
@@ -49,7 +50,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
             setState(() {
               _currentIndex = index;
             });
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) =>
@@ -61,7 +62,7 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
           child: Stack(
             children: [
               SizedBox(
-                width: screenWidth * .1125,
+                width: screenWidth * .1725,
                 child: Center(
                   child: AnimatedContainer(
                     duration: const Duration(seconds: 1),

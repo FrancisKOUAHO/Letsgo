@@ -8,7 +8,7 @@ class HomeThemeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _activitiesStream =
-    FirebaseFirestore.instance.collection('activities').snapshots();
+        FirebaseFirestore.instance.collection('activities').snapshots();
 
     return StreamBuilder<QuerySnapshot>(
         stream: _activitiesStream,
@@ -36,10 +36,12 @@ class HomeThemeSection extends StatelessWidget {
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> activity =
-                  document.data()! as Map<String, dynamic>;
+                      document.data()! as Map<String, dynamic>;
                   return Card(
                     child: ListTile(
-                      leading: Image.network(/*activity["image"] ??*/ "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
+                      leading: Image.network(
+                        activity["image"] ??
+                            "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),
@@ -47,7 +49,7 @@ class HomeThemeSection extends StatelessWidget {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black)),
-                      subtitle:  Text(activity['title'] ?? '',
+                      subtitle: Text(activity['title'] ?? '',
                           style: const TextStyle(color: Colors.black)),
                       trailing: const Icon(
                         Icons.keyboard_arrow_right,
