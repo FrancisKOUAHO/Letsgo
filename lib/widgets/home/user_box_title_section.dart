@@ -23,7 +23,7 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
         .get()
         .then((value) {
       setState(() {
-        data = value;
+        data = value.data()!['displayName'];
       });
     });
     return Container(
@@ -37,8 +37,7 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
           ),
           Container(
             padding: const EdgeInsets.only(top: 5),
-            child: Text(
-              data.data()!['displayName'],
+            child: Text(data ?? '',
               style: LetsGoTheme.Title,
             ),
           ),

@@ -1,18 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/widgets/home/home_slider_section.dart';
-import 'package:letsgo/widgets/home/home_subtitle_section.dart';
-import 'package:letsgo/widgets/home/home_theme_section.dart';
-import 'package:letsgo/widgets/home/user_box_title_section.dart';
+import 'package:letsgo/views/home/home.dart';
+import '../../theme/letsgo_theme.dart';
+import '../community/community_screen.dart';
+import '../group_chats/chat_hoome.dart';
+import '../search/search_screen.dart';
 
-import '../../widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,119 +14,96 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final user = FirebaseAuth.instance.currentUser;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+   int _currentIndex = 0;
 
-  dynamic currentAddress;
-  late Position currentposition;
+  final _widgetOptions =  [
+    const Home(),
+    const SearchScreen(),
+    const ChatHoome(),
+    const CommunityScreen(),
+  ];
+
+  List<IconData> listOfIcons = [
+    Icons.home_rounded,
+    Icons.location_on_rounded,
+    Icons.message,
+    Icons.groups,
+  ];
 
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(_auth.currentUser!.uid)
-        .get()
-        .then((value) {
-      setState(() {
-        currentAddress = value.data()!["localization"];
-      });
-    });
-
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: CustomAppBar(),
+      body: _widgetOptions[_currentIndex],
+      bottomNavigationBar:  customAnimatedButtomBar(context),
+    );
+  }
+
+  Container customAnimatedButtomBar(BuildContext context){
+    double screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      margin: const EdgeInsets.all(20),
+      height: screenWidth * .155,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.15),
+            blurRadius: 30,
+            offset: const Offset(0, 10),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(50),
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView.builder(
+        itemCount: 4,
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * .100),
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          child: Stack(
             children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const UserBoxTitleSection(),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 10),
-                child: const Text(
-                  "Suggestion pour toi",
-                  style: LetsGoTheme.subTitle,
+              SizedBox(
+                width: screenWidth * .1725,
+                child: Center(
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    height: index == _currentIndex ? screenWidth * .13 : 0,
+                    width: index == _currentIndex ? screenWidth * .2125 : 0,
+                    decoration: BoxDecoration(
+                      color: index == _currentIndex
+                          ? LetsGoTheme.main
+                          : Colors.transparent,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              Container(
+                width: screenWidth * .1700,
+                alignment: Alignment.center,
+                child: Icon(
+                  listOfIcons[index],
+                  size: screenWidth * .100,
+                  color:
+                  index == _currentIndex ? Colors.white : LetsGoTheme.main,
+                ),
               ),
-              const HomeSliderSection(),
-              const SizedBox(
-                height: 20,
-              ),
-              const HomeSubTitleSection(),
-              const HomeThemeSection(),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const CustomAnimatedButtomBar(),
-
     );
   }
-
-  Future _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      Fluttertoast.showToast(
-          msg: 'Veuillez activer votre service de localisation');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        Fluttertoast.showToast(
-            msg: 'Les autorisations de localisation sont refusées');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      Fluttertoast.showToast(
-          msg:
-              "Les autorisations de localisation sont refusées de manière permanente, nous ne pouvons pas demander d'autorisations.");
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-
-    try {
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
-
-      Placemark place = placemarks[0];
-
-      setState(() {
-        currentposition = position;
-        currentAddress =
-            "${place.locality}, ${place.postalCode}, ${place.country}";
-
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(_auth.currentUser!.uid)
-            .update({'localization': currentAddress});
-      });
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  }
 }
+
+
+
+
+

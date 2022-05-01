@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/chat_room.dart';
-import 'package:letsgo/views/group_chats/group_chat_screen.dart';
 
-import '../../navigation/custom_animated_buttom_bar.dart';
+import 'group_chat_screen.dart';
+
 
 class ChatHoome extends StatefulWidget {
   const ChatHoome({Key? key}) : super(key: key);
@@ -48,7 +48,8 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
   }
 
   String chatRoomId(String user1, String user2) {
-    if (user1[0].toLowerCase().codeUnits[0] > user2.toLowerCase().codeUnits[0]) {
+    if (user1[0].toLowerCase().codeUnits[0] >
+        user2.toLowerCase().codeUnits[0]) {
       return "$user1$user2";
     } else {
       return "$user2$user1";
@@ -56,7 +57,6 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
   }
 
   void onSearch() async {
-
     setState(() {
       isLoading = true;
     });
@@ -103,78 +103,80 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
           ),
         ),
       ),
-      body: isLoading
-          ? Center(
-              child: SizedBox(
+        body: Container(
+          child: isLoading
+              ? Center(
+            child: SizedBox(
+              height: size.height / 20,
+              width: size.height / 20,
+              child: const CircularProgressIndicator(),
+            ),
+          )
+              : Column(
+            children: [
+              SizedBox(
                 height: size.height / 20,
-                width: size.height / 20,
-                child: const CircularProgressIndicator(),
               ),
-            )
-          : Column(
-              children: [
-                SizedBox(
-                  height: size.height / 20,
-                ),
-                Container(
+              Container(
+                height: size.height / 14,
+                width: size.width,
+                alignment: Alignment.center,
+                child: SizedBox(
                   height: size.height / 14,
-                  width: size.width,
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    height: size.height / 14,
-                    width: size.width / 1.15,
-                    child: TextField(
-                      controller: _search,
-                      decoration: InputDecoration(
-                        hintText: "Recherche",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  width: size.width / 1.15,
+                  child: TextField(
+                    controller: _search,
+                    decoration: InputDecoration(
+                      hintText: "Recherche",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: size.height / 50,
+              ),
+              SizedBox(
+                height: size.height / 50,
+              ),
+              ElevatedButton(
+                onPressed: onSearch,
+                child: const Text("Recherche"),
+              ),
+              SizedBox(
+                height: size.height / 30,
+              ),
+              userMap != null
+                  ? ListTile(
+                onTap: () {
+                  String roomId = chatRoomId(
+                      data.data()!['displayName'],
+                      userMap!['displayName']);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => ChatRoom(
+                        chatRoomId: roomId,
+                        userMap: userMap!,
+                      ),
+                    ),
+                  );
+                },
+                leading:
+                const Icon(Icons.account_box, color: Colors.black),
+                title: Text(
+                  userMap!['displayName'],
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: onSearch,
-                  child: const Text("Recherche"),
-                ),
-                SizedBox(
-                  height: size.height / 30,
-                ),
-                userMap != null
-                    ? ListTile(
-                        onTap: () {
-                          String roomId = chatRoomId(
-                              data.data()!['displayName'],
-                              userMap!['displayName']);
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => ChatRoom(
-                                chatRoomId: roomId,
-                                userMap: userMap!,
-                              ),
-                            ),
-                          );
-                        },
-                        leading:
-                            const Icon(Icons.account_box, color: Colors.black),
-                        title: Text(
-                          userMap!['displayName'],
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        subtitle: Text(userMap!['email']),
-                        trailing: const Icon(Icons.chat, color: Colors.black),
-                      )
-                    : Container(),
-              ],
-            ),
+                subtitle: Text(userMap!['email']),
+                trailing: const Icon(Icons.chat, color: Colors.black),
+              )
+                  : Container(),
+            ],
+          ),
+        ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.group),
         onPressed: () => Navigator.of(context).push(
@@ -183,7 +185,6 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomAnimatedButtomBar(),
     );
   }
 }

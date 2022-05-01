@@ -63,7 +63,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              color: LetsGoTheme.main.withOpacity(0.2),
+                              color: LetsGoTheme.main.withOpacity(0.9),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: const <Widget>[
@@ -118,14 +118,12 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               color: LetsGoTheme.white,
                                               fontSize: 14)),
                                       onPressed: () {
-                                       /* Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                   EventScreen(
-                                                    activity: activity,
-                                                  )),
-                                        );*/
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>  EventScreen(
+                                                    activity: activity
+                                                )));
                                       },
                                     ),
                                   ]),

@@ -19,6 +19,8 @@ class _ResearchState extends State<Research> {
   final user = FirebaseAuth.instance.currentUser;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  dynamic data;
+
   String name = "";
 
   @override
@@ -103,13 +105,11 @@ class _ResearchState extends State<Research> {
                           const Text('', style: TextStyle(color: Colors.black)),
                       trailing: InkWell(
                         onTap: () {
-                          /*Navigator.push(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  EventScreen(
-                                  activity: "aa",
-                                )),
-                          );*/
+                                builder: (context) =>  EventScreen(activity: data)),
+                          );
                         },
                         child: Image.asset("assets/icons/DetailButton.png"),
                       ),

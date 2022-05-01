@@ -2,9 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../../common/resume_word.dart';
 
 class BookingActivity extends StatefulWidget {
-  const BookingActivity({Key? key}) : super(key: key);
+  final activity;
+
+  const BookingActivity({Key? key, required this.activity}) : super(key: key);
 
   @override
   State<BookingActivity> createState() => _BookingActivityState();
@@ -20,7 +25,10 @@ class _BookingActivityState extends State<BookingActivity> {
     // DateTime.now().startOfDay
     // DateTime.now().endOfDay
     mockBookingService = BookingService(
-        serviceName: 'Service fictif',
+        userEmail: "francis@gmail.com",
+        userName: "francis KOUAHO",
+        serviceName: widget.activity['titleCategory'],
+        servicePrice: int.parse(sliceNameAndLastname(widget.activity['price'])),
         serviceDuration: 30,
         bookingEnd: DateTime(now.year, now.month, now.day, 18, 0),
         bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
@@ -40,7 +48,7 @@ class _BookingActivityState extends State<BookingActivity> {
         msg: 'Votre réservation a ete prise en compte',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
+        timeInSecForIosWeb: 5,
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 20.0);
@@ -70,9 +78,14 @@ class _BookingActivityState extends State<BookingActivity> {
 
   @override
   Widget build(BuildContext context) {
+    /* FirebaseFirestore.instance
+        .collection('users')
+        .doc(_auth.currentUser!.uid)*/
+    print(
+        "mockBookingService ${sliceNameAndLastname(widget.activity['price'])}");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: LetsGoTheme.main,
         foregroundColor: Colors.white,
         title: const Text('réservation'),
       ),

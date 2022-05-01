@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
-import 'package:letsgo/views/profil/profil_screen.dart';
+
 import 'package:letsgo/widgets//community/community_gallery_section.dart';
 import 'package:letsgo/widgets/community/community_gallery_three_section.dart';
 import 'package:letsgo/widgets/community/community_gallery_two_section.dart';
@@ -47,7 +45,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomAnimatedButtomBar(),
     );
   }
 }

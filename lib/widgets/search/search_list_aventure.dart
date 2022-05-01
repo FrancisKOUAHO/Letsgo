@@ -61,12 +61,12 @@ class _SearchListAventureState extends State<SearchListAventure> {
                           const Text('', style: TextStyle(color: Colors.black)),
                       trailing: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, '/evenScreen', arguments: activity);
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const EventScreen()),
-                          );*/
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  EventScreen(
+                                      activity: activity
+                                  )));
                         },
                         child: Image.asset("assets/icons/DetailButton.png"),
                       ),

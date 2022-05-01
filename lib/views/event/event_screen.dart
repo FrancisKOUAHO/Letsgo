@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
@@ -8,7 +6,7 @@ import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
 import '../booking/booking_activity.dart';
 
 class EventScreen extends StatefulWidget {
-  final Map<String, dynamic> activity;
+  final activity;
 
   const EventScreen({Key? key, required this.activity}) : super(key: key);
 
@@ -17,13 +15,9 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
-  final user = FirebaseAuth.instance.currentUser;
-
 
   @override
   Widget build(BuildContext context) {
-    print(" aaaa : ${widget.activity}");
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -43,10 +37,10 @@ class _EventScreenState extends State<EventScreen> {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                    "${widget.activity['image']}"),
+                    "${widget.activity['image'] ?? "https://www.elektroaktif.com.tr/assets/images/noimage.jpg"}"),
                 fit: BoxFit.contain,
                 alignment: Alignment.topCenter,
               ),
@@ -56,9 +50,10 @@ class _EventScreenState extends State<EventScreen> {
             padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
             child: Column(children: [
               BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
                 child: Container(
-                    constraints: const BoxConstraints(maxHeight: double.infinity),
+                    constraints:
+                        const BoxConstraints(maxHeight: double.infinity),
                     width: double.infinity,
                     margin: const EdgeInsets.all(20),
                     padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -81,7 +76,7 @@ class _EventScreenState extends State<EventScreen> {
                             )),
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                          child:  Text(
+                          child: Text(
                             "${widget.activity['title']}",
                             style: const TextStyle(
                               color: LetsGoTheme.white,
@@ -89,10 +84,10 @@ class _EventScreenState extends State<EventScreen> {
                             ),
                           ),
                         ),
-                         const SizedBox(
-                           height: 10,
-                         ),
-                         Text(
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
                           "${widget.activity['price']} ${widget.activity['priceFrom']}  ",
                           style: const TextStyle(
                             color: LetsGoTheme.white,
@@ -121,7 +116,10 @@ class _EventScreenState extends State<EventScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const BookingActivity()),
+                                    builder: (context) =>
+                                          BookingActivity(
+                                            activity: widget.activity
+                                        )),
                               );
                             },
                             color: LetsGoTheme.main,
@@ -135,8 +133,8 @@ class _EventScreenState extends State<EventScreen> {
                     )),
               ),
               const SearchMapsSectionDark(),
-              containerHeaderImages,
-              containerReviews
+              containerHeaderImages(context),
+              containerReviews(context)
             ]),
           ),
         ],
@@ -144,184 +142,191 @@ class _EventScreenState extends State<EventScreen> {
     );
   }
 }
-Widget containerHeaderImages = Container(
-  padding: const EdgeInsets.all(15),
-  margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-  transform: Matrix4.translationValues(0.0, -200.0, 0.0),
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(15),
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: const DecorationImage(
-            image: AssetImage('assets/ressources/male-motivation-muscular.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
-      Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: const DecorationImage(
-            image: AssetImage('assets/ressources/massage.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
-      Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: const DecorationImage(
-            image: AssetImage('assets/ressources/plage.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
-      Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: const DecorationImage(
-            image: AssetImage('assets/ressources/sport.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
-    ],
-  ),
-);
 
-Widget containerReviews = Padding(
-  padding: const EdgeInsets.fromLTRB(50, 15, 50, 0),
-  child: Container(
+ containerHeaderImages(BuildContext context) {
+  return Container(
+    padding: const EdgeInsets.all(15),
+    margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
     transform: Matrix4.translationValues(0.0, -200.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(15),
     ),
-    child: Column(
-      mainAxisSize: MainAxisSize.max,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: const [
-              Text(
-                'Avis',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
+        Container(
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+              image: AssetImage('assets/ressources/male-motivation-muscular.png'),
+              fit: BoxFit.fill,
+            ),
           ),
         ),
-        singleReview,
-        singleReview,
-        singleReview,
+        Container(
+          height: 60.0,
+          width: 60.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+              image: AssetImage('assets/ressources/massage.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        Container(
+          height: 60.0,
+          width: 60.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+              image: AssetImage('assets/ressources/plage.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        Container(
+          height: 60.0,
+          width: 60.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: const DecorationImage(
+              image: AssetImage('assets/ressources/sport.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
       ],
     ),
-  ),
-);
+  );
+} 
 
-Widget singleReview = Padding(
-  padding: const EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
-  child: Row(
-    mainAxisSize: MainAxisSize.max,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(48),
-        child: Image.network(
-          'https://picsum.photos/seed/187/600',
-          width: 40,
-          height: 40,
-          fit: BoxFit.cover,
-        ),
+Widget containerReviews(BuildContext context){
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(30, 15, 20, 0),
+    child: Container(
+      transform: Matrix4.translationValues(0.0, -200.0, 0.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
       ),
-      Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-        child: SizedBox(
-          width: 250,
-          height: 100,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Hello World',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF6F7FF),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(5, 3, 5, 3),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.network(
-                            'https://cdn.iconscout.com/icon/free/png-256/star-bookmark-favorite-shape-rank-16-28621.png',
-                            width: 13,
-                            height: 13,
-                            fit: BoxFit.cover,
-                          ),
-                          const Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                            child: Text(
-                              '4.5',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 11,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
-                child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut gravida eu purus et posuere.',
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: const [
+                Text(
+                  'Avis',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontFamily: 'Poppins',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
+          ),
+          singleReview(context),
+          singleReview(context),
+          singleReview(context),
+        ],
+      ),
+    ),
+  );
+}
+
+singleReview(BuildContext context){
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(48),
+          child: Image.network(
+            'https://picsum.photos/seed/187/600',
+            width: 40,
+            height: 40,
+            fit: BoxFit.cover,
           ),
         ),
-      ),
-    ],
-  ),
-);
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+          child: SizedBox(
+            width: 250,
+            height: 100,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Hello World',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF6F7FF),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(5, 3, 5, 3),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.network(
+                              'https://cdn.iconscout.com/icon/free/png-256/star-bookmark-favorite-shape-rank-16-28621.png',
+                              width: 13,
+                              height: 13,
+                              fit: BoxFit.cover,
+                            ),
+                            const Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                              child: Text(
+                                '4.5',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                  child: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut gravida eu purus et posuere.',
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}

@@ -9,7 +9,6 @@ ResumeWord(wordText) {
 sliceNameAndLastname(wordText) {
   var words = wordText;
   var splitted = words.split(' ');
-
   return splitted[0];
 }
 

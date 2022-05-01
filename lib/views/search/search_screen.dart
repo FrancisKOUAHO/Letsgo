@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/navigation/custom_animated_buttom_bar.dart';
 import 'package:letsgo/views/search/research.dart';
 import 'package:letsgo/widgets/search/search_list_aventure.dart';
 import 'package:letsgo/widgets/search/search_maps_section.dart';
@@ -28,49 +26,50 @@ class _SearchScreenState extends State<SearchScreen> {
         child: CustomAppBar(),
       ),
       body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children:  <Widget>[
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                margin: const EdgeInsets.all(10.0),
-                padding: const EdgeInsets.all(10),
-                child: Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: TextField(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Research()),
-                      );
-                    },
-                    decoration: InputDecoration(
-                      fillColor: LetsGoTheme.lightPurple,
-                      filled: true,
-                      contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      suffixIcon: const Icon(Icons.search, color: LetsGoTheme.main),
-                      hintText: "Rechercher des activité ...",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(10.0),
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: TextField(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Research()),
+                        );
+                      },
+                      decoration: InputDecoration(
+                        fillColor: LetsGoTheme.lightPurple,
+                        filled: true,
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                        suffixIcon:
+                            const Icon(Icons.search, color: LetsGoTheme.main),
+                        hintText: "Rechercher des activité ...",
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SearchMapsSection(),
-              const SearchTitleSection(),
-              const SearchListAventure(),
-            ],
-          ),
-        )
-      ),
-      bottomNavigationBar: const CustomAnimatedButtomBar(),
+                const SearchMapsSection(),
+                const SearchTitleSection(),
+                const SearchListAventure(),
+              ],
+            ),
+          )),
     );
   }
 }
