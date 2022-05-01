@@ -81,8 +81,6 @@ class _BookingActivityState extends State<BookingActivity> {
     /* FirebaseFirestore.instance
         .collection('users')
         .doc(_auth.currentUser!.uid)*/
-    print(
-        "mockBookingService ${sliceNameAndLastname(widget.activity['price'])}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: LetsGoTheme.main,
