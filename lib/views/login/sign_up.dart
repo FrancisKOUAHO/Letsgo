@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/login/sign_in.dart';
+import 'package:letsgo/views/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 

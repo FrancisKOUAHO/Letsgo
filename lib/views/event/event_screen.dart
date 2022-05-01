@@ -2,12 +2,15 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
 
 import '../booking/booking_activity.dart';
 
 class EventScreen extends StatefulWidget {
-  const EventScreen({Key? key}) : super(key: key);
+  final Map<String, dynamic> activity;
+
+  const EventScreen({Key? key, required this.activity}) : super(key: key);
 
   @override
   _EventScreenState createState() => _EventScreenState();
@@ -16,8 +19,11 @@ class EventScreen extends StatefulWidget {
 class _EventScreenState extends State<EventScreen> {
   final user = FirebaseAuth.instance.currentUser;
 
+
   @override
   Widget build(BuildContext context) {
+    print(" aaaa : ${widget.activity}");
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -37,10 +43,10 @@ class _EventScreenState extends State<EventScreen> {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    "assets/ressources/male-motivation-muscular.png"),
+                image: NetworkImage(
+                    "${widget.activity['image']}"),
                 fit: BoxFit.contain,
                 alignment: Alignment.topCenter,
               ),
@@ -49,7 +55,85 @@ class _EventScreenState extends State<EventScreen> {
           SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
             child: Column(children: [
-              const ContainerHeaderEvent(),
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                child: Container(
+                    constraints: const BoxConstraints(maxHeight: double.infinity),
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(colors: [
+                        Colors.grey.withOpacity(0.6),
+                        Colors.grey.withOpacity(0.6),
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("${widget.activity['titleCategory']}",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 27,
+                              fontWeight: FontWeight.w700,
+                            )),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          child:  Text(
+                            "${widget.activity['title']}",
+                            style: const TextStyle(
+                              color: LetsGoTheme.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                         const SizedBox(
+                           height: 10,
+                         ),
+                         Text(
+                          "${widget.activity['price']} ${widget.activity['priceFrom']}  ",
+                          style: const TextStyle(
+                            color: LetsGoTheme.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(Icons.star_rate, color: Colors.yellow),
+                            Text(
+                              "${widget.activity['averageRating']}",
+                              style: const TextStyle(
+                                color: LetsGoTheme.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          child: RaisedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const BookingActivity()),
+                              );
+                            },
+                            color: LetsGoTheme.main,
+                            textColor: LetsGoTheme.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            child: const Text('Réserver'),
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
               const SearchMapsSectionDark(),
               containerHeaderImages,
               containerReviews
@@ -60,81 +144,6 @@ class _EventScreenState extends State<EventScreen> {
     );
   }
 }
-
-class ContainerHeaderEvent extends StatefulWidget {
-  const ContainerHeaderEvent({Key? key}) : super(key: key);
-
-  @override
-  State<ContainerHeaderEvent> createState() => _ContainerHeaderEventState();
-}
-
-class _ContainerHeaderEventState extends State<ContainerHeaderEvent> {
-  @override
-  Widget build(BuildContext context) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-      child: Container(
-          constraints: const BoxConstraints(maxHeight: double.infinity),
-          width: double.infinity,
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(colors: [
-              Colors.grey.withOpacity(0.6),
-              Colors.grey.withOpacity(0.6),
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('3 séances de sport',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 27,
-                    fontWeight: FontWeight.w700,
-                  )),
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                child: const Text(
-                  '45 Avenue de Paris',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 194, 194, 194),
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              const Text(
-                '94300, Vincennes',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 194, 194, 194),
-                  fontSize: 18,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const BookingActivity()),
-                    );
-                  },
-                  color: Colors.white,
-                  textColor: Colors.deepPurple,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: const Text('Réserver'),
-                ),
-              ),
-            ],
-          )),
-    );
-  }
-}
-
 Widget containerHeaderImages = Container(
   padding: const EdgeInsets.all(15),
   margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),

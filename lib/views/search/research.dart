@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../theme/letsgo_theme.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../event/event_screen.dart';
 import '../profil/profil_screen.dart';
 
 class Research extends StatefulWidget {
@@ -22,47 +24,9 @@ class _ResearchState extends State<Research> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const FaIcon(FontAwesomeIcons.mapMarked,
-                    color: Colors.white),
-              ),
-              const Text("Saint-Ouen, France"),
-              // Your widgets here
-            ],
-          ),
-          backgroundColor: Colors.deepPurple,
-          actions: <Widget>[
-            IconButton(
-              icon:
-                  const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-              tooltip: 'Show Snackbar',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfilScreen()),
-                );
-              },
-            ),
-            GestureDetector(
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(user!.photoURL ??
-                    "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfilScreen()),
-                );
-              },
-            ),
-          ],
+        appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 60),
+          child: CustomAppBar(),
         ),
         body: ListView(children: <Widget>[
           Padding(
@@ -127,7 +91,7 @@ class _ResearchState extends State<Research> {
                     child: ListTile(
                       leading: Image.network(
                         data['image'] ??
-                        "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
+                            "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
                         width: 80,
                         height: 80,
                       ),
@@ -137,10 +101,17 @@ class _ResearchState extends State<Research> {
                               color: Colors.black)),
                       subtitle:
                           const Text('', style: TextStyle(color: Colors.black)),
-                      trailing: const Icon(
-                        Icons.keyboard_arrow_right,
-                        color: LetsGoTheme.main,
-                        size: 50,
+                      trailing: InkWell(
+                        onTap: () {
+                          /*Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>  EventScreen(
+                                  activity: "aa",
+                                )),
+                          );*/
+                        },
+                        child: Image.asset("assets/icons/DetailButton.png"),
                       ),
                       isThreeLine: true,
                     ),

@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/community/community_screen.dart';
-import 'package:letsgo/screen/group_chats/chat_hoome.dart';
-import 'package:letsgo/screen/home/home_screen.dart';
-import 'package:letsgo/screen/search/search_screen.dart';
+import 'package:letsgo/views/community/community_screen.dart';
+import 'package:letsgo/views/group_chats/chat_hoome.dart';
+import 'package:letsgo/views/home/home_screen.dart';
+import 'package:letsgo/views/search/search_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
 class CustomAnimatedButtomBar extends StatefulWidget {
@@ -49,13 +50,13 @@ class _CustomAnimatedButtomBarState extends State<CustomAnimatedButtomBar> {
           onTap: () {
             setState(() {
               _currentIndex = index;
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        _widgetOptions.elementAt(_currentIndex)),
+              );
             });
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      _widgetOptions.elementAt(_currentIndex)),
-            );
           },
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,

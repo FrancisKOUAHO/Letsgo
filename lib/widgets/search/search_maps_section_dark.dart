@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:letsgo/screen/search/research_via_maps.dart';
+
+import '../../views/search/research_via_maps.dart';
 
 class SearchMapsSectionDark extends StatefulWidget {
   const SearchMapsSectionDark({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class SearchMapsSectionDark extends StatefulWidget {
 }
 
 class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
-  Set<Marker> _markers = {};
+  final Set<Marker> _markers = {};
 
   late BitmapDescriptor mapMarker;
   // BitmapDescriptor mapMarker;
@@ -23,7 +24,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
 
   void setCustomMarker() async {
     mapMarker = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(), 'assets/map/destination_map_marker.png');
+        const ImageConfiguration(), 'assets/map/destination_map_marker.png');
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -31,8 +32,8 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
     setState(() {
       _markers.add(
         Marker(
-          markerId: MarkerId('id-1'),
-          position: LatLng(48.856614, 2.3522219),
+          markerId: const MarkerId('id-1'),
+          position: const LatLng(48.856614, 2.3522219),
           icon: mapMarker,
         ),
       );
@@ -56,7 +57,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
           height: 500,
           color: Colors.black,
           child: Container(
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
             child: GoogleMap(
               initialCameraPosition: _initialCameraPosition,
               myLocationEnabled: true,

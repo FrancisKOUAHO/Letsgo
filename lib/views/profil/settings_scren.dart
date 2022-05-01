@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/profil/edit_profile.dart';
+import 'package:letsgo/views/profil/edit_profile.dart';
 import 'package:letsgo/services/auth_service.dart';
 
 import '../login/sign_in.dart';

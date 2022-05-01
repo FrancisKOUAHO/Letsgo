@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../views/event/event_screen.dart';
 import '../../theme/letsgo_theme.dart';
 
 class SearchListAventure extends StatefulWidget {
@@ -58,10 +59,16 @@ class _SearchListAventureState extends State<SearchListAventure> {
                               color: Colors.black)),
                       subtitle:
                           const Text('', style: TextStyle(color: Colors.black)),
-                      trailing: const Icon(
-                        Icons.keyboard_arrow_right,
-                        color: LetsGoTheme.main,
-                        size: 50,
+                      trailing: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/evenScreen', arguments: activity);
+                          /*Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EventScreen()),
+                          );*/
+                        },
+                        child: Image.asset("assets/icons/DetailButton.png"),
                       ),
                       isThreeLine: true,
                     ),

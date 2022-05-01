@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/profil/profil_screen.dart';
+import 'package:letsgo/views/profil/profil_screen.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
 class UserBoxSection extends StatefulWidget {

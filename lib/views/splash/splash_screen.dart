@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/home/home_screen.dart';
-import 'package:letsgo/screen/login/sign_in.dart';
+import 'package:letsgo/views/home/home_screen.dart';
+import 'package:letsgo/views/login/sign_in.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/group_chats/chat_room.dart';
-import 'package:letsgo/screen/group_chats/group_chat_screen.dart';
+import 'package:letsgo/views/group_chats/chat_room.dart';
+import 'package:letsgo/views/group_chats/group_chat_screen.dart';
 
 import '../../navigation/custom_animated_buttom_bar.dart';
 
@@ -68,7 +68,6 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
         .then((value) {
       setState(() {
         userMap = value.docs[0].data();
-        print("userMap $userMap");
         isLoading = false;
       });
       if (kDebugMode) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/screen/splash/splash_screen.dart';
+import 'package:letsgo/views/event/event_screen.dart';
+import 'package:letsgo/views/splash/splash_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

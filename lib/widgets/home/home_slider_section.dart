@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
-import '../../screen/event/event_screen.dart';
+import '../../views/event/event_screen.dart';
 
 class HomeSliderSection extends StatefulWidget {
   const HomeSliderSection({Key? key}) : super(key: key);
@@ -118,12 +118,14 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               color: LetsGoTheme.white,
                                               fontSize: 14)),
                                       onPressed: () {
-                                        Navigator.push(
+                                       /* Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const EventScreen()),
-                                        );
+                                                   EventScreen(
+                                                    activity: activity,
+                                                  )),
+                                        );*/
                                       },
                                     ),
                                   ]),

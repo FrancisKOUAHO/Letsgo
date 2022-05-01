@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/views/event/event_screen.dart';
 
 class HomeThemeSection extends StatelessWidget {
   const HomeThemeSection({Key? key}) : super(key: key);
@@ -9,6 +9,7 @@ class HomeThemeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _activitiesStream =
         FirebaseFirestore.instance.collection('activities').snapshots();
+
 
     return StreamBuilder<QuerySnapshot>(
         stream: _activitiesStream,
@@ -51,10 +52,16 @@ class HomeThemeSection extends StatelessWidget {
                               color: Colors.black)),
                       subtitle: Text(activity['title'] ?? '',
                           style: const TextStyle(color: Colors.black)),
-                      trailing: const Icon(
-                        Icons.keyboard_arrow_right,
-                        color: LetsGoTheme.main,
-                        size: 50,
+                      trailing: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  EventScreen(
+                                    activity: activity
+                                  )));
+                        },
+                        child: Image.asset("assets/icons/DetailButton.png"),
                       ),
                       isThreeLine: true,
                     ),

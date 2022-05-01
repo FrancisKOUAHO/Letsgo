@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:letsgo/screen/search/research_via_maps.dart';
+import 'package:letsgo/views/search/research_via_maps.dart';
 
 class SearchMapsSection extends StatefulWidget {
   const SearchMapsSection({Key? key}) : super(key: key);

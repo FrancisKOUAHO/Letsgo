@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/screen/home/home_screen.dart';
-import 'package:letsgo/screen/login/reset_password.dart';
-import 'package:letsgo/screen/login/sign_up.dart';
+import 'package:letsgo/views/home/home_screen.dart';
+import 'package:letsgo/views/login/reset_password.dart';
+import 'package:letsgo/views/login/sign_up.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/services/firebase_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
@@ -28,36 +28,38 @@ class _SignInState extends State<SignIn> {
     try {
       await service.signInwithGoogle();
 
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(_auth.currentUser!.uid)
-          .get()
-          .then((value) {
-        setState(() {
-          data = value;
-          print(data);
+      setState(() {
+        FirebaseFirestore.instance
+            .collection("users")
+            .doc(_auth.currentUser!.uid)
+            .get()
+            .then((value) {
+          setState(() {
+            data = value;
+            print(data);
+          });
         });
-      });
 
-      if (data.data()['favoriteCategoryOfActivity'] == null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const SelectActivityFavorites()),
-        );
-      }
-      if (data.data()['favoriteCategoryOfActivity'] == true) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
-      } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const SelectActivityFavorites()),
-        );
-      }
+        if (data.data()['favoriteCategoryOfActivity'] == null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const SelectActivityFavorites()),
+          );
+        }
+        if (data.data()['favoriteCategoryOfActivity'] == true) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const SelectActivityFavorites()),
+          );
+        }
+      });
     } catch (e) {
       if (e is FirebaseAuthException) {
         showMessage(e.message!);
@@ -72,6 +74,8 @@ class _SignInState extends State<SignIn> {
     bool _validate = false;
 
     final AuthService _auth = AuthService();
+    final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
+
     return Material(
       type: MaterialType.transparency,
       child: Stack(
@@ -238,17 +242,52 @@ class _SignInState extends State<SignIn> {
                                             emailController.text,
                                             passwordController.text);
                                     if (authResult == null) {
-                                      print(
-                                          'Erreur de connexion. Impossible de se connecter');
+                                      if (kDebugMode) {
+                                        print(
+                                            'Erreur de connexion. Impossible de se connecter');
+                                      }
                                     } else {
                                       emailController.clear();
                                       passwordController.clear();
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const HomeScreen()),
-                                      );
+                                      setState(() {
+                                        FirebaseFirestore.instance
+                                            .collection("users")
+                                            .doc(_fireBaseAuth.currentUser!.uid)
+                                            .get()
+                                            .then((value) {
+                                          setState(() {
+                                            data = value;
+                                          });
+                                        });
+
+                                        if (data.data()[
+                                                'favoriteCategoryOfActivity'] ==
+                                            null) {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SelectActivityFavorites()),
+                                          );
+                                        }
+                                        if (data.data()[
+                                                'favoriteCategoryOfActivity'] ==
+                                            true) {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomeScreen()),
+                                          );
+                                        } else {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SelectActivityFavorites()),
+                                          );
+                                        }
+                                      });
                                     }
                                     setState(() {
                                       emailController.text.isEmpty

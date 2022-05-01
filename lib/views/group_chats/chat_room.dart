@@ -56,7 +56,7 @@ class ChatRoom extends StatelessWidget {
         FirebaseStorage.instance.ref().child('images').child("$fileName.jpg");
 
     var uploadTask = await ref.putFile(imageFile!).catchError((error) async {
-      await _firestore
+      await FirebaseFirestore.instance
           .collection('chatroom')
           .doc(chatRoomId)
           .collection('chats')
@@ -92,7 +92,7 @@ class ChatRoom extends StatelessWidget {
       };
 
       _message.clear();
-      await _firestore
+      await FirebaseFirestore.instance
           .collection('chatroom')
           .doc(chatRoomId)
           .collection('chats')
