@@ -8,8 +8,6 @@ import 'notification_service.dart';
 
 class AuthService {
   final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
 
   AppUser? _userFromFirebase(User? user) {
     initUser(user);
@@ -51,7 +49,7 @@ class AuthService {
         throw Exception("No user found");
       } else {
         await DatabaseService(user.uid).saveUser(displayName);
-        await _firestore
+        await FirebaseFirestore.instance
             .collection('users')
             .doc(_fireBaseAuth.currentUser!.uid)
             .set({
@@ -79,22 +77,10 @@ class AuthService {
   }
 
   Future resetPassword(String email) async {
-    try {
-      return await _fireBaseAuth.sendPasswordResetEmail(email: email);
-    } catch (e) {
-      if (kDebugMode) {
-        print('error $e');
-      }
-    }
+    return await _fireBaseAuth.sendPasswordResetEmail(email: email);
   }
 
   Future<void> signOut() async {
-    try {
-      return await _fireBaseAuth.signOut();
-    } catch (e) {
-      if (kDebugMode) {
-        print('error $e');
-      }
-    }
+    return await _fireBaseAuth.signOut();
   }
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
@@ -16,8 +18,12 @@ class BookingActivity extends StatefulWidget {
 }
 
 class _BookingActivityState extends State<BookingActivity> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final now = DateTime.now();
   late BookingService mockBookingService;
+  dynamic userName;
+  dynamic userEmail;
 
   @override
   void initState() {
@@ -25,8 +31,8 @@ class _BookingActivityState extends State<BookingActivity> {
     // DateTime.now().startOfDay
     // DateTime.now().endOfDay
     mockBookingService = BookingService(
-        userEmail: "francis@gmail.com",
-        userName: "francis KOUAHO",
+        userEmail: userEmail,
+        userName: userName,
         serviceName: widget.activity['titleCategory'],
         servicePrice: int.parse(sliceNameAndLastname(widget.activity['price'])),
         serviceDuration: 30,
@@ -52,6 +58,12 @@ class _BookingActivityState extends State<BookingActivity> {
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 20.0);
+
+     await FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .update(newBooking.toJson());
+
     if (kDebugMode) {
       print('${newBooking.toJson()} a été téléchargé');
     }
@@ -78,14 +90,20 @@ class _BookingActivityState extends State<BookingActivity> {
 
   @override
   Widget build(BuildContext context) {
-    /* FirebaseFirestore.instance
-        .collection('users')
-        .doc(_auth.currentUser!.uid)*/
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      userName = value.data()!['displayName'];
+      userEmail = value.data()!['email'];
+    });
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: LetsGoTheme.main,
         foregroundColor: Colors.white,
-        title: const Text('réservation'),
+        title: const Text('Réservation'),
       ),
       body: Center(
         child: BookingCalendar(

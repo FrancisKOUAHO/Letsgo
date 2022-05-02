@@ -36,7 +36,6 @@ class _SignInState extends State<SignIn> {
             .then((value) {
           setState(() {
             data = value;
-            print(data);
           });
         });
 
@@ -364,8 +363,8 @@ class _SignInState extends State<SignIn> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  onPressed: () async {
-                                    await signInGoogle();
+                                  onPressed: ()  {
+                                     signInGoogle();
                                   },
                                 ),
                                 ElevatedButton.icon(

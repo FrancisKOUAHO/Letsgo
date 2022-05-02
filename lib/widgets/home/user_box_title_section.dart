@@ -37,7 +37,8 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
           ),
           Container(
             padding: const EdgeInsets.only(top: 5),
-            child: Text(data ?? '',
+            child: Text(
+              data ?? '',
               style: LetsGoTheme.Title,
             ),
           ),
