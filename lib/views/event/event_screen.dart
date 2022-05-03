@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
 
@@ -29,16 +30,16 @@ class _EventScreenState extends State<EventScreen> {
           margin: const EdgeInsets.fromLTRB(30, 0, 13, 0),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              LetsGoTheme.main.withOpacity(0.6),
-              LetsGoTheme.main.withOpacity(0.6),
+              LetsGoTheme.white.withOpacity(0.9),
+              LetsGoTheme.white.withOpacity(0.9),
             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             borderRadius: BorderRadius.circular(20),
           ),
           child: IconButton(
             iconSize: 25.0,
             onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.arrow_back_ios_rounded),
-            color: LetsGoTheme.white,
+            icon: const FaIcon(FontAwesomeIcons.arrowLeft),
+            color: LetsGoTheme.main,
           ),
         ),
         actions: [
@@ -48,15 +49,16 @@ class _EventScreenState extends State<EventScreen> {
             margin: const EdgeInsets.fromLTRB(0, 0, 30, 0),
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                LetsGoTheme.main.withOpacity(0.6),
-                LetsGoTheme.main.withOpacity(0.6),
+                LetsGoTheme.white.withOpacity(0.9),
+                LetsGoTheme.white.withOpacity(0.9),
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(20),
             ),
             child: IconButton(
               iconSize: 30.0,
               onPressed: () {},
-              icon: const Icon(Icons.heart_broken_outlined),
+              icon: const FaIcon(FontAwesomeIcons.heart),
+              color: LetsGoTheme.main,
             ),
           )
         ],
@@ -88,9 +90,10 @@ class _EventScreenState extends State<EventScreen> {
                     padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: LetsGoTheme.main),
                       gradient: LinearGradient(colors: [
-                        LetsGoTheme.black.withOpacity(0.6),
-                        LetsGoTheme.black.withOpacity(0.6),
+                        LetsGoTheme.black.withOpacity(0.8),
+                        LetsGoTheme.black.withOpacity(0.8),
                       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                     ),
                     child: Column(
@@ -139,7 +142,7 @@ class _EventScreenState extends State<EventScreen> {
                           ],
                         ),
                         Container(
-                          margin: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(240, 7, 0, 0),
                           child: RaisedButton(
                             onPressed: () {
                               Navigator.push(
@@ -149,8 +152,8 @@ class _EventScreenState extends State<EventScreen> {
                                         activity: widget.activity)),
                               );
                             },
-                            color: LetsGoTheme.main,
-                            textColor: LetsGoTheme.white,
+                            color: LetsGoTheme.white,
+                            textColor: LetsGoTheme.main,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
                             child: const Text('Réserver'),

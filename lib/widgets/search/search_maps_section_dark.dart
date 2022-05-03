@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../theme/letsgo_theme.dart';
 import '../../views/search/research_via_maps.dart';
 
 class SearchMapsSectionDark extends StatefulWidget {
@@ -14,6 +16,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
   final Set<Marker> _markers = {};
 
   late BitmapDescriptor mapMarker;
+
   // BitmapDescriptor mapMarker;
 
   @override
@@ -46,34 +49,79 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ResearchViaMaps()));
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          width: 390,
-          height: 500,
-          color: Colors.black,
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
           child: Container(
-            margin: const EdgeInsets.all(15),
-            child: GoogleMap(
-              initialCameraPosition: _initialCameraPosition,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: true,
-              mapType: MapType.normal,
-              zoomGesturesEnabled: true,
-              zoomControlsEnabled: true,
-              scrollGesturesEnabled: true,
-              compassEnabled: true,
-              onMapCreated: _onMapCreated,
-              markers: _markers,
+            width: 390,
+            height: 500,
+            margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+            color: Colors.black,
+            child: Container(
+              margin: const EdgeInsets.all(15),
+              child: GoogleMap(
+                initialCameraPosition: _initialCameraPosition,
+                myLocationEnabled: true,
+                myLocationButtonEnabled: true,
+                mapType: MapType.normal,
+                zoomGesturesEnabled: true,
+                zoomControlsEnabled: true,
+                scrollGesturesEnabled: true,
+                compassEnabled: true,
+                onMapCreated: _onMapCreated,
+                markers: _markers,
+              ),
             ),
           ),
         ),
-      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              margin: const EdgeInsets.fromLTRB(30, 20, 13, 0),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(colors: [
+                  LetsGoTheme.white,
+                  LetsGoTheme.white,
+                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: IconButton(
+                iconSize: 25.0,
+                onPressed: () => Navigator.of(context).pop(),
+                icon:  const FaIcon(FontAwesomeIcons.phone),
+                color: LetsGoTheme.main,
+              ),
+            ),
+            Container(
+              width: 60,
+              height: 60,
+              margin: const EdgeInsets.fromLTRB(30, 20, 50, 0),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(colors: [
+                  LetsGoTheme.white,
+                  LetsGoTheme.white,
+                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: IconButton(
+                iconSize: 25.0,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ResearchViaMaps()));
+                },
+                icon: const FaIcon(FontAwesomeIcons.maximize),
+                color: LetsGoTheme.main,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
