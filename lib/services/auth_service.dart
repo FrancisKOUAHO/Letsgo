@@ -8,6 +8,7 @@ import 'notification_service.dart';
 
 class AuthService {
   final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   AppUser? _userFromFirebase(User? user) {
     initUser(user);
@@ -41,18 +42,17 @@ class AuthService {
 
   Future createUserWithEmailAndPassword(
       String displayName, String email, String password) async {
+    print(displayName);
     try {
       final credential = await _fireBaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = credential.user;
+
       if (user == null) {
         throw Exception("No user found");
       } else {
         await DatabaseService(user.uid).saveUser(displayName);
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(_fireBaseAuth.currentUser!.uid)
-            .set({
+        await _firestore.collection('users').doc(_fireBaseAuth.currentUser!.uid).set({
           "displayName": displayName,
           "email": email,
           "status": "Unavalible",
@@ -70,7 +70,7 @@ class AuthService {
   }
 
   Future<void> userSetup(String displayName) async {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    CollectionReference users = _firestore.collection('users');
     String? uid = _fireBaseAuth.currentUser?.uid.toString();
     users.add({'displayName': displayName, 'uid': uid});
     return;

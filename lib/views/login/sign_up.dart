@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
@@ -185,13 +186,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             emailController.text,
                                             passwordController.text);
                                     if (result == null) {
-                                      print('Warning');
+                                      if (kDebugMode) {
+                                        print('Warning');
+                                      }
                                     } else {
                                       namelController.clear();
                                       emailController.clear();
                                       passwordController.clear();
 
-                                      Navigator.push(
+                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>

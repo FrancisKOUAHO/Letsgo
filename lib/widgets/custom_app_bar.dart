@@ -65,7 +65,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 padding: const EdgeInsets.all(5),
                 child: GestureDetector(
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(user!.photoURL ??
+                    backgroundImage: NetworkImage(user?.photoURL ??
                         "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
                   ),
                   onTap: () {

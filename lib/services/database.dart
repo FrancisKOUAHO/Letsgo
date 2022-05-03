@@ -11,6 +11,7 @@ class DatabaseService {
   final CollectionReference<Map<String, dynamic>> userCollection =
       FirebaseFirestore.instance.collection("users");
 
+
   final CollectionReference<Map<String, dynamic>> groupCollection =
       FirebaseFirestore.instance.collection("groups");
 

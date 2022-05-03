@@ -258,35 +258,34 @@ class _SignInState extends State<SignIn> {
                                             data = value;
                                           });
                                         });
-
-                                        if (data.data()[
-                                                'favoriteCategoryOfActivity'] ==
-                                            null) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SelectActivityFavorites()),
-                                          );
-                                        }
-                                        if (data.data()[
-                                                'favoriteCategoryOfActivity'] ==
-                                            true) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const HomeScreen()),
-                                          );
-                                        } else {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SelectActivityFavorites()),
-                                          );
-                                        }
                                       });
+                                      if (data.data()[
+                                              'favoriteCategoryOfActivity'] ==
+                                          null) {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SelectActivityFavorites()),
+                                        );
+                                      }
+                                      if (data.data()[
+                                              'favoriteCategoryOfActivity'] ==
+                                          true) {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HomeScreen()),
+                                        );
+                                      } else {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SelectActivityFavorites()),
+                                        );
+                                      }
                                     }
                                     setState(() {
                                       emailController.text.isEmpty
@@ -363,8 +362,8 @@ class _SignInState extends State<SignIn> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  onPressed: ()  {
-                                     signInGoogle();
+                                  onPressed: () {
+                                    signInGoogle();
                                   },
                                 ),
                                 ElevatedButton.icon(

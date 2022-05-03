@@ -104,7 +104,7 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                       "preferredCategoryOfActivity": selectedIndex,
                       "favoriteCategoryOfActivity": favoriteCategoryOfActivity,
                     });
-                    Navigator.pushReplacement(
+                    await Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));

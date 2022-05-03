@@ -26,11 +26,11 @@ class _EventScreenState extends State<EventScreen> {
         leading: Container(
           width: 60,
           height: 30,
-          margin: EdgeInsets.fromLTRB(30, 0, 13, 0),
+          margin: const EdgeInsets.fromLTRB(30, 0, 13, 0),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              Colors.grey.withOpacity(0.6),
-              Colors.grey.withOpacity(0.6),
+              LetsGoTheme.main.withOpacity(0.6),
+              LetsGoTheme.main.withOpacity(0.6),
             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
             borderRadius: BorderRadius.circular(20),
           ),
@@ -45,11 +45,11 @@ class _EventScreenState extends State<EventScreen> {
           Container(
             width: 60,
             height: 30,
-            margin: EdgeInsets.fromLTRB(0, 0, 30, 0),
+            margin: const EdgeInsets.fromLTRB(0, 0, 30, 0),
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                Colors.grey.withOpacity(0.6),
-                Colors.grey.withOpacity(0.6),
+                LetsGoTheme.main.withOpacity(0.6),
+                LetsGoTheme.main.withOpacity(0.6),
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(20),
             ),
@@ -89,8 +89,8 @@ class _EventScreenState extends State<EventScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       gradient: LinearGradient(colors: [
-                        Colors.grey.withOpacity(0.6),
-                        Colors.grey.withOpacity(0.6),
+                        LetsGoTheme.black.withOpacity(0.6),
+                        LetsGoTheme.black.withOpacity(0.6),
                       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                     ),
                     child: Column(
