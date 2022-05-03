@@ -40,8 +40,9 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
     });
   }
 
-  static const CameraPosition _initialCameraPosition =
-      CameraPosition(target: LatLng(48.856614, 2.3522219), zoom: 17);
+  static const CameraPosition _initialCameraPosition = CameraPosition(
+      target: LatLng(48.856014, 2.3522219),
+      zoom: 17); // Latitude centré = latitudeInitiale - 00.0006
 
   @override
   Widget build(BuildContext context) {

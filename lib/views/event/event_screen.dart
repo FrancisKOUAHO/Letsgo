@@ -15,7 +15,6 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +22,43 @@ class _EventScreenState extends State<EventScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const BackButton(),
-        actions: [
-          IconButton(
-            iconSize: 30.0,
-            onPressed: () {},
-            icon: const Icon(Icons.heart_broken),
+        leadingWidth: 100,
+        leading: Container(
+          width: 60,
+          height: 30,
+          margin: EdgeInsets.fromLTRB(30, 0, 13, 0),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Colors.grey.withOpacity(0.6),
+              Colors.grey.withOpacity(0.6),
+            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+            borderRadius: BorderRadius.circular(20),
           ),
+          child: IconButton(
+            iconSize: 25.0,
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_back_ios_rounded),
+            color: LetsGoTheme.white,
+          ),
+        ),
+        actions: [
+          Container(
+            width: 60,
+            height: 30,
+            margin: EdgeInsets.fromLTRB(0, 0, 30, 0),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Colors.grey.withOpacity(0.6),
+                Colors.grey.withOpacity(0.6),
+              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: IconButton(
+              iconSize: 30.0,
+              onPressed: () {},
+              icon: const Icon(Icons.heart_broken_outlined),
+            ),
+          )
         ],
         centerTitle: true,
       ),
@@ -116,10 +145,8 @@ class _EventScreenState extends State<EventScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                          BookingActivity(
-                                            activity: widget.activity
-                                        )),
+                                    builder: (context) => BookingActivity(
+                                        activity: widget.activity)),
                               );
                             },
                             color: LetsGoTheme.main,
@@ -143,11 +170,11 @@ class _EventScreenState extends State<EventScreen> {
   }
 }
 
- containerHeaderImages(BuildContext context) {
+containerHeaderImages(BuildContext context) {
   return Container(
     padding: const EdgeInsets.all(15),
-    margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-    transform: Matrix4.translationValues(0.0, -200.0, 0.0),
+    margin: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+    transform: Matrix4.translationValues(0.0, -250.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(15),
@@ -161,7 +188,8 @@ class _EventScreenState extends State<EventScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image: const DecorationImage(
-              image: AssetImage('assets/ressources/male-motivation-muscular.png'),
+              image:
+                  AssetImage('assets/ressources/male-motivation-muscular.png'),
               fit: BoxFit.fill,
             ),
           ),
@@ -202,13 +230,13 @@ class _EventScreenState extends State<EventScreen> {
       ],
     ),
   );
-} 
+}
 
-Widget containerReviews(BuildContext context){
+Widget containerReviews(BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.fromLTRB(30, 15, 20, 0),
+    padding: const EdgeInsets.fromLTRB(35, 15, 35, 0),
     child: Container(
-      transform: Matrix4.translationValues(0.0, -200.0, 0.0),
+      transform: Matrix4.translationValues(0.0, -250.0, 0.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -241,9 +269,9 @@ Widget containerReviews(BuildContext context){
   );
 }
 
-singleReview(BuildContext context){
+singleReview(BuildContext context) {
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
+    padding: const EdgeInsetsDirectional.fromSTEB(30, 15, 0, 0),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,13 +307,14 @@ singleReview(BuildContext context){
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       decoration: BoxDecoration(
                         color: const Color(0xFFF6F7FF),
                         borderRadius: BorderRadius.circular(3),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(5, 3, 5, 3),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(5, 3, 5, 3),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -298,7 +327,8 @@ singleReview(BuildContext context){
                               fit: BoxFit.cover,
                             ),
                             const Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                               child: Text(
                                 '4.5',
                                 style: TextStyle(
