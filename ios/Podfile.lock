@@ -823,7 +823,7 @@ DEPENDENCIES:
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - abseil
     - AppAuth
     - BoringSSL-GRPC
@@ -921,4 +921,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b636d71f450544e7b6d8598fffcf0fdf9be51950
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2
