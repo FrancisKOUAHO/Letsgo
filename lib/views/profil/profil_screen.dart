@@ -70,12 +70,12 @@ class _ProfilScreenState extends State<ProfilScreen> {
         children: <Widget>[
           Center(
             child: Image.network(
-                user.data()['photoUrl'] ??
-                    'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
-                fit: BoxFit.cover,
-                width: size.width,
-                height: size.height,
-                ),
+              user.data()['photoUrl'] ??
+                  'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
+              fit: BoxFit.cover,
+              width: size.width,
+              height: size.height,
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -138,30 +138,33 @@ class _ProfilScreenState extends State<ProfilScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        SizedBox(
-                          width: 110,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Text(
-                                "FRIENDS",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
+                        InkWell(
+                          onTap: null,
+                          child: SizedBox(
+                            width: 110,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const <Widget>[
+                                Text(
+                                  "ACTIVITÈS",
+                                  style: TextStyle(
+                                    color: LetsGoTheme.black,
+                                    fontSize: 12,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                "19",
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                SizedBox(
+                                  height: 4,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  "01",
+                                  style: TextStyle(
+                                    color: LetsGoTheme.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -170,9 +173,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const <Widget>[
                               Text(
-                                "PARTICIPATION",
+                                "RESERVATION",
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: LetsGoTheme.black,
                                   fontSize: 12,
                                 ),
                               ),
@@ -182,7 +185,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               Text(
                                 "17",
                                 style: TextStyle(
-                                  color: Colors.black87,
+                                  color: LetsGoTheme.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -198,7 +201,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               Text(
                                 "COUPS DE COEUR",
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: LetsGoTheme.black,
                                   fontSize: 12,
                                 ),
                               ),
@@ -208,7 +211,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               Text(
                                 "7",
                                 style: TextStyle(
-                                  color: Colors.black87,
+                                  color: LetsGoTheme.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -225,7 +228,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   const Text(
                     "Amis",
                     style: TextStyle(
-                      color: Colors.black87,
+                      color: LetsGoTheme.black,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -258,7 +261,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   const Text(
                     "Photos",
                     style: TextStyle(
-                      color: Colors.black87,
+                      color: LetsGoTheme.black,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
