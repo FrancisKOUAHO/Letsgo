@@ -1,6 +1,6 @@
 ResumeWord(wordText) {
   var words = wordText;
-  var word = words.substring(1, 20);
+  var word = words.substring(0, 28);
   var fusionWord = word + '...';
 
   return fusionWord;
