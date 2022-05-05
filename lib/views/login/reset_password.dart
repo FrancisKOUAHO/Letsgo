@@ -1,10 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:provider/provider.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -18,7 +15,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
 
-    final authService = Provider.of<AuthService>(context);
+    final AuthService _auth = AuthService();
     return Material(
       type: MaterialType.transparency,
       child: Stack(
@@ -126,7 +123,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    await authService
+                                    await _auth
                                         .resetPassword(emailController.text);
 
                                   }),
@@ -171,7 +168,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               height: 30,
                             ),
                             const SizedBox(
-                              height: 30,
+                              height: 150,
                             ),
                           ],
                         ),
