@@ -85,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),
-                                prefixIcon: const Icon(Icons.email_outlined,
+                                prefixIcon: const Icon(Icons.supervisor_account_outlined,
                                     color: Colors.white),
                                 hintStyle: const TextStyle(
                                   color: Colors.white,

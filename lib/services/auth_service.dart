@@ -49,12 +49,11 @@ class AuthService {
       if (user == null) {
         throw Exception("No user found");
       } else {
-        //await DatabaseService(user.uid).saveUser(displayName);
         await _firestore
             .collection('users')
             .doc(_fireBaseAuth.currentUser!.uid)
             .set({
-          //"displayName": displayName,
+          "displayName": displayName,
           "email": email,
           "status": "Unavalible",
           "uid": _fireBaseAuth.currentUser!.uid,
