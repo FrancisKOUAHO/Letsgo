@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import 'models/user_model.dart';
 
-
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   if (kDebugMode) {
     print('Background message ${message.messageId}');

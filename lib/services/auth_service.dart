@@ -42,18 +42,19 @@ class AuthService {
 
   Future createUserWithEmailAndPassword(
       String displayName, String email, String password) async {
-    print(displayName);
     try {
       final credential = await _fireBaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = credential.user;
-
       if (user == null) {
         throw Exception("No user found");
       } else {
-        await DatabaseService(user.uid).saveUser(displayName);
-        await _firestore.collection('users').doc(_fireBaseAuth.currentUser!.uid).set({
-          "displayName": displayName,
+        //await DatabaseService(user.uid).saveUser(displayName);
+        await _firestore
+            .collection('users')
+            .doc(_fireBaseAuth.currentUser!.uid)
+            .set({
+          //"displayName": displayName,
           "email": email,
           "status": "Unavalible",
           "uid": _fireBaseAuth.currentUser!.uid,
@@ -70,17 +71,29 @@ class AuthService {
   }
 
   Future<void> userSetup(String displayName) async {
-    CollectionReference users = _firestore.collection('users');
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
     String? uid = _fireBaseAuth.currentUser?.uid.toString();
     users.add({'displayName': displayName, 'uid': uid});
     return;
   }
 
   Future resetPassword(String email) async {
-    return await _fireBaseAuth.sendPasswordResetEmail(email: email);
+    try {
+      return await _fireBaseAuth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      if (kDebugMode) {
+        print('error $e');
+      }
+    }
   }
 
   Future<void> signOut() async {
-    return await _fireBaseAuth.signOut();
+    try {
+      return await _fireBaseAuth.signOut();
+    } catch (e) {
+      if (kDebugMode) {
+        print('error $e');
+      }
+    }
   }
 }

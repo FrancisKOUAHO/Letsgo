@@ -128,6 +128,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   onPressed: () async {
                                     await authService
                                         .resetPassword(emailController.text);
+
                                   }),
                             ),
                             const SizedBox(
