@@ -70,7 +70,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                user.data()['photoUrl'],
+                                user.data()['photoUrl'] ?? "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png",
                               ))),
                     ),
                     Positioned(
