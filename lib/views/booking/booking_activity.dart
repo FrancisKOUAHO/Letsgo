@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../common/resume_word.dart';
 
@@ -22,17 +22,12 @@ class _BookingActivityState extends State<BookingActivity> {
 
   final now = DateTime.now();
   late BookingService mockBookingService;
-  dynamic userName;
-  dynamic userEmail;
+  String serviceId = const Uuid().v1();
 
   @override
   void initState() {
     super.initState();
-    // DateTime.now().startOfDay
-    // DateTime.now().endOfDay
     mockBookingService = BookingService(
-        userEmail: userEmail,
-        userName: userName,
         serviceName: widget.activity['titleCategory'],
         servicePrice: int.parse(sliceNameAndLastname(widget.activity['price'])),
         serviceDuration: 30,
@@ -59,14 +54,12 @@ class _BookingActivityState extends State<BookingActivity> {
         textColor: Colors.white,
         fontSize: 20.0);
 
-     await FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)
-        .update(newBooking.toJson());
-
-    if (kDebugMode) {
-      print('${newBooking.toJson()} a été téléchargé');
-    }
+        .collection("booking")
+        .doc(serviceId)
+        .set(mockBookingService.toJson());
   }
 
   List<DateTimeRange> converted = [];
@@ -90,15 +83,6 @@ class _BookingActivityState extends State<BookingActivity> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(_auth.currentUser!.uid)
-        .get()
-        .then((value) {
-      userName = value.data()!['displayName'];
-      userEmail = value.data()!['email'];
-    });
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: LetsGoTheme.main,

@@ -265,33 +265,24 @@ class _SignInState extends State<SignIn> {
                                           });
                                         });
                                       });
-                                      if (data.data()[
-                                              'favoriteCategoryOfActivity'] ==
-                                          null) {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SelectActivityFavorites()),
-                                        );
-                                      }
-                                      if (data.data()[
-                                              'favoriteCategoryOfActivity'] ==
-                                          true) {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const HomeScreen()),
-                                        );
-                                      } else {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SelectActivityFavorites()),
-                                        );
-                                      }
+                                      setState(() {
+                                        if (data.data()[
+                                            'favoriteCategoryOfActivity']) {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomeScreen()),
+                                          );
+                                        } else {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SelectActivityFavorites()),
+                                          );
+                                        }
+                                      });
                                     }
                                     setState(() {
                                       emailController.text.isEmpty
