@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:letsgo/models/user_model.dart';
 
 import 'database.dart';
@@ -33,9 +34,14 @@ class AuthService {
       User? user = credential.user;
       return _userFromFirebase(credential.user);
     } catch (e) {
-      if (kDebugMode) {
-        print('error $e');
-      }
+      Fluttertoast.showToast(
+          msg: "Une erreur s'est produite dans la combinaison de votre adresse électronique et de votre mot de passe. Veuillez réessayer.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
     return null;
   }
@@ -47,7 +53,14 @@ class AuthService {
           email: email, password: password);
       User? user = credential.user;
       if (user == null) {
-        throw Exception("No user found");
+        Fluttertoast.showToast(
+            msg: "Aucun utilisateur trouvé",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       } else {
         await _firestore
             .collection('users')
@@ -62,9 +75,14 @@ class AuthService {
         return _userFromFirebase(credential.user);
       }
     } catch (exception) {
-      if (kDebugMode) {
-        print(exception.toString());
-      }
+      Fluttertoast.showToast(
+          msg: exception.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
       return null;
     }
   }
@@ -78,11 +96,16 @@ class AuthService {
 
   Future resetPassword(String email) async {
     try {
-      return await _fireBaseAuth.sendPasswordResetEmail(email: email);
+       await _fireBaseAuth.sendPasswordResetEmail(email: email);
     } catch (e) {
-      if (kDebugMode) {
-        print('error $e');
-      }
+      Fluttertoast.showToast(
+          msg: "$e",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 
@@ -90,9 +113,15 @@ class AuthService {
     try {
       return await _fireBaseAuth.signOut();
     } catch (e) {
-      if (kDebugMode) {
-        print('error $e');
-      }
+      Fluttertoast.showToast(
+          msg: "$e",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+      );
     }
   }
 }

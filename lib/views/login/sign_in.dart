@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/views/home/home_screen.dart';
 import 'package:letsgo/views/login/reset_password.dart';
@@ -241,10 +242,15 @@ class _SignInState extends State<SignIn> {
                                             emailController.text,
                                             passwordController.text);
                                     if (authResult == null) {
-                                      if (kDebugMode) {
-                                        print(
-                                            'Erreur de connexion. Impossible de se connecter');
-                                      }
+                                      Fluttertoast.showToast(
+                                          msg:
+                                              'Erreur de connexion. Impossible de se connecter',
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
                                     } else {
                                       emailController.clear();
                                       passwordController.clear();

@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:letsgo/views/login/sign_in.dart';
 import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
@@ -85,7 +85,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),
-                                prefixIcon: const Icon(Icons.supervisor_account_outlined,
+                                prefixIcon: const Icon(
+                                    Icons.supervisor_account_outlined,
                                     color: Colors.white),
                                 hintStyle: const TextStyle(
                                   color: Colors.white,
@@ -186,15 +187,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             emailController.text,
                                             passwordController.text);
                                     if (result == null) {
-                                      if (kDebugMode) {
-                                        print('Warning');
-                                      }
+                                      Fluttertoast.showToast(
+                                          msg: "Warning",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
                                     } else {
                                       namelController.clear();
                                       emailController.clear();
                                       passwordController.clear();
 
-                                       Navigator.push(
+                                      Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>

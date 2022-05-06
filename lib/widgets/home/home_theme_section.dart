@@ -47,8 +47,8 @@ class HomeThemeSection extends StatelessWidget {
                         borderRadius: BorderRadius.circular(17),
                       ),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            15, 15, 15, 15),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -68,8 +68,7 @@ class HomeThemeSection extends StatelessWidget {
                                     17, 0, 0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -78,7 +77,8 @@ class HomeThemeSection extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Image.asset('assets/icons/Category.png',
+                                        Image.asset(
+                                          'assets/icons/Category.png',
                                           width: 17,
                                           height: 17,
                                           fit: BoxFit.cover,
@@ -98,14 +98,14 @@ class HomeThemeSection extends StatelessWidget {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional
-                                          .fromSTEB(0, 4, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            ResumeWord(
-                                                activity['title'] ?? ''),
+                                            ResumeWord(activity['title'] ?? ''),
                                             style: const TextStyle(
                                               color: Color(0xFF57636C),
                                               fontSize: 14,
@@ -120,8 +120,8 @@ class HomeThemeSection extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 30, 0, 0),
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 elevation: 0,

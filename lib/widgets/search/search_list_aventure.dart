@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/resume_word.dart';
 import '../../views/event/event_screen.dart';
 import '../../theme/letsgo_theme.dart';
 
@@ -45,32 +46,111 @@ class _SearchListAventureState extends State<SearchListAventure> {
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> activity =
                       document.data()! as Map<String, dynamic>;
-                  return Card(
-                    child: ListTile(
-                      leading: Image.network(
-                        activity['image'] ??
-                            "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
-                        width: 80,
-                        height: 80,
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    child: Container(
+                      width: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(17),
                       ),
-                      title: Text(activity['title'] ?? 'Produit inconnu',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                      subtitle:
-                          const Text('', style: TextStyle(color: Colors.black)),
-                      trailing: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  EventScreen(
-                                      activity: activity
-                                  )));
-                        },
-                        child: Image.asset("assets/icons/DetailButton.png"),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            15, 15, 15, 15),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(13),
+                              child: Image.network(
+                                activity["image"] ??
+                                    "https://www.elektroaktif.com.tr/assets/images/noimage.jpg",
+                                width: 66,
+                                height: 66,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    17, 0, 0, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/icons/Category.png',
+                                          width: 17,
+                                          height: 17,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(7, 0, 0, 0),
+                                          child: Text(
+                                            activity['titleCategory'] ?? '',
+                                            style: const TextStyle(
+                                              color: Color(0xFF1D2429),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0, 4, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            ResumeWord(activity['title'] ?? ''),
+                                            style: const TextStyle(
+                                              color: Color(0xFF57636C),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 30, 0, 0),
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                elevation: 0,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => EventScreen(
+                                                activity: activity)));
+                                  },
+                                  child: Image.asset(
+                                    "assets/icons/DetailButton.png",
+                                    width: 30,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      isThreeLine: true,
                     ),
                   );
                 }).toList(),
@@ -80,6 +160,3 @@ class _SearchListAventureState extends State<SearchListAventure> {
         });
   }
 }
-
-/*
-ResumeWord(category['description']) ?? ''*/
