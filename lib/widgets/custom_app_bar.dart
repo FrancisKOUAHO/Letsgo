@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:letsgo/views/search/search_map.dart';
 
 import '../theme/letsgo_theme.dart';
 import '../views/profil/profil_screen.dart';
@@ -56,10 +57,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const IconButton(
+             IconButton(
               icon:
-                  FaIcon(FontAwesomeIcons.solidBell, color: LetsGoTheme.white),
-              onPressed: null,
+                  const FaIcon(FontAwesomeIcons.solidBell, color: LetsGoTheme.white),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SearchMap()),
+                );
+              },
             ),
             Container(
                 padding: const EdgeInsets.all(5),

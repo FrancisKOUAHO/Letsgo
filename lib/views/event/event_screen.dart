@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
 
+
 import '../booking/booking_activity.dart';
 
 class EventScreen extends StatefulWidget {

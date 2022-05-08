@@ -77,7 +77,7 @@ class ChatRoom extends StatelessWidget {
           .update({"message": imageUrl});
 
       if (kDebugMode) {
-        print(imageUrl);
+        print("imageUrl $imageUrl");
       }
     }
   }

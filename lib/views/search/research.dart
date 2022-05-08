@@ -7,7 +7,6 @@ import '../../common/resume_word.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../event/event_screen.dart';
-import '../profil/profil_screen.dart';
 
 class Research extends StatefulWidget {
   const Research({Key? key}) : super(key: key);
