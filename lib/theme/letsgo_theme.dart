@@ -73,6 +73,13 @@ class LetsGoTheme {
     color: LetsGoTheme.black,
   );
 
+  static const TextStyle reservation = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 20,
+    letterSpacing: 0.7,
+    color: LetsGoTheme.black,
+  );
+
   static const TextStyle search = TextStyle(
     fontSize: 14.0,
     color: LetsGoTheme.black,

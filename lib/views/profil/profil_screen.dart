@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:letsgo/views/profil/settings_scren.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/views/ticket/ticket_screen.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -143,8 +145,13 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           child: SizedBox(
                             width: 110,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: const <Widget>[
+                                Icon(FontAwesomeIcons.accusoft,
+                                    size: 16, color: LetsGoTheme.main),
+                                SizedBox(
+                                  height: 4,
+                                ),
                                 Text(
                                   "ACTIVITÈS",
                                   style: TextStyle(
@@ -159,7 +166,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                   "01",
                                   style: TextStyle(
                                     color: LetsGoTheme.black,
-                                    fontSize: 20,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -167,58 +174,79 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 110,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Text(
-                                "RESERVATION",
-                                style: TextStyle(
-                                  color: LetsGoTheme.black,
-                                  fontSize: 12,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ListBooking()),
+                            );
+                          },
+                          child: SizedBox(
+                            width: 110,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.ticket,
+                                    size: 16, color: LetsGoTheme.main),
+                                SizedBox(
+                                  height: 4,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                "17",
-                                style: TextStyle(
-                                  color: LetsGoTheme.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                Text(
+                                  "RESERVATION",
+                                  style: TextStyle(
+                                    color: LetsGoTheme.black,
+                                    fontSize: 12,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  "17",
+                                  style: TextStyle(
+                                    color: LetsGoTheme.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          width: 110,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Text(
-                                "COUPS DE COEUR",
-                                style: TextStyle(
-                                  color: LetsGoTheme.black,
-                                  fontSize: 12,
+                        InkWell(
+                          child: SizedBox(
+                            width: 110,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.heartCircleCheck,
+                                    size: 16, color: LetsGoTheme.main),
+                                SizedBox(
+                                  height: 4,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                "7",
-                                style: TextStyle(
-                                  color: LetsGoTheme.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                Text(
+                                  "COUPS DE COEUR",
+                                  style: TextStyle(
+                                    color: LetsGoTheme.black,
+                                    fontSize: 12,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  "7",
+                                  style: TextStyle(
+                                    color: LetsGoTheme.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),
