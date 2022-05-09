@@ -220,7 +220,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.heartCircleCheck,
+                                Icon(FontAwesomeIcons.heartPulse,
                                     size: 16, color: LetsGoTheme.main),
                                 SizedBox(
                                   height: 4,
