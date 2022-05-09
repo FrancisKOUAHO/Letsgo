@@ -26,7 +26,6 @@ class LetsGoTheme {
     color: LetsGoTheme.white,
   );
 
-
   static const TextStyle selectTitle = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 25.0,

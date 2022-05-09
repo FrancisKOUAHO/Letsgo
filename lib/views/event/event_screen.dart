@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
 
-
+import '../../theme/size-config-flutter.dart';
 import '../booking/booking_activity.dart';
 
 class EventScreen extends StatefulWidget {
@@ -19,6 +19,7 @@ class EventScreen extends StatefulWidget {
 class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -143,7 +144,7 @@ class _EventScreenState extends State<EventScreen> {
                           ],
                         ),
                         Container(
-                          margin: const EdgeInsets.fromLTRB(240, 7, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(200, 7, 0, 0),
                           child: RaisedButton(
                             onPressed: () {
                               Navigator.push(
@@ -175,6 +176,7 @@ class _EventScreenState extends State<EventScreen> {
 }
 
 containerHeaderImages(BuildContext context) {
+  SizeConfig().init(context);
   return Container(
     padding: const EdgeInsets.all(15),
     margin: const EdgeInsets.fromLTRB(35, 0, 35, 0),
@@ -275,7 +277,7 @@ Widget containerReviews(BuildContext context) {
 
 singleReview(BuildContext context) {
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(30, 15, 0, 0),
+    padding: const EdgeInsetsDirectional.fromSTEB(5, 5, 0, 0),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
