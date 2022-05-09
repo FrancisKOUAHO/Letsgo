@@ -267,6 +267,16 @@ class _SignInState extends State<SignIn> {
                                       });
                                       setState(() {
                                         if (data.data()[
+                                                'favoriteCategoryOfActivity'] ==
+                                            null) {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SelectActivityFavorites()),
+                                          );
+                                        }
+                                        if (data.data()[
                                             'favoriteCategoryOfActivity']) {
                                           Navigator.push(
                                             context,
