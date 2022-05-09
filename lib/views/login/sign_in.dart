@@ -252,47 +252,14 @@ class _SignInState extends State<SignIn> {
                                           textColor: Colors.white,
                                           fontSize: 16.0);
                                     } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeScreen()),
+                                      );
                                       emailController.clear();
                                       passwordController.clear();
-                                      setState(() {
-                                        FirebaseFirestore.instance
-                                            .collection("users")
-                                            .doc(_fireBaseAuth.currentUser!.uid)
-                                            .get()
-                                            .then((value) {
-                                          setState(() {
-                                            data = value;
-                                          });
-                                        });
-                                      });
-                                      setState(() {
-                                        if (data.data()[
-                                                'favoriteCategoryOfActivity'] ==
-                                            null) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SelectActivityFavorites()),
-                                          );
-                                        }
-                                        if (data.data()[
-                                            'favoriteCategoryOfActivity']) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const HomeScreen()),
-                                          );
-                                        } else {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SelectActivityFavorites()),
-                                          );
-                                        }
-                                      });
                                     }
                                     setState(() {
                                       emailController.text.isEmpty

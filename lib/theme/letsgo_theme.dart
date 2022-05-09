@@ -26,7 +26,6 @@ class LetsGoTheme {
     color: LetsGoTheme.white,
   );
 
-
   static const TextStyle selectTitle = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 25.0,
@@ -69,6 +68,13 @@ class LetsGoTheme {
   static const TextStyle bigTitle = TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 28,
+    letterSpacing: 0.7,
+    color: LetsGoTheme.black,
+  );
+
+  static const TextStyle reservation = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 20,
     letterSpacing: 0.7,
     color: LetsGoTheme.black,
   );

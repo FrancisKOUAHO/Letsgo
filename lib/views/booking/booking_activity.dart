@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../common/resume_word.dart';
@@ -45,21 +46,26 @@ class _BookingActivityState extends State<BookingActivity> {
     await Future.delayed(const Duration(seconds: 1));
     converted.add(DateTimeRange(
         start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    Fluttertoast.showToast(
-        msg: 'Votre réservation a ete prise en compte',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 5,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 20.0);
-
     await FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)
         .collection("booking")
         .doc(serviceId)
         .set(mockBookingService.toJson());
+
+    Fluttertoast.showToast(
+        msg: 'votre réservation a été prise en compte',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 7,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 20.0);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ListBooking()),
+    );
   }
 
   List<DateTimeRange> converted = [];
