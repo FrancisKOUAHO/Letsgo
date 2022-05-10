@@ -4,6 +4,7 @@ import 'package:letsgo/views/group_chats/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/widgets/notification_badge.dart';
 import '../../widgets/custom_return_appbar.dart';
 
 class GroupChatHomeScreen extends StatefulWidget {
@@ -15,14 +16,16 @@ class GroupChatHomeScreen extends StatefulWidget {
 
 class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  late int _totalNotifications;
   bool isLoading = true;
 
   List groupList = [];
 
   @override
   void initState() {
-    super.initState();
+    _totalNotifications = 1;
     getAvailableGroups();
+    super.initState();
   }
 
   void getAvailableGroups() async {
@@ -90,7 +93,8 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
                                 child: Container(
                                   color: Colors.transparent,
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
@@ -107,16 +111,9 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
                           ),
                         ),
                         const Text("Today"),
-                        IconBadge(
-                          icon: const Icon(null),
-                          itemCount: 1,
-                          badgeColor: Colors.red,
-                          itemColor: Colors.white,
-                          hideZero: true,
-                          onTap: () {
-                            print('test');
-                          },
-                        ),
+                        NotificationBadge(
+                            icon: null,
+                            totalNotifications: _totalNotifications),
                       ],
                     ),
                   ),

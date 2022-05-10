@@ -8,6 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:icon_badge/icon_badge.dart';
 import 'package:letsgo/views/search/search_map.dart';
+import 'package:letsgo/widgets/notification_badge.dart';
 
 import '../common/resume_word.dart';
 import '../theme/letsgo_theme.dart';
@@ -23,9 +24,17 @@ class CustomAppBar extends StatefulWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   final user = FirebaseAuth.instance.currentUser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  late int _totalNotifications;
 
   String currentAddress = '';
   late Position currentposition;
+
+
+  @override
+  void initState() {
+    _totalNotifications = 1;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,21 +94,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconBadge(
-              icon: const Icon(
-                Icons.notifications_none,
-                color: LetsGoTheme.main,
-                size: 30,
-              ),
-              itemCount: 5,
-              badgeColor: Colors.red,
-              itemColor: Colors.white,
-              top: 5,
-              hideZero: true,
-              onTap: () {
-                print('test');
-              },
-            ),
+            NotificationBadge(icon: Icons.notifications_none, totalNotifications: _totalNotifications),
             Container(
               padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
               child: Material(
