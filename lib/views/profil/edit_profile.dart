@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import '../../widgets/custom_return_appbar.dart';
 
 class SettingsUI extends StatelessWidget {
   const SettingsUI({Key? key}) : super(key: key);
@@ -40,7 +41,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
       });
     });
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.deepPurple),
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomReturnAppBar('Modifier mon profil'),
+      ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
@@ -70,7 +74,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                user.data()['photoUrl'] ?? "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png",
+                                user.data()['photoUrl'] ??
+                                    "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png",
                               ))),
                     ),
                     Positioned(

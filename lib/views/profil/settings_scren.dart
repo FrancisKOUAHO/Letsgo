@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/profil/edit_profile.dart';
 import 'package:letsgo/services/auth_service.dart';
+import '../../widgets/custom_return_appbar.dart';
 
 import '../login/sign_in.dart';
 
@@ -18,18 +19,14 @@ class _SettingsScrenState extends State<SettingsScren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        foregroundColor: Colors.white,
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomReturnAppBar('Paramètres'),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
           children: [
-            const Text(
-              "Paramètres",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-            ),
             const SizedBox(
               height: 40,
             ),
@@ -98,9 +95,10 @@ class _SettingsScrenState extends State<SettingsScren> {
                 onPressed: () async {
                   await _auth.signOut().then((result) => {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignIn()))
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()),
+                        )
                       });
                 },
                 child: const Text("Se déconnecter",
