@@ -96,7 +96,7 @@ class GroupChatRoom extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: Color(0x3A000000),
+                  color: const Color(0x3A000000),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
