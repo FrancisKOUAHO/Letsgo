@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:icon_badge/icon_badge.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../theme/letsgo_theme.dart';
+import '../views/notifications/notifications.dart';
 
 class NotificationBadge extends StatelessWidget {
   final int totalNotifications;
@@ -26,7 +28,11 @@ class NotificationBadge extends StatelessWidget {
       top: 5,
       hideZero: true,
       onTap: () {
-        print('test');
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.leftToRightWithFade,
+                child: const Notifications()));
       },
     );
   }
