@@ -8,6 +8,7 @@ import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../common/resume_word.dart';
+import '../../widgets/custom_return_appbar.dart';
 
 class BookingActivity extends StatefulWidget {
   final activity;
@@ -90,10 +91,9 @@ class _BookingActivityState extends State<BookingActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: LetsGoTheme.main,
-        foregroundColor: Colors.white,
-        title: const Text('Réservation'),
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomReturnAppBar('Réservation'),
       ),
       body: Center(
         child: BookingCalendar(

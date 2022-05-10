@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:icon_badge/icon_badge.dart';
 import 'package:letsgo/views/group_chats/create_group/add_members.dart';
 import 'package:letsgo/views/group_chats/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -60,7 +60,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
           : ListView.builder(
               itemCount: groupList.length,
               itemBuilder: (context, index) {
-                return ListTile(
+                return GestureDetector(
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => GroupChatRoom(
@@ -69,8 +69,57 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
                       ),
                     ),
                   ),
-                  leading: const Icon(Icons.group),
-                  title: Text(groupList[index]['name']),
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, top: 10, bottom: 10),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Row(
+                            children: <Widget>[
+                              const CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                  'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
+                                ),
+                                maxRadius: 30,
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(groupList[index]['name']),
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      //const Text("**********"),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Text("Today"),
+                        IconBadge(
+                          icon: const Icon(null),
+                          itemCount: 1,
+                          badgeColor: Colors.red,
+                          itemColor: Colors.white,
+                          hideZero: true,
+                          onTap: () {
+                            print('test');
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),

@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/letsgo_theme.dart';
 
 import '../views/profil/profil_screen.dart';
@@ -12,6 +12,7 @@ class CustomMessagesAppBar extends StatefulWidget {
 }
 
 class _CustomMessagesAppBarState extends State<CustomMessagesAppBar> {
+  final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -43,7 +44,8 @@ class _CustomMessagesAppBarState extends State<CustomMessagesAppBar> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                      user!.photoURL ??
+                          'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,

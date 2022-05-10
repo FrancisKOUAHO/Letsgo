@@ -20,7 +20,7 @@ class _CustomReturnAppBarState extends State<CustomReturnAppBar> {
       centerTitle: true,
       title: Text(
         widget.pageTitle,
-        style: TextStyle(color: LetsGoTheme.black),
+        style: const TextStyle(color: LetsGoTheme.black),
       ),
       leading: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -30,7 +30,7 @@ class _CustomReturnAppBarState extends State<CustomReturnAppBar> {
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Color(0x3A000000),
+              color: const Color(0x3A000000),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),

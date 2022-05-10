@@ -6,8 +6,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:icon_badge/icon_badge.dart';
 import 'package:letsgo/views/search/search_map.dart';
 
+import '../common/resume_word.dart';
 import '../theme/letsgo_theme.dart';
 import '../views/profil/profil_screen.dart';
 
@@ -22,7 +24,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   final user = FirebaseAuth.instance.currentUser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String currentAddress = 'Position inconnue';
+  String currentAddress = '';
   late Position currentposition;
 
   @override
@@ -45,33 +47,36 @@ class _CustomAppBarState extends State<CustomAppBar> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(14.0)),
-            child: Container(
-              color: LetsGoTheme.lightPurple,
-              padding: const EdgeInsets.fromLTRB(0, 0, 18, 0),
-              height: 45,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: _determinePosition,
-                    icon: const FaIcon(
-                      FontAwesomeIcons.mapMarkerAlt,
-                      color: LetsGoTheme.main,
+          InkWell(
+            onTap: _determinePosition,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(14.0)),
+              child: Container(
+                color: LetsGoTheme.lightPurple,
+                padding: const EdgeInsets.fromLTRB(0, 0, 18, 0),
+                height: 45,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: _determinePosition,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.mapMarkerAlt,
+                        color: LetsGoTheme.main,
+                      ),
+                      iconSize: 20.0,
                     ),
-                    iconSize: 20.0,
-                  ),
-                  Text(
-                    currentAddress,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: LetsGoTheme.black,
+                    Text(
+                      currentAddressOk(currentAddress),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: LetsGoTheme.black,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
+          )
           // Your widgets here
         ],
       ),
@@ -80,17 +85,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconButton(
-              icon: const FaIcon(
-                FontAwesomeIcons.solidBell,
+            IconBadge(
+              icon: const Icon(
+                Icons.notifications_none,
                 color: LetsGoTheme.main,
+                size: 30,
               ),
-              iconSize: 20.0,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SearchMap()),
-                );
+              itemCount: 5,
+              badgeColor: Colors.red,
+              itemColor: Colors.white,
+              top: 5,
+              hideZero: true,
+              onTap: () {
+                print('test');
               },
             ),
             Container(
@@ -107,7 +114,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                      user!.photoURL ??
+                          'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,
