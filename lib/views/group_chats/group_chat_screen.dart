@@ -23,7 +23,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
 
   @override
   void initState() {
-    _totalNotifications = 1;
+    _totalNotifications = 0;
     getAvailableGroups();
     super.initState();
   }

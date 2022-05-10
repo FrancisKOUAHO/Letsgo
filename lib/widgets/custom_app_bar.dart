@@ -32,7 +32,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   void initState() {
-    _totalNotifications = 1;
+    _totalNotifications = 0;
     super.initState();
   }
 

@@ -90,7 +90,6 @@ class ChatRoom extends StatelessWidget {
         "sendby": data.data()!['displayName'],
         "message": _message.text,
         "type": "text",
-        "isread": false,
         "time": FieldValue.serverTimestamp(),
       };
 
@@ -161,7 +160,7 @@ class ChatRoom extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: const Color(0x3A000000),
+                  color: Color(0x3A000000),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),

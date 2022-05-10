@@ -55,7 +55,7 @@ class GroupChatRoom extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 100,
-        title: Text(groupName, style: TextStyle(color: LetsGoTheme.black)),
+        title: Text(groupName, style: const TextStyle(color: LetsGoTheme.black)),
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +64,7 @@ class GroupChatRoom extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: Color(0x3A000000),
+                color: const Color(0x3A000000),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
