@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/create_group/create_group.dart';
+import '../../../widgets/custom_return_appbar.dart';
 
 class AddMembersInGroup extends StatefulWidget {
   const AddMembersInGroup({Key? key}) : super(key: key);
@@ -97,8 +98,9 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Ajouter des membres"),
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomReturnAppBar('Ajouter des membres'),
       ),
       body: SingleChildScrollView(
         child: Column(

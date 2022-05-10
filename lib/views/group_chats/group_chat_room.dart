@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/group_info.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/letsgo_theme.dart';
 
 import '../../theme/constants.dart';
 
@@ -50,19 +52,82 @@ class GroupChatRoom extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(groupName),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leadingWidth: 100,
+        title: Text(groupName, style: TextStyle(color: LetsGoTheme.black)),
+        leading: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                color: Color(0x3A000000),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Container(
+                  color: LetsGoTheme.lightPurple,
+                  width: 45,
+                  height: 45,
+                  child: IconButton(
+                    icon: const FaIcon(
+                      FontAwesomeIcons.chevronLeft,
+                      color: LetsGoTheme.main,
+                    ),
+                    iconSize: 20.0,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
         actions: [
-          IconButton(
-              onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => GroupInfo(
-                        groupName: groupName,
-                        groupId: groupChatId,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  color: Color(0x3A000000),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Container(
+                    color: LetsGoTheme.lightPurple,
+                    width: 45,
+                    height: 45,
+                    child: IconButton(
+                      icon: const FaIcon(
+                        FontAwesomeIcons.ellipsisVertical,
+                        color: LetsGoTheme.main,
                       ),
+                      iconSize: 20.0,
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => GroupInfo(
+                              groupName: groupName,
+                              groupId: groupChatId,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-              icon: const Icon(Icons.more_vert)),
+                ),
+              ),
+            ],
+          ),
         ],
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(

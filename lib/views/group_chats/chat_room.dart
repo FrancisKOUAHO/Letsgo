@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../theme/constants.dart';
 
@@ -117,26 +119,70 @@ class ChatRoom extends StatelessWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        title: StreamBuilder<DocumentSnapshot>(
-          stream:
-              _firestore.collection("users").doc(userMap['uid']).snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.data != null) {
-              return Column(
-                children: [
-                  Text(userMap['displayName']),
-                  Text(
-                    snapshot.data!['status'],
-                    style: const TextStyle(fontSize: 12),
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leadingWidth: 100,
+          centerTitle: true,
+          title: StreamBuilder<DocumentSnapshot>(
+            stream:
+                _firestore.collection("users").doc(userMap['uid']).snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.data != null) {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  child: Column(
+                    children: [
+                      Text(
+                        userMap['displayName'],
+                        style: const TextStyle(color: LetsGoTheme.black),
+                      ),
+                      Text(
+                        snapshot.data!['status'],
+                        style: const TextStyle(
+                            fontSize: 12, color: LetsGoTheme.black),
+                      ),
+                    ],
                   ),
-                ],
-              );
-            } else {
-              return Container();
-            }
-          },
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
+          leading: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  color: Color(0x3A000000),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Container(
+                    color: LetsGoTheme.lightPurple,
+                    width: 45,
+                    height: 45,
+                    child: IconButton(
+                      icon: const FaIcon(
+                        FontAwesomeIcons.chevronLeft,
+                        color: LetsGoTheme.main,
+                      ),
+                      iconSize: 20.0,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(

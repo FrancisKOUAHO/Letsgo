@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../widgets/custom_profil_appbar.dart';
 import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:letsgo/views/profil/settings_scren.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
@@ -35,38 +36,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
     });
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.white,
-        elevation: 0,
-        actions: <Widget>[
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.cog, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScren()),
-              );
-            },
-          ),
-        ],
-        title: const Text(
-          "Profile",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-          ),
-        ),
-        centerTitle: true,
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomProfilAppBar(),
       ),
       body: Stack(
         children: <Widget>[

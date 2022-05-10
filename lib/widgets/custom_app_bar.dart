@@ -38,43 +38,65 @@ class _CustomAppBarState extends State<CustomAppBar> {
     });
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leadingWidth: 100,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          IconButton(
-            onPressed: _determinePosition,
-            icon: const FaIcon(FontAwesomeIcons.mapMarkerAlt,
-                color: LetsGoTheme.white),
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(14.0)),
+            child: Container(
+              color: LetsGoTheme.lightPurple,
+              padding: const EdgeInsets.fromLTRB(0, 0, 18, 0),
+              height: 45,
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: _determinePosition,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.mapMarkerAlt,
+                      color: LetsGoTheme.main,
+                    ),
+                    iconSize: 20.0,
+                  ),
+                  Text(
+                    currentAddress,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: LetsGoTheme.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          Text(currentAddress, style: const TextStyle(fontSize: 18)),
           // Your widgets here
         ],
       ),
-      backgroundColor: LetsGoTheme.main,
       actions: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-             IconButton(
-              icon:
-                  const FaIcon(FontAwesomeIcons.solidBell, color: LetsGoTheme.white),
-              onPressed: (){
+            IconButton(
+              icon: const FaIcon(
+                FontAwesomeIcons.solidBell,
+                color: LetsGoTheme.main,
+              ),
+              iconSize: 20.0,
+              onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const SearchMap()),
+                  MaterialPageRoute(builder: (context) => const SearchMap()),
                 );
               },
             ),
             Container(
-                padding: const EdgeInsets.all(5),
-                child: GestureDetector(
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(user?.photoURL ??
-                        "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"),
-                  ),
+              padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
+              child: Material(
+                child: InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
@@ -82,7 +104,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           builder: (context) => const ProfilScreen()),
                     );
                   },
-                ))
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      'https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                      width: 48,
+                      height: 48,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         )
       ],

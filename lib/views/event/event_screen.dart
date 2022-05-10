@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
-
+import '../../widgets/custom_event_appbar.dart';
 import '../../theme/size-config-flutter.dart';
 import '../booking/booking_activity.dart';
 
@@ -22,49 +22,9 @@ class _EventScreenState extends State<EventScreen> {
     SizeConfig().init(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 100,
-        leading: Container(
-          width: 60,
-          height: 30,
-          margin: const EdgeInsets.fromLTRB(30, 0, 13, 0),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              LetsGoTheme.white.withOpacity(0.9),
-              LetsGoTheme.white.withOpacity(0.9),
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: IconButton(
-            iconSize: 25.0,
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-            color: LetsGoTheme.main,
-          ),
-        ),
-        actions: [
-          Container(
-            width: 60,
-            height: 30,
-            margin: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                LetsGoTheme.white.withOpacity(0.9),
-                LetsGoTheme.white.withOpacity(0.9),
-              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: IconButton(
-              iconSize: 30.0,
-              onPressed: () {},
-              icon: const FaIcon(FontAwesomeIcons.heart),
-              color: LetsGoTheme.main,
-            ),
-          )
-        ],
-        centerTitle: true,
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomEventAppBar(),
       ),
       backgroundColor: const Color(0xFF111417),
       body: Stack(

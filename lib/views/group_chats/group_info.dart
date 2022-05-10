@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/add_members.dart';
 import 'package:letsgo/views/group_chats/chat_hoome.dart';
+import '../../widgets/custom_return_appbar.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId, groupName;
@@ -62,7 +63,10 @@ class _GroupInfoState extends State<GroupInfo> {
       membersList.removeAt(index);
     });
 
-    await FirebaseFirestore.instance.collection('groups').doc(widget.groupId).update({
+    await FirebaseFirestore.instance
+        .collection('groups')
+        .doc(widget.groupId)
+        .update({
       "members": membersList,
     }).then((value) async {
       await FirebaseFirestore.instance
@@ -107,7 +111,10 @@ class _GroupInfoState extends State<GroupInfo> {
         }
       }
 
-      await FirebaseFirestore.instance.collection('groups').doc(widget.groupId).update({
+      await FirebaseFirestore.instance
+          .collection('groups')
+          .doc(widget.groupId)
+          .update({
         "members": membersList,
       });
 
@@ -131,6 +138,10 @@ class _GroupInfoState extends State<GroupInfo> {
 
     return SafeArea(
       child: Scaffold(
+        appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 60),
+          child: CustomReturnAppBar(''),
+        ),
         body: isLoading
             ? Container(
                 height: size.height,
@@ -142,10 +153,6 @@ class _GroupInfoState extends State<GroupInfo> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: BackButton(),
-                    ),
                     SizedBox(
                       height: size.height / 8,
                       width: size.width / 1.1,

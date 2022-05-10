@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/chat_hoome.dart';
 import 'package:uuid/uuid.dart';
+import '../../../widgets/custom_return_appbar.dart';
 
 class CreateGroup extends StatefulWidget {
   final List<Map<String, dynamic>> membersList;
@@ -44,11 +45,14 @@ class _CreateGroupState extends State<CreateGroup> {
       });
     }
 
-    await FirebaseFirestore.instance.collection('groups').doc(groupId).collection('chats').add({
+    await FirebaseFirestore.instance
+        .collection('groups')
+        .doc(groupId)
+        .collection('chats')
+        .add({
       "message": "${_auth.currentUser!.displayName} a créé ce groupe.",
       "type": "notify",
     });
-
 
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => const ChatHoome()), (route) => false);
@@ -59,8 +63,9 @@ class _CreateGroupState extends State<CreateGroup> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Nom du groupe"),
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomReturnAppBar('Nom du groupe'),
       ),
       body: isLoading
           ? Container(
