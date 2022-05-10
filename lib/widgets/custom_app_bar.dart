@@ -29,7 +29,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
   String currentAddress = '';
   late Position currentposition;
 
-
   @override
   void initState() {
     _totalNotifications = 0;
@@ -94,7 +93,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            NotificationBadge(icon: Icons.notifications_none, totalNotifications: _totalNotifications),
+            NotificationBadge(
+                icon: Icons.notifications,
+                totalNotifications: _totalNotifications),
             Container(
               padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
               child: Material(
