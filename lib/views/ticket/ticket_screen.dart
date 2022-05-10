@@ -66,7 +66,11 @@ class _TicketScreenState extends State<TicketScreen> {
                           width: 150,
                           child: Card(
                             child: ListTile(
-                              title: Text(booking['serviceName']),
+                              title: Text(
+                                booking['serviceName'],
+                                style: const TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.bold),
+                              ),
                             ),
                             elevation: 4,
                             shadowColor: LetsGoTheme.main,
