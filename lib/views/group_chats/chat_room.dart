@@ -90,6 +90,7 @@ class ChatRoom extends StatelessWidget {
         "sendby": data.data()!['displayName'],
         "message": _message.text,
         "type": "text",
+        "isread": false,
         "time": FieldValue.serverTimestamp(),
       };
 
@@ -120,7 +121,7 @@ class ChatRoom extends StatelessWidget {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+        preferredSize: const Size(double.infinity, 60),
         child: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -132,7 +133,7 @@ class ChatRoom extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.data != null) {
                 return Padding(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                   child: Column(
                     children: [
                       Text(
@@ -160,7 +161,7 @@ class ChatRoom extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: Color(0x3A000000),
+                  color: const Color(0x3A000000),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
