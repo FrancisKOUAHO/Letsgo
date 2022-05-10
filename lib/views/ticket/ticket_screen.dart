@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/views/ticket/ticket.dart';
 
 class TicketScreen extends StatefulWidget {
@@ -41,7 +42,12 @@ class _TicketScreenState extends State<TicketScreen> {
           return Expanded(
             child: Container(
               padding: const EdgeInsets.all(10),
-              child: ListView(
+              child: GridView.count(
+                primary: false,
+                padding: const EdgeInsets.all(20),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 2,
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> booking =
                       document.data()! as Map<String, dynamic>;
@@ -56,14 +62,14 @@ class _TicketScreenState extends State<TicketScreen> {
                           );
                         },
                         child: SizedBox(
-                          height: 200,
-                          width: 210,
+                          height: 150,
+                          width: 150,
                           child: Card(
                             child: ListTile(
                               title: Text(booking['serviceName']),
                             ),
-                            elevation: 8,
-                            shadowColor: Colors.green,
+                            elevation: 4,
+                            shadowColor: LetsGoTheme.main,
                             margin: const EdgeInsets.all(20),
                           ),
                         ),

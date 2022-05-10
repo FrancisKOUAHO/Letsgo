@@ -4,6 +4,8 @@ import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
+import '../../widgets/custom_return_appbar.dart';
+
 class Ticket extends StatefulWidget {
   const Ticket({
     Key? key,
@@ -17,29 +19,9 @@ class _TicketState extends State<Ticket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: LetsGoTheme.main,
-        elevation: 0,
-        leadingWidth: 100,
-        leading: Container(
-          width: 60,
-          height: 30,
-          margin: const EdgeInsets.fromLTRB(30, 0, 13, 0),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              LetsGoTheme.white.withOpacity(0.9),
-              LetsGoTheme.white.withOpacity(0.9),
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: IconButton(
-            iconSize: 25.0,
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-            color: LetsGoTheme.main,
-          ),
-        ),
-        centerTitle: true,
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: CustomReturnAppBar('billet de reservation'),
       ),
       body: Center(
         child: FlutterTicketWidget(
