@@ -70,12 +70,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 color: Colors.black.withOpacity(0.1),
                                 offset: const Offset(0, 10))
                           ],
-                          shape: BoxShape.circle,
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                 user.data()['photoUrl'] ??
-                                    "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png",
+                                    'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
                               ))),
                     ),
                     Positioned(

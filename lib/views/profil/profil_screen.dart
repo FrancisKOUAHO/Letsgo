@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../widgets/custom_profil_appbar.dart';
 import 'package:letsgo/views/booking/list_booking.dart';
-import 'package:letsgo/views/profil/settings_scren.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/views/ticket/ticket_screen.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -45,7 +43,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
           Center(
             child: Image.network(
               user.data()['photoUrl'] ??
-                  'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png',
+                  'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
               fit: BoxFit.cover,
               width: size.width,
               height: size.height,
@@ -80,9 +78,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 28,
-                              backgroundImage: NetworkImage(user
-                                      .data()['photoUrl'] ??
-                                  'https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png'),
+                              backgroundImage: NetworkImage(
+                                user.data()['photoUrl'] ??
+                                    'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
+                              ),
                             ),
                             const SizedBox(
                               width: 12,

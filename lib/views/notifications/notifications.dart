@@ -20,7 +20,6 @@ class _NotificationsState extends State<Notifications> {
         preferredSize: Size(double.infinity, 60),
         child: CustomReturnAppBar('Notification'),
       ),
-      //TODO NOTIFICATION
       body: Center(
         child: Text(
           'Fonctionnalité bientôt disponible',
