@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/group_info.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/chats_theme.dart';
 import '../../theme/letsgo_theme.dart';
 
 import '../../theme/constants.dart';
@@ -55,7 +56,8 @@ class GroupChatRoom extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 100,
-        title: Text(groupName, style: const TextStyle(color: LetsGoTheme.black)),
+        title:
+            Text(groupName, style: const TextStyle(color: LetsGoTheme.black)),
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -150,7 +152,85 @@ class GroupChatRoom extends StatelessWidget {
                         Map<String, dynamic> chatMap =
                             snapshot.data!.docs[index].data()
                                 as Map<String, dynamic>;
-                        return messageTile(size, chatMap);
+                        bool isMe =
+                            chatMap["sendBy"] == data.data()!['displayName'];
+                        return Container(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          margin: const EdgeInsets.only(top: 10),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: isMe
+                                    ? MainAxisAlignment.end
+                                    : MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  if (!isMe)
+                                    const CircleAvatar(
+                                      radius: 15,
+                                      backgroundImage: NetworkImage(
+                                          'https://s1.o7planning.com/fr/12997/images/64425712.png'),
+                                    ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    constraints: BoxConstraints(
+                                        maxWidth:
+                                            MediaQuery.of(context).size.width *
+                                                0.6),
+                                    decoration: BoxDecoration(
+                                        color: isMe
+                                            ? MyTheme.kAccentColor
+                                            : Colors.grey[200],
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: const Radius.circular(16),
+                                          topRight: const Radius.circular(16),
+                                          bottomLeft:
+                                              Radius.circular(isMe ? 12 : 0),
+                                          bottomRight:
+                                              Radius.circular(isMe ? 0 : 12),
+                                        )),
+                                    child: Text(
+                                      chatMap["message"],
+                                      style: MyTheme.bodyTextMessage.copyWith(
+                                          color: isMe
+                                              ? Colors.white
+                                              : Colors.grey[800]),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Row(
+                                  mainAxisAlignment: isMe
+                                      ? MainAxisAlignment.end
+                                      : MainAxisAlignment.start,
+                                  children: [
+                                    if (!isMe)
+                                      const SizedBox(
+                                        width: 40,
+                                      ),
+                                    Icon(
+                                      Icons.done_all,
+                                      size: 20,
+                                      color: MyTheme.bodyTextTime.color,
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    const Text(
+                                      "11:20",
+                                      style: MyTheme.bodyTextTime,
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
                       },
                     );
                   } else {
@@ -225,86 +305,5 @@ class GroupChatRoom extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget messageTile(Size size, Map<String, dynamic> chatMap) {
-    return Builder(builder: (_) {
-      if (chatMap["type"] == "text") {
-        return Container(
-          width: size.width,
-          alignment: chatMap["sendBy"] == data.data()!['displayName']
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
-          child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.deepPurple,
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    chatMap["sendBy"],
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height / 200,
-                  ),
-                  Text(
-                    chatMap["message"],
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              )),
-        );
-      } else if (chatMap['type'] == "img") {
-        return Container(
-          width: size.width,
-          alignment: chatMap['sendBy'] == data.data()!['displayName']
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-            height: size.height / 2,
-            child: Image.network(
-              chatMap['message'],
-            ),
-          ),
-        );
-      } else if (chatMap['type'] == "notify") {
-        return Container(
-          width: size.width,
-          alignment: Alignment.center,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.black38,
-            ),
-            child: Text(
-              chatMap['message'],
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        );
-      } else {
-        return const SizedBox();
-      }
-    });
   }
 }

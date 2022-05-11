@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/chat_hoome.dart';
 import 'package:uuid/uuid.dart';
+import '../../../theme/letsgo_theme.dart';
 import '../../../widgets/custom_return_appbar.dart';
 
 class CreateGroup extends StatefulWidget {
@@ -62,50 +63,51 @@ class _CreateGroupState extends State<CreateGroup> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Nom du groupe'),
-      ),
-      body: isLoading
-          ? Container(
-              height: size.height,
-              width: size.width,
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(),
-            )
-          : Column(
-              children: [
-                SizedBox(
-                  height: size.height / 10,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(left: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Retour",
+                      style: TextStyle(
+                          color: LetsGoTheme.main,
+                          fontWeight: FontWeight.bold))),
+            ],
+          ),
+        ),
+        Container(
+          height: size.height / 14,
+          width: size.width,
+          alignment: Alignment.center,
+          child: SizedBox(
+            height: size.height / 14,
+            width: size.width / 1.15,
+            child: TextField(
+              controller: _groupName,
+              decoration: InputDecoration(
+                hintText: "Entrer le nom du groupe",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                Container(
-                  height: size.height / 14,
-                  width: size.width,
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    height: size.height / 14,
-                    width: size.width / 1.15,
-                    child: TextField(
-                      controller: _groupName,
-                      decoration: InputDecoration(
-                        hintText: "Entrer le nom du groupe",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height / 50,
-                ),
-                ElevatedButton(
-                  onPressed: createGroup,
-                  child: const Text("Créer un groupe"),
-                ),
-              ],
+              ),
             ),
+          ),
+        ),
+        SizedBox(
+          height: size.height / 50,
+        ),
+        ElevatedButton(
+          onPressed: createGroup,
+          child: const Text("Créer un groupe"),
+        ),
+      ],
     );
   }
 }

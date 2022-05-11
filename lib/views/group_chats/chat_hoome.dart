@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/chat_room.dart';
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_messages_appbar.dart';
 
 import 'group_chat_screen.dart';
@@ -14,20 +15,28 @@ class ChatHoome extends StatefulWidget {
   _ChatHoomeState createState() => _ChatHoomeState();
 }
 
-class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
+class _ChatHoomeState extends State<ChatHoome>
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   Map<String, dynamic>? userMap;
   bool isLoading = false;
   final TextEditingController _search = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   dynamic data;
+  late TabController tabController;
 
   @override
   void initState() {
-    super.initState();
+    tabController = TabController(length: 2, vsync: this);
     WidgetsBinding.instance!.addObserver(this);
     setStatus("Online");
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 
   void setStatus(String status) async {
@@ -94,85 +103,54 @@ class _ChatHoomeState extends State<ChatHoome> with WidgetsBindingObserver {
         preferredSize: Size(double.infinity, 60),
         child: CustomMessagesAppBar(),
       ),
-      body: Container(
-        child: isLoading
-            ? Center(
-                child: SizedBox(
-                  height: size.height / 20,
-                  width: size.height / 20,
-                  child: const CircularProgressIndicator(),
-                ),
-              )
-            : Column(
-                children: [
-                  SizedBox(
-                    height: size.height / 20,
-                  ),
-                  Container(
-                    height: size.height / 14,
-                    width: size.width,
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      height: size.height / 14,
-                      width: size.width / 1.15,
-                      child: TextField(
-                        controller: _search,
-                        decoration: InputDecoration(
-                          hintText: "Recherche",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: MediaQuery.of(context).size.height,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: TabBar(
+                          unselectedLabelColor: LetsGoTheme.black,
+                          labelColor: LetsGoTheme.white,
+                          indicatorColor: LetsGoTheme.main,
+                          indicatorWeight: 2,
+                          indicator: BoxDecoration(
+                            color: LetsGoTheme.main,
+                            borderRadius: BorderRadius.circular(5),
                           ),
+                          controller: tabController,
+                          tabs: const [
+                            Tab(
+                              text: 'Chats',
+                            ),
+                            Tab(
+                              text: 'Groupes',
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(
-                    height: size.height / 50,
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: tabController,
+                    children: const [
+                      Center(child: Text('Fonctionnalité bientôt disponible')),
+                      GroupChatHomeScreen(),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: onSearch,
-                    child: const Text("Recherche"),
-                  ),
-                  SizedBox(
-                    height: size.height / 30,
-                  ),
-                  userMap != null
-                      ? ListTile(
-                          onTap: () {
-                            String roomId = chatRoomId(
-                                data.data()!['displayName'],
-                                userMap!['displayName']);
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => ChatRoom(
-                                  chatRoomId: roomId,
-                                  userMap: userMap!,
-                                ),
-                              ),
-                            );
-                          },
-                          leading: const Icon(Icons.account_box,
-                              color: Colors.black),
-                          title: Text(
-                            userMap!['displayName'],
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          subtitle: Text(userMap!['email']),
-                          trailing: const Icon(Icons.chat, color: Colors.black),
-                        )
-                      : Container(),
-                ],
-              ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.group),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const GroupChatHomeScreen(),
+                )
+              ],
+            ),
           ),
         ),
       ),
