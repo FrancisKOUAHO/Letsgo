@@ -1,4 +1,4 @@
-import 'package:icon_badge/icon_badge.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/views/group_chats/create_group/add_members.dart';
 import 'package:letsgo/views/group_chats/group_chat_room.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +23,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
 
   @override
   void initState() {
-    _totalNotifications = 0;
+    _totalNotifications = 2;
     getAvailableGroups();
     super.initState();
   }
@@ -48,87 +48,120 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Groupes'),
-      ),
-      body: isLoading
-          ? Container(
-              height: size.height,
-              width: size.width,
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(),
-            )
-          : ListView.builder(
-              itemCount: groupList.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => GroupChatRoom(
-                        groupName: groupList[index]['name'],
-                        groupChatId: groupList[index]['id'],
-                      ),
-                    ),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        left: 16, right: 16, top: 10, bottom: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Row(
-                            children: <Widget>[
-                              const CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
-                                ),
-                                maxRadius: 30,
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  color: Colors.transparent,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(groupList[index]['name']),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      //const Text("**********"),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Text("Today"),
-                        NotificationBadge(
-                            icon: null,
-                            totalNotifications: _totalNotifications),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.create),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const AddMembersInGroup(),
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.only(top: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const AddMembersInGroup();
+                      },
+                    );
+                  },
+                  child: const Text("Creer un groupe",
+                      style: TextStyle(
+                          color: LetsGoTheme.main,
+                          fontWeight: FontWeight.bold))),
+            ],
           ),
         ),
-        tooltip: "Créer un groupe",
-      ),
+        SizedBox(
+          height: size.height / 2,
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: groupList.length,
+            itemBuilder: (context, index) {
+              return Container(
+                  margin: const EdgeInsets.only(top: 20, left: 10, right: 20),
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => GroupChatRoom(
+                          groupName: groupList[index]['name'],
+                          groupChatId: groupList[index]['id'],
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const CircleAvatar(
+                          radius: 28,
+                          backgroundImage: NetworkImage(
+                              'https://s1.o7planning.com/fr/12997/images/64425712.png'),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              'Teams',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Ca va Francis ? ',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            _totalNotifications == 0
+                                ? NotificationBadge(
+                                    totalNotifications: _totalNotifications,
+                                    icon: null)
+                                : CircleAvatar(
+                                    radius: 8,
+                                    backgroundColor: Colors.red,
+                                    child: Text(
+                                      _totalNotifications.toString(),
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              '05:20',
+                              style: TextStyle(fontSize: 12),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ));
+            },
+          ),
+        )
+        /* floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.create),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const AddMembersInGroup(),
+              ),
+            ),
+            tooltip: "Créer un groupe",
+          ),*/
+      ],
     );
   }
 }

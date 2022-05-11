@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/create_group/create_group.dart';
+import '../../../theme/letsgo_theme.dart';
 import '../../../widgets/custom_return_appbar.dart';
 
 class AddMembersInGroup extends StatefulWidget {
@@ -97,90 +98,112 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Ajouter des membres'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: ListView.builder(
-                itemCount: membersList.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () => onRemoveMembers(index),
-                    leading: const Icon(Icons.account_circle),
-                    title: Text(membersList[index]['displayName']),
-                    subtitle: Text(membersList[index]['email']),
-                    trailing: const Icon(Icons.close),
-                  );
-                },
-              ),
+    return Container(
+      height: size.height,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const InkWell(
+                    child: Text("",
+                        style: TextStyle(
+                            color: LetsGoTheme.main,
+                            fontWeight: FontWeight.bold))),
+                InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      "Creer un groupe",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                membersList.length >= 2
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return CreateGroup(
+                                membersList: membersList,
+                              );
+                            },
+                          );
+                        },
+                        child: const Icon(
+                          Icons.forward,
+                          color: LetsGoTheme.main,
+                        ))
+                    : const Icon(
+                        Icons.forward,
+                      ),
+              ],
             ),
-            SizedBox(
-              height: size.height / 20,
+          ),
+          Flexible(
+            child: ListView.builder(
+              itemCount: membersList.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  onTap: () => onRemoveMembers(index),
+                  leading: const Icon(Icons.account_circle),
+                  title: Text(membersList[index]['displayName']),
+                  subtitle: Text(membersList[index]['email']),
+                  trailing: const Icon(Icons.close),
+                );
+              },
             ),
-            Container(
+          ),
+          SizedBox(
+            height: size.height / 20,
+          ),
+          Container(
+            height: size.height / 14,
+            width: size.width,
+            alignment: Alignment.center,
+            child: SizedBox(
               height: size.height / 14,
-              width: size.width,
-              alignment: Alignment.center,
-              child: SizedBox(
-                height: size.height / 14,
-                width: size.width / 1.15,
-                child: TextField(
-                  controller: _search,
-                  decoration: InputDecoration(
-                    hintText: "Recherche",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+              width: size.width / 1.15,
+              child: TextField(
+                controller: _search,
+                decoration: InputDecoration(
+                  hintText: "Recherche",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
             ),
-            SizedBox(
-              height: size.height / 50,
-            ),
-            isLoading
-                ? Container(
-                    height: size.height / 12,
-                    width: size.height / 12,
-                    alignment: Alignment.center,
-                    child: const CircularProgressIndicator(),
-                  )
-                : ElevatedButton(
-                    onPressed: onSearch,
-                    child: const Text("Recherche"),
-                  ),
-            userMap != null
-                ? ListTile(
-                    onTap: onResultTap,
-                    leading: const Icon(Icons.account_box),
-                    title: Text(userMap!['displayName']),
-                    subtitle: Text(userMap!['email']),
-                    trailing: const Icon(Icons.add),
-                  )
-                : const SizedBox(),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: size.height / 50,
+          ),
+          isLoading
+              ? Container(
+                  height: size.height / 12,
+                  width: size.height / 12,
+                  alignment: Alignment.center,
+                  child: const CircularProgressIndicator(),
+                )
+              : ElevatedButton(
+                  onPressed: onSearch,
+                  child: const Text("Recherche"),
+                ),
+          userMap != null
+              ? ListTile(
+                  onTap: onResultTap,
+                  leading: const Icon(Icons.account_box),
+                  title: Text(userMap!['displayName']),
+                  subtitle: Text(userMap!['email']),
+                  trailing: const Icon(Icons.add),
+                )
+              : const SizedBox(),
+        ],
       ),
-      floatingActionButton: membersList.length >= 2
-          ? FloatingActionButton(
-              child: const Icon(Icons.forward),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => CreateGroup(
-                    membersList: membersList,
-                  ),
-                ),
-              ),
-            )
-          : const SizedBox(),
     );
   }
 }
