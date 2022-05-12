@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 
-import 'package:letsgo/widgets//community/community_gallery_section.dart';
-import 'package:letsgo/widgets/community/community_gallery_three_section.dart';
-import 'package:letsgo/widgets/community/community_gallery_two_section.dart';
-import 'package:letsgo/widgets/community/community_title_section.dart';
+import 'package:letsgo/widgets/community/community_gallery_card.dart';
 
 import '../../widgets/custom_app_bar.dart';
 
@@ -25,25 +23,26 @@ class _CommunityScreenState extends State<CommunityScreen> {
         preferredSize: Size(double.infinity, 60),
         child: CustomAppBar(),
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const <Widget>[
-              SizedBox(
-                height: 40,
+      body: Container(
+        child: Padding(
+            padding: EdgeInsets.all(10),
+            child: GridView(
+              children: [
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+                CommunityGalleryCard(),
+              ],
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
               ),
-              CommunityTitleSection(),
-              SizedBox(
-                height: 40,
-              ),
-              CommunityGallerySection(),
-              CommunityGalleryTwoSection(),
-              CommunityGalleryThreeSection(),
-            ],
-          ),
-        ),
+            )),
       ),
     );
   }
