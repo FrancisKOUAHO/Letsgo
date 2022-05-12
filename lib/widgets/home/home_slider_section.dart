@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/letsgo_theme.dart';
 import '../../views/event/event_screen.dart';
 
 class HomeSliderSection extends StatefulWidget {
@@ -43,96 +44,273 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                   child: Row(
                     children: [
                       Container(
-                        margin: const EdgeInsets.all(8),
-                        height: 254,
-                        width: 209,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          image:  DecorationImage(
-                            image: NetworkImage(activity["image"] ??
-                                "https://www.elektroaktif.com.tr/assets/images/noimage.jpg"),
-                            fit: BoxFit.fill,
+                          margin: const EdgeInsets.all(8),
+                          height: 270,
+                          width: 209,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            image: DecorationImage(
+                              image: NetworkImage(activity["image"] ??
+                                  "https://www.elektroaktif.com.tr/assets/images/noimage.jpg"),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Card(
-                              margin: const EdgeInsets.fromLTRB(80, 5, 5, 0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              color: LetsGoTheme.main.withOpacity(0.9),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const <Widget>[
-                                  ListTile(
-                                    leading: Icon(
-                                      Icons.fitness_center_rounded,
-                                      size: 25,
-                                      color: LetsGoTheme.white,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.22,
+                                      height: 40,
+                                      constraints: BoxConstraints(
+                                        maxWidth:
+                                            MediaQuery.of(context).size.width,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromARGB(140, 0, 0, 0),
+                                        borderRadius: BorderRadius.circular(10),
+                                        shape: BoxShape.rectangle,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 8, 8, 8),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 3, 0),
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons.dumbbell,
+                                                    color: Colors.white,
+                                                    size: 16,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(3, 0, 0, 0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Sport',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    title: Text('Sport',
-                                        style: TextStyle(
-                                            color: LetsGoTheme.white,
-                                            fontSize: 12)),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Card(
-                              margin: const EdgeInsets.all(5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              color: LetsGoTheme.black.withOpacity(0.2),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  const ListTile(
-                                    title: Text('3 séances de sport',
-                                        style: TextStyle(
-                                            color: LetsGoTheme.white,
-                                            fontSize: 16)),
-                                  ),
-                                  const ListTile(
-                                    leading: Icon(
-                                      Icons.location_on_rounded,
-                                      size: 25,
-                                      color: LetsGoTheme.white,
-                                    ),
-                                    title: Text('45 avenu paris 92010',
-                                        style: TextStyle(
-                                            color: LetsGoTheme.white,
-                                            fontSize: 14)),
-                                  ),
-                                  ButtonBar(children: [
-                                    FlatButton(
-                                      color: LetsGoTheme.main.withOpacity(0.8),
-                                      shape: RoundedRectangleBorder(
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height: 110,
+                                        constraints: BoxConstraints(
+                                          maxWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.7,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              LetsGoTheme.white,
+                                              Color.fromARGB(
+                                                  162, 199, 199, 199),
+                                            ],
+                                          ),
                                           borderRadius:
-                                              BorderRadius.circular(9.0)),
-                                      child: const Text("Voir plus",
-                                          style: TextStyle(
-                                              color: LetsGoTheme.white,
-                                              fontSize: 14)),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>  EventScreen(
-                                                    activity: activity
-                                                )));
-                                      },
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 10, 10, 10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    '3 séances de sport',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 5, 10, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        FaIcon(
+                                                          FontAwesomeIcons
+                                                              .mapMarkerAlt,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              183,
+                                                              184,
+                                                              185),
+                                                          size: 19,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8, 0, 0, 0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            '45 Avenue de Paris,\n75011, Paris',
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF111417),
+                                                              fontSize: 13,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    0, 8, 0, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          '9.8 km',
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xFF111417),
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Container(
+                                                          height: 25,
+                                                          child: RaisedButton(
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          EventScreen(
+                                                                              activity: activity)));
+                                                            },
+                                                            elevation: 0,
+                                                            hoverElevation: 0,
+                                                            focusElevation: 0,
+                                                            highlightElevation:
+                                                                0,
+                                                            color: LetsGoTheme
+                                                                .white,
+                                                            textColor:
+                                                                LetsGoTheme
+                                                                    .main,
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                            child: const Text(
+                                                              'Voir plus',
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 12,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ]),
-                                ],
-                              ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
+                          )),
                     ],
                   ),
                 );

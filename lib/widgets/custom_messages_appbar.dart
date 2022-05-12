@@ -45,7 +45,7 @@ class _CustomMessagesAppBarState extends State<CustomMessagesAppBar> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       user!.photoURL ??
-                          'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
+                          'https://www.solutionmotsfleches.com/images/avatar.jpg',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,

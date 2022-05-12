@@ -43,7 +43,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
           Center(
             child: Image.network(
               user.data()['photoUrl'] ??
-                  'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
+                  'https://www.solutionmotsfleches.com/images/avatar.jpg',
               fit: BoxFit.cover,
               width: size.width,
               height: size.height,
@@ -80,7 +80,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               radius: 28,
                               backgroundImage: NetworkImage(
                                 user.data()['photoUrl'] ??
-                                    'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
+                                    'https://www.solutionmotsfleches.com/images/avatar.jpg',
                               ),
                             ),
                             const SizedBox(
