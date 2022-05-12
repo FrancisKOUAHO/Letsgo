@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/widgets/notification_badge.dart';
-import '../../widgets/custom_return_appbar.dart';
 
 class GroupChatHomeScreen extends StatefulWidget {
   const GroupChatHomeScreen({Key? key}) : super(key: key);
@@ -95,7 +94,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
                         const CircleAvatar(
                           radius: 28,
                           backgroundImage: NetworkImage(
-                              'https://s1.o7planning.com/fr/12997/images/64425712.png'),
+                              'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png'),
                         ),
                         const SizedBox(
                           width: 20,
@@ -103,16 +102,16 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
-                              'Teams',
-                              style: TextStyle(
+                              groupList[index]['name'],
+                              style: const TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Text(
+                            const Text(
                               'Ca va Francis ? ',
                               style: TextStyle(fontSize: 12),
                             ),
@@ -152,15 +151,6 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
             },
           ),
         )
-        /* floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.create),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => const AddMembersInGroup(),
-              ),
-            ),
-            tooltip: "Créer un groupe",
-          ),*/
       ],
     );
   }

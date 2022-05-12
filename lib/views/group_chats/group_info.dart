@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/views/group_chats/add_members.dart';
-import 'package:letsgo/views/group_chats/chat_hoome.dart';
+import 'package:letsgo/views/group_chats/chat_screen.dart';
 import '../../widgets/custom_return_appbar.dart';
 
 class GroupInfo extends StatefulWidget {
@@ -126,7 +126,7 @@ class _GroupInfoState extends State<GroupInfo> {
           .delete();
 
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const ChatHoome()),
+        MaterialPageRoute(builder: (_) => const ChatScreen()),
         (route) => false,
       );
     }

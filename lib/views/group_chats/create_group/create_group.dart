@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/views/group_chats/chat_hoome.dart';
+import 'package:letsgo/views/group_chats/chat_screen.dart';
 import 'package:uuid/uuid.dart';
 import '../../../theme/letsgo_theme.dart';
-import '../../../widgets/custom_return_appbar.dart';
 
 class CreateGroup extends StatefulWidget {
   final List<Map<String, dynamic>> membersList;
@@ -56,7 +55,7 @@ class _CreateGroupState extends State<CreateGroup> {
     });
 
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const ChatHoome()), (route) => false);
+        MaterialPageRoute(builder: (_) => const ChatScreen()), (route) => false);
   }
 
   @override
@@ -73,7 +72,6 @@ class _CreateGroupState extends State<CreateGroup> {
             children: [
               InkWell(
                   onTap: () {
-                    Navigator.of(context).pop();
                   },
                   child: const Text("Retour",
                       style: TextStyle(

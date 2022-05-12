@@ -26,7 +26,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late int _totalNotifications;
 
-  String currentAddress = '';
+  String currentAddress = 'Position inconnu';
   late Position currentposition;
 
   @override
@@ -74,7 +74,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       iconSize: 20.0,
                     ),
                     Text(
-                      currentAddressOk(currentAddress),
+                      currentAddressOk(currentAddress) ?? "",
                       style: const TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,
