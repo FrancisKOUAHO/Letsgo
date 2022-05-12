@@ -194,8 +194,11 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                         FaIcon(
                                                           FontAwesomeIcons
                                                               .mapMarkerAlt,
-                                                          color:
-                                                              Color(0xFFCFD0D1),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              183,
+                                                              184,
+                                                              185),
                                                           size: 19,
                                                         ),
                                                       ],
