@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:letsgo/views/home/home.dart';
 import '../../theme/letsgo_theme.dart';
 import '../community/community_screen.dart';
-import '../group_chats/chat_hoome.dart';
+import '../group_chats/chat_screen.dart';
 import '../search/search_screen.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,12 +13,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   int _currentIndex = 0;
+  int _currentIndex = 0;
 
-  final _widgetOptions =  [
+  final _widgetOptions = [
     const Home(),
     const SearchScreen(),
-    const ChatHoome(),
+    const ChatScreen(),
     const CommunityScreen(),
   ];
 
@@ -34,11 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions[_currentIndex],
-      bottomNavigationBar:  customAnimatedButtomBar(context),
+      bottomNavigationBar: customAnimatedButtomBar(context),
     );
   }
 
-  Container customAnimatedButtomBar(BuildContext context){
+  Container customAnimatedButtomBar(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.all(20),
@@ -92,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   listOfIcons[index],
                   size: screenWidth * .100,
                   color:
-                  index == _currentIndex ? Colors.white : LetsGoTheme.main,
+                      index == _currentIndex ? Colors.white : LetsGoTheme.main,
                 ),
               ),
             ],
@@ -102,8 +101,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-
-
-

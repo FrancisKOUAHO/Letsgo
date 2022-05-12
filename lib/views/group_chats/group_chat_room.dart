@@ -49,6 +49,7 @@ class GroupChatRoom extends StatelessWidget {
         .get()
         .then((value) {
       data = value;
+      print("data $data");
     });
 
     return Scaffold(
