@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../common/resume_word.dart';
 import '../../views/event/event_screen.dart';
@@ -81,9 +82,9 @@ class _SearchListAventureState extends State<SearchListAventure> {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/Category.png',
@@ -107,8 +108,8 @@ class _SearchListAventureState extends State<SearchListAventure> {
                                     ),
                                     Padding(
                                       padding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -134,18 +135,17 @@ class _SearchListAventureState extends State<SearchListAventure> {
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 elevation: 0,
                                 child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => EventScreen(
-                                                activity: activity)));
-                                  },
-                                  child: Image.asset(
-                                    "assets/icons/Detail_Button.png",
-                                    width: 30,
-                                  ),
-                                ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => EventScreen(
+                                                  activity: activity)));
+                                    },
+                                    child: SvgPicture.asset(
+                                      "assets/icons/Detail_Buttonblue.svg",
+                                      width: 30,
+                                    )),
                               ),
                             ),
                           ],

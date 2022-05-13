@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:letsgo/common/resume_word.dart';
 import 'package:letsgo/views/event/event_screen.dart';
 
@@ -133,8 +134,8 @@ class HomeThemeSection extends StatelessWidget {
                                             builder: (context) => EventScreen(
                                                 activity: activity)));
                                   },
-                                  child: Image.asset(
-                                    "assets/icons/Detail_Button.png",
+                                  child: SvgPicture.asset(
+                                    "assets/icons/Detail_Buttonblue.svg",
                                     width: 30,
                                   ),
                                 ),

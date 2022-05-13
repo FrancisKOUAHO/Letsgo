@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/views/profil/edit_profile.dart';
 import 'package:letsgo/services/auth_service.dart';
 import '../../widgets/custom_return_appbar.dart';
@@ -34,7 +35,7 @@ class _SettingsScrenState extends State<SettingsScren> {
               children: const [
                 Icon(
                   Icons.person,
-                  color: Colors.deepPurple,
+                  color: LetsGoTheme.main,
                 ),
                 SizedBox(
                   width: 8,
@@ -63,7 +64,7 @@ class _SettingsScrenState extends State<SettingsScren> {
               children: const [
                 Icon(
                   Icons.volume_up_outlined,
-                  color: Colors.deepPurple,
+                  color: LetsGoTheme.main,
                 ),
                 SizedBox(
                   width: 8,

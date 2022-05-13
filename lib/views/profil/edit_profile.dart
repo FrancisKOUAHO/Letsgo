@@ -89,7 +89,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               width: 4,
                               color: Theme.of(context).scaffoldBackgroundColor,
                             ),
-                            color: Colors.deepPurple,
+                            color: LetsGoTheme.main,
                           ),
                           child: const Icon(
                             Icons.edit,

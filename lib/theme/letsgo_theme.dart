@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class LetsGoTheme {
   LetsGoTheme._();
 
-  static const Color main = Color(0xffFD5962);
-  static const Color lightPurple = Color(0xffFFEFF0);
+  static const Color main = Color(0xff4895EF);
+  static const Color lightPurple = Color(0xffEBF3FC);
   static const Color second = Color(0xff4895ef);
   static const Color third = Color(0xff4614a5);
   static const Color fourth = Color(0xfff72685);

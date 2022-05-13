@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../common/resume_word.dart';
@@ -184,13 +185,12 @@ class _ResearchState extends State<Research> {
                                             builder: (context) => EventScreen(
                                                 activity: activity)));
                                   },
-                                  child: Image.asset(
-                                    "assets/icons/Detail_Button.png",
-                                    width: 30,
-                                  ),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/Detail_Buttonblue.svg",
+                                      width: 30,
+                                    )),
                                 ),
                               ),
-                            ),
                           ],
                         ),
                       ),

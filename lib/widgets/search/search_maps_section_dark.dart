@@ -27,7 +27,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
 
   void setCustomMarker() async {
     mapMarker = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/destination_map_marker.png');
+        const ImageConfiguration(), 'assets/map/Location_blue_sky.png');
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -92,7 +92,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
               child: IconButton(
                 iconSize: 25.0,
                 onPressed: () => Navigator.of(context).pop(),
-                icon:  const FaIcon(FontAwesomeIcons.phone),
+                icon: const FaIcon(FontAwesomeIcons.phone),
                 color: LetsGoTheme.main,
               ),
             ),
