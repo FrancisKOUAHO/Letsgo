@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/constants.dart';
+
 class AddMembersINGroup extends StatefulWidget {
   final String groupChatId, displayName;
   final List membersList;
@@ -115,10 +117,10 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
             userMap != null
                 ? ListTile(
                     onTap: onAddMembers,
-                    leading: const Icon(Icons.account_box),
+                    leading: const Icon(Icons.account_box, color: kPrimaryColor,),
                     title: Text(userMap!['displayName']),
                     subtitle: Text(userMap!['email']),
-                    trailing: const Icon(Icons.add),
+                    trailing: const Icon(Icons.add, color: kPrimaryColor,),
                   )
                 : const SizedBox(),
           ],

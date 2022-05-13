@@ -3,15 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
   MyTheme._();
-  static const Color kPrimaryColor =  Color(0xff7C7B9B);
-  static const Color kPrimaryColorVariant =  Color(0xff686795);
-  static const Color kAccentColor = Color(0xff7208b7);
-  static const Color kAccentColorVariant = Color(0xff742ca8);
-  static const Color kUnreadChatBG = Color(0xffEE1D1D);
+
+  static const Color kPrimaryColor = Color(0xff7C7B9B);
+  static const Color kPrimaryColorVariant = Color(0xff686795);
+  static const Color kAccentColor = Color(0xffFD5962);
+  static const Color kAccentColorVariant = Color(0xffFFEFF0);
+  static const Color kUnreadChatBG = Color(0xffFD5962);
 
   static final TextStyle kAppTitle = GoogleFonts.grandHotel(fontSize: 36);
 
-  static const TextStyle heading2 =  TextStyle(
+  static const TextStyle heading2 = TextStyle(
     color: Color(0xff686795),
     fontSize: 18,
     fontWeight: FontWeight.w600,

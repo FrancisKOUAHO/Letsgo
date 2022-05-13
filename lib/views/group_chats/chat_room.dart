@@ -256,14 +256,14 @@ class ChatRoom extends StatelessWidget {
                                   border: InputBorder.none,
                                   prefixIcon: IconButton(
                                     onPressed: () => getImage(),
-                                    icon: const Icon(Icons.photo),
+                                    icon: const Icon(Icons.photo, color: kPrimaryColor,),
                                   ),
                                 ),
                               ),
                             ),
                             const SizedBox(width: kDefaultPadding / 4),
                             IconButton(
-                                icon: const Icon(Icons.send),
+                                icon: const Icon(Icons.send, color: kPrimaryColor,),
                                 onPressed: onSendMessage,
                                 color: Theme.of(context)
                                     .textTheme

@@ -24,7 +24,7 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(10, 12, 12, 12),
+        padding: const EdgeInsetsDirectional.fromSTEB(10, 12, 12, 12),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,13 +49,13 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             'DEC',
                             style: TextStyle(
-                              color: LetsGoTheme.amber,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
+                              color: LetsGoTheme.main,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
                             ),
                           ),
                         ],
@@ -63,7 +63,7 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             '31',
                             style: TextStyle(
@@ -81,7 +81,7 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
             Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Matéo',
                   textAlign: TextAlign.start,

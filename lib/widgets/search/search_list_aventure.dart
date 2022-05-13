@@ -142,7 +142,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
                                                 activity: activity)));
                                   },
                                   child: Image.asset(
-                                    "assets/icons/DetailButton.png",
+                                    "assets/icons/Detail_Button.png",
                                     width: 30,
                                   ),
                                 ),
