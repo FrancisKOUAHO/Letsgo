@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/route/route.dart';
 import 'package:letsgo/services/auth_service.dart';
+import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:provider/provider.dart';
 
 import 'models/user_model.dart';
@@ -34,9 +35,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings),
-        theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-        ),
       ),
     );
   }

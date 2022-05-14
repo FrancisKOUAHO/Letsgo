@@ -70,22 +70,30 @@ class _ResetPasswordState extends State<ResetPassword> {
                             ),
                             TextField(
                               controller: emailController,
-                              cursorColor: Colors.white,
+                              cursorColor: LetsGoTheme.white,
                               cursorWidth: 2,
                               obscureText: false,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: LetsGoTheme.white),
                               decoration: InputDecoration(
-                                labelText: 'Email',
+                                focusColor: LetsGoTheme.main,
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
+                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
                                 ),
+                                hintText: 'Mot de passe',
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),
                                 prefixIcon: const Icon(Icons.email_outlined,
-                                    color: Colors.white),
+                                    color: LetsGoTheme.white),
                                 hintStyle: const TextStyle(
-                                  color: Colors.white,
+                                  color: LetsGoTheme.white,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Late',
                                 ),
@@ -152,7 +160,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               margin:
                                   const EdgeInsets.only(left: 90, right: 90),
                               child: const Divider(
-                                color: Colors.white,
+                                color: LetsGoTheme.white,
                               ),
                             ),
                             InkWell(
@@ -161,7 +169,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 style: TextStyle(
                                   fontFamily: 'PT-Sans',
                                   fontSize: 16,
-                                  color: Colors.white,
+                                  color: LetsGoTheme.white,
                                 ),
                               ),
                               onTap: () {

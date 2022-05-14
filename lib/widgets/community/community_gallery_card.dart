@@ -15,7 +15,8 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(
-          image: NetworkImage("https://source.unsplash.com/random"),
+          image: const NetworkImage(
+              "https://cdn.pixabay.com/photo/2013/11/22/00/54/exit-215427_1280.jpg"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Colors.black.withOpacity(0.1),
@@ -38,7 +39,7 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(231, 255, 255, 255),
+                    color: const Color.fromARGB(231, 255, 255, 255),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(

@@ -34,14 +34,7 @@ class AuthService {
       User? user = credential.user;
       return _userFromFirebase(credential.user);
     } catch (e) {
-      Fluttertoast.showToast(
-          msg: "Une erreur s'est produite dans la combinaison de votre adresse électronique et de votre mot de passe. Veuillez réessayer.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      print(e);
     }
     return null;
   }

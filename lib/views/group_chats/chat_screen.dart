@@ -32,7 +32,7 @@ class _ChatScreenState extends State<ChatScreen>
   void initState() {
     _totalNotifications = 2;
     tabController = TabController(length: 2, vsync: this);
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     setStatus("Online");
     getAvailableChats();
     super.initState();

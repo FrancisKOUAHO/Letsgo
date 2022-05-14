@@ -89,18 +89,23 @@ class _SettingsScrenState extends State<SettingsScren> {
               height: 50,
             ),
             Center(
-              child: OutlineButton(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  side: const BorderSide(
+                    width: 2,
+                    color: LetsGoTheme.main,
+                  ),
+                ),
                 onPressed: () async {
                   await _auth.signOut().then((result) => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignIn()),
-                        )
-                      });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignIn()),
+                    )
+                  });
                 },
                 child: const Text("Se déconnecter",
                     style: TextStyle(

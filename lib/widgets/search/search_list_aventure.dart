@@ -15,7 +15,7 @@ class SearchListAventure extends StatefulWidget {
 
 class _SearchListAventureState extends State<SearchListAventure> {
   final Stream<QuerySnapshot> _categoriesStream =
-      FirebaseFirestore.instance.collection('activities').snapshots();
+      FirebaseFirestore.instance.collection('activities').limit(20).snapshots();
 
   @override
   Widget build(BuildContext context) {

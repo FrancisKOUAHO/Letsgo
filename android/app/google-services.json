@@ -1,37 +1,37 @@
 {
   "project_info": {
-    "project_number": "656749191265",
-    "project_id": "letsg0-3aa21",
-    "storage_bucket": "letsg0-3aa21.appspot.com"
+    "project_number": "782712178786",
+    "project_id": "letsgo-350109",
+    "storage_bucket": "letsgo-350109.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:656749191265:android:1f61ac82b120ae9387ca20",
+        "mobilesdk_app_id": "1:782712178786:android:734a6635bb649fa0ec293b",
         "android_client_info": {
           "package_name": "com.letsgo.letsgo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "656749191265-rem4dqraln10pl9382mkbqr86l1l6qp3.apps.googleusercontent.com",
+          "client_id": "782712178786-tmqgjak390mvqrcc8g7t3f8rtvu130sb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBiDPGfKVM1nCnVx52X0s9NyhKghuSVDBU"
+          "current_key": "AIzaSyDZn3_RmpQos1XhI6zLu6oIYzlBRC4hQJ0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "656749191265-rem4dqraln10pl9382mkbqr86l1l6qp3.apps.googleusercontent.com",
+              "client_id": "782712178786-tmqgjak390mvqrcc8g7t3f8rtvu130sb.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "656749191265-pihqtsip6usri5t0mejlr1n7isibpksj.apps.googleusercontent.com",
+              "client_id": "782712178786-9nh17spokmlclof4q6ec19vt5c6gch3n.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.letsgo.letsgo"

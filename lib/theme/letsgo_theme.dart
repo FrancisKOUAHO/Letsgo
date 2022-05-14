@@ -62,7 +62,7 @@ class LetsGoTheme {
   );
 
   static const TextStyle resetPasswordTitle = TextStyle(
-    fontWeight: FontWeight.w900,
+    fontWeight: FontWeight.w800,
     fontSize: 22.5,
     letterSpacing: 0.7,
     color: LetsGoTheme.white,

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>letsgo</string>
+	<string>Letsgo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,6 +29,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
+
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -43,33 +44,34 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>io.flutter.embedded_views_preview</key>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-    <key>CFBundleURLTypes</key>
+
+	<key>CFBundleURLTypes</key>
     <array>
-    	<dict>
-    		<key>CFBundleTypeRole</key>
-    		<string>Editor</string>
-    		<key>CFBundleURLSchemes</key>
-    		<array>
-    			<string>com.googleusercontent.apps.656749191265-pihqtsip6usri5t0mejlr1n7isibpksj</string>
-    		</array>
-    	</dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.782712178786-9nh17spokmlclof4q6ec19vt5c6gch3n</string>
+            </array>
+        </dict>
     </array>
-    <!-- End of the Google Sign-in Section -->
+
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>googlechromes</string>
         <string>comgooglemaps</string>
     </array>
-    <key>NSPhotoLibraryUsageDescription</key>
+
+	<key>NSPhotoLibraryUsageDescription</key>
     <string>This app requires access to the photo library.</string>
     <key>NSMicrophoneUsageDescription</key>
-   <string>This app does not require access to the microphone.</string>
-   <key>NSCameraUsageDescription</key>
-   <string>This app requires access to the camera.</string>
+    <string>This app does not require access to the microphone.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app requires access to the camera.</string>
 
-    <!-- Permission options for the `location` group -->
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>Need location when in use</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -80,8 +82,5 @@
     <string>Can I have location always?</string>
     <key>io.flutter.embedded_views_preview</key>
     <true/>
-
-
-
 </dict>
 </plist>

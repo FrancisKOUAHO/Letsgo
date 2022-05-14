@@ -60,7 +60,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
             color: Colors.black,
             child: Container(
               margin: const EdgeInsets.all(15),
-              child: GoogleMap(
+             /* child: GoogleMap(
                 initialCameraPosition: _initialCameraPosition,
                 myLocationEnabled: true,
                 myLocationButtonEnabled: true,
@@ -70,8 +70,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
                 scrollGesturesEnabled: true,
                 compassEnabled: true,
                 onMapCreated: _onMapCreated,
-                markers: _markers,
-              ),
+              ),*/
             ),
           ),
         ),

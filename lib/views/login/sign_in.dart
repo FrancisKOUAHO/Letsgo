@@ -74,7 +74,6 @@ class _SignInState extends State<SignIn> {
     bool _validate = false;
 
     final AuthService _auth = AuthService();
-    final FirebaseAuth _fireBaseAuth = FirebaseAuth.instance;
 
     return Material(
       type: MaterialType.transparency,
@@ -135,12 +134,20 @@ class _SignInState extends State<SignIn> {
                               cursorColor: Colors.white,
                               cursorWidth: 2,
                               obscureText: false,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: LetsGoTheme.white),
                               decoration: InputDecoration(
-                                labelText: 'Email',
+                                focusColor: LetsGoTheme.main,
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
+                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
                                 ),
+                                hintText: 'Mot de passe',
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),
@@ -167,10 +174,18 @@ class _SignInState extends State<SignIn> {
                               obscureText: true,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
-                                labelText: 'Mot de passe',
+                                focusColor: LetsGoTheme.main,
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
+                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
                                 ),
+                                hintText: 'Mot de passe',
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),
@@ -247,7 +262,7 @@ class _SignInState extends State<SignIn> {
                                               'Erreur de connexion. Impossible de se connecter',
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
-                                          timeInSecForIosWeb: 1,
+                                          timeInSecForIosWeb: 5,
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white,
                                           fontSize: 16.0);
@@ -324,7 +339,7 @@ class _SignInState extends State<SignIn> {
                               children: [
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.white.withOpacity(0.1),
+                                    primary: Colors.white.withOpacity(0.9),
                                   ),
                                   icon: const FaIcon(FontAwesomeIcons.google,
                                       color: Colors.red),
@@ -333,7 +348,7 @@ class _SignInState extends State<SignIn> {
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 14,
-                                      color: Colors.white,
+                                      color: LetsGoTheme.black,
                                     ),
                                   ),
                                   onPressed: () {
@@ -343,7 +358,7 @@ class _SignInState extends State<SignIn> {
                                 ElevatedButton.icon(
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.white.withOpacity(0.1),
+                                    primary: Colors.white.withOpacity(0.9),
                                   ),
                                   icon: const FaIcon(FontAwesomeIcons.facebook,
                                       color: Colors.blue),
@@ -352,7 +367,7 @@ class _SignInState extends State<SignIn> {
                                     style: TextStyle(
                                       fontFamily: 'Late',
                                       fontSize: 14,
-                                      color: Colors.white,
+                                      color: LetsGoTheme.black,
                                     ),
                                   ),
                                 ),

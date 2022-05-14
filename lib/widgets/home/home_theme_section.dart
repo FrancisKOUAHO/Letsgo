@@ -10,7 +10,7 @@ class HomeThemeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _activitiesStream =
-        FirebaseFirestore.instance.collection('activities').snapshots();
+        FirebaseFirestore.instance.collection('activities').limit(20).snapshots();
 
     return StreamBuilder<QuerySnapshot>(
         stream: _activitiesStream,

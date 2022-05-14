@@ -6,8 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:icon_badge/icon_badge.dart';
-import 'package:letsgo/views/search/search_map.dart';
 import 'package:letsgo/widgets/notification_badge.dart';
 
 import '../common/resume_word.dart';
@@ -26,17 +24,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late int _totalNotifications;
 
-  String currentAddress = 'Position inconnu';
+  late String currentAddress = '';
   late Position currentposition;
 
   @override
   void initState() {
     _totalNotifications = 0;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)
@@ -46,6 +39,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
         currentAddress = value.data()!["localization"];
       });
     });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
@@ -74,7 +73,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       iconSize: 20.0,
                     ),
                     Text(
-                      currentAddressOk(currentAddress) ?? "",
+                      currentAddressOk(currentAddress) ?? '',
                       style: const TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,
