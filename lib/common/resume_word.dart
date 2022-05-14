@@ -6,6 +6,12 @@ ResumeWord(wordText) {
   return fusionWord;
 }
 
+ResumeTitle(wordText) {
+  var words = wordText;
+  var splitted = words.split(' ');
+  return splitted[0] + " " + splitted[1] + " " + splitted[2];
+}
+
 sliceNameAndLastname(wordText) {
   var words = wordText;
   var splitted = words.split(' ');

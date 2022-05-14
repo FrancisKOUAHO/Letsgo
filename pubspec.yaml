@@ -60,6 +60,7 @@ dependencies:
   flutter_svg: ^1.0.3
   provider: ^5.0.0
   icon_badge: ^1.0.0
+  ticket_widget: ^0.0.1
 
 
 dev_dependencies:

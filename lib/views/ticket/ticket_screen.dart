@@ -132,15 +132,15 @@ class _TicketScreenState extends State<TicketScreen> {
                                   ),
                                   Positioned(
                                     top: 190,
-                                    left: 20.0,
+                                    right: 2.0,
                                     child: Container(
-                                      color: Colors.red,
+                                      color: LetsGoTheme.main,
                                       padding: const EdgeInsets.all(4.5),
                                       child: const Text(
-                                        "Refusé",
+                                        "En attente de validation",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 14.0,
+                                          fontSize: 12.0,
                                         ),
                                       ),
                                     ),

@@ -56,7 +56,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,12 +74,12 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                             MediaQuery.of(context).size.width,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Color.fromARGB(140, 0, 0, 0),
+                                        color: const Color.fromARGB(140, 0, 0, 0),
                                         borderRadius: BorderRadius.circular(10),
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             8, 8, 8, 8),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -90,7 +90,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                              children: [
+                                              children: const [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 0, 3, 0),
@@ -103,13 +103,13 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(3, 0, 0, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: [
+                                                children: const [
                                                   Text(
                                                     'Sport',
                                                     style: TextStyle(
@@ -144,7 +144,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               0.7,
                                         ),
                                         decoration: BoxDecoration(
-                                          gradient: LinearGradient(
+                                          gradient: const LinearGradient(
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight,
                                             colors: [
@@ -158,7 +158,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10, 10, 10, 10),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -167,7 +167,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                             children: [
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                children: [
+                                                children: const [
                                                   Text(
                                                     '3 séances de sport',
                                                     style: TextStyle(
@@ -179,7 +179,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(0, 5, 10, 0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -190,7 +190,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                     Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
-                                                      children: [
+                                                      children: const [
                                                         FaIcon(
                                                           FontAwesomeIcons
                                                               .mapMarkerAlt,
@@ -205,7 +205,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8, 0, 0, 0),
                                                       child: Column(
@@ -214,7 +214,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
-                                                        children: [
+                                                        children: const [
                                                           Text(
                                                             '45 Avenue de Paris,\n75011, Paris',
                                                             style: TextStyle(
@@ -230,7 +230,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.fromLTRB(
+                                                padding: const EdgeInsets.fromLTRB(
                                                     0, 8, 0, 0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -244,7 +244,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                     Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
-                                                      children: [
+                                                      children: const [
                                                         Text(
                                                           '9.8 km',
                                                           style: TextStyle(
@@ -259,7 +259,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Container(
+                                                        SizedBox(
                                                           height: 25,
                                                           child: RaisedButton(
                                                             onPressed: () {
