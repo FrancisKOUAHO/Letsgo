@@ -61,6 +61,7 @@ class AuthService {
             .set({
           "displayName": displayName,
           "email": email,
+          "localization": 'Votre, Position',
           "status": "Unavalible",
           "uid": _fireBaseAuth.currentUser!.uid,
         });

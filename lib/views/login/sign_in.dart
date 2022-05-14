@@ -11,8 +11,6 @@ import 'package:letsgo/services/auth_service.dart';
 import 'package:letsgo/services/firebase_service.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
-import '../select/select_activity_favorites.dart';
-
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -40,25 +38,10 @@ class _SignInState extends State<SignIn> {
           });
         });
 
-        if (data.data()['favoriteCategoryOfActivity'] == null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const SelectActivityFavorites()),
-          );
-        }
-        if (data.data()['favoriteCategoryOfActivity'] == true) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const SelectActivityFavorites()),
-          );
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
       });
     } catch (e) {
       if (e is FirebaseAuthException) {
@@ -147,7 +130,7 @@ class _SignInState extends State<SignIn> {
                                   borderRadius: BorderRadius.circular(10.0),
                                   borderSide:  const BorderSide(color: LetsGoTheme.white),
                                 ),
-                                hintText: 'Mot de passe',
+                                hintText: 'Adresse mail',
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),

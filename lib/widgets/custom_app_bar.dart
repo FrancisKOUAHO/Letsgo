@@ -24,12 +24,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late int _totalNotifications;
 
-  late String currentAddress = '';
+  late String currentAddress;
   late Position currentposition;
 
   @override
   void initState() {
-    _totalNotifications = 0;
+    _totalNotifications = 2;
     FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)
@@ -73,7 +73,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       iconSize: 20.0,
                     ),
                     Text(
-                      currentAddressOk(currentAddress) ?? '',
+                      currentAddressOk(currentAddress),
                       style: const TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,

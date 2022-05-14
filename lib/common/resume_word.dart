@@ -29,5 +29,5 @@ sliceNameAndLastname(wordText) {
 currentAddressOk(wordText) {
   var words = wordText;
   var splitted = words.split(',');
-  return splitted[0];
+  return splitted[0] + "" + splitted[1];
 }

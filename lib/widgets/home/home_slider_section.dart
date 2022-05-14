@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../common/resume_word.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../views/event/event_screen.dart';
 
@@ -109,14 +110,14 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                children: const [
+                                                children:  [
                                                   Text(
-                                                    'Sport',
-                                                    style: TextStyle(
+                                                    sliceNameAndLastname(activity['title']),
+                                                    style: const TextStyle(
                                                       color: Colors.white,
                                                       fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 14,
+                                                          FontWeight.normal,
+                                                      fontSize: 12,
                                                     ),
                                                   ),
                                                 ],
@@ -167,10 +168,10 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                             children: [
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                children: const [
+                                                children:  [
                                                   Text(
-                                                    '3 séances de sport',
-                                                    style: TextStyle(
+                                                    activity['titleCategory'],
+                                                    style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontSize: 16,
