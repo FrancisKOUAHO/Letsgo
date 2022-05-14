@@ -18,6 +18,14 @@ sliceNameAndLastname(wordText) {
   return splitted[0];
 }
 
+
+//test avec caract invisble
+/*sliceNameAndLastname(wordText) {
+  var words = wordText;
+  var splitted = words.split('⠀');
+  return splitted[0];
+}*/
+
 currentAddressOk(wordText) {
   var words = wordText;
   var splitted = words.split(',');
