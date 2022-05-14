@@ -213,9 +213,9 @@ class _ResearchState extends State<Research> {
         .where("subcategoryId")
         .get()
         .then((querySnapshot) {
-      for (var result in querySnapshot.docs) {
+      querySnapshot.docs.forEach((result) {
         result.data()['subcategoryId'];
-      }
+      });
     });
   }
 }

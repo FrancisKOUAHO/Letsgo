@@ -29,7 +29,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
         const ImageConfiguration(), 'assets/map/Location_blue_sky.png');
   }
 
-  void _onMapCreated(GoogleMapController controller) {
+   _onMapCreated(GoogleMapController controller) {
     controller.setMapStyle(Utils.mapStyle);
     setState(() {
       _markers.add(
@@ -44,7 +44,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
 
   static const CameraPosition _initialCameraPosition = CameraPosition(
       target: LatLng(48.856014, 2.3522219),
-      zoom: 17); // Latitude centré = latitudeInitiale - 00.0006
+      zoom: 14);
 
   @override
   Widget build(BuildContext context) {
@@ -59,17 +59,13 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
             color: Colors.black,
             child: Container(
               margin: const EdgeInsets.all(15),
-             /* child: GoogleMap(
+              child:  GoogleMap(
                 initialCameraPosition: _initialCameraPosition,
                 myLocationEnabled: true,
                 myLocationButtonEnabled: true,
                 mapType: MapType.normal,
-                zoomGesturesEnabled: true,
-                zoomControlsEnabled: true,
-                scrollGesturesEnabled: true,
-                compassEnabled: true,
                 onMapCreated: _onMapCreated,
-              ),*/
+              ),
             ),
           ),
         ),
@@ -108,7 +104,7 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
               child: const IconButton(
                 iconSize: 25.0,
                 onPressed: null,
-                icon: FaIcon(FontAwesomeIcons.maximize),
+                icon: FaIcon(FontAwesomeIcons.locationPin),
                 color: LetsGoTheme.main,
               ),
             ),
@@ -364,3 +360,17 @@ class Utils {
 ]
   ''';
 }
+
+
+/*
+GoogleMap(
+initialCameraPosition: _initialCameraPosition,
+myLocationEnabled: true,
+myLocationButtonEnabled: true,
+mapType: MapType.normal,
+zoomGesturesEnabled: true,
+zoomControlsEnabled: true,
+scrollGesturesEnabled: true,
+compassEnabled: true,
+onMapCreated: _onMapCreated,
+),*/
