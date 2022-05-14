@@ -43,10 +43,10 @@ class _BookingActivityState extends State<BookingActivity> {
 
   Future<dynamic> uploadBookingMock(
       {required BookingService newBooking}) async {
-    await Future.delayed(const Duration(seconds: 1));
+     Future.delayed(const Duration(seconds: 1));
     converted.add(DateTimeRange(
         start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    await FirebaseFirestore.instance
+     FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)
         .collection("booking")
@@ -57,7 +57,7 @@ class _BookingActivityState extends State<BookingActivity> {
         msg: 'votre réservation a été prise en compte',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 7,
+        timeInSecForIosWeb: 2,
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 20.0);

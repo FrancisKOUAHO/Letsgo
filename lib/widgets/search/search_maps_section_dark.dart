@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../theme/letsgo_theme.dart';
-import '../../views/search/research_via_maps.dart';
 
 class SearchMapsSectionDark extends StatefulWidget {
   const SearchMapsSectionDark({Key? key}) : super(key: key);
@@ -106,15 +105,10 @@ class _SearchMapsSectionState extends State<SearchMapsSectionDark> {
                 ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: IconButton(
+              child: const IconButton(
                 iconSize: 25.0,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ResearchViaMaps()));
-                },
-                icon: const FaIcon(FontAwesomeIcons.maximize),
+                onPressed: null,
+                icon: FaIcon(FontAwesomeIcons.maximize),
                 color: LetsGoTheme.main,
               ),
             ),

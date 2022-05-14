@@ -234,9 +234,9 @@ class _SignInState extends State<SignIn> {
                                       color: LetsGoTheme.main,
                                     ),
                                   ),
-                                  onPressed: () async {
+                                  onPressed: ()  {
                                     dynamic authResult =
-                                        await _auth.signInEmailAndPassword(
+                                         _auth.signInEmailAndPassword(
                                             emailController.text,
                                             passwordController.text);
                                     if (authResult == null) {
@@ -250,7 +250,7 @@ class _SignInState extends State<SignIn> {
                                           textColor: Colors.white,
                                           fontSize: 16.0);
                                     } else {
-                                      Navigator.push(
+                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>

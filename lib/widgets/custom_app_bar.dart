@@ -24,12 +24,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late int _totalNotifications;
 
-  late String currentAddress;
+  late String currentAddress = "Votre position";
   late Position currentposition;
 
   @override
   void initState() {
     _totalNotifications = 2;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)
@@ -39,11 +45,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
         currentAddress = value.data()!["localization"];
       });
     });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
 
     return AppBar(
       automaticallyImplyLeading: false,
