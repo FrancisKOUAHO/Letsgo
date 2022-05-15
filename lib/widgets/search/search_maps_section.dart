@@ -12,7 +12,7 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
   static const CameraPosition _initialCameraPosition = CameraPosition(
       target: LatLng(48.856614, 2.3522219),
       tilt: 59.440717697143555,
-      zoom: 16);
+      zoom: 13);
 
   @override
   Widget build(BuildContext context) {
