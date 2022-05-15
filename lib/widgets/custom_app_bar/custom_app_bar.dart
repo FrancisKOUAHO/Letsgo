@@ -24,18 +24,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late int _totalNotifications;
 
-  late String currentAddress = "Votre position";
+  late String currentAddress;
   late Position currentposition;
 
   @override
   void initState() {
+    currentAddress = "Votre position";
     _totalNotifications = 2;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
     FirebaseFirestore.instance
         .collection("users")
         .doc(_auth.currentUser!.uid)

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:letsgo/views/home/home.dart';
 import '../../theme/letsgo_theme.dart';
 import '../community/community_screen.dart';
-import '../chats//chat_screen.dart';
+import '../chats/chat_screen.dart';
 import '../search/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
