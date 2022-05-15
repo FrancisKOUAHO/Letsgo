@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/widgets/search/search_maps_section_dark.dart';
 
+import '../../common/utils.dart';
 import '../../theme/size-config-flutter.dart';
 import '../../widgets/custom_event_appbar.dart';
 import '../booking/booking_activity.dart';
@@ -51,7 +51,7 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   static const CameraPosition _initialCameraPosition =
-      CameraPosition(target: LatLng(48.856014, 2.3522219), zoom: 14);
+      CameraPosition(target: LatLng(48.856014, 2.3522219), zoom: 16);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class _EventScreenState extends State<EventScreen> {
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
           child: Stack(
             alignment: const AlignmentDirectional(0, -1),
             children: [
@@ -102,7 +102,7 @@ class _EventScreenState extends State<EventScreen> {
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0, 12, 100, 0),
+                                  0, 12, 20, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -376,7 +376,7 @@ class _EventScreenState extends State<EventScreen> {
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w400,
-                                                          fontSize: 12,
+                                                          fontSize: 17,
                                                         ),
                                                       ),
                                                     ),
@@ -432,17 +432,16 @@ class _EventScreenState extends State<EventScreen> {
                                   Padding(
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 24),
+                                            0, 0, 0, 0),
                                     child: Container(
+                                      transform: Matrix4.translationValues(0.0, -450.0, 0.0),
                                       width: MediaQuery.of(context).size.width /
                                           1.2,
-                                      height: 100,
                                       decoration: const BoxDecoration(),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional
                                             .fromSTEB(12, 0, 12, 0),
                                         child: Column(
-                                          mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -464,15 +463,10 @@ class _EventScreenState extends State<EventScreen> {
                                                     ),
                                                     child: Column(
                                                       mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                          MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center,
                                                       children: const [
-                                                        FaIcon(
-                                                          FontAwesomeIcons
-                                                              .phone,
-                                                          color: Colors.black,
+                                                        FaIcon(FontAwesomeIcons.phone,
+                                                          color: LetsGoTheme.main,
                                                           size: 24,
                                                         ),
                                                       ],
@@ -502,7 +496,7 @@ class _EventScreenState extends State<EventScreen> {
                                                         FaIcon(
                                                           FontAwesomeIcons
                                                               .mapMarkerAlt,
-                                                          color: Colors.black,
+                                                          color: LetsGoTheme.main,
                                                           size: 24,
                                                         ),
                                                       ],
@@ -550,7 +544,7 @@ containerHeaderImages(BuildContext context) {
     width: MediaQuery.of(context).size.width / 1.3,
     padding: const EdgeInsets.all(15),
     margin: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-    transform: Matrix4.translationValues(0.0, -250.0, 0.0),
+    transform: Matrix4.translationValues(0.0, 400.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(15),
@@ -610,10 +604,10 @@ containerHeaderImages(BuildContext context) {
 
 Widget containerReviews(BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+    padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
     child: Container(
       width: MediaQuery.of(context).size.width / 1.3,
-      transform: Matrix4.translationValues(0.0, -250.0, 0.0),
+      transform: Matrix4.translationValues(0.0, 400.0, 0.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -648,7 +642,7 @@ Widget containerReviews(BuildContext context) {
 
 singleReview(BuildContext context) {
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(5, 5, 0, 0),
+    padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 0, 0),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -665,7 +659,7 @@ singleReview(BuildContext context) {
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width/ 1.2,
             height: 100,
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -684,19 +678,18 @@ singleReview(BuildContext context) {
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      width: MediaQuery.of(context).size.width / 1.7,
                       decoration: BoxDecoration(
                         color: const Color(0xFFF6F7FF),
                         borderRadius: BorderRadius.circular(3),
                       ),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5, 3, 5, 3),
+                            const EdgeInsetsDirectional.fromSTEB(5, 3, 5, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.network(
                               'https://cdn.iconscout.com/icon/free/png-256/star-bookmark-favorite-shape-rank-16-28621.png',
@@ -706,7 +699,7 @@ singleReview(BuildContext context) {
                             ),
                             const Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               child: Text(
                                 '4.5',
                                 style: TextStyle(

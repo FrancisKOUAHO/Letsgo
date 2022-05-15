@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_messages_appbar.dart';
 
+import '../../widgets/not_available_yet.dart';
 import '../../widgets/notification_badge.dart';
 import 'chat_room.dart';
 import 'group_chat_screen.dart';
@@ -21,6 +22,7 @@ class _ChatScreenState extends State<ChatScreen>
   Map<String, dynamic>? userMap;
   Map<String, dynamic>? friendList;
   bool isLoading = false;
+  bool display = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   dynamic data;
@@ -168,301 +170,313 @@ class _ChatScreenState extends State<ChatScreen>
                   child: TabBarView(
                     controller: tabController,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                top: 10, bottom: 10, right: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                      display
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                InkWell(
-                                    onTap: () {
-                                      showModalBottomSheet<void>(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return Column(
-                                            children: [
-                                              SizedBox(
-                                                height: size.height / 20,
-                                              ),
-                                              Container(
-                                                height: size.height / 14,
-                                                width: size.width,
-                                                alignment: Alignment.center,
-                                                child: SizedBox(
-                                                  height: size.height / 14,
-                                                  width: size.width / 1.15,
-                                                  child: TextField(
-                                                    controller: _search,
-                                                    decoration: InputDecoration(
-                                                      hintText: "Recherche",
-                                                      border:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10, right: 20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      InkWell(
+                                          onTap: () {
+                                            showModalBottomSheet<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: size.height / 20,
+                                                    ),
+                                                    Container(
+                                                      height: size.height / 14,
+                                                      width: size.width,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: SizedBox(
+                                                        height:
+                                                            size.height / 14,
+                                                        width:
+                                                            size.width / 1.15,
+                                                        child: TextField(
+                                                          controller: _search,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                "Recherche",
+                                                            border:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
+                                                    SizedBox(
+                                                      height: size.height / 50,
+                                                    ),
+                                                    ElevatedButton(
+                                                      onPressed: onSearch,
+                                                      child: const Text(
+                                                          "Recherche"),
+                                                    ),
+                                                    SizedBox(
+                                                      height: size.height / 30,
+                                                    ),
+                                                    userMap != null
+                                                        ? SizedBox(
+                                                            height:
+                                                                size.height / 2,
+                                                            child: ListView
+                                                                .builder(
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              shrinkWrap: true,
+                                                              itemCount:
+                                                                  friendList
+                                                                      ?.length,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      index) {
+                                                                return Container(
+                                                                    margin: const EdgeInsets
+                                                                            .only(
+                                                                        top: 20,
+                                                                        left:
+                                                                            10,
+                                                                        right:
+                                                                            20),
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap:
+                                                                          null,
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceAround,
+                                                                        children: [
+                                                                          const CircleAvatar(
+                                                                            radius:
+                                                                                28,
+                                                                            backgroundImage:
+                                                                                NetworkImage('https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png'),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                            width:
+                                                                                20,
+                                                                          ),
+                                                                          Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceBetween,
+                                                                            children: [
+                                                                              Text(
+                                                                                friendList?[index]['name'],
+                                                                                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                              const SizedBox(
+                                                                                height: 5,
+                                                                              ),
+                                                                              const Text(
+                                                                                'Ca va Francis ? ',
+                                                                                style: TextStyle(fontSize: 12),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.end,
+                                                                            children: [
+                                                                              _totalNotifications == 0
+                                                                                  ? NotificationBadge(totalNotifications: _totalNotifications, icon: null)
+                                                                                  : CircleAvatar(
+                                                                                      radius: 8,
+                                                                                      backgroundColor: Colors.red,
+                                                                                      child: Text(
+                                                                                        _totalNotifications.toString(),
+                                                                                        style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                                                                                      ),
+                                                                                    ),
+                                                                              const SizedBox(
+                                                                                height: 10,
+                                                                              ),
+                                                                              const Text(
+                                                                                '05:20',
+                                                                                style: TextStyle(fontSize: 12),
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ));
+                                                              },
+                                                            ),
+                                                          )
+                                                        : Container(),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: const Text("Nouveau message",
+                                              style: TextStyle(
+                                                  color: LetsGoTheme.main,
+                                                  fontWeight:
+                                                      FontWeight.bold))),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      height: 150,
+                                      child: userMap != null
+                                          ? Container(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10),
+                                              color: Colors.white,
+                                              width: size.width,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  CircleAvatar(
+                                                    radius: 40,
+                                                    backgroundColor:
+                                                        userMap!['status'] ==
+                                                                'Online'
+                                                            ? LetsGoTheme.green
+                                                            : LetsGoTheme.red,
+                                                    child: const CircleAvatar(
+                                                      radius: 35,
+                                                      backgroundImage: NetworkImage(
+                                                          "https://s3.o7planning.com/images/boy-128.png"),
+                                                    ),
                                                   ),
+                                                  Text(
+                                                    userMap!['displayName'],
+                                                    style: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          : Container(),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                userMap != null
+                                    ? Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 10, right: 20),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            String roomId = chatRoomId(
+                                                data.data()!['displayName'],
+                                                userMap!['displayName']);
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (_) => ChatRoom(
+                                                  chatRoomId: roomId,
+                                                  userMap: userMap!,
                                                 ),
                                               ),
-                                              SizedBox(
-                                                height: size.height / 50,
-                                              ),
-                                              ElevatedButton(
-                                                onPressed: onSearch,
-                                                child: const Text("Recherche"),
-                                              ),
-                                              SizedBox(
-                                                height: size.height / 30,
-                                              ),
-                                              userMap != null
-                                                  ? SizedBox(
-                                                      height: size.height / 2,
-                                                      child: ListView.builder(
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        shrinkWrap: true,
-                                                        itemCount:
-                                                            friendList?.length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          return Container(
-                                                              margin:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      top: 20,
-                                                                      left: 10,
-                                                                      right:
-                                                                          20),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: null,
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceAround,
-                                                                  children: [
-                                                                    const CircleAvatar(
-                                                                      radius:
-                                                                          28,
-                                                                      backgroundImage:
-                                                                          NetworkImage(
-                                                                              'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png'),
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      width: 20,
-                                                                    ),
-                                                                    Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Text(
-                                                                          friendList?[index]
-                                                                              [
-                                                                              'name'],
-                                                                          style: const TextStyle(
-                                                                              fontSize: 15,
-                                                                              fontWeight: FontWeight.bold),
-                                                                        ),
-                                                                        const SizedBox(
-                                                                          height:
-                                                                              5,
-                                                                        ),
-                                                                        const Text(
-                                                                          'Ca va Francis ? ',
-                                                                          style:
-                                                                              TextStyle(fontSize: 12),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    const Spacer(),
-                                                                    Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .end,
-                                                                      children: [
-                                                                        _totalNotifications ==
-                                                                                0
-                                                                            ? NotificationBadge(
-                                                                                totalNotifications: _totalNotifications,
-                                                                                icon: null)
-                                                                            : CircleAvatar(
-                                                                                radius: 8,
-                                                                                backgroundColor: Colors.red,
-                                                                                child: Text(
-                                                                                  _totalNotifications.toString(),
-                                                                                  style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
-                                                                                ),
-                                                                              ),
-                                                                        const SizedBox(
-                                                                          height:
-                                                                              10,
-                                                                        ),
-                                                                        const Text(
-                                                                          '05:20',
-                                                                          style:
-                                                                              TextStyle(fontSize: 12),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ));
-                                                        },
-                                                      ),
-                                                    )
-                                                  : Container(),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: const Text("Nouveau message",
-                                        style: TextStyle(
-                                            color: LetsGoTheme.main,
-                                            fontWeight: FontWeight.bold))),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                height: 150,
-                                child: userMap != null
-                                    ? Container(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        color: Colors.white,
-                                        width: size.width,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 40,
-                                              backgroundColor:
-                                                  userMap!['status'] == 'Online'
-                                                      ? LetsGoTheme.green
-                                                      : LetsGoTheme.red,
-                                              child: const CircleAvatar(
-                                                radius: 35,
+                                            );
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              const CircleAvatar(
+                                                radius: 28,
                                                 backgroundImage: NetworkImage(
-                                                    "https://s3.o7planning.com/images/boy-128.png"),
+                                                    'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png'),
                                               ),
-                                            ),
-                                            Text(
-                                              userMap!['displayName'],
-                                              style: const TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w500,
+                                              const SizedBox(
+                                                width: 20,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    : Container(),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          userMap != null
-                              ? Container(
-                                  margin: const EdgeInsets.only(
-                                      left: 10, right: 20),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      String roomId = chatRoomId(
-                                          data.data()!['displayName'],
-                                          userMap!['displayName']);
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (_) => ChatRoom(
-                                            chatRoomId: roomId,
-                                            userMap: userMap!,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        const CircleAvatar(
-                                          radius: 28,
-                                          backgroundImage: NetworkImage(
-                                              'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_960_720.png'),
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              userMap!['displayName'],
-                                              style: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            const Text(
-                                              'Ca va Francis ? ',
-                                              style: TextStyle(fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                        const Spacer(),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            _totalNotifications == 0
-                                                ? NotificationBadge(
-                                                    totalNotifications:
-                                                        _totalNotifications,
-                                                    icon: null)
-                                                : CircleAvatar(
-                                                    radius: 8,
-                                                    backgroundColor: Colors.red,
-                                                    child: Text(
-                                                      _totalNotifications
-                                                          .toString(),
-                                                      style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 11,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    userMap!['displayName'],
+                                                    style: const TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            const Text(
-                                              '05:20',
-                                              style: TextStyle(fontSize: 12),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ))
-                              : Container(),
-                        ],
-                      ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  const Text(
+                                                    'Ca va Francis ? ',
+                                                    style:
+                                                        TextStyle(fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                              const Spacer(),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  _totalNotifications == 0
+                                                      ? NotificationBadge(
+                                                          totalNotifications:
+                                                              _totalNotifications,
+                                                          icon: null)
+                                                      : CircleAvatar(
+                                                          radius: 8,
+                                                          backgroundColor:
+                                                              Colors.red,
+                                                          child: Text(
+                                                            _totalNotifications
+                                                                .toString(),
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 11,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  const Text(
+                                                    '05:20',
+                                                    style:
+                                                        TextStyle(fontSize: 12),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ))
+                                    : Container(),
+                              ],
+                            )
+                          : const NotAvailableYet(),
                       const GroupChatHomeScreen(),
                     ],
                   ),

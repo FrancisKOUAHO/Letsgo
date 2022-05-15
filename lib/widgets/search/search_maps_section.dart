@@ -12,7 +12,7 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
   static const CameraPosition _initialCameraPosition = CameraPosition(
       target: LatLng(48.856614, 2.3522219),
       tilt: 59.440717697143555,
-      zoom: 14.151926040649414);
+      zoom: 16);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
       height: 400,
       child: GoogleMap(
         initialCameraPosition: _initialCameraPosition,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
+        myLocationButtonEnabled:
+        true,
         mapType: MapType.normal,
         zoomGesturesEnabled: true,
         zoomControlsEnabled: true,

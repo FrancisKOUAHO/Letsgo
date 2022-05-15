@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/widgets/not_available_yet.dart';
 
 import '../../widgets/custom_return_appbar.dart';
 
@@ -20,12 +21,7 @@ class _NotificationsState extends State<Notifications> {
         preferredSize: Size(double.infinity, 60),
         child: CustomReturnAppBar('Notification'),
       ),
-      body: Center(
-        child: Text(
-          'Fonctionnalité bientôt disponible',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
+      body: NotAvailableYet(),
       /* ListView.builder(
         itemCount: 2,
         itemBuilder: (context, index) {

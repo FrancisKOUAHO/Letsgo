@@ -3,6 +3,7 @@ import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/views/ticket/ticket_screen.dart';
 
 import '../../widgets/custom_return_appbar.dart';
+import '../../widgets/not_available_yet.dart';
 
 class ListBooking extends StatefulWidget {
   const ListBooking({Key? key}) : super(key: key);
@@ -79,7 +80,7 @@ class _ListBookingState extends State<ListBooking>
                   child: TabBarView(
                     controller: tabController,
                     children: const [
-                      Center(child: Text('Fonctionnalité bientôt disponible')),
+                      NotAvailableYet(),
                       TicketScreen()
                     ],
                   ),
