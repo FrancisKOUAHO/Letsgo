@@ -4,7 +4,9 @@ import '../../theme/letsgo_theme.dart';
 
 class CustomReturnAppBar extends StatefulWidget {
   final String pageTitle;
-  const CustomReturnAppBar(this.pageTitle, {Key? key}) : super(key: key);
+  final Color backgroundColor;
+  final Color textColor;
+  const CustomReturnAppBar(this.pageTitle, this.backgroundColor, this.textColor, {Key? key}) : super(key: key);
 
   @override
   State<CustomReturnAppBar> createState() => _CustomReturnAppBarState();
@@ -14,13 +16,13 @@ class _CustomReturnAppBarState extends State<CustomReturnAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: widget.backgroundColor,
       elevation: 0,
       leadingWidth: 100,
       centerTitle: true,
       title: Text(
         widget.pageTitle,
-        style: const TextStyle(color: LetsGoTheme.black),
+        style:  TextStyle(color: widget.textColor,),
       ),
       leading: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -20,9 +20,9 @@ class _SettingsScrenState extends State<SettingsScren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar:  const PreferredSize(
         preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Paramètres'),
+        child: CustomReturnAppBar('Paramètres', Colors.transparent, LetsGoTheme.black ),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),

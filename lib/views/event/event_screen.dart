@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/views/itinerary/itinerary.dart';
+import 'package:letsgo/views/ticket/ticket.dart';
 
 import '../../common/utils.dart';
 import '../../theme/size-config-flutter.dart';
@@ -51,7 +53,7 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   static const CameraPosition _initialCameraPosition =
-      CameraPosition(target: LatLng(48.856014, 2.3522219), zoom: 16);
+      CameraPosition(target: LatLng(48.856014, 2.3522219), zoom: 18);
 
   @override
   Widget build(BuildContext context) {
@@ -434,7 +436,8 @@ class _EventScreenState extends State<EventScreen> {
                                         const EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 0, 0),
                                     child: Container(
-                                      transform: Matrix4.translationValues(0.0, -450.0, 0.0),
+                                      transform: Matrix4.translationValues(
+                                          0.0, -450.0, 0.0),
                                       width: MediaQuery.of(context).size.width /
                                           1.2,
                                       decoration: const BoxDecoration(),
@@ -448,35 +451,52 @@ class _EventScreenState extends State<EventScreen> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
                                               children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0, 0, 5, 0),
-                                                  child: Container(
-                                                    width: 50,
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: const [
-                                                        FaIcon(FontAwesomeIcons.phone,
-                                                          color: LetsGoTheme.main,
-                                                          size: 24,
-                                                        ),
-                                                      ],
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) => Itinerary()),
+                                                    );
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                            0, 0, 20, 0),
+                                                    child: Container(
+                                                      width: 50,
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          FaIcon(
+                                                            FontAwesomeIcons
+                                                                .phone,
+                                                            color: LetsGoTheme
+                                                                .main,
+                                                            size: 24,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
                                                   padding:
                                                       const EdgeInsetsDirectional
-                                                          .fromSTEB(5, 0, 0, 0),
+                                                              .fromSTEB(
+                                                          0, 0, 30, 0),
                                                   child: Container(
                                                     width: 50,
                                                     height: 50,
@@ -496,7 +516,8 @@ class _EventScreenState extends State<EventScreen> {
                                                         FaIcon(
                                                           FontAwesomeIcons
                                                               .mapMarkerAlt,
-                                                          color: LetsGoTheme.main,
+                                                          color:
+                                                              LetsGoTheme.main,
                                                           size: 24,
                                                         ),
                                                       ],
@@ -659,7 +680,7 @@ singleReview(BuildContext context) {
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width/ 1.2,
+            width: MediaQuery.of(context).size.width / 1.2,
             height: 100,
             child: Column(
               mainAxisSize: MainAxisSize.max,

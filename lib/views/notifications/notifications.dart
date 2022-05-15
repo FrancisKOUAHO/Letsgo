@@ -19,7 +19,7 @@ class _NotificationsState extends State<Notifications> {
     return const Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Notification'),
+        child: CustomReturnAppBar('Notification', Colors.transparent, LetsGoTheme.black),
       ),
       body: NotAvailableYet(),
       /* ListView.builder(

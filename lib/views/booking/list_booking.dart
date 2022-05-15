@@ -33,7 +33,7 @@ class _ListBookingState extends State<ListBooking>
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Vos réservations'),
+        child: CustomReturnAppBar('Vos réservations', Colors.transparent, LetsGoTheme.black),
       ),
       body: SingleChildScrollView(
         child: Padding(

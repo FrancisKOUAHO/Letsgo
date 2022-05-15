@@ -59,11 +59,11 @@ class _TicketScreenState extends State<TicketScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                             /* Navigator.push(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Ticket()),
-                              );*/
+                              );
                             },
                             child: Card(
                               elevation: 4.0,
