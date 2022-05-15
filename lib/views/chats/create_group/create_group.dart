@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/views/group_chats/chat_screen.dart';
+import 'package:letsgo/views/chats/chat_screen.dart';
 import 'package:uuid/uuid.dart';
 import '../../../theme/letsgo_theme.dart';
 

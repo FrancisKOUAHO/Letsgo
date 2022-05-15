@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/views/ticket/ticket_screen.dart';
 
-import '../../widgets/custom_return_appbar.dart';
+import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 import '../../widgets/not_available_yet.dart';
 
 class ListBooking extends StatefulWidget {

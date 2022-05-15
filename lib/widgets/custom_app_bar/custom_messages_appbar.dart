@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../theme/letsgo_theme.dart';
+import '../../theme/letsgo_theme.dart';
 
-import '../views/profil/profil_screen.dart';
+import '../../views/profil/profil_screen.dart';
 
 class CustomMessagesAppBar extends StatefulWidget {
   const CustomMessagesAppBar({Key? key}) : super(key: key);

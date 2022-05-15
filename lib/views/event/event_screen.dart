@@ -7,7 +7,7 @@ import 'package:letsgo/theme/letsgo_theme.dart';
 
 import '../../common/utils.dart';
 import '../../theme/size-config-flutter.dart';
-import '../../widgets/custom_event_appbar.dart';
+import '../../widgets/custom_app_bar/custom_event_appbar.dart';
 import '../booking/booking_activity.dart';
 
 class EventScreen extends StatefulWidget {

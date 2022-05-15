@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../theme/letsgo_theme.dart';
+import '../../theme/letsgo_theme.dart';
 
 class CustomEventAppBar extends StatefulWidget {
   const CustomEventAppBar({Key? key}) : super(key: key);

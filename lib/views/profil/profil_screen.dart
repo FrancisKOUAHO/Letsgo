@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../widgets/custom_profil_appbar.dart';
+import '../../widgets/custom_app_bar/custom_profil_appbar.dart';
 import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 

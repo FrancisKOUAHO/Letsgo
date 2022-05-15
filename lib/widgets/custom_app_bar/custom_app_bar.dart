@@ -8,9 +8,9 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:letsgo/widgets/notification_badge.dart';
 
-import '../common/resume_word.dart';
-import '../theme/letsgo_theme.dart';
-import '../views/profil/profil_screen.dart';
+import '../../common/resume_word.dart';
+import '../../theme/letsgo_theme.dart';
+import '../../views/profil/profil_screen.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({Key? key}) : super(key: key);

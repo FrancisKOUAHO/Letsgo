@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../theme/letsgo_theme.dart';
-import '../../widgets/custom_messages_appbar.dart';
+import '../../widgets/custom_app_bar/custom_messages_appbar.dart';
 
 import '../../widgets/not_available_yet.dart';
 import '../../widgets/notification_badge.dart';

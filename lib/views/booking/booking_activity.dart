@@ -7,7 +7,7 @@ import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../common/resume_word.dart';
-import '../../widgets/custom_return_appbar.dart';
+import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 class BookingActivity extends StatefulWidget {
   final activity;

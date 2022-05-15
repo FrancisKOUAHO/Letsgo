@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/views/group_chats/create_group/create_group.dart';
+import 'package:letsgo/views/chats/create_group/create_group.dart';
 import '../../../theme/letsgo_theme.dart';
-import '../../../widgets/custom_return_appbar.dart';
+import '../../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 class AddMembersInGroup extends StatefulWidget {
   const AddMembersInGroup({Key? key}) : super(key: key);

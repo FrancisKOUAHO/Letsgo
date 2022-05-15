@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../common/resume_word.dart';
 import '../../theme/letsgo_theme.dart';
-import '../../widgets/custom_app_bar.dart';
+import '../../widgets/custom_app_bar/custom_app_bar.dart';
 import '../event/event_screen.dart';
 
 class Research extends StatefulWidget {

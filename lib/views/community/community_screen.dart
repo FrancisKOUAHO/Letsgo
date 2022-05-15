@@ -4,7 +4,7 @@ import 'package:letsgo/theme/letsgo_theme.dart';
 
 import 'package:letsgo/widgets/community/community_gallery_card.dart';
 
-import '../../widgets/custom_app_bar.dart';
+import '../../widgets/custom_app_bar/custom_app_bar.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);

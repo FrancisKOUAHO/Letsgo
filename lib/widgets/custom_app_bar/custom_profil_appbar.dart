@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../theme/letsgo_theme.dart';
+import '../../theme/letsgo_theme.dart';
 
-import '../views/profil/settings_scren.dart';
+import '../../views/profil/settings_scren.dart';
 
 class CustomProfilAppBar extends StatefulWidget {
   const CustomProfilAppBar({Key? key}) : super(key: key);

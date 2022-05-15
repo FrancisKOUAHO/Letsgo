@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:letsgo/views/profil/edit_profile.dart';
 import 'package:letsgo/services/auth_service.dart';
-import '../../widgets/custom_return_appbar.dart';
+import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 import '../login/sign_in.dart';
 
