@@ -50,7 +50,7 @@ class _CommunityGalleryCardState extends State<CommunityGalleryCard> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children:  [
                           Text(
                             'DEC',
                             style: TextStyle(

@@ -28,6 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         contentPadding:
                             const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                         suffixIcon:
-                            const Icon(Icons.search, color: LetsGoTheme.main),
+                             Icon(Icons.search, color: LetsGoTheme.main),
                         hintText: "Rechercher des activité ...",
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,

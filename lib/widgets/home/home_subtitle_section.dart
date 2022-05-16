@@ -13,7 +13,7 @@ class _HomeSubTitleSectionState extends State<HomeSubTitleSection> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10),
-      child: const Text(
+      child:  Text(
         "Les activités",
         style: LetsGoTheme.Title,
       ),

@@ -20,8 +20,8 @@ class _SettingsScrenState extends State<SettingsScren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+      appBar:   PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Paramètres', Colors.transparent, LetsGoTheme.black ),
       ),
       body: Container(
@@ -32,15 +32,15 @@ class _SettingsScrenState extends State<SettingsScren> {
               height: 40,
             ),
             Row(
-              children: const [
+              children:  [
                 Icon(
                   Icons.person,
                   color: LetsGoTheme.main,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
+                const Text(
                   "Compte",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -61,15 +61,15 @@ class _SettingsScrenState extends State<SettingsScren> {
               height: 40,
             ),
             Row(
-              children: const [
+              children:  [
                 Icon(
                   Icons.volume_up_outlined,
                   color: LetsGoTheme.main,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
+                const Text(
                   "Notifications",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -93,7 +93,7 @@ class _SettingsScrenState extends State<SettingsScren> {
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  side: const BorderSide(
+                  side:  BorderSide(
                     width: 2,
                     color: LetsGoTheme.main,
                   ),

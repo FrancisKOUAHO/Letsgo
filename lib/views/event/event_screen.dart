@@ -321,7 +321,7 @@ class _EventScreenState extends State<EventScreen> {
                       ),
                       Stack(children: <Widget>[
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                           width: MediaQuery.of(context).size.width / 1.105,
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -364,7 +364,7 @@ class _EventScreenState extends State<EventScreen> {
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width / 1.2,
-                              padding: EdgeInsets.fromLTRB(0, 22, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 22, 0, 0),
                               decoration: const BoxDecoration(),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(

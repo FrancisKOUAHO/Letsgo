@@ -103,7 +103,7 @@ class _TicketScreenState extends State<TicketScreen> {
                                           children: <Widget>[
                                             Text(
                                               booking['bookingStart'],
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: LetsGoTheme.main,
                                                 fontSize: 14.0,
                                               ),
@@ -111,13 +111,13 @@ class _TicketScreenState extends State<TicketScreen> {
                                             const Spacer(),
                                             Text(
                                               '${booking['servicePrice']}€',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: LetsGoTheme.main,
                                                 fontSize: 14.0,
                                               ),
                                             ),
                                             const Spacer(),
-                                            const Text(
+                                            Text(
                                               "categorie",
                                               style: TextStyle(
                                                 color: LetsGoTheme.main,

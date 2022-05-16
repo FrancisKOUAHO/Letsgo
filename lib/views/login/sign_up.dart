@@ -59,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Column(
                           children: [
-                            const SizedBox(
+                             SizedBox(
                               height: 40,
                               child: Center(
                                 child: Text(
@@ -79,15 +79,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
+                                enabledBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
+                                  borderSide:   BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Prenom NOM',
                                 disabledBorder: null,
@@ -114,15 +114,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
+                                enabledBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
+                                  borderSide:   BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Adresse mail',
                                 disabledBorder: null,
@@ -149,15 +149,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
+                                enabledBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
+                                  borderSide:   BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Mot de passe',
                                 disabledBorder: null,
@@ -195,7 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     ),
                                   ),
-                                  child: const Text(
+                                  child:  Text(
                                     "S'enregistrer",
                                     style: TextStyle(
                                       fontFamily: 'Late',

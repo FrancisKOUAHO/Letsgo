@@ -138,11 +138,11 @@ class ChatRoom extends StatelessWidget {
                     children: [
                       Text(
                         userMap['displayName'],
-                        style: const TextStyle(color: LetsGoTheme.black),
+                        style:  TextStyle(color: LetsGoTheme.black),
                       ),
                       Text(
                         snapshot.data!['status'],
-                        style: const TextStyle(
+                        style:  TextStyle(
                             fontSize: 12, color: LetsGoTheme.black),
                       ),
                     ],
@@ -170,7 +170,7 @@ class ChatRoom extends StatelessWidget {
                     width: 45,
                     height: 45,
                     child: IconButton(
-                      icon: const FaIcon(
+                      icon:  FaIcon(
                         FontAwesomeIcons.chevronLeft,
                         color: LetsGoTheme.main,
                       ),

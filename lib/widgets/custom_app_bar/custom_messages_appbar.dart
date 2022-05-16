@@ -21,7 +21,7 @@ class _CustomMessagesAppBarState extends State<CustomMessagesAppBar> {
       elevation: 0,
       leadingWidth: 100,
       centerTitle: true,
-      title: const Text(
+      title:  Text(
         'Messages',
         style: TextStyle(color: LetsGoTheme.black),
       ),

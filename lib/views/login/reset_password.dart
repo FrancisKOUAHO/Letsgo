@@ -56,7 +56,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       children: [
                         Column(
                           children: [
-                            const SizedBox(
+                             SizedBox(
                               height: 100,
                               child: Center(
                                 child: Text(
@@ -73,26 +73,26 @@ class _ResetPasswordState extends State<ResetPassword> {
                               cursorColor: LetsGoTheme.white,
                               cursorWidth: 2,
                               obscureText: false,
-                              style: const TextStyle(color: LetsGoTheme.white),
+                              style:  TextStyle(color: LetsGoTheme.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
+                                enabledBorder:  OutlineInputBorder(
                                   borderSide: BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:  const BorderSide(color: LetsGoTheme.white),
+                                  borderSide:   BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Mot de passe',
                                 disabledBorder: null,
                                 filled: true,
                                 fillColor: Colors.white.withOpacity(0.5),
-                                prefixIcon: const Icon(Icons.email_outlined,
+                                prefixIcon:  Icon(Icons.email_outlined,
                                     color: LetsGoTheme.white),
-                                hintStyle: const TextStyle(
+                                hintStyle:  TextStyle(
                                   color: LetsGoTheme.white,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Late',
@@ -122,7 +122,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                       ),
                                     ),
                                   ),
-                                  child: const Text(
+                                  child:  Text(
                                     'Valider',
                                     style: TextStyle(
                                       fontFamily: 'Late',
@@ -159,12 +159,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                             Container(
                               margin:
                                   const EdgeInsets.only(left: 90, right: 90),
-                              child: const Divider(
+                              child:  Divider(
                                 color: LetsGoTheme.white,
                               ),
                             ),
                             InkWell(
-                              child: const Text(
+                              child:  Text(
                                 'Retour',
                                 style: TextStyle(
                                   fontFamily: 'PT-Sans',

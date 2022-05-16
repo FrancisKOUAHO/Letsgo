@@ -117,10 +117,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             width: 110,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: const <Widget>[
+                              children:  <Widget>[
                                 Icon(FontAwesomeIcons.accusoft,
                                     size: 16, color: LetsGoTheme.main),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -130,7 +130,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     fontSize: 12,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -157,10 +157,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             width: 110,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
+                              children:  <Widget>[
                                 Icon(FontAwesomeIcons.ticket,
                                     size: 16, color: LetsGoTheme.main),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -170,7 +170,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     fontSize: 12,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -190,10 +190,10 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             width: 110,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
+                              children:  <Widget>[
                                 Icon(FontAwesomeIcons.heartPulse,
                                     size: 16, color: LetsGoTheme.main),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -203,7 +203,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                     fontSize: 12,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
@@ -224,7 +224,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   Divider(
                     color: Colors.grey[400],
                   ),
-                  const Text(
+                   Text(
                     "Amis",
                     style: TextStyle(
                       color: LetsGoTheme.black,
@@ -248,16 +248,14 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage("assets/images/friends_" +
-                                        index.toString() +
-                                        ".jpg"),
+                                    image: AssetImage("assets/images/friends_$index.jpg"),
                                   )));
                         }),
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  const Text(
+                   Text(
                     "Photos",
                     style: TextStyle(
                       color: LetsGoTheme.black,
@@ -281,9 +279,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage("assets/images/photo_" +
-                                        index.toString() +
-                                        ".jpg"),
+                                    image: AssetImage("assets/images/photo_$index.jpg"),
                                   )));
                         }),
                   ),

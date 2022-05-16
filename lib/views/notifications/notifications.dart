@@ -16,12 +16,12 @@ class _NotificationsState extends State<Notifications> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+        preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Notification', Colors.transparent, LetsGoTheme.black),
       ),
-      body: NotAvailableYet(),
+      body: const NotAvailableYet(),
       /* ListView.builder(
         itemCount: 2,
         itemBuilder: (context, index) {

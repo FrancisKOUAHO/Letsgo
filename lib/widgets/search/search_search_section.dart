@@ -18,7 +18,7 @@ class SearchSearchSection extends StatelessWidget {
             fillColor: LetsGoTheme.lightPurple,
             filled: true,
             contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            suffixIcon: const Icon(Icons.search, color: LetsGoTheme.main),
+            suffixIcon:  Icon(Icons.search, color: LetsGoTheme.main),
             hintText: "Rechercher des activité ...",
             border: OutlineInputBorder(
               borderSide: BorderSide.none,

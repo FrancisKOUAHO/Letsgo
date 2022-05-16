@@ -24,36 +24,35 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(
-                height: 20,
+                height: 15,
               ),
               const UserBoxTitleSection(),
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(
-                height: 20,
-              ),
               Container(
                 padding: const EdgeInsets.only(left: 10),
-                child: const Text(
+                child: Text(
                   "Suggestion pour toi",
                   style: LetsGoTheme.subTitle,
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               const HomeSliderSection(),
-              const SizedBox(
-                height: 20,
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  "Les activités",
+                  style: LetsGoTheme.subTitle,
+                ),
               ),
-              const HomeSubTitleSection(),
               const HomeThemeSection(),
             ],
           ),

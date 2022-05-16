@@ -30,7 +30,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   void initState() {
     currentAddress = "Votre position";
-    _totalNotifications = 2;
+    _totalNotifications = 0;
     super.initState();
   }
 
@@ -67,15 +67,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   children: [
                     IconButton(
                       onPressed: _determinePosition,
-                      icon: const FaIcon(
+                      icon:  FaIcon(
                         FontAwesomeIcons.mapMarkerAlt,
                         color: LetsGoTheme.main,
                       ),
                       iconSize: 20.0,
                     ),
                     Text(
-                      currentAddressOk(currentAddress) ?? "Votre position",
-                      style: const TextStyle(
+                      currentAddress,
+                      style:  TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,
                       ),
@@ -111,7 +111,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       user!.photoURL ??
-                          'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',
+                          'https://www.solutionmotsfleches.com/images/avatar.jpg',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,

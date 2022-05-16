@@ -37,8 +37,8 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+               Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                 child: Text('Sélectionnez 4 activités ou plus que vous aimez. ',
                     textAlign: TextAlign.start, style: LetsGoTheme.selectTitle),
               ),
@@ -55,14 +55,14 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                       hintStyle:
                           const TextStyle(fontSize: 20.0, color: Colors.white),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide:  BorderSide(
                           color: LetsGoTheme.white,
                           width: 5,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide:  BorderSide(
                           color: LetsGoTheme.white,
                           width: 5,
                         ),
@@ -70,7 +70,7 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                       ),
                       contentPadding:
                           const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-                      prefixIcon: const Icon(
+                      prefixIcon:  Icon(
                         Icons.search,
                         color: LetsGoTheme.white,
                         size: 30,
@@ -90,21 +90,17 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
               Container(
                 margin: const EdgeInsets.all(25),
                 child: FlatButton(
-                  child: const Text(
-                    'Terminer',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
                   color: LetsGoTheme.white,
                   textColor: LetsGoTheme.main,
-                  onPressed: () async {
-                    await FirebaseFirestore.instance
+                  onPressed: ()  {
+                     FirebaseFirestore.instance
                         .collection('users')
                         .doc(_fireBaseAuth.currentUser!.uid)
                         .update({
                       "preferredCategoryOfActivity": selectedIndex,
                       "favoriteCategoryOfActivity": favoriteCategoryOfActivity,
                     });
-                    await Navigator.pushReplacement(
+                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomeScreen()));
@@ -115,6 +111,10 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                           width: 1,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(10)),
+                  child: const Text(
+                    'Terminer',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                 ),
               ),
             ],
@@ -156,6 +156,8 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                                 color: Colors.white, width: 2.0),
                             borderRadius: BorderRadius.circular(4.0)),
                     elevation: 5,
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 5.0),
                     child: InkWell(
                       onTap: () {
                         setState(() {
@@ -186,8 +188,6 @@ class _SelectActivityFavoritesState extends State<SelectActivityFavorites> {
                         ),
                       ),
                     ),
-                    margin: const EdgeInsets.only(
-                        left: 20.0, right: 20.0, top: 5.0),
                   );
                 },
               );

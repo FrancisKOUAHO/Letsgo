@@ -9,13 +9,13 @@ class Ticket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       backgroundColor: LetsGoTheme.main,
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+        preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Billet', Colors.black, LetsGoTheme.white),
       ),
-      body: Center(
+      body: const Center(
         child: TicketWidget(
           width: 350,
           height: 500,

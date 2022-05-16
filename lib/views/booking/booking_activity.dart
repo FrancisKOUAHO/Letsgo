@@ -31,7 +31,7 @@ class _BookingActivityState extends State<BookingActivity> {
     super.initState();
     mockBookingService = BookingService(
         serviceName: widget.activity['titleCategory'],
-        servicePrice: int.parse(sliceNameAndLastname(widget.activity['price'])),
+        servicePrice: int.parse(splitsTheString(widget.activity['price'])[0]),
         serviceDuration: 30,
         bookingEnd: DateTime(now.year, now.month, now.day, 18, 0),
         bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
@@ -91,7 +91,7 @@ class _BookingActivityState extends State<BookingActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar:  PreferredSize(
         preferredSize: Size(double.infinity, 60),
         child: CustomReturnAppBar('Réservation', Colors.transparent, LetsGoTheme.black),
       ),

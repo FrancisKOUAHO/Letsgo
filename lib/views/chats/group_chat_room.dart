@@ -58,7 +58,7 @@ class GroupChatRoom extends StatelessWidget {
         elevation: 0,
         leadingWidth: 100,
         title:
-            Text(groupName, style: const TextStyle(color: LetsGoTheme.black)),
+            Text(groupName, style:  TextStyle(color: LetsGoTheme.black)),
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +76,7 @@ class GroupChatRoom extends StatelessWidget {
                   width: 45,
                   height: 45,
                   child: IconButton(
-                    icon: const FaIcon(
+                    icon:  FaIcon(
                       FontAwesomeIcons.chevronLeft,
                       color: LetsGoTheme.main,
                     ),
@@ -108,7 +108,7 @@ class GroupChatRoom extends StatelessWidget {
                     width: 45,
                     height: 45,
                     child: IconButton(
-                      icon: const FaIcon(
+                      icon:  FaIcon(
                         FontAwesomeIcons.ellipsisVertical,
                         color: LetsGoTheme.main,
                       ),

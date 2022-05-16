@@ -47,8 +47,8 @@ class LetsGoTheme {
       fontWeight: FontWeight.bold, fontSize: 28, color: LetsGoTheme.black);
 
   static TextStyle subTitle = GoogleFonts.lato(
-    fontWeight: FontWeight.w700,
-    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
     color: LetsGoTheme.black,
   );
 

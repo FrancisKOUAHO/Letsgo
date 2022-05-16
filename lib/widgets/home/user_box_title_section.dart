@@ -13,20 +13,12 @@ class UserBoxTitleSection extends StatefulWidget {
 }
 
 class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
-  dynamic data;
+  dynamic displayName;
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(_auth.currentUser!.uid)
-        .get()
-        .then((value) {
-      setState(() {
-        data = value.data()!['displayName'];
-      });
-    });
     super.initState();
   }
 
@@ -37,21 +29,28 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
 
   @override
   Widget build(BuildContext context) {
-
-
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        displayName = value.data()!['displayName'];
+      });
+    });
     return Container(
       padding: const EdgeInsets.only(left: 10, top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Text(
-            "Let's GO",
+          Text(
+            "Let's GO,",
             style: LetsGoTheme.Title,
           ),
           Container(
             padding: const EdgeInsets.only(top: 5),
             child: Text(
-              sliceNameAndLastname(data),
+              '$displayName!',
               style: LetsGoTheme.Title,
             ),
           ),

@@ -108,7 +108,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const InkWell(
+                 InkWell(
                     child: Text("",
                         style: TextStyle(
                             color: LetsGoTheme.main,
@@ -132,7 +132,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
                             },
                           );
                         },
-                        child: const Icon(
+                        child:  Icon(
                           Icons.forward,
                           color: LetsGoTheme.main,
                         ))

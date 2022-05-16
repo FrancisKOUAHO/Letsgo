@@ -325,7 +325,7 @@ class _ChatScreenState extends State<ChatScreen>
                                               },
                                             );
                                           },
-                                          child: const Text("Nouveau message",
+                                          child:  Text("Nouveau message",
                                               style: TextStyle(
                                                   color: LetsGoTheme.main,
                                                   fontWeight:

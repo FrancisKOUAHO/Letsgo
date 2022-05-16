@@ -34,7 +34,7 @@ class _ItineraryState extends State<Itinerary> {
       _markers.add(
         Marker(
           markerId: const MarkerId('id-1'),
-          position: const LatLng(48.856614, 2.3522219),
+          position: const LatLng(48.960796, 2.070022),
           icon: mapMarker,
         ),
       );
@@ -42,26 +42,27 @@ class _ItineraryState extends State<Itinerary> {
   }
 
   static const CameraPosition _initialCameraPosition =
-  CameraPosition(target: LatLng(48.856014, 2.3522219), zoom: 14);
+      CameraPosition(target: LatLng(48.960796, 2.070022), zoom: 12);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Itinéraire', Colors.black, LetsGoTheme.white),
+      appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
+        child:
+            CustomReturnAppBar('Itinéraire', Colors.black, LetsGoTheme.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
             child: GoogleMap(
-              initialCameraPosition:
-              _initialCameraPosition,
+              initialCameraPosition: _initialCameraPosition,
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
+              markers: _markers,
             ),
           ),
         ],

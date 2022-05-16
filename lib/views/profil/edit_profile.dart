@@ -41,8 +41,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       });
     });
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+      appBar:  PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Modifier mon profil', Colors.transparent, LetsGoTheme.black),
       ),
       body: Container(

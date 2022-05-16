@@ -24,7 +24,7 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Color(0x3A000000),
+              color: const Color(0x3A000000),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),
@@ -38,7 +38,7 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
                 width: 45,
                 height: 45,
                 child: IconButton(
-                  icon: const FaIcon(
+                  icon:  FaIcon(
                     FontAwesomeIcons.chevronLeft,
                     color: LetsGoTheme.main,
                   ),
@@ -61,7 +61,7 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
               padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: Color(0x3A000000),
+                color: const Color(0x3A000000),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
@@ -75,7 +75,7 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
                   width: 45,
                   height: 45,
                   child: IconButton(
-                    icon: const FaIcon(
+                    icon:  FaIcon(
                       FontAwesomeIcons.heart,
                       color: LetsGoTheme.main,
                     ),

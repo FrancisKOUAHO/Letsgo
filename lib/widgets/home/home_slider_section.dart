@@ -16,32 +16,33 @@ class HomeSliderSection extends StatefulWidget {
 class _HomeSliderSectionState extends State<HomeSliderSection> {
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _activitiesStream =
+    final Stream<QuerySnapshot> activitiesStream =
         FirebaseFirestore.instance.collection('activities').snapshots();
 
-    final _mediaQuery = MediaQuery.of(context).size;
+    final mediaQuery = MediaQuery.of(context).size;
 
     return StreamBuilder<QuerySnapshot>(
-      stream: _activitiesStream,
+      stream: activitiesStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Text('Something went wrong');
         }
-
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(
+            child: Text('Chargement...',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.black)),
+          );
         }
-
         return SizedBox(
-            height: _mediaQuery.height * 0.4,
+            height: mediaQuery.height * 0.4,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> activity =
-                    document.data()! as Map<String, dynamic>;
+                document.data()! as Map<String, dynamic>;
                 return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
                       Container(
@@ -112,7 +113,7 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                                     MainAxisAlignment.center,
                                                 children:  [
                                                   Text(
-                                                    sliceNameAndLastname(activity['title']),
+                                                    splitsTheString(activity['title']),
                                                     style: const TextStyle(
                                                       color: Colors.white,
                                                       fontWeight:
@@ -145,12 +146,12 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                               0.7,
                                         ),
                                         decoration: BoxDecoration(
-                                          gradient: const LinearGradient(
+                                          gradient:  LinearGradient(
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight,
                                             colors: [
                                               LetsGoTheme.white,
-                                              Color.fromARGB(
+                                              const Color.fromARGB(
                                                   162, 199, 199, 199),
                                             ],
                                           ),

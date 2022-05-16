@@ -139,7 +139,7 @@ class _GroupInfoState extends State<GroupInfo> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar:  PreferredSize(
           preferredSize: Size(double.infinity, 60),
           child: CustomReturnAppBar('', Colors.transparent, LetsGoTheme.black),
         ),

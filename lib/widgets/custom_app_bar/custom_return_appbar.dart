@@ -41,7 +41,7 @@ class _CustomReturnAppBarState extends State<CustomReturnAppBar> {
                 width: 45,
                 height: 45,
                 child: IconButton(
-                  icon: const FaIcon(
+                  icon:  FaIcon(
                     FontAwesomeIcons.chevronLeft,
                     color: LetsGoTheme.main,
                   ),

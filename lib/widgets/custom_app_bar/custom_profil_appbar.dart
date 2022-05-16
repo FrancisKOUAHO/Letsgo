@@ -18,7 +18,7 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       leadingWidth: 100,
-      title: const Text(
+      title:  Text(
         'Mon profil',
         style: TextStyle(color: LetsGoTheme.black),
       ),
@@ -30,7 +30,7 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             child: Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Color(0x3A000000),
+              color: const Color(0x3A000000),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),
@@ -39,7 +39,7 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
                 width: 45,
                 height: 45,
                 child: IconButton(
-                  icon: const FaIcon(
+                  icon:  FaIcon(
                     FontAwesomeIcons.chevronLeft,
                     color: LetsGoTheme.main,
                   ),
@@ -62,7 +62,7 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
               padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: Color(0x3A000000),
+                color: const Color(0x3A000000),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
@@ -71,7 +71,7 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
                   width: 45,
                   height: 45,
                   child: IconButton(
-                    icon: const FaIcon(
+                    icon:  FaIcon(
                       FontAwesomeIcons.gear,
                       color: LetsGoTheme.main,
                     ),

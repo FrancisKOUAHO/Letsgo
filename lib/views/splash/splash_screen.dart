@@ -72,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Column(
-                    children: const [
+                    children:  [
                       Text(
                         "Let's GO",
                         style: LetsGoTheme.logoTitle,

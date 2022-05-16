@@ -63,7 +63,7 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
                       },
                     );
                   },
-                  child: const Text("Creer un groupe",
+                  child:  Text("Creer un groupe",
                       style: TextStyle(
                           color: LetsGoTheme.main,
                           fontWeight: FontWeight.bold))),
