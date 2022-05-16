@@ -43,8 +43,8 @@ class LetsGoTheme {
   );
 
   static const TextStyle Title = TextStyle(
-    fontWeight: FontWeight.w700,
-    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    fontSize: 28,
     color: LetsGoTheme.black,
   );
 

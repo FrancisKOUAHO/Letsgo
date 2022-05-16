@@ -74,7 +74,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       iconSize: 20.0,
                     ),
                     Text(
-                      currentAddressOk(currentAddress),
+                      currentAddressOk(currentAddress) ?? "Votre position",
                       style: const TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,
@@ -111,7 +111,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       user!.photoURL ??
-                          'https://www.solutionmotsfleches.com/images/avatar.jpg',
+                          'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,

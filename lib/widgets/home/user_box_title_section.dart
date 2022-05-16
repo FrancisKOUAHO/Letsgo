@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
 
+import '../../common/resume_word.dart';
+
 class UserBoxTitleSection extends StatefulWidget {
   const UserBoxTitleSection({Key? key}) : super(key: key);
 
@@ -49,7 +51,7 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
           Container(
             padding: const EdgeInsets.only(top: 5),
             child: Text(
-              data ?? '',
+              sliceNameAndLastname(data),
               style: LetsGoTheme.Title,
             ),
           ),

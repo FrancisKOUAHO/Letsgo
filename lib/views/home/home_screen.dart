@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 alignment: Alignment.center,
                 child: Icon(
                   listOfIcons[index],
-                  size: screenWidth * .100,
+                  size: 35,
                   color:
                       index == _currentIndex ? Colors.white : LetsGoTheme.main,
                 ),

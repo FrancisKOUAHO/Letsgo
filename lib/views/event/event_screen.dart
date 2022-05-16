@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
+import 'package:letsgo/views/itinerary/itinerary.dart';
 
 import '../../common/utils.dart';
 import '../../theme/size-config-flutter.dart';
@@ -42,7 +43,7 @@ class _EventScreenState extends State<EventScreen> {
       _markers.add(
         Marker(
           markerId: const MarkerId('id-1'),
-          position: const LatLng(48.856614, 2.3522219),
+          position: const LatLng(48.960796, 2.070022),
           icon: mapMarker,
         ),
       );
@@ -50,7 +51,7 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   static const CameraPosition _initialCameraPosition =
-      CameraPosition(target: LatLng(48.856014, 2.3522219), zoom: 13);
+      CameraPosition(target: LatLng(48.960796, 2.070022), zoom: 12);
 
   @override
   Widget build(BuildContext context) {
@@ -318,62 +319,63 @@ class _EventScreenState extends State<EventScreen> {
                           ),
                         ],
                       ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        width: MediaQuery.of(context).size.width / 1.105,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0, 1, 0, 0),
-                              child: Container(
-                                width:
-                                    MediaQuery.of(context).size.width / 1.105,
-                                height:
-                                    MediaQuery.of(context).size.height / 2.3,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                    color: const Color(0xFF1F1F1F),
-                                    width: 12,
+                      Stack(children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          width: MediaQuery.of(context).size.width / 1.105,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 1, 0, 0),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.105,
+                                  height:
+                                      MediaQuery.of(context).size.height / 2.3,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: const Color(0xFF1F1F1F),
+                                      width: 12,
+                                    ),
+                                  ),
+                                  child: GoogleMap(
+                                    initialCameraPosition:
+                                        _initialCameraPosition,
+                                    myLocationEnabled: true,
+                                    myLocationButtonEnabled: true,
+                                    zoomGesturesEnabled: false,
+                                    zoomControlsEnabled: false,
+                                    scrollGesturesEnabled: false,
+                                    mapType: MapType.normal,
+                                    onMapCreated: _onMapCreated,
+                                    markers: _markers,
                                   ),
                                 ),
-                                child: GoogleMap(
-                                  initialCameraPosition: _initialCameraPosition,
-                                  myLocationEnabled: true,
-                                  myLocationButtonEnabled: true,
-                                  mapType: MapType.normal,
-                                  onMapCreated: _onMapCreated,
-                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            transform:
-                                Matrix4.translationValues(0.0, -390.0, 0.0),
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            decoration: const BoxDecoration(),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12, 0, 12, 0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          print("Button");
-                                        },
-                                        child: Padding(
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              padding: EdgeInsets.fromLTRB(0, 22, 0, 0),
+                              decoration: const BoxDecoration(),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    12, 0, 12, 0),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Padding(
                                           padding: const EdgeInsetsDirectional
                                               .fromSTEB(0, 0, 5, 0),
                                           child: Container(
@@ -388,22 +390,21 @@ class _EventScreenState extends State<EventScreen> {
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                              children: const [
-                                                FaIcon(
-                                                  FontAwesomeIcons.phone,
+                                              children: [
+                                                IconButton(
+                                                  iconSize: 25.0,
+                                                  onPressed: () =>
+                                                      Navigator.of(context)
+                                                          .pop(),
+                                                  icon: const FaIcon(
+                                                      FontAwesomeIcons.phone),
                                                   color: LetsGoTheme.main,
-                                                  size: 24,
                                                 ),
                                               ],
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          print("Button");
-                                        },
-                                        child: Padding(
+                                        Padding(
                                           padding: const EdgeInsetsDirectional
                                               .fromSTEB(5, 0, 0, 0),
                                           child: Container(
@@ -418,25 +419,36 @@ class _EventScreenState extends State<EventScreen> {
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
-                                              children: const [
-                                                FaIcon(
-                                                  FontAwesomeIcons.mapMarkerAlt,
+                                              children: [
+                                                IconButton(
+                                                  iconSize: 25.0,
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Itinerary(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  icon: const FaIcon(
+                                                      FontAwesomeIcons
+                                                          .compress),
                                                   color: LetsGoTheme.main,
-                                                  size: 24,
                                                 ),
                                               ],
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                      ]),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [containerHeaderImages(context)],
@@ -461,8 +473,8 @@ containerHeaderImages(BuildContext context) {
   SizeConfig().init(context);
   return Container(
     width: MediaQuery.of(context).size.width / 1.105,
+    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
     padding: const EdgeInsets.all(15),
-    transform: Matrix4.translationValues(0.0, -35.0, 0.0),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(15),
@@ -535,7 +547,7 @@ Widget containerReviews(BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width / 1.105,
     child: Container(
-      transform: Matrix4.translationValues(0.0, -20.0, 0.0),
+      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),

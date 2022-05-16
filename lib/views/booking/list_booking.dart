@@ -33,7 +33,8 @@ class _ListBookingState extends State<ListBooking>
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
-        child: CustomReturnAppBar('Vos réservations', Colors.transparent, LetsGoTheme.black),
+        child: CustomReturnAppBar(
+            'Vos réservations', Colors.transparent, LetsGoTheme.black),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -65,10 +66,10 @@ class _ListBookingState extends State<ListBooking>
                           controller: tabController,
                           tabs: const [
                             Tab(
-                              text: 'Passer',
+                              text: 'A venir',
                             ),
                             Tab(
-                              text: 'Avenir',
+                              text: 'Passées',
                             ),
                           ],
                         ),
@@ -80,8 +81,8 @@ class _ListBookingState extends State<ListBooking>
                   child: TabBarView(
                     controller: tabController,
                     children: const [
+                      TicketScreen(),
                       NotAvailableYet(),
-                      TicketScreen()
                     ],
                   ),
                 )
