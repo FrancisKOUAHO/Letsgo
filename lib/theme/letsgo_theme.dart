@@ -1,122 +1,120 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LetsGoTheme {
   LetsGoTheme._();
 
-  static const Color main = Color(0xff4895EF);
-  static const Color lightPurple = Color(0xffEBF3FC);
-  static const Color second = Color(0xff4895ef);
-  static const Color third = Color(0xff4614a5);
-  static const Color fourth = Color(0xfff72685);
-  static const Color green = Color(0xff119d0b);
-  static const Color amber = Color(0xffF7BF29);
-  static const Color red = Color(0xffe00707);
-  static const Color fifth = Color(0xff2D2D2D);
-  static const Color black = Color(0xff111417);
-  static const Color lightGrey = Color(0xff979797);
-  static const Color white = Colors.white;
-  static const Color transparent = Color(0x00000000);
-  static const Color whiteTransparent = Color(0xC5FDFBFB);
+  static Color main = const Color(0xff4895EF);
+  static Color lightPurple = const Color(0xffEBF3FC);
+  static Color second = const Color(0xff4895ef);
+  static Color third = const Color(0xff4614a5);
+  static Color fourth = const Color(0xfff72685);
+  static Color green = const Color(0xff119d0b);
+  static Color amber = const Color(0xffF7BF29);
+  static Color red = const Color(0xffe00707);
+  static Color fifth = const Color(0xff2D2D2D);
+  static Color black = const Color(0xff111417);
+  static Color lightGrey = const Color(0xff979797);
+  static Color white = const Color(0xffffffff);
+  static Color transparent = const Color(0x00000000);
+  static Color whiteTransparent = const Color(0xC5FDFBFB);
 
-  static const TextTheme textTheme = TextTheme(
+  static TextTheme textTheme = TextTheme(
     headline4: logoTitle,
   );
 
-  static const TextStyle logoTitle = TextStyle(
+  static TextStyle logoTitle = TextStyle(
     fontWeight: FontWeight.w900,
     fontSize: 55.0,
     letterSpacing: 1.0,
     color: LetsGoTheme.white,
   );
 
-  static const TextStyle selectTitle = TextStyle(
+  static TextStyle selectTitle = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 25.0,
     letterSpacing: 1.0,
     color: LetsGoTheme.white,
   );
 
-  static const TextStyle selectSubTitle = TextStyle(
+  static TextStyle selectSubTitle = TextStyle(
     fontWeight: FontWeight.w900,
     fontSize: 12.0,
     color: LetsGoTheme.white,
   );
 
-  static const TextStyle Title = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 28,
-    color: LetsGoTheme.black,
-  );
+  static TextStyle Title = GoogleFonts.lato(
+      fontWeight: FontWeight.bold, fontSize: 28, color: LetsGoTheme.black);
 
-  static const TextStyle subTitle = TextStyle(
+  static TextStyle subTitle = GoogleFonts.lato(
     fontWeight: FontWeight.w700,
     fontSize: 18,
     color: LetsGoTheme.black,
   );
 
-  static const TextStyle loginTitle = TextStyle(
+  static TextStyle loginTitle = GoogleFonts.lato(
     fontWeight: FontWeight.w900,
     fontSize: 35,
     letterSpacing: 0.7,
     color: LetsGoTheme.white,
   );
 
-  static const TextStyle resetPasswordTitle = TextStyle(
+  static TextStyle resetPasswordTitle = GoogleFonts.lato(
     fontWeight: FontWeight.w800,
     fontSize: 22.5,
     letterSpacing: 0.7,
     color: LetsGoTheme.white,
   );
 
-  static const TextStyle bigTitle = TextStyle(
+  static TextStyle bigTitle = GoogleFonts.lato(
     fontWeight: FontWeight.w800,
     fontSize: 28,
     letterSpacing: 0.7,
     color: LetsGoTheme.black,
   );
 
-  static const TextStyle reservation = TextStyle(
+  static TextStyle reservation = GoogleFonts.lato(
     fontWeight: FontWeight.w800,
     fontSize: 20,
     letterSpacing: 0.7,
     color: LetsGoTheme.black,
   );
 
-  static const TextStyle search = TextStyle(
+  static TextStyle search = GoogleFonts.lato(
     fontSize: 14.0,
     color: LetsGoTheme.black,
   );
 
-  static const TextStyle sliderTitle = TextStyle(
+  static TextStyle sliderTitle = GoogleFonts.lato(
     fontSize: 20,
     color: LetsGoTheme.black,
     fontWeight: FontWeight.w800,
   );
 
-  static const TextStyle communityTitle = TextStyle(
+  static TextStyle communityTitle = GoogleFonts.lato(
     fontSize: 24,
     color: LetsGoTheme.white,
     fontWeight: FontWeight.w900,
   );
 
-  static const TextStyle communitySubTitle = TextStyle(
+  static TextStyle communitySubTitle = GoogleFonts.lato(
     fontSize: 14,
     color: LetsGoTheme.white,
   );
 
-  static const TextStyle calendarMonth = TextStyle(
+  static TextStyle calendarMonth = GoogleFonts.lato(
     fontSize: 24,
     color: Colors.amber,
     fontWeight: FontWeight.w900,
   );
 
-  static const TextStyle calendarDate = TextStyle(
+  static TextStyle calendarDate = GoogleFonts.lato(
     fontSize: 24,
     color: Colors.black,
     fontWeight: FontWeight.w700,
   );
 
-  static const TextStyle connexion = TextStyle(
+  static TextStyle connexion = GoogleFonts.lato(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     color: LetsGoTheme.main,
