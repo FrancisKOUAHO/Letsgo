@@ -1,5 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:letsgo/theme/letsgo_theme.dart';
@@ -20,38 +20,98 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
-  final Set<Marker> _markers = {};
+  GoogleMapController? mapController;
+  PolylinePoints polylinePoints = PolylinePoints();
 
-  late BitmapDescriptor mapMarker;
+  String googleAPiKey = "AIzaSyAHyao01DJgw2BRSSKcB8PdrWAJmUHnElY";
 
-  // BitmapDescriptor mapMarker;
+  late BitmapDescriptor mapMarkerOrigin;
+  late BitmapDescriptor mapMarkerDestinataire;
+
+  Set<Marker> markers = {};
+  Map<PolylineId, Polyline> polylines = {};
+
+  LatLng startLocation = const LatLng(48.9334458, 2.0492204);
+  LatLng endLocation = const LatLng(48.960796, 2.070022);
 
   @override
-  void initState() {
+  initState() {
+    getDirections();
+    setCustomMarkerOrigin();
+    setCustomMarkerDestinataire();
     super.initState();
-    setCustomMarker();
-  }
-
-  void setCustomMarker() async {
-    mapMarker = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/Location_blue_sky.png');
   }
 
   _onMapCreated(GoogleMapController controller) {
     controller.setMapStyle(Utils.mapStyle);
     setState(() {
-      _markers.add(
-        Marker(
-          markerId: const MarkerId('id-1'),
-          position: const LatLng(48.960796, 2.070022),
-          icon: mapMarker,
+      markers.add(Marker(
+        //add start location marker
+        markerId: MarkerId(startLocation.toString()),
+        position: startLocation, //position of marker
+        infoWindow: const InfoWindow(
+          //popup info
+          title: 'Starting Point ',
+          snippet: 'Start Marker',
         ),
-      );
+        icon: mapMarkerOrigin, //Icon for Marker
+      ));
+
+      markers.add(Marker(
+        //add distination location marker
+        markerId: MarkerId(endLocation.toString()),
+        position: endLocation, //position of marker
+        infoWindow: const InfoWindow(
+          //popup info
+          title: 'Destination Point ',
+          snippet: 'Destination Marker',
+        ),
+        icon: mapMarkerDestinataire,
+      ));
     });
   }
 
-  static const CameraPosition _initialCameraPosition =
-      CameraPosition(target: LatLng(48.960796, 2.070022), zoom: 12);
+  void setCustomMarkerOrigin() async {
+    mapMarkerOrigin = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), 'assets/map/destination_map_marker.png');
+  }
+
+  void setCustomMarkerDestinataire() async {
+    mapMarkerDestinataire = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), 'assets/map/Location_blue_sky.png');
+  }
+
+  getDirections() async {
+    List<LatLng> polylineCoordinates = [];
+
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      googleAPiKey,
+      PointLatLng(startLocation.latitude, startLocation.longitude),
+      PointLatLng(endLocation.latitude, endLocation.longitude),
+      travelMode: TravelMode.driving,
+    );
+
+    if (result.points.isNotEmpty) {
+      for (var point in result.points) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      }
+    } else {
+      print(result.errorMessage);
+    }
+    addPolyLine(polylineCoordinates);
+  }
+
+  addPolyLine(List<LatLng> polylineCoordinates) {
+    PolylineId id = const PolylineId("poly");
+    Polyline polyline = Polyline(
+      polylineId: id,
+      color: LetsGoTheme.main,
+      points: polylineCoordinates,
+      width: 8,
+    );
+    polylines[id] = polyline;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,8 +212,8 @@ class _EventScreenState extends State<EventScreen> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                             width: MediaQuery.of(context).size.width / 1.105,
                             decoration: BoxDecoration(
                               color: const Color(0xBA777777),
@@ -175,10 +235,10 @@ class _EventScreenState extends State<EventScreen> {
                                     children: [
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        children: const [
+                                        children:  [
                                           Text(
-                                            '3 séances de sport',
-                                            style: TextStyle(
+                                            widget.activity['titleCategory'],
+                                            style: const TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 26,
@@ -247,10 +307,10 @@ class _EventScreenState extends State<EventScreen> {
                                               .fromSTEB(2, 0, 0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
-                                            children: const [
+                                            children:  [
                                               Text(
-                                                '4.5/5',
-                                                style: TextStyle(
+                                                '${widget.activity!['averageRating'] ?? ''} ',
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 16,
@@ -268,10 +328,10 @@ class _EventScreenState extends State<EventScreen> {
                                             0, 10, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      children: const [
+                                      children:  [
                                         Text(
-                                          'Tarif : 60 \$',
-                                          style: TextStyle(
+                                          'Tarif : ${widget.activity['price']}',
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 17,
                                           ),
@@ -342,16 +402,20 @@ class _EventScreenState extends State<EventScreen> {
                                     ),
                                   ),
                                   child: GoogleMap(
-                                    initialCameraPosition:
-                                        _initialCameraPosition,
-                                    myLocationEnabled: true,
-                                    myLocationButtonEnabled: true,
-                                    zoomGesturesEnabled: false,
-                                    zoomControlsEnabled: false,
-                                    scrollGesturesEnabled: false,
+                                    myLocationEnabled: false,
+                                    myLocationButtonEnabled: false,
+                                    zoomGesturesEnabled: true,
+                                    zoomControlsEnabled: true,
+                                    scrollGesturesEnabled: true,
+                                    initialCameraPosition: CameraPosition(
+                                      target: endLocation,
+                                      zoom: 12.0,
+                                    ),
+                                    markers: markers,
+                                    polylines:
+                                        Set<Polyline>.of(polylines.values),
                                     mapType: MapType.normal,
                                     onMapCreated: _onMapCreated,
-                                    markers: _markers,
                                   ),
                                 ),
                               ),
