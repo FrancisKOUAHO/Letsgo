@@ -74,7 +74,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       iconSize: 20.0,
                     ),
                     Text(
-                      currentAddress,
+                      currentAddressOk(currentAddress),
                       style:  TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,

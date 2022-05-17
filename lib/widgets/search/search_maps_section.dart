@@ -106,7 +106,7 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
             child: Container(
-              width: MediaQuery.of(context).size.width / 1.105,
+              width: MediaQuery.of(context).size.width * 0.89,
               height: MediaQuery.of(context).size.height / 2.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -125,10 +125,12 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
               ),
               child: GoogleMap(
                 initialCameraPosition: _initialCameraPosition,
-                myLocationButtonEnabled: true,
-                mapType: MapType.normal,
+                myLocationEnabled: false,
+                myLocationButtonEnabled: false,
                 zoomGesturesEnabled: true,
                 zoomControlsEnabled: true,
+                scrollGesturesEnabled: true,
+                mapType: MapType.normal,
                 onMapCreated: _onMapCreated,
                 markers: Set<Marker>.of(_markers),
               ),

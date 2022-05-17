@@ -214,7 +214,7 @@ class _EventScreenState extends State<EventScreen> {
                           Container(
                             margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                             padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            width: MediaQuery.of(context).size.width / 1.105,
+                            width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               color: const Color(0xBA777777),
                               borderRadius: BorderRadius.circular(20),
@@ -382,7 +382,7 @@ class _EventScreenState extends State<EventScreen> {
                       Stack(children: <Widget>[
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          width: MediaQuery.of(context).size.width / 1.105,
+                          width: MediaQuery.of(context).size.width * 0.89,
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -390,8 +390,7 @@ class _EventScreenState extends State<EventScreen> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0, 1, 0, 0),
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.105,
+                                  width: MediaQuery.of(context).size.width * 0.89,
                                   height:
                                       MediaQuery.of(context).size.height / 2.3,
                                   decoration: BoxDecoration(
@@ -427,7 +426,7 @@ class _EventScreenState extends State<EventScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width / 1.2,
+                              width: MediaQuery.of(context).size.width * 0.89,
                               padding: const EdgeInsets.fromLTRB(0, 22, 0, 0),
                               decoration: const BoxDecoration(),
                               child: Padding(
@@ -536,8 +535,8 @@ class _EventScreenState extends State<EventScreen> {
 containerHeaderImages(BuildContext context) {
   SizeConfig().init(context);
   return Container(
-    width: MediaQuery.of(context).size.width / 1.105,
-    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+    width: MediaQuery.of(context).size.width * 0.89,
+    margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
       color: Colors.white,
@@ -609,9 +608,9 @@ containerHeaderImages(BuildContext context) {
 
 Widget containerReviews(BuildContext context) {
   return Container(
-    width: MediaQuery.of(context).size.width / 1.105,
+    width: MediaQuery.of(context).size.width * 0.89,
     child: Container(
-      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -620,7 +619,7 @@ Widget containerReviews(BuildContext context) {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(10, 10, 0, 20),
+            padding: const EdgeInsets.fromLTRB(10, 10, 0, 20),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: const [
@@ -646,7 +645,7 @@ Widget containerReviews(BuildContext context) {
 
 singleReview(BuildContext context) {
   return Padding(
-    padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
