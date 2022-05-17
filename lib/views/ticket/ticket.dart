@@ -1,40 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
-class Ticket extends StatelessWidget {
-  const Ticket({Key? key}) : super(key: key);
+class Ticket extends StatefulWidget {
+  final booking;
+
+  Ticket({Key? key, this.booking}) : super(key: key);
+
+  @override
+  State<Ticket> createState() => _TicketState();
+}
+
+class _TicketState extends State<Ticket> {
+  dynamic bookingTicketData;
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    bookingTicketData = widget.booking;
+    return Scaffold(
       backgroundColor: LetsGoTheme.main,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Billet', Colors.black, LetsGoTheme.white),
       ),
-      body: const Center(
+      body: Center(
         child: TicketWidget(
           width: 350,
           height: 500,
           isCornerRounded: true,
-          padding: EdgeInsets.all(20),
-          child: TicketData(),
+          padding: const EdgeInsets.all(20),
+          child: TicketData(booking: bookingTicketData),
         ),
       ),
     );
   }
 }
 
-class TicketData extends StatelessWidget {
-  const TicketData({
-    Key? key,
-  }) : super(key: key);
+class TicketData extends StatefulWidget {
+  final booking;
+
+  const TicketData({Key? key, this.booking}) : super(key: key);
 
   @override
+  State<TicketData> createState() => _TicketDataState();
+}
+
+class _TicketDataState extends State<TicketData> {
+  @override
   Widget build(BuildContext context) {
+    print(widget.booking);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -50,29 +66,17 @@ class TicketData extends StatelessWidget {
               ),
               child: const Center(
                 child: Text(
-                  'Business Class',
+                  'RÉSERVER',
                   style: TextStyle(color: Colors.green),
                 ),
               ),
             ),
             Row(
               children: const [
-                Text(
-                  'LHR',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Icon(
-                    Icons.flight_takeoff,
-                    color: Colors.pink,
-                  ),
-                ),
                 Padding(
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
-                    'ISL',
+                    'LETSGO',
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
@@ -81,11 +85,11 @@ class TicketData extends StatelessWidget {
             )
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 20.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
           child: Text(
-            'Flight Ticket',
-            style: TextStyle(
+            widget.booking["serviceName"],
+            style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold),
@@ -96,15 +100,14 @@ class TicketData extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ticketDetailsWidget(
-                  'Passengers', 'Hafiz M Mujahid', 'Date', '28-08-2022'),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0, right: 52.0),
-                child: ticketDetailsWidget('Flight', '76836A45', 'Gate', '66B'),
-              ),
+              ticketDetailsWidget('Prénom', 'Noah', 'Nom', 'KOUAHO'),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0, right: 53.0),
-                child: ticketDetailsWidget('Class', 'Business', 'Seat', '21B'),
+                child: ticketDetailsWidget(
+                    'Prix',
+                    "${widget.booking['servicePrice'].toString()} €",
+                    'Durée',
+                    "${widget.booking['serviceDuration'].toString()} Min"),
               ),
             ],
           ),
@@ -131,55 +134,57 @@ class TicketData extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 30),
-        const Text('Developer: instagram.com/DholaSain')
+        const Center(
+          child: Text('Developer: instagram.com/DholaSain'),
+        )
       ],
     );
   }
-}
 
-Widget ticketDetailsWidget(String firstTitle, String firstDesc,
-    String secondTitle, String secondDesc) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              firstTitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0),
-              child: Text(
-                firstDesc,
-                style: const TextStyle(color: Colors.black),
+  Widget ticketDetailsWidget(String firstTitle, String firstDesc,
+      String secondTitle, String secondDesc) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                firstTitle,
+                style: const TextStyle(color: Colors.grey),
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  firstDesc,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(right: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              secondTitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0),
-              child: Text(
-                secondDesc,
-                style: const TextStyle(color: Colors.black),
+        Padding(
+          padding: const EdgeInsets.only(right: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                secondTitle,
+                style: const TextStyle(color: Colors.grey),
               ),
-            )
-          ],
-        ),
-      )
-    ],
-  );
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  secondDesc,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
 }

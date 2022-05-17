@@ -6,7 +6,7 @@ import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 import '../../widgets/not_available_yet.dart';
 
 class ListBooking extends StatefulWidget {
-  const ListBooking({Key? key}) : super(key: key);
+  const ListBooking({Key? key,}) : super(key: key);
 
   @override
   State<ListBooking> createState() => _ListBookingState();
@@ -32,7 +32,7 @@ class _ListBookingState extends State<ListBooking>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+        preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar(
             'Vos réservations', Colors.transparent, LetsGoTheme.black),
       ),
@@ -80,7 +80,7 @@ class _ListBookingState extends State<ListBooking>
                 Expanded(
                   child: TabBarView(
                     controller: tabController,
-                    children: const [
+                    children:   const [
                       TicketScreen(),
                       NotAvailableYet(),
                     ],

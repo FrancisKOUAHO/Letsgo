@@ -62,7 +62,7 @@ class _TicketScreenState extends State<TicketScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Ticket()),
+                                    builder: (context) => Ticket(booking: booking)),
                               );
                             },
                             child: Card(

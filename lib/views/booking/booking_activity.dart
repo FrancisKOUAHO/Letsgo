@@ -92,7 +92,7 @@ class _BookingActivityState extends State<BookingActivity> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+        preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Réservation', Colors.transparent, LetsGoTheme.black),
       ),
       body: Center(
