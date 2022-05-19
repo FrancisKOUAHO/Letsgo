@@ -44,15 +44,8 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Let's GO,",
+            "Let's GO ${splitsTheString(displayName)}!",
             style: LetsGoTheme.Title,
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 5),
-            child: Text(
-              '$displayName!',
-              style: LetsGoTheme.Title,
-            ),
           ),
         ],
       ),

@@ -42,7 +42,7 @@ class _SearchListAventureState extends State<SearchListAventure> {
             physics: const NeverScrollableScrollPhysics(),
             child: Container(
               padding: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height * 1,
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> activity =

@@ -25,10 +25,10 @@ class _SearchScreenState extends State<SearchScreen> {
         preferredSize: Size(double.infinity, 60),
         child: CustomAppBar(),
       ),
-      body: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+          child:SizedBox (
+            height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
