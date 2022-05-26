@@ -29,7 +29,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   void initState() {
-    currentAddress = "Votre position";
+    currentAddress = "";
     _totalNotifications = 0;
     super.initState();
   }
@@ -43,6 +43,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         .then((value) {
       setState(() {
         currentAddress = value.data()!["localization"];
+        currentAddress = currentAddressOk(currentAddress);
       });
     });
 
@@ -67,7 +68,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   children: [
                     IconButton(
                       onPressed: _determinePosition,
-                      icon:  FaIcon(
+                      icon: FaIcon(
                         FontAwesomeIcons.mapMarkerAlt,
                         color: LetsGoTheme.main,
                       ),
@@ -75,7 +76,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     ),
                     Text(
                       currentAddressOk(currentAddress),
-                      style:  TextStyle(
+                      style: TextStyle(
                         fontSize: 14,
                         color: LetsGoTheme.black,
                       ),

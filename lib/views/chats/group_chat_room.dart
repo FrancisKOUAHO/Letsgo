@@ -53,6 +53,7 @@ class GroupChatRoom extends StatelessWidget {
     });
 
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

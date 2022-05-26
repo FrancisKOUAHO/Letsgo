@@ -11,7 +11,13 @@ splitsTheString(string) {
 }
 
 currentAddressOk(wordText) {
-  var words = wordText;
-  var splitted = words.split(',');
-  return splitted[0] + "" + splitted[1];
+  String words = wordText;
+  String oldWord = "";
+  if (words != "") {
+    var splitted = words.split(',');
+    oldWord = "${splitted[0]},${splitted[1]}";
+    return oldWord;
+  } else {
+    return oldWord;
+  }
 }

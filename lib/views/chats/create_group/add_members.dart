@@ -98,7 +98,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       height: size.height,
       child: Column(
         mainAxisSize: MainAxisSize.min,

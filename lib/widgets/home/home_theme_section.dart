@@ -9,8 +9,11 @@ class HomeThemeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _activitiesStream =
-        FirebaseFirestore.instance.collection('activities').limit(20).snapshots();
+    final Stream<QuerySnapshot> _activitiesStream = FirebaseFirestore.instance
+        .collection('activities')
+        .limit(20)
+        .snapshots();
+
 
     return StreamBuilder<QuerySnapshot>(
         stream: _activitiesStream,
@@ -39,7 +42,7 @@ class HomeThemeSection extends StatelessWidget {
               child: ListView(
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   Map<String, dynamic> activity =
-                  document.data()! as Map<String, dynamic>;
+                      document.data()! as Map<String, dynamic>;
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
                     child: Container(
@@ -75,9 +78,9 @@ class HomeThemeSection extends StatelessWidget {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/Category.png',
@@ -101,8 +104,8 @@ class HomeThemeSection extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [

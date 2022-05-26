@@ -91,6 +91,7 @@ class _BookingActivityState extends State<BookingActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       appBar:  PreferredSize(
         preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar('Réservation', Colors.transparent, LetsGoTheme.black),

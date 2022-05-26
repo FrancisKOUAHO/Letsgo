@@ -33,6 +33,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
       });
     });
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       extendBodyBehindAppBar: true,
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),

@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       body: _widgetOptions[_currentIndex],
       bottomNavigationBar: customAnimatedButtomBar(context),
     );

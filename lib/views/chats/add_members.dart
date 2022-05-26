@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/constants.dart';
+import '../../theme/letsgo_theme.dart';
 
 class AddMembersINGroup extends StatefulWidget {
   final String groupChatId, displayName;
@@ -72,6 +73,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       appBar: AppBar(
         title: const Text("Ajouter des membres"),
       ),

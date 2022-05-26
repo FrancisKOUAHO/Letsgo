@@ -27,6 +27,7 @@ class _ResearchState extends State<Research> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: LetsGoTheme.white,
         appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 60),
           child: CustomAppBar(),

@@ -31,6 +31,7 @@ class _ListBookingState extends State<ListBooking>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       appBar:  PreferredSize(
         preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar(

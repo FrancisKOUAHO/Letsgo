@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 
 import 'package:letsgo/widgets/community/community_gallery_card.dart';
 
@@ -25,9 +24,14 @@ class _CommunityScreenState extends State<CommunityScreen> {
       ),
       body: Container(
         child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: GridView(
-              children: [
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+              ),
+              children: const [
                 CommunityGalleryCard(),
                 CommunityGalleryCard(),
                 CommunityGalleryCard(),
@@ -37,11 +41,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
                 CommunityGalleryCard(),
                 CommunityGalleryCard(),
               ],
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-              ),
             )),
       ),
     );

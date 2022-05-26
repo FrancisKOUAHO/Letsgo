@@ -125,6 +125,7 @@ class _ChatScreenState extends State<ChatScreen>
     });
 
     return Scaffold(
+      backgroundColor: LetsGoTheme.white,
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
         child: CustomMessagesAppBar(),
