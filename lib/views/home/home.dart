@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_app_bar.dart';
 import '../../widgets/home/home_slider_section.dart';
