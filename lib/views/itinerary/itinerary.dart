@@ -65,12 +65,12 @@ class _ItineraryState extends State<Itinerary> {
 
   void setCustomMarkerOrigin() async {
     mapMarkerOrigin = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/destination_map_marker.png');
+        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract-1.png');
   }
 
   void setCustomMarkerDestinataire() async {
     mapMarkerDestinataire = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/Location_blue_sky.png');
+        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract.png');
   }
 
   getDirections() async {

@@ -39,7 +39,7 @@ class _UserBoxTitleSectionState extends State<UserBoxTitleSection> {
       });
     });
     return Container(
-      padding: const EdgeInsets.only(left: 10, top: 5),
+      padding: const EdgeInsets.only(left: 20, top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

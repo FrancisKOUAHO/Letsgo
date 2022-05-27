@@ -132,7 +132,7 @@ class _ChatScreenState extends State<ChatScreen>
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(

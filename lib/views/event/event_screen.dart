@@ -73,12 +73,12 @@ class _EventScreenState extends State<EventScreen> {
 
   void setCustomMarkerOrigin() async {
     mapMarkerOrigin = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/destination_map_marker.png');
+        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract-1.png', );
   }
 
   void setCustomMarkerDestinataire() async {
     mapMarkerDestinataire = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/Location_blue_sky.png');
+        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract.png');
   }
 
   getDirections() async {
@@ -408,7 +408,7 @@ class _EventScreenState extends State<EventScreen> {
                                     scrollGesturesEnabled: true,
                                     initialCameraPosition: CameraPosition(
                                       target: endLocation,
-                                      zoom: 12.0,
+                                      zoom: 13.0,
                                     ),
                                     markers: markers,
                                     polylines:

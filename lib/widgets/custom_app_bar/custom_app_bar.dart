@@ -30,7 +30,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   void initState() {
     currentAddress = "";
-    _totalNotifications = 0;
+    _totalNotifications = 3;
     super.initState();
   }
 
@@ -94,9 +94,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            NotificationBadge(
-                icon: Icons.notifications,
-                totalNotifications: _totalNotifications),
+            _totalNotifications > 0
+                ? NotificationBadge(
+                    icon: Icons.notifications,
+                    totalNotifications: _totalNotifications)
+                : NotificationBadge(
+                    icon: Icons.notifications_none,
+                    totalNotifications: _totalNotifications),
             Container(
               padding: const EdgeInsets.fromLTRB(5, 0, 20, 0),
               child: Material(
@@ -112,7 +116,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       user!.photoURL ??
-                          'https://www.solutionmotsfleches.com/images/avatar.jpg',
+                          'https://i0.wp.com/e-diavoulefsi.gr/wp-content/uploads/2020/09/avatar-1.png',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgo/views/chats/create_group/create_group.dart';
 import '../../../theme/letsgo_theme.dart';
-import '../../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 class AddMembersInGroup extends StatefulWidget {
   const AddMembersInGroup({Key? key}) : super(key: key);
@@ -108,17 +108,23 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                 InkWell(
+                InkWell(
                     child: Text("",
                         style: TextStyle(
                             color: LetsGoTheme.main,
                             fontWeight: FontWeight.bold))),
                 InkWell(
-                    onTap: () {},
-                    child: const Text(
+                  onTap: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(18, 0, 0, 5),
+                    //apply padding to all four sides
+                    child: Text(
                       "Creer un groupe",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                    ),
+                  ),
+                ),
                 membersList.length >= 2
                     ? InkWell(
                         onTap: () {
@@ -132,17 +138,20 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
                             },
                           );
                         },
-                        child:  Icon(
-                          Icons.forward,
+                        child: FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          size: 17,
                           color: LetsGoTheme.main,
                         ))
-                    : const Icon(
-                        Icons.forward,
-                      ),
+                    : const FaIcon(
+                        FontAwesomeIcons.chevronRight,
+                        size: 17,
+                      )
               ],
             ),
           ),
-          Flexible(
+          Container(
+            margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: ListView.builder(
               itemCount: membersList.length,
               shrinkWrap: true,
@@ -150,7 +159,7 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () => onRemoveMembers(index),
-                  leading: const Icon(Icons.account_circle),
+                  leading: const Icon(Icons.account_circle, size: 50),
                   title: Text(membersList[index]['displayName']),
                   subtitle: Text(membersList[index]['email']),
                   trailing: const Icon(Icons.close),
@@ -158,11 +167,8 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
               },
             ),
           ),
-          SizedBox(
-            height: size.height / 20,
-          ),
           Container(
-            height: size.height / 14,
+            height: size.height / 18,
             width: size.width,
             alignment: Alignment.center,
             child: SizedBox(
@@ -171,16 +177,17 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
               child: TextField(
                 controller: _search,
                 decoration: InputDecoration(
-                  hintText: "Recherche",
+                  contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  hintText: "Rechercher un utilisateur",
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(6),
                   ),
                 ),
               ),
             ),
           ),
           SizedBox(
-            height: size.height / 50,
+            height: size.height / 80,
           ),
           isLoading
               ? Container(
@@ -190,6 +197,9 @@ class _AddMembersInGroupState extends State<AddMembersInGroup> {
                   child: const CircularProgressIndicator(),
                 )
               : ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: LetsGoTheme.main,
+                  ),
                   onPressed: onSearch,
                   child: const Text("Recherche"),
                 ),

@@ -18,7 +18,7 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
 
   void setCustomMarker() async {
     mapMarker = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/map/Subtract.png');
+        const ImageConfiguration(size: Size(4, 4)), 'assets/map/Subtract.png');
   }
 
   final List<Marker> _markers = [];
@@ -116,10 +116,10 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 1,
-                    blurRadius: 3,
-                    offset: const Offset(0, 2), // changes position of shadow
+                    color: Colors.grey.withOpacity(0.55),
+                    spreadRadius: 0.5,
+                    blurRadius: 0,
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
               ),

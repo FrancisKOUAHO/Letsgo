@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 class LetsGoTheme {
   LetsGoTheme._();
 
-  static Color main = const Color(0xff4895EF);
-  static Color lightPurple = const Color(0xffEBF3FC);
+  static Color main = const Color(0xff4376FF);
+  static Color lightPurple = const Color(0xffDDE5FB);
   static Color second = const Color(0xff4895ef);
   static Color third = const Color(0xff4614a5);
   static Color fourth = const Color(0xfff72685);

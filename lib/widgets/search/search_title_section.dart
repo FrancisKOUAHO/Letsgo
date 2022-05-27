@@ -13,7 +13,7 @@ class SearchTitleSection extends StatelessWidget {
             child: const Divider(
               color: Colors.black,
             )),
-        const Text("AFFFICHER LA LISTE")
+        const Text("AFFICHER LA LISTE")
       ],
     ));
   }

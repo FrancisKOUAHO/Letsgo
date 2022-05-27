@@ -6,7 +6,9 @@ import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 import '../../widgets/not_available_yet.dart';
 
 class ListBooking extends StatefulWidget {
-  const ListBooking({Key? key,}) : super(key: key);
+  const ListBooking({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ListBooking> createState() => _ListBookingState();
@@ -32,7 +34,7 @@ class _ListBookingState extends State<ListBooking>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: LetsGoTheme.white,
-      appBar:  PreferredSize(
+      appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
         child: CustomReturnAppBar(
             'Vos réservations', Colors.transparent, LetsGoTheme.black),
@@ -46,8 +48,7 @@ class _ListBookingState extends State<ListBooking>
               children: [
                 const SizedBox(height: 20),
                 Container(
-                  // height: 50,
-                  width: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
                       color: LetsGoTheme.main,
                       borderRadius: BorderRadius.circular(5)),
@@ -81,7 +82,7 @@ class _ListBookingState extends State<ListBooking>
                 Expanded(
                   child: TabBarView(
                     controller: tabController,
-                    children:   const [
+                    children: const [
                       TicketScreen(),
                       NotAvailableYet(),
                     ],

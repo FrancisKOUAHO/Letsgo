@@ -75,7 +75,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                 user.data()['photoUrl'] ??
-                                    'https://us.123rf.com/450wm/metelsky/metelsky1809/metelsky180900220/109815466-profil-d-avatar-de-l-homme-silhouette-de-visage-masculin-ou-ic%C3%B4ne-isol%C3%A9-sur-fond-blanc-illustration-.jpg?ver=6',
+                                    'https://i0.wp.com/e-diavoulefsi.gr/wp-content/uploads/2020/09/avatar-1.png',
                               ))),
                     ),
                     Positioned(

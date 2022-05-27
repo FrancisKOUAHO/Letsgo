@@ -44,12 +44,20 @@ class HomeThemeSection extends StatelessWidget {
                   Map<String, dynamic> activity =
                       document.data()! as Map<String, dynamic>;
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
                     child: Container(
                       width: 100,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(17),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1.5,
+                            blurRadius: 5,
+                            offset: const Offset(0, 1), // changes position of shadow
+                          ),
+                        ],
                       ),
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -139,7 +147,7 @@ class HomeThemeSection extends StatelessWidget {
                                                   activity: activity)));
                                     },
                                     child: SvgPicture.asset(
-                                      "assets/icons/Detail_Buttonblue.svg",
+                                      "assets/Icons_v3/Detail_Button.svg",
                                       width: 30,
                                     )),
                               ),

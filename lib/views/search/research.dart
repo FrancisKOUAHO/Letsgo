@@ -33,8 +33,11 @@ class _ResearchState extends State<Research> {
           child: CustomAppBar(),
         ),
         body: ListView(children: <Widget>[
+          const SizedBox(
+            height: 20,
+          ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: TextField(
               onChanged: (val) => {initiateSearch(val)},
               decoration: InputDecoration(
@@ -51,8 +54,7 @@ class _ResearchState extends State<Research> {
                   },
                 ),
                 suffixIcon: IconButton(
-                  icon:  Icon(Icons.search,
-                      size: 16, color: LetsGoTheme.main),
+                  icon:  Image.asset("assets/Icons_v3/rechercher.png", width: 16),
                   onPressed: _onPressed,
                 ),
                 hintText: "Rechercher des activité ...",
@@ -64,13 +66,12 @@ class _ResearchState extends State<Research> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.all(20),
+            margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: const Text(
               "Des thèmes pour vous inspirez",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ),
-          const SizedBox(height: 10.0),
           buildResult(context),
         ]));
   }
@@ -92,12 +93,20 @@ class _ResearchState extends State<Research> {
                 itemBuilder: (BuildContext context, index) {
                   DocumentSnapshot activity = snapshot.data!.docs[index];
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    padding: const EdgeInsets.fromLTRB(18, 6, 18, 6),
                     child: Container(
                       width: 100,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(17),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1.5,
+                            blurRadius: 5,
+                            offset: const Offset(0, 1), // changes position of shadow
+                          ),
+                        ],
                       ),
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -187,7 +196,7 @@ class _ResearchState extends State<Research> {
                                                 activity: activity)));
                                   },
                                     child: SvgPicture.asset(
-                                      "assets/icons/Detail_Buttonblue.svg",
+                                      "assets/Icons_v3/Detail_Button.svg",
                                       width: 30,
                                     )),
                                 ),

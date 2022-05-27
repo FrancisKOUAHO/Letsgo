@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:letsgo/views/home/home.dart';
 import '../../theme/letsgo_theme.dart';
 import '../community/community_screen.dart';
@@ -22,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
     const CommunityScreen(),
   ];
 
-  List<IconData> listOfIcons = [
-    Icons.home_rounded,
-    Icons.location_on_rounded,
-    Icons.message,
-    Icons.groups,
+  List<String> listOfIcons = [
+    "assets/Icons_v3/maison.svg",
+    "assets/Icons_v3/marqueur.svg",
+    "assets/Icons_v3/commenter.svg",
+    "assets/Icons_v3/utilisateur.svg",
   ];
 
   @override
@@ -88,9 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 width: screenWidth * .1700,
                 alignment: Alignment.center,
-                child: Icon(
+                child: SvgPicture.asset(
                   listOfIcons[index],
-                  size: 35,
+                  width: 27,
                   color:
                       index == _currentIndex ? Colors.white : LetsGoTheme.main,
                 ),

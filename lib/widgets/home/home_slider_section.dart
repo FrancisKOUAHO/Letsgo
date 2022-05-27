@@ -34,8 +34,9 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                     fontWeight: FontWeight.bold, color: Colors.black)),
           );
         }
-        return SizedBox(
-            height: mediaQuery.height * 0.4,
+        return Container(
+          padding: EdgeInsets.fromLTRB(12, 10, 0, 0),
+            height: mediaQuery.height * 0.37,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -56,6 +57,14 @@ class _HomeSliderSectionState extends State<HomeSliderSection> {
                                   "https://www.elektroaktif.com.tr/assets/images/noimage.jpg"),
                               fit: BoxFit.cover,
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.35),
+                                spreadRadius: 1.5,
+                                blurRadius: 2,
+                                offset: const Offset(0, 2), // changes position of shadow
+                              ),
+                            ],
                           ),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),

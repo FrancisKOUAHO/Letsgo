@@ -45,7 +45,7 @@ class _CustomMessagesAppBarState extends State<CustomMessagesAppBar> {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       user!.photoURL ??
-                          'https://www.solutionmotsfleches.com/images/avatar.jpg',
+                          'https://i0.wp.com/e-diavoulefsi.gr/wp-content/uploads/2020/09/avatar-1.png',
                       width: 48,
                       height: 48,
                       fit: BoxFit.cover,

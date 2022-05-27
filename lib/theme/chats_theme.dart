@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTheme {
   MyTheme._();
 
-  static const Color kPrimaryColor = Color(0xffEBF3FC);
+  static const Color kPrimaryColor = Color(0xffDDE5FB);
   static const Color kPrimaryColorVariant = Color(0xffEBF3FC);
-  static const Color kAccentColor = Color(0xff4895EF);
+  static const Color kAccentColor = Color(0xff4376FF);
   static const Color kAccentColorVariant = Color(0xffEBF3FC);
   static const Color kUnreadChatBG = Color(0xffEBF3FC);
 

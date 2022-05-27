@@ -44,7 +44,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
           Center(
             child: Image.network(
               user.data()['photoUrl'] ??
-                  'https://www.solutionmotsfleches.com/images/avatar.jpg',
+                  'https://i0.wp.com/e-diavoulefsi.gr/wp-content/uploads/2020/09/avatar-1.png',
               fit: BoxFit.cover,
               width: size.width,
               height: size.height,
@@ -81,7 +81,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                               radius: 28,
                               backgroundImage: NetworkImage(
                                 user.data()['photoUrl'] ??
-                                    'https://www.solutionmotsfleches.com/images/avatar.jpg',
+                                    'https://i0.wp.com/e-diavoulefsi.gr/wp-content/uploads/2020/09/avatar-1.png',
                               ),
                             ),
                             const SizedBox(
@@ -118,7 +118,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             width: 110,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children:  <Widget>[
+                              children: <Widget>[
                                 Icon(FontAwesomeIcons.accusoft,
                                     size: 16, color: LetsGoTheme.main),
                                 const SizedBox(
@@ -158,7 +158,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             width: 110,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children:  <Widget>[
+                              children: <Widget>[
                                 Icon(FontAwesomeIcons.ticket,
                                     size: 16, color: LetsGoTheme.main),
                                 const SizedBox(
@@ -191,7 +191,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             width: 110,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children:  <Widget>[
+                              children: <Widget>[
                                 Icon(FontAwesomeIcons.heartPulse,
                                     size: 16, color: LetsGoTheme.main),
                                 const SizedBox(
@@ -225,7 +225,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                   Divider(
                     color: Colors.grey[400],
                   ),
-                   Text(
+                  Text(
                     "Amis",
                     style: TextStyle(
                       color: LetsGoTheme.black,
@@ -249,14 +249,15 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage("assets/images/friends_$index.jpg"),
+                                    image: AssetImage(
+                                        "assets/images/friends_$index.jpg"),
                                   )));
                         }),
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                   Text(
+                  Text(
                     "Photos",
                     style: TextStyle(
                       color: LetsGoTheme.black,
@@ -280,7 +281,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage("assets/images/photo_$index.jpg"),
+                                    image: AssetImage(
+                                        "assets/images/photo_$index.jpg"),
                                   )));
                         }),
                   ),

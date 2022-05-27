@@ -34,11 +34,10 @@ class _HomeState extends State<Home> {
               ),
               const UserBoxTitleSection(),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
-                margin: const EdgeInsets.all(10.0),
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 child: Padding(
                   padding: const EdgeInsets.all(1.0),
                   child: TextField(
@@ -65,18 +64,15 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
                   "Suggestion pour toi",
                   style: LetsGoTheme.subTitle,
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
               const HomeSliderSection(),
               Container(
-                padding: const EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 20),
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Text(
                   "Les activités",

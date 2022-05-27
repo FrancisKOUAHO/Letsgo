@@ -24,7 +24,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
       ),
       body: Container(
         child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
