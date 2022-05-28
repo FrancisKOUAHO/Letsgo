@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_profil_appbar.dart';
-import 'package:letsgo/views/booking/list_booking.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+import '../booking/list_booking.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -35,9 +35,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
     return Scaffold(
       backgroundColor: LetsGoTheme.white,
       extendBodyBehindAppBar: true,
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: CustomProfilAppBar(),
+      appBar:  PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
+        child: CustomProfilAppBar('Mon profil'),
       ),
       body: Stack(
         children: <Widget>[

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../../theme/letsgo_theme.dart';
 
 class CommunityGalleryCard extends StatefulWidget {
   const CommunityGalleryCard({Key? key}) : super(key: key);

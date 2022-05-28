@@ -1,8 +1,9 @@
+import 'package:LetsGo/views/ticket/ticket.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/views/ticket/ticket.dart';
+
+import '../../theme/letsgo_theme.dart';
 
 class TicketScreen extends StatefulWidget {
   const TicketScreen({
@@ -62,7 +63,8 @@ class _TicketScreenState extends State<TicketScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Ticket(booking: booking)),
+                                    builder: (context) =>
+                                        Ticket(booking: booking)),
                               );
                             },
                             child: Card(
@@ -76,14 +78,14 @@ class _TicketScreenState extends State<TicketScreen> {
                                     children: <Widget>[
                                       Container(
                                         height: 200.0,
-                                        decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.only(
+                                        decoration:  BoxDecoration(
+                                            borderRadius: const BorderRadius.only(
                                               topLeft: Radius.circular(10.0),
                                               topRight: Radius.circular(10.0),
                                             ),
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                  'https://cdn.pixabay.com/photo/2016/11/29/03/30/woman-1867074_1280.jpg'),
+                                                  booking['serviceId'] ?? 'https://cdn.pixabay.com/photo/2016/11/29/03/30/woman-1867074_1280.jpg'),
                                               fit: BoxFit.cover,
                                             )),
                                       ),
@@ -110,7 +112,7 @@ class _TicketScreenState extends State<TicketScreen> {
                                             ),
                                             const Spacer(),
                                             Text(
-                                              '${booking['servicePrice']}€',
+                                              '${booking['servicePrice']} €',
                                               style: TextStyle(
                                                 color: LetsGoTheme.main,
                                                 fontSize: 14.0,

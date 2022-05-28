@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/views/itinerary/itinerary.dart';
 
 import '../../common/utils.dart';
+import '../../theme/letsgo_theme.dart';
 import '../../theme/size-config-flutter.dart';
 import '../../widgets/custom_app_bar/custom_event_appbar.dart';
 import '../booking/booking_activity.dart';
+import '../itinerary/itinerary.dart';
 
 class EventScreen extends StatefulWidget {
   final activity;
@@ -73,12 +73,14 @@ class _EventScreenState extends State<EventScreen> {
 
   void setCustomMarkerOrigin() async {
     mapMarkerOrigin = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract-1.png', );
+      const ImageConfiguration(size: Size(9.0, 9.0)),
+      'assets/map/Subtract-1.png',
+    );
   }
 
   void setCustomMarkerDestinataire() async {
     mapMarkerDestinataire = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract.png');
+        const ImageConfiguration(size: Size(1, 1)), 'assets/map/Subtract.png');
   }
 
   getDirections() async {
@@ -235,7 +237,7 @@ class _EventScreenState extends State<EventScreen> {
                                     children: [
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        children:  [
+                                        children: [
                                           Text(
                                             widget.activity['titleCategory'],
                                             style: const TextStyle(
@@ -307,7 +309,7 @@ class _EventScreenState extends State<EventScreen> {
                                               .fromSTEB(2, 0, 0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
-                                            children:  [
+                                            children: [
                                               Text(
                                                 '${widget.activity!['averageRating'] ?? ''} ',
                                                 style: const TextStyle(
@@ -328,7 +330,7 @@ class _EventScreenState extends State<EventScreen> {
                                             0, 10, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      children:  [
+                                      children: [
                                         Text(
                                           'Tarif : ${widget.activity['price']}',
                                           style: const TextStyle(
@@ -390,7 +392,8 @@ class _EventScreenState extends State<EventScreen> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0, 1, 0, 0),
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width * 0.89,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.89,
                                   height:
                                       MediaQuery.of(context).size.height / 2.3,
                                   decoration: BoxDecoration(
@@ -408,7 +411,7 @@ class _EventScreenState extends State<EventScreen> {
                                     scrollGesturesEnabled: true,
                                     initialCameraPosition: CameraPosition(
                                       target: endLocation,
-                                      zoom: 13.0,
+                                      zoom: 12.0,
                                     ),
                                     markers: markers,
                                     polylines:

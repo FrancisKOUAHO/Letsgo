@@ -1,4 +1,4 @@
-import 'package:letsgo/models/user_model.dart';
+import 'user_model.dart';
 
 class ChatParams{
   final String userUid;

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 class SettingsUI extends StatelessWidget {

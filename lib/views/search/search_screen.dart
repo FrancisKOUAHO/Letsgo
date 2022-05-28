@@ -1,12 +1,13 @@
+import 'package:LetsGo/views/search/research.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/views/search/research.dart';
-import 'package:letsgo/widgets/search/search_list_aventure.dart';
-import 'package:letsgo/widgets/search/search_maps_section.dart';
-import 'package:letsgo/widgets/search/search_title_section.dart';
+
 
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_app_bar.dart';
+import '../../widgets/search/search_list_aventure.dart';
+import '../../widgets/search/search_maps_section.dart';
+import '../../widgets/search/search_title_section.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);

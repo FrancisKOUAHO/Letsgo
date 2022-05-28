@@ -1,15 +1,17 @@
+import 'package:LetsGo/views/login/reset_password.dart';
+import 'package:LetsGo/views/login/sign_up.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:letsgo/views/home/home_screen.dart';
-import 'package:letsgo/views/login/reset_password.dart';
-import 'package:letsgo/views/login/sign_up.dart';
-import 'package:letsgo/services/auth_service.dart';
-import 'package:letsgo/services/firebase_service.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../../services/auth_service.dart';
+import '../../services/firebase_service.dart';
+import '../../theme/letsgo_theme.dart';
+import '../home/home_screen.dart';
+
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);

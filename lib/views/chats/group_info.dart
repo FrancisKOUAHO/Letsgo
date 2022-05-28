@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/views/chats/add_members.dart';
-import 'package:letsgo/views/chats/chat_screen.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
+import 'add_members.dart';
+import 'chat_screen.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId, groupName;

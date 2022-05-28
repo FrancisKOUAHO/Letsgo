@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
 import '../../theme/letsgo_theme.dart';
@@ -20,10 +21,10 @@ class _TicketState extends State<Ticket> {
   Widget build(BuildContext context) {
     bookingTicketData = widget.booking;
     return Scaffold(
-      backgroundColor: LetsGoTheme.main,
+      backgroundColor: LetsGoTheme.lightPurple,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
-        child: CustomReturnAppBar('Billet', Colors.black, LetsGoTheme.white),
+        child: CustomReturnAppBar('Billet', Colors.white, LetsGoTheme.black),
       ),
       body: Center(
         child: TicketWidget(
@@ -50,7 +51,6 @@ class TicketData extends StatefulWidget {
 class _TicketDataState extends State<TicketData> {
   @override
   Widget build(BuildContext context) {
-    print(widget.booking);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -107,21 +107,23 @@ class _TicketDataState extends State<TicketData> {
                     'Prix',
                     "${widget.booking['servicePrice'].toString()} €",
                     'Durée',
-                    "${widget.booking['serviceDuration'].toString()} Min"),
+                    "${widget.booking['serviceDuration'].toString()} Minutes"),
               ),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
-          child: Container(
-            width: 250.0,
-            height: 60.0,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                        'https://static.vecteezy.com/system/resources/previews/001/199/360/non_2x/barcode-png.png'),
-                    fit: BoxFit.cover)),
+          padding: const EdgeInsets.only(top: 50.0, left: 80, right: 0),
+          child: SizedBox(
+            width: 150.0,
+            height: 150.0,
+            child: QrImage(
+              data: "Prix: ${widget.booking['servicePrice'].toString()} €,"
+                  "Durée: ${widget.booking['serviceDuration'].toString()} Minutes,"
+                  "Activité reseré: ${widget.booking["serviceName"]}",
+              version: QrVersions.auto,
+              size: 800,
+            ),
           ),
         ),
         const Padding(
@@ -133,9 +135,20 @@ class _TicketDataState extends State<TicketData> {
             ),
           ),
         ),
-        const SizedBox(height: 30),
-        const Center(
-          child: Text('Developer: instagram.com/DholaSain'),
+        const SizedBox(
+          height: 3,
+        ),
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              _showSimpleModalDialog(context);
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
+              fixedSize: MaterialStateProperty.all(const Size(200, 40)),
+            ),
+            child: Text('ANNULER', style: TextStyle(color: LetsGoTheme.white)),
+          ),
         )
       ],
     );
@@ -187,4 +200,31 @@ class _TicketDataState extends State<TicketData> {
       ],
     );
   }
+}
+
+_showSimpleModalDialog(context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: const Text(
+            "Souhaitez-vous annuler votre reservation ?",
+            style: TextStyle(color: Colors.black, fontSize: 16),
+          ),
+          actions: [
+            FlatButton(
+              child: const Text("Oui",
+                  style: TextStyle(color: Colors.red, fontSize: 16)),
+              onPressed: () {},
+            ),
+            FlatButton(
+              child: const Text("Non",
+                  style: TextStyle(color: Colors.black, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
 }

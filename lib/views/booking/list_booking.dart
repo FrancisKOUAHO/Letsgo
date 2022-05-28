@@ -1,9 +1,10 @@
+import 'package:LetsGo/views/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/views/ticket/ticket_screen.dart';
 
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 import '../../widgets/not_available_yet.dart';
+import '../ticket/ticket_screen.dart';
 
 class ListBooking extends StatefulWidget {
   const ListBooking({
@@ -50,19 +51,19 @@ class _ListBookingState extends State<ListBooking>
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
-                      color: LetsGoTheme.main,
+                      color: LetsGoTheme.white,
                       borderRadius: BorderRadius.circular(5)),
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(5),
                         child: TabBar(
-                          unselectedLabelColor: Colors.white,
-                          labelColor: Colors.black,
-                          indicatorColor: Colors.white,
+                          unselectedLabelColor: LetsGoTheme.black,
+                          labelColor: LetsGoTheme.white,
+                          indicatorColor: LetsGoTheme.main,
                           indicatorWeight: 2,
                           indicator: BoxDecoration(
-                            color: Colors.white,
+                            color: LetsGoTheme.main,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           controller: tabController,

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/views/profil/edit_profile.dart';
-import 'package:letsgo/services/auth_service.dart';
+import '../../services/auth_service.dart';
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
 
 import '../login/sign_in.dart';
+import 'edit_profile.dart';
 
 class SettingsScren extends StatefulWidget {
   const SettingsScren({Key? key}) : super(key: key);
@@ -21,9 +21,10 @@ class _SettingsScrenState extends State<SettingsScren> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: LetsGoTheme.white,
-      appBar:   PreferredSize(
+      appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
-        child: CustomReturnAppBar('Paramètres', Colors.transparent, LetsGoTheme.black ),
+        child: CustomReturnAppBar(
+            'Paramètres', Colors.transparent, LetsGoTheme.black),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -33,7 +34,7 @@ class _SettingsScrenState extends State<SettingsScren> {
               height: 40,
             ),
             Row(
-              children:  [
+              children: [
                 Icon(
                   Icons.person,
                   color: LetsGoTheme.main,
@@ -58,11 +59,12 @@ class _SettingsScrenState extends State<SettingsScren> {
             buildAccountOptionRow(context, "Social"),
             buildAccountOptionRow(context, "Langue"),
             buildAccountOptionRow(context, "Vie privée et sécurité"),
+            buildAccountOptionRow(context, "Contacter le support"),
             const SizedBox(
               height: 40,
             ),
             Row(
-              children:  [
+              children: [
                 Icon(
                   Icons.volume_up_outlined,
                   color: LetsGoTheme.main,
@@ -83,9 +85,7 @@ class _SettingsScrenState extends State<SettingsScren> {
             const SizedBox(
               height: 10,
             ),
-            buildNotificationOptionRow("Nouveau pour vous", true),
-            buildNotificationOptionRow("Activité du compte", true),
-            buildNotificationOptionRow("Opportunité", false),
+            buildNotificationOptionRow("Désactiver votre compte", false),
             const SizedBox(
               height: 50,
             ),
@@ -93,20 +93,21 @@ class _SettingsScrenState extends State<SettingsScren> {
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  side:  BorderSide(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  side: BorderSide(
                     width: 2,
                     color: LetsGoTheme.main,
                   ),
                 ),
                 onPressed: () async {
                   await _auth.signOut().then((result) => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignIn()),
-                    )
-                  });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()),
+                        )
+                      });
                 },
                 child: const Text("Se déconnecter",
                     style: TextStyle(

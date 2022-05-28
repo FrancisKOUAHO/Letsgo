@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../../theme/letsgo_theme.dart';
 
 class HomeSubTitleSection extends StatefulWidget {
   const HomeSubTitleSection({Key? key}) : super(key: key);

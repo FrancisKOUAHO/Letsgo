@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:letsgo/views/chats/chat_screen.dart';
 import 'package:uuid/uuid.dart';
 import '../../../theme/letsgo_theme.dart';
+import '../chat_screen.dart';
 
 class CreateGroup extends StatefulWidget {
   final List<Map<String, dynamic>> membersList;

@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:letsgo/views/booking/list_booking.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../common/resume_word.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
+import 'list_booking.dart';
 
 class BookingActivity extends StatefulWidget {
   final activity;
@@ -31,6 +31,7 @@ class _BookingActivityState extends State<BookingActivity> {
     super.initState();
     mockBookingService = BookingService(
         serviceName: widget.activity['titleCategory'],
+        serviceId: widget.activity['image'],
         servicePrice: int.parse(splitsTheString(widget.activity['price'])[0]),
         serviceDuration: 30,
         bookingEnd: DateTime(now.year, now.month, now.day, 18, 0),
@@ -90,6 +91,7 @@ class _BookingActivityState extends State<BookingActivity> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.activity);
     return Scaffold(
       backgroundColor: LetsGoTheme.white,
       appBar:  PreferredSize(

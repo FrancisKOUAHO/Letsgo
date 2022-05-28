@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 
-import '../../common/utils.dart';
+import '../../theme/letsgo_theme.dart';
+
 
 class SearchMapsSection extends StatefulWidget {
   const SearchMapsSection({Key? key}) : super(key: key);
@@ -18,15 +18,16 @@ class _SearchMapsSectionState extends State<SearchMapsSection> {
 
   void setCustomMarker() async {
     mapMarker = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(4, 4)), 'assets/map/Subtract.png');
+        const ImageConfiguration(size: Size(50.0, 50.0)), 'assets/map/Subtract.png');
   }
 
   final List<Marker> _markers = [];
 
   @override
   void initState() {
-    super.initState();
     setCustomMarker();
+    super.initState();
+
   }
 
   _onMapCreated(GoogleMapController controller) {

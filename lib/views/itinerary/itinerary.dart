@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
-import '../../common/utils.dart';
 import '../../theme/letsgo_theme.dart';
-import '../../widgets/custom_app_bar/custom_return_appbar.dart';
+import '../../widgets/custom_app_bar/custom_profil_appbar.dart';
 
 class Itinerary extends StatefulWidget {
   @override
@@ -35,7 +34,6 @@ class _ItineraryState extends State<Itinerary> {
   }
 
   _onMapCreated(GoogleMapController controller) {
-    controller.setMapStyle(Utils.mapStyle);
     setState(() {
       markers.add(Marker(
         //add start location marker
@@ -43,8 +41,8 @@ class _ItineraryState extends State<Itinerary> {
         position: startLocation, //position of marker
         infoWindow: const InfoWindow(
           //popup info
-          title: 'Starting Point ',
-          snippet: 'Start Marker',
+          title: 'Point de départ ',
+          snippet: 'Marqueur de départ',
         ),
         icon: mapMarkerOrigin, //Icon for Marker
       ));
@@ -55,8 +53,8 @@ class _ItineraryState extends State<Itinerary> {
         position: endLocation, //position of marker
         infoWindow: const InfoWindow(
           //popup info
-          title: 'Destination Point ',
-          snippet: 'Destination Marker',
+          title: 'Point de destination ',
+          snippet: 'Marqueur de destination',
         ),
         icon: mapMarkerDestinataire,
       ));
@@ -65,12 +63,14 @@ class _ItineraryState extends State<Itinerary> {
 
   void setCustomMarkerOrigin() async {
     mapMarkerOrigin = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract-1.png');
+        const ImageConfiguration(size: Size(16, 16)),
+        'assets/map/Subtract-1.png');
   }
 
   void setCustomMarkerDestinataire() async {
     mapMarkerDestinataire = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(size: Size(16, 16)), 'assets/map/Subtract.png');
+        const ImageConfiguration(size: Size(16, 16)),
+        'assets/map/Subtract.png');
   }
 
   getDirections() async {
@@ -108,10 +108,10 @@ class _ItineraryState extends State<Itinerary> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
-        child:
-            CustomReturnAppBar('Itinéraire', Colors.black, LetsGoTheme.white),
+        child: CustomProfilAppBar('Itinéraire'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

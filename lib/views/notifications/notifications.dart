@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
-import 'package:letsgo/widgets/not_available_yet.dart';
 
+import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_return_appbar.dart';
+import '../../widgets/not_available_yet.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);

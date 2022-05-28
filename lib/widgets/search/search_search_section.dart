@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../../theme/letsgo_theme.dart';
 
 class SearchSearchSection extends StatelessWidget {
   const SearchSearchSection({Key? key}) : super(key: key);

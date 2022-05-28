@@ -6,11 +6,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:letsgo/widgets/notification_badge.dart';
 
 import '../../common/resume_word.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../views/profil/profil_screen.dart';
+import '../notification_badge.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   void initState() {
     currentAddress = "";
-    _totalNotifications = 3;
+    _totalNotifications = 0;
     super.initState();
   }
 
@@ -43,7 +43,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
         .then((value) {
       setState(() {
         currentAddress = value.data()!["localization"];
-        currentAddress = currentAddressOk(currentAddress);
       });
     });
 

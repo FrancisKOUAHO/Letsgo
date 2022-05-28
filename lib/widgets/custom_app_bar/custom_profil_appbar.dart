@@ -5,7 +5,8 @@ import '../../theme/letsgo_theme.dart';
 import '../../views/profil/settings_scren.dart';
 
 class CustomProfilAppBar extends StatefulWidget {
-  const CustomProfilAppBar({Key? key}) : super(key: key);
+  String title;
+   CustomProfilAppBar(this.title, {Key? key}) : super(key: key);
 
   @override
   State<CustomProfilAppBar> createState() => _CustomProfilAppBarState();
@@ -19,7 +20,7 @@ class _CustomProfilAppBarState extends State<CustomProfilAppBar> {
       elevation: 0,
       leadingWidth: 100,
       title:  Text(
-        'Mon profil',
+        widget.title,
         style: TextStyle(color: LetsGoTheme.black),
       ),
       leading: Row(

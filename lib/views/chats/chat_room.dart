@@ -7,11 +7,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../theme/chats_theme.dart';
 import '../../theme/constants.dart';
+import '../../theme/letsgo_theme.dart';
 
 class ChatRoom extends StatelessWidget {
   final Map<String, dynamic> userMap;

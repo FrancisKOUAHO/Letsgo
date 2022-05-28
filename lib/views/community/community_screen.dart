@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:letsgo/widgets/community/community_gallery_card.dart';
-
+import '../../widgets/community/community_gallery_card.dart';
 import '../../widgets/custom_app_bar/custom_app_bar.dart';
 
 class CommunityScreen extends StatefulWidget {

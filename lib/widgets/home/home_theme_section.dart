@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:letsgo/common/resume_word.dart';
-import 'package:letsgo/views/event/event_screen.dart';
+
+import '../../common/resume_word.dart';
+import '../../views/event/event_screen.dart';
 
 class HomeThemeSection extends StatelessWidget {
   const HomeThemeSection({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class HomeThemeSection extends StatelessWidget {
         .collection('activities')
         .limit(20)
         .snapshots();
+
+    const bool _isLoading = false;
 
 
     return StreamBuilder<QuerySnapshot>(
@@ -28,9 +31,7 @@ class HomeThemeSection extends StatelessWidget {
 
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: Text('Chargement...',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black)),
+              child: CircularProgressIndicator(),
             );
           }
 

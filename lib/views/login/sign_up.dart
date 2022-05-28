@@ -1,8 +1,9 @@
+import 'package:LetsGo/views/login/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:letsgo/views/login/sign_in.dart';
-import 'package:letsgo/services/auth_service.dart';
-import 'package:letsgo/theme/letsgo_theme.dart';
+
+import '../../services/auth_service.dart';
+import '../../theme/letsgo_theme.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         Column(
                           children: [
-                             SizedBox(
+                            SizedBox(
                               height: 40,
                               child: Center(
                                 child: Text(
@@ -79,15 +80,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:   BorderSide(color: LetsGoTheme.white),
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Prenom NOM',
                                 disabledBorder: null,
@@ -114,15 +118,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:   BorderSide(color: LetsGoTheme.white),
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Adresse mail',
                                 disabledBorder: null,
@@ -149,15 +156,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 focusColor: LetsGoTheme.main,
-                                focusedBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
-                                enabledBorder:  OutlineInputBorder(
-                                  borderSide: BorderSide(color: LetsGoTheme.white),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  borderSide:   BorderSide(color: LetsGoTheme.white),
+                                  borderSide:
+                                      BorderSide(color: LetsGoTheme.white),
                                 ),
                                 hintText: 'Mot de passe',
                                 disabledBorder: null,
@@ -195,7 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     ),
                                   ),
-                                  child:  Text(
+                                  child: Text(
                                     "S'enregistrer",
                                     style: TextStyle(
                                       fontFamily: 'Late',
@@ -204,9 +214,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       color: LetsGoTheme.main,
                                     ),
                                   ),
-                                  onPressed: () async {
-                                    dynamic result = await _auth
-                                        .createUserWithEmailAndPassword(
+                                  onPressed: () {
+                                    dynamic result =
+                                        _auth.createUserWithEmailAndPassword(
                                             namelController.text,
                                             emailController.text,
                                             passwordController.text);
@@ -223,7 +233,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       namelController.clear();
                                       emailController.clear();
                                       passwordController.clear();
-
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
