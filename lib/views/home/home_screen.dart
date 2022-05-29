@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/Icons_v3/maison.svg",
     "assets/Icons_v3/marqueur.svg",
     "assets/Icons_v3/commenter.svg",
-    "assets/Icons_v3/utilisateur.svg",
+    "assets/Icons_v3/users.svg",
   ];
 
   @override

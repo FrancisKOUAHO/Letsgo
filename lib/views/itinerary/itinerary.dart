@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
+import '../../common/utils.dart';
 import '../../theme/letsgo_theme.dart';
 import '../../widgets/custom_app_bar/custom_profil_appbar.dart';
 
@@ -34,6 +35,7 @@ class _ItineraryState extends State<Itinerary> {
   }
 
   _onMapCreated(GoogleMapController controller) {
+    controller.setMapStyle(Utils.mapStyle);
     setState(() {
       markers.add(Marker(
         //add start location marker
@@ -125,7 +127,7 @@ class _ItineraryState extends State<Itinerary> {
             scrollGesturesEnabled: true,
             initialCameraPosition: CameraPosition(
               target: endLocation,
-              zoom: 12.0,
+              zoom: 14.0,
             ),
             markers: markers,
             polylines: Set<Polyline>.of(polylines.values),
