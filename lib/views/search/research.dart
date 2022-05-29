@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../common/resume_word.dart';
 import '../../theme/letsgo_theme.dart';
@@ -19,7 +18,6 @@ class Research extends StatefulWidget {
 class _ResearchState extends State<Research> {
   final user = FirebaseAuth.instance.currentUser;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   dynamic data;
 
   String name = "";
@@ -39,7 +37,11 @@ class _ResearchState extends State<Research> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: TextField(
-              onChanged: (val) => {initiateSearch(val)},
+              onChanged: (val) {
+                setState(() {
+                  name = val;
+                });
+              },
               decoration: InputDecoration(
                 fillColor: LetsGoTheme.lightPurple,
                 filled: true,
@@ -54,8 +56,9 @@ class _ResearchState extends State<Research> {
                   },
                 ),
                 suffixIcon: IconButton(
-                  icon:  Image.asset("assets/Icons_v3/rechercher.png", width: 16),
-                  onPressed: _onPressed,
+                  icon:
+                      Image.asset("assets/Icons_v3/rechercher.png", width: 16),
+                  onPressed: null,
                 ),
                 hintText: "Rechercher des activité ...",
                 border: OutlineInputBorder(
@@ -81,7 +84,7 @@ class _ResearchState extends State<Research> {
       stream: (name != "")
           ? FirebaseFirestore.instance
               .collection('activities')
-              .where("title", arrayContains: name)
+              .where("searchKeywords", arrayContains: name)
               .snapshots()
           : FirebaseFirestore.instance.collection("activities").snapshots(),
       builder: (context, snapshot) {
@@ -89,13 +92,14 @@ class _ResearchState extends State<Research> {
             ? const Center(child: CircularProgressIndicator())
             : ListView.builder(
                 shrinkWrap: true,
+                scrollDirection: Axis.vertical,
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (BuildContext context, index) {
                   DocumentSnapshot activity = snapshot.data!.docs[index];
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(18, 6, 18, 6),
                     child: Container(
-                      width: 100,
+                      width: MediaQuery.of(context).size.width * 2,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(17),
@@ -104,7 +108,8 @@ class _ResearchState extends State<Research> {
                             color: Colors.grey.withOpacity(0.2),
                             spreadRadius: 1.5,
                             blurRadius: 5,
-                            offset: const Offset(0, 1), // changes position of shadow
+                            offset: const Offset(
+                                0, 1), // changes position of shadow
                           ),
                         ],
                       ),
@@ -135,9 +140,9 @@ class _ResearchState extends State<Research> {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/Category.png',
@@ -161,8 +166,8 @@ class _ResearchState extends State<Research> {
                                     ),
                                     Padding(
                                       padding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -188,44 +193,27 @@ class _ResearchState extends State<Research> {
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 elevation: 0,
                                 child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => EventScreen(
-                                                activity: activity)));
-                                  },
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => EventScreen(
+                                                  activity: activity)));
+                                    },
                                     child: SvgPicture.asset(
                                       "assets/Icons_v3/Detail_Button.svg",
                                       width: 30,
                                     )),
-                                ),
                               ),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   );
-                });
+                },
+              );
       },
     );
-  }
-
-  void initiateSearch(String val) {
-    setState(() {
-      name = val;
-    });
-  }
-
-  void _onPressed() {
-    _firestore
-        .collection("categories")
-        .where("subcategoryId")
-        .get()
-        .then((querySnapshot) {
-      for (var result in querySnapshot.docs) {
-        result.data()['subcategoryId'];
-      }
-    });
   }
 }

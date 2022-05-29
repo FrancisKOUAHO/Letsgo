@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
           child:SizedBox (
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height * 1,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
