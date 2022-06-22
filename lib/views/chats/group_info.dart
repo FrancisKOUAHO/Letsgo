@@ -140,7 +140,7 @@ class _GroupInfoState extends State<GroupInfo> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: LetsGoTheme.white,
-        appBar:  PreferredSize(
+        appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 60),
           child: CustomReturnAppBar('', Colors.transparent, LetsGoTheme.black),
         ),
@@ -167,10 +167,10 @@ class _GroupInfoState extends State<GroupInfo> {
                               shape: BoxShape.circle,
                               color: Colors.grey,
                             ),
-                            child: Icon(
-                              Icons.group,
-                              color: Colors.white,
-                              size: size.width / 10,
+                            child: const CircleAvatar(
+                              radius: 15,
+                              backgroundImage: NetworkImage(
+                                  'https://s1.o7planning.com/fr/12997/images/64425712.png'),
                             ),
                           ),
                           SizedBox(
@@ -189,9 +189,6 @@ class _GroupInfoState extends State<GroupInfo> {
                         ],
                       ),
                     ),
-
-                    //
-
                     SizedBox(
                       height: size.height / 20,
                     ),
@@ -245,7 +242,11 @@ class _GroupInfoState extends State<GroupInfo> {
                         itemBuilder: (context, index) {
                           return ListTile(
                             onTap: () => showDialogBox(index),
-                            leading: const Icon(Icons.account_circle),
+                            leading: const CircleAvatar(
+                              radius: 15,
+                              backgroundImage: NetworkImage(
+                                  'https://s1.o7planning.com/fr/12997/images/64425712.png'),
+                            ),
                             title: Text(
                               membersList[index]['displayName'],
                               style: TextStyle(

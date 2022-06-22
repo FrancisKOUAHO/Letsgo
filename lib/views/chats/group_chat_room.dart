@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import '../../theme/chats_theme.dart';
 import '../../theme/letsgo_theme.dart';
 
@@ -18,6 +19,8 @@ class GroupChatRoom extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  final bool _isRead = true;
+
   dynamic data;
 
   void onSendMessage() async {
@@ -26,7 +29,7 @@ class GroupChatRoom extends StatelessWidget {
         "sendBy": data.data()!['displayName'],
         "message": _message.text,
         "type": "text",
-        "time": FieldValue.serverTimestamp(),
+        "time": DateTime.now().millisecondsSinceEpoch.toString(),
       };
 
       _message.clear();
@@ -37,6 +40,35 @@ class GroupChatRoom extends StatelessWidget {
           .collection('chats')
           .add(chatData);
     }
+  }
+
+  String readTimestamp(int timestamp) {
+    var now = DateTime.now();
+    var format = DateFormat('dd MMM kk:mm');
+    var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    var diff = now.difference(date);
+    var time = '';
+
+    if (diff.inSeconds <= 0 ||
+        diff.inSeconds > 0 && diff.inMinutes == 0 ||
+        diff.inMinutes > 0 && diff.inHours == 0 ||
+        diff.inHours > 0 && diff.inDays == 0) {
+      time = format.format(date);
+    } else if (diff.inDays > 0 && diff.inDays < 7) {
+      if (diff.inDays == 1) {
+        time = '${diff.inDays} JOUR DERNIER';
+      } else {
+        time = '${diff.inDays} JOURS DERNIERS';
+      }
+    } else {
+      if (diff.inDays == 7) {
+        time = '${(diff.inDays / 7).floor()} SEMAINE DERNIÈRE';
+      } else {
+        time = '${(diff.inDays / 7).floor()} SEMAINES DERNIÈRES';
+      }
+    }
+
+    return time;
   }
 
   @override
@@ -58,8 +90,7 @@ class GroupChatRoom extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 100,
-        title:
-            Text(groupName, style:  TextStyle(color: LetsGoTheme.black)),
+        title: Text(groupName, style: TextStyle(color: LetsGoTheme.black)),
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,7 +108,7 @@ class GroupChatRoom extends StatelessWidget {
                   width: 45,
                   height: 45,
                   child: IconButton(
-                    icon:  FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.chevronLeft,
                       color: LetsGoTheme.main,
                     ),
@@ -109,7 +140,7 @@ class GroupChatRoom extends StatelessWidget {
                     width: 45,
                     height: 45,
                     child: IconButton(
-                      icon:  FaIcon(
+                      icon: FaIcon(
                         FontAwesomeIcons.ellipsisVertical,
                         color: LetsGoTheme.main,
                       ),
@@ -154,6 +185,7 @@ class GroupChatRoom extends StatelessWidget {
                         Map<String, dynamic> chatMap =
                             snapshot.data!.docs[index].data()
                                 as Map<String, dynamic>;
+                        print('chatMap ${chatMap}');
                         bool isMe =
                             chatMap["sendBy"] == data.data()!['displayName'];
                         return Container(
@@ -161,6 +193,13 @@ class GroupChatRoom extends StatelessWidget {
                           margin: const EdgeInsets.only(top: 10),
                           child: Column(
                             children: [
+                              Text(
+                                chatMap["sendBy"],
+                                style: MyTheme.bodyTextMessageSendBy.copyWith(
+                                    color: isMe
+                                        ? Colors.white
+                                        : Colors.grey[800]),
+                              ),
                               Row(
                                 mainAxisAlignment: isMe
                                     ? MainAxisAlignment.end
@@ -215,18 +254,39 @@ class GroupChatRoom extends StatelessWidget {
                                       const SizedBox(
                                         width: 40,
                                       ),
-                                    Icon(
-                                      Icons.done_all,
-                                      size: 20,
-                                      color: MyTheme.bodyTextTime.color,
-                                    ),
+                                    _isRead == false
+                                        ? Icon(
+                                            Icons.done_all,
+                                            size: 20,
+                                            color: MyTheme
+                                                .bodyTextTimeIsRead.color,
+                                          )
+                                        : Icon(
+                                            Icons.done_all,
+                                            size: 20,
+                                            color: MyTheme.bodyTextTime.color,
+                                          ),
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    const Text(
-                                      "11:20",
-                                      style: MyTheme.bodyTextTime,
-                                    )
+                                    _isRead == false
+                                        ? Text(
+                                        /*readTimestamp(int.parse(chatMap["time"]))*/
+                                            DateFormat('dd MMM kk:mm').format(
+                                                DateTime
+                                                    .fromMillisecondsSinceEpoch(
+                                                        int.parse(
+                                                            chatMap["time"]))),
+                                            style: MyTheme.bodyTextTimeIsRead,
+                                          )
+                                        : Text(
+                                            DateFormat('dd MMM kk:mm').format(
+                                                DateTime
+                                                    .fromMillisecondsSinceEpoch(
+                                                        int.parse(
+                                                            chatMap["time"]))),
+                                            style: MyTheme.bodyTextTime,
+                                          )
                                   ],
                                 ),
                               )

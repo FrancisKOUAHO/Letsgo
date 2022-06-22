@@ -35,7 +35,20 @@ class MyTheme {
   static const TextStyle bodyTextMessage =
       TextStyle(fontSize: 13, letterSpacing: 1.5, fontWeight: FontWeight.w600);
 
+  static const TextStyle bodyTextMessageSendBy = TextStyle(
+    fontSize: 11,
+    letterSpacing: 1,
+    color: Color(0xff4895ef),
+  );
+
   static const TextStyle bodyTextTime = TextStyle(
+    color: Color(0xff4895ef),
+    fontSize: 11,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1,
+  );
+
+  static const TextStyle bodyTextTimeIsRead = TextStyle(
     color: Color(0xffAEABC9),
     fontSize: 11,
     fontWeight: FontWeight.bold,
