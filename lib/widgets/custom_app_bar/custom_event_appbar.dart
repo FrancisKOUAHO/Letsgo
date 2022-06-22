@@ -10,6 +10,8 @@ class CustomEventAppBar extends StatefulWidget {
 }
 
 class _CustomEventAppBarState extends State<CustomEventAppBar> {
+   bool _isliked = false ;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -74,13 +76,28 @@ class _CustomEventAppBarState extends State<CustomEventAppBar> {
                   ),
                   width: 45,
                   height: 45,
-                  child: IconButton(
+                  child: _isliked == false ? IconButton(
                     icon:  FaIcon(
                       FontAwesomeIcons.heart,
                       color: LetsGoTheme.main,
                     ),
                     iconSize: 20.0,
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                         _isliked = true;
+                      });
+                    },
+                  ): IconButton(
+                    icon:  FaIcon(
+                      FontAwesomeIcons.heartCrack,
+                      color: LetsGoTheme.main,
+                    ),
+                    iconSize: 20.0,
+                    onPressed: () {
+                      setState(() {
+                        _isliked = false;
+                      });
+                    },
                   ),
                 ),
               ),

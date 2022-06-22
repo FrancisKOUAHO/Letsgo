@@ -118,7 +118,6 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print(widget.activity);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const PreferredSize(

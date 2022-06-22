@@ -156,10 +156,10 @@ class _ChatScreenState extends State<ChatScreen>
                           controller: tabController,
                           tabs: const [
                             Tab(
-                              text: 'Chats',
+                              text: 'Groupes',
                             ),
                             Tab(
-                              text: 'Groupes',
+                              text: 'Chats',
                             ),
                           ],
                         ),
@@ -171,6 +171,7 @@ class _ChatScreenState extends State<ChatScreen>
                   child: TabBarView(
                     controller: tabController,
                     children: [
+                      const GroupChatHomeScreen(),
                       display
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -478,7 +479,6 @@ class _ChatScreenState extends State<ChatScreen>
                               ],
                             )
                           : const NotAvailableYet(),
-                      const GroupChatHomeScreen(),
                     ],
                   ),
                 )
